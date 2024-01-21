@@ -20,6 +20,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     BASE_DIR / 'templates',
 ]
+STATIC_ROOT = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -40,9 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'config',
-    'constance',
-    'constance.backends.database',
 ]
 
 MIDDLEWARE = [
