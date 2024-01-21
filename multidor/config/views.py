@@ -9,6 +9,6 @@ def custom_serve(request, path, document_root=None, show_indexes=False):
     if path.endswith('.css') and os.path.exists(file_path):
         return serve(request, file_path, document_root, show_indexes)
     else:
-        template_path = os.path.join(domain, f'{path}.html')
+        template_path = os.path.join(domain, 'main.html')
         return render(request, template_path)
 
