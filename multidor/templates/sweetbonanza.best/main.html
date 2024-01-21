@@ -151,11 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </a>
 
                 <div class="navbar-dropdown has-background-dark">
-                    {% for version, info in versions.items() %}
-                        <a class="navbar-item has-text-light" href="/{{ info.url }}/">
-                            {{ game_info.name }} {{ version }}
-                        </a>
-                    {% endfor %}
+
 
                 </div>
             </div-->
@@ -166,7 +162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a class="button is-darksalmon is-large wheretoplay">
                         Где играть?
                     </a>
-                    <a class="button is-success is-large playdemo" alt="{{ game_info.name }} {{ game_info.version }} Играть Демо">
+                    <a class="button is-success is-large playdemo" alt="{Играть Демо">
                         <strong>Играть демо</strong>
                     </a>
 
@@ -243,40 +239,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
         <div class="box has-background-dark has-text-light" id="playdemo">
-        <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ game_info.name }} {{ game_info.version }}</h2>
+        <h2 class="title is-4 has-text-light has-background-dark">Играть демо в </h2>
         <div class="box has-background-grey has-text-light has-text-centered">
             <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 <iframe src="{{ game_info.link_demo }}" frameborder="0" width="100%" height="100%"></iframe>
 </div>
 </div>
-            <a class="button is-success" target="_blank" href="{{ game_info.link_demo }}">Открыть в новом окне</a>
+            <a class="button is-success" target="_blank" href="">Открыть в новом окне</a>
         </div>
     </div>
 
     <div class="box has-background-dark has-text-light">
-        <h2 class="title is-4 has-text-light has-background-dark">Символы и коэффициенты в {{ game_info.name }} {{ game_info.version }}</h2>
+        <h2 class="title is-4 has-text-light has-background-dark">Символы и коэффициенты в </h2>
         <p class="box has-background-dark has-text-light">The Dog House предлагает вам взглянуть на мир собак с новой стороны, погрузив вас в их уютный и веселый дом. Играйте в этот захватывающий слот и наслаждайтесь атмосферой радости и возможностей. Мы расскажем вам о символах, которые приносят удачу, и как создать выигрышные сочетания в этом уникальном игровом опыте.</p>
         <div class="box has-background-grey has-text-light">
             <div class="columns is-multiline">
 
-                {% for symbol in symbols %}
+
                 <div class="column is-2">
                     <span class="box has-background-dark has-text-light symbol-block has-text-centered">
-                <img src="/static/img/symbols/{{ symbol.img }}">
-                {% for key, value in symbol.ratio.items() %}
-                <p class="is-flex is-justify-content-space-between"><span>{{ key }}</span> <span>{{ value }}</span></p>
-                {% endfor %}
+
             </span>
                 </div>
-                {% endfor %}
+
 
             </div>
         </div>
     </div>
 
     <div class="box has-background-dark has-text-light is-hidden">
-        <h2 class="title is-4 has-text-light has-background-dark">Видеообзор {{ game_info.name }} {{ game_info.version }}</h2>
+        <h2 class="title is-4 has-text-light has-background-dark">Видеообзор </h2>
         <div class="box has-background-grey has-text-light has-text-centered">
             <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
