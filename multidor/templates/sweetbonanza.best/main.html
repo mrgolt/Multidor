@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ name }} - Играйте онлайн прямо сейчас с бонусом!</title>
+    <title>- Играйте онлайн прямо сейчас с бонусом!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/style.css'">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" ></script>
@@ -128,7 +128,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <img src="/static/img/logo.svg">
         </a>
         <a class="navbar-item is-hidden-mobile" href="/">
-            <h1 class="title is-3 has-text-light">{{ game_info.name }} {{ game_info.version }}</h1>
+            <h1 class="title is-3 has-text-light">
+            </h1>
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -177,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="box has-background-dark">
         <div class="columns is-vcentered">
             <div class="column is-half">
-                <h1 class="title is-1 has-text-light has-text-weight-bold">{{ name }}</h1>
+                <h1 class="title is-1 has-text-light has-text-weight-bold"></h1>
                 <span class="title is-3 has-text-light">Бонус 500% по нашему промокоду</span>
                 <div class="buttons mt-4">
                     <a class="button is-success is-large promo-code-button">
@@ -185,7 +186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                  </a>
                     <a class="button is-darksalmon is-large wheretoplay">Где играть</a>
                 </div>
-                <span class="title is-5 has-text-light">Провайдер игры: {{ game_info.provider }}</span>
+                <span class="title is-5 has-text-light">Провайдер игры: </span>
             </div>
             <div class="column">
                 <img src="/static/img/wheel.png">
@@ -193,11 +194,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
     <div class="box has-background-dark" id="wheretoplay">
-        <h2 class="title is-4 has-text-light has-background-dark">Где играть в {{ game_info.name }} {{ game_info.version }}?</h2>
+        <h2 class="title is-4 has-text-light has-background-dark">Где играть в ?</h2>
 
             <div class="columns box has-text-light has-background-grey m-2">
                 <div class="column">
-                    <span class="title is-5 has-text-light">В официальном приложении {{ game_info.name }} {{ game_info.version }}</span>
+                    <span class="title is-5 has-text-light">В официальном приложении </span>
                 </div>
                 <div class="column">
                     <a class="button is-success is-fullwidth">
@@ -208,25 +209,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
 
-        {% for casino in casino_info %}
+
         <div class="columns box as-text-light has-background-grey m-2">
             <div class="column is-two-fifths">
-                <img width="200" src="/static/img/casino/{{ casino.img }}">
+                <img width="200" src="/img/casino/">
 
             </div>
             <div class="column">
-                <p class="title has-text-light has-text-centered">Бонус {{ casino.bonus_info }}</p>
+                <p class="title has-text-light has-text-centered">Бонус </p>
                 <span class="buttons">
 
                     <a class="button is-success is-medium promo-code-button is-fullwidth">
-                        <span class="promo-label">Промокод</span>:&nbsp;<span class="promo-code-text-button">{{ casino.promocode }}</span>
+                        <span class="promo-label">Промокод</span>:&nbsp;<span class="promo-code-text-button">}</span>
                     </a>
                         <a class="button is-darksalmon is-medium is-fullwidth">Играть</a>
                     </span>
             </div>
         </div>
 
-        {% endfor %}
+
 
     </div>
 
@@ -243,7 +244,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="box has-background-grey has-text-light has-text-centered">
             <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-<iframe src="{{ game_info.link_demo }}" frameborder="0" width="100%" height="100%"></iframe>
+<iframe src="" frameborder="0" width="100%" height="100%"></iframe>
 </div>
 </div>
             <a class="button is-success" target="_blank" href="">Открыть в новом окне</a>
@@ -289,7 +290,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
        <div class="box has-background-dark has-text-light">
-        <h2 class="title is-4 has-text-light has-background-dark">О провайдере {{ game_info.provider }}</h2>
+        <h2 class="title is-4 has-text-light has-background-dark">О провайдере </h2>
         <p>Pragmatic Play – это ведущий разработчик и поставщик программного обеспечения для онлайн-гемблинга, широко известный своими инновационными и качественными решениями в индустрии азартных игр. Основанная в 2015 году, компания стремится предоставлять уникальный и захватывающий игровой опыт для игроков по всему миру.</p>
 
 <p>Pragmatic Play специализируется на создании разнообразных онлайн-слотов, настольных игр и решений для живых казино. Их портфель включает в себя сотни захватывающих игр с красочной графикой, захватывающими темами и инновационными механиками. От популярных слотов, таких как "Wolf Gold" и "The Dog House", до классических настольных игр, Pragmatic Play предоставляет разнообразие опций для удовлетворения потребностей всех типов игроков.</p>
@@ -303,8 +304,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="title is-4 has-text-light has-background-dark">Часто ищут</h2>
                    <div class="buttons">
 
-                   <a class="button is-success" href="/{{ inp }}/">{{ inp }}</a>
-                   {% endfor %}
+                   <a class="button is-success" href="/">jbjbjbj</a>
+
                    </div>
     </div>
 
