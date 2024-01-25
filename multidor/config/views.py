@@ -5,6 +5,7 @@ from django.http import HttpResponse
 import os
 
 def custom_serve(request, document_root=None, show_indexes=False):
+    print(request)
     path = request.path
     domain = request.META.get('HTTP_HOST', '')
     file_path = os.path.join(settings.STATICFILES_DIRS[0], domain, path)
