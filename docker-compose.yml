@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: gunicorn -w 4 -b 0.0.0.0:8000 multidor.wsgi:application  # Замените "your_project" на имя вашего Django-проекта
     ports:
       - 8000:8000
   nginx:
