@@ -1,6 +1,6 @@
 [
   {
-    "id": "hook",
+    "id": "multidor",
     "execute-command": "/opt/git/deploy/run.sh",
     "command-working-directory": "/opt/git",
     "include-command-output-in-response": true,
