@@ -2,36 +2,6 @@
   {
     "id": "multidor",
     "execute-command": "/opt/git/deploy/run.sh",
-    "command-working-directory": "/opt/git",
-    "include-command-output-in-response": true,
-    "include-command-output-in-response-on-error": true,
-    "pass-arguments-to-command": [
-      { "source": "payload", "name": "head_commit.id", "comment": "GIT_REF" },
-      {
-        "source": "string",
-        "name": "/opt/git/",
-        "comment": "GIT_DIR"
-      },
-      { "source": "string", "name": "1000", "comment": "PUID" },
-      { "source": "string", "name": "1000", "comment": "PGID" }
-    ],
-    "trigger-rule": {
-      "and": [
-        {
-          "match": {
-            "type": "payload-hmac-sha1",
-            "secret": "secret_key",
-            "parameter": { "source": "header", "name": "X-Hub-Signature" }
-          }
-        },
-        {
-          "match": {
-            "type": "value",
-            "value": "refs/heads/main",
-            "parameter": { "source": "payload", "name": "ref" }
-          }
-        }
-      ]
-    }
+    "command-working-directory": "/opt/git"
   }
 ]
