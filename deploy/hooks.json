@@ -2,6 +2,25 @@
   {
     "id": "multidor",
     "execute-command": "/opt/git/deploy/run.sh",
-    "command-working-directory": "/opt/git"
+    "command-working-directory": "/opt/git",
+    "include-command-output-in-response": true,
+    "include-command-output-in-response-on-error": true,
+    "pass-arguments-to-command": [
+      { "source": "payload", "name": "head_commit.id", "comment": "GIT_REF" },
+      {
+        "source": "string",
+        "name": "/opt/git",
+        "comment": "GIT_DIR"
+      },
+      { "source": "string", "name": "1000", "comment": "PUID" },
+      { "source": "string", "name": "1000", "comment": "PGID" }
+    ],
+    "trigger-rule": {
+      "match": {
+            "type": "payload-hmac-sha1",
+            "secret": "<YOUR_GITHUB_WEBHOOK_SECRET>",
+            "parameter": { "source": "header", "name": "X-Hub-Signature" }
+          }
+    }
   }
 ]
