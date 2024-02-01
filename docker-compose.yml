@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: gunicorn -w 4 -b 0.0.0.0:8000 multidor.wsgi:application  # Замените "your_project" на имя вашего Django-проекта
+    command: gunicorn -w 4 -b 0.0.0.0:8000 multidor.wsgi:application
     ports:
       - 8000:8000
   nginx:
@@ -18,3 +18,15 @@ services:
       - ./multidor/media:/app/multidor/media
     depends_on:
       - multidor
+  webhook:
+    image: thecatlady/webhook
+    container_name: webhook
+    command: -verbose -hooks=hooks.yml -hotreload
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /deploy:/config:ro
+      - /:/opt/git
+    ports:
+      - 9000:9000
+    restart: always
