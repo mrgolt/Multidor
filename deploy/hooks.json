@@ -20,7 +20,7 @@
         {
           "match": {
             "type": "payload-hmac-sha1",
-            "secret": "sekret",
+            "secret": "secret_key",
             "parameter": { "source": "header", "name": "X-Hub-Signature" }
           }
         },
