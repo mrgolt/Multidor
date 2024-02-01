@@ -23,16 +23,3 @@ services:
     depends_on:
       - multidor
     restart: always
-
-  webhook:
-    image: almir/webhook
-    container_name: webhook
-    command: -verbose -hooks=/etc/webhook/hooks.json -hotreload
-    environment:
-      - TZ=America/New_York
-    volumes:
-      - ./deploy/hooks.json:/etc/webhook/hooks.json
-      - ./:/opt/git
-    ports:
-      - 9000:9000
-    restart: always

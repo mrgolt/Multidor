@@ -1,15 +1,15 @@
 [
   {
     "id": "multidor",
-    "execute-command": "/opt/git/deploy/run.sh",
-    "command-working-directory": "/opt/git",
+    "execute-command": "/root/Multidor/deploy/run.sh",
+    "command-working-directory": "/root/Multidor",
     "include-command-output-in-response": true,
     "include-command-output-in-response-on-error": true,
     "pass-arguments-to-command": [
       { "source": "payload", "name": "head_commit.id", "comment": "GIT_REF" },
       {
         "source": "string",
-        "name": "/opt/git",
+        "name": "/root/Multidor",
         "comment": "GIT_DIR"
       },
       { "source": "string", "name": "1000", "comment": "PUID" },
