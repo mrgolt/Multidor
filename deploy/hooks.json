@@ -1,20 +1,10 @@
 [
   {
     "id": "multidor",
-    "execute-command": "/root/Multidor/deploy/run.sh",
+    "execute-command": "/root/run.sh",
     "command-working-directory": "/root/Multidor",
     "include-command-output-in-response": true,
     "include-command-output-in-response-on-error": true,
-    "pass-arguments-to-command": [
-      { "source": "payload", "name": "head_commit.id", "comment": "GIT_REF" },
-      {
-        "source": "string",
-        "name": "/root/Multidor",
-        "comment": "GIT_DIR"
-      },
-      { "source": "string", "name": "1000", "comment": "PUID" },
-      { "source": "string", "name": "1000", "comment": "PGID" }
-    ],
     "trigger-rule": {
       "match": {
             "type": "payload-hmac-sha1",

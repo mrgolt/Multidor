@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-cd ../
+cd Multidor
 
 git pull
 
