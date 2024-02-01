@@ -31,8 +31,8 @@ services:
     environment:
       - TZ=America/New_York
     volumes:
-      - /deploy:/config:ro
-      - /:/opt/git
+      - ./deploy:/config:ro
+      - ./:/opt/git
     ports:
       - 9000:9000
     restart: always
