@@ -5,7 +5,7 @@ from config.models import Sites
 def custom_serve(request):
     domain = request.META.get('HTTP_HOST', '')
     try:
-        site = Sites.objects.get(allowed_domain=domain)
+        site = Sites.objects.first()
     except Sites.DoesNotExist:
         site = None
 
