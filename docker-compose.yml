@@ -19,6 +19,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./multidor/templates:/app/multidor/templates
+      - ./multidor/templates:/app/multidor/static
       - ./multidor/media:/app/multidor/media
     depends_on:
       - multidor
