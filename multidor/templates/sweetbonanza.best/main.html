@@ -189,11 +189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="title is-5 has-text-light">Провайдер игры: </span>
             </div>
             <div class="column">
-                {% if object.hero_image %}
-                    <img src="{{ site.hero_image.path }}" alt="Hero Image">
-                {% else %}
-                    <p>No hero image available</p>
-                {% endif %}
+                <img src="{{ site.hero_image.url }}" alt="Hero Image">
             </div>
         </div>
     </div>
