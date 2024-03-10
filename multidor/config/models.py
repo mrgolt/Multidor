@@ -1,14 +1,18 @@
 from django.db import models
 
 class Sites(models.Model):
+    name = models.CharField(max_length=100, default='doghouse.best')
     site_id = models.AutoField(primary_key=True)
     allowed_domain = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to='img/', default='logo.jpg')
+    hero_image = models.ImageField(upload_to='img/', default='hero.jpg')
+    apk_file = models.FileField(upload_to='file/', default='default_apk.apk')
 
     def __str__(self):
         return self.allowed_domain
 
 class Casino(models.Model):
-    logo = models.ImageField(upload_to='casino_logos/')
+    logo = models.ImageField(upload_to='img/', default='cas_logo.jpg')
     name = models.CharField(max_length=100)
 
     def __str__(self):
