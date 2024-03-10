@@ -18,5 +18,5 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-curl -X POST -H 'Content-type: application/json' --data '{"text":"Service has been deployed"}' https://hooks.slack.com/services/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
+curl -X POST -H 'Content-type: application/json' --data '{"text":"Service has been deployed"}' https://hooks.slack.com/services/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
 echo "Все шаги завершены успешно"
