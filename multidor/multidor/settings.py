@@ -18,6 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+CSRF_COOKIE_DOMAIN = 'sweetbonanza.best'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'templates',
 ]
