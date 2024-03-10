@@ -86,7 +86,7 @@
     </script>
 
     <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
-    <!-- Yandex.Metrika counter -->
+    <!-- Yandex.Metrika counter --
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
    m[i].l=1*new Date();
@@ -102,7 +102,7 @@
    });
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/96162480" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+!-- /Yandex.Metrika counter -->
 
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -189,7 +189,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="title is-5 has-text-light">Провайдер игры: </span>
             </div>
             <div class="column">
-                <img src="/img/wheel.png">
+                {% if object.hero_image %}
+                    <img src="{{ object.hero_image.url }}" alt="Hero Image">
+                {% else %}
+                    <p>No hero image available</p>
+                {% endif %}
             </div>
         </div>
     </div>
