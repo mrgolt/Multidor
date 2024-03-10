@@ -11,6 +11,7 @@ services:
       - 8000:8000
     volumes:
       - ./multidor/db.sqlite3:/app/multidor/db.sqlite3
+      - ./multidor/media:/app/multidor/media
     restart: always
 
   nginx:
@@ -22,7 +23,6 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./multidor/templates:/app/multidor/templates
       - ./multidor/static:/app/multidor/static
-      - ./multidor/media:/app/multidor/media
     depends_on:
       - multidor
     restart: always
