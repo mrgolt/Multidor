@@ -1,11 +1,9 @@
 from django.contrib import admin
-from .models import Sites, Templates
+from .models import Sites, Content, Bonus, Casino
 
-@admin.register(Sites)
-class SitesAdmin(admin.ModelAdmin):
-    list_display = ('site_id', 'allowed_domain')
-    search_fields = ('site_id', 'allowed_domain')
+# Register your models here.
 
-@admin.register(Templates)
-class TemplateAdmin(admin.ModelAdmin):
-    list_display = ('name', 'template_id')
+admin.site.register(Sites)
+admin.site.register(Content)
+admin.site.register(Bonus)
+admin.site.register(Casino)
