@@ -12,6 +12,7 @@ class Sites(models.Model):
     hero_image = models.ImageField(upload_to='img/', default='hero.jpg')
     apk_file = models.FileField(upload_to='file/', default='default_apk.apk')
     promo_image = models.ImageField(upload_to='img/', default='promo.jpg')
+    yt_link = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.allowed_domain
@@ -42,6 +43,7 @@ class Content(models.Model):
     keywords = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, blank=True, default='')
     is_main = models.BooleanField()
+
 
     def __str__(self):
         return self.title
