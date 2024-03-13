@@ -11,10 +11,11 @@ def custom_serve(request):
     try:
         site = Sites.objects.filter(allowed_domain=domain)[0]
         bonuses = Bonus.objects.filter(website=site)
-        content = Content.objects.filter(is_main=True, site=site)
+        main_page = Content.objects.filter(is_main=True, site=site)
+        inner_pages = Content.objects.filter(is_main=False, site=site)
     except Sites.DoesNotExist:
         site = None
 
     template_path = os.path.join(domain, 'main.html')
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': main_page, 'inner_pages': inner_pages})

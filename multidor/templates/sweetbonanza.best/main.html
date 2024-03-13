@@ -329,7 +329,9 @@
             <h2 class="title is-4 has-text-light has-background-dark">Часто ищут</h2>
             <div class="buttons">
 
-                <a class="button is-success" href="/">jbjbjbj</a>
+                {% for page in inner_pages %}
+                    <a class="button is-success" href="{{ page.slug }}">{{ page.title }}</a>
+                {% endfor %}
 
             </div>
         </div>
