@@ -29,7 +29,7 @@
         }
 
         .is-darksalmon, .is-darksalmon:hover {
-            background-color: {{ colors.button }};
+            background-color: darksalmon;
             border: 0px;
             color: #fff;
         }
@@ -191,11 +191,11 @@
             <div class="columns is-vcentered">
                 <div class="column is-half">
                     <h1 class="title is-1 has-text-light has-text-weight-bold"></h1>
-                    <span class="title is-3 has-text-light">Бонус 500% по нашему промокоду</span>
+                    <span class="title is-3 has-text-light">{{ bonuses.first.name }} по нашему промокоду в казино {{ bonuses.first.casino.name }}</span>
                     <div class="buttons mt-4">
                         <a class="button is-success is-large promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
-                                class="promo-code-text-button">STOSPIN</span>
+                                class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
                         </a>
                         <a class="button is-darksalmon is-large wheretoplay">Где играть</a>
                     </div>
@@ -228,7 +228,7 @@
 
                     </div>
                     <div class="column">
-                        <p class="title has-text-light has-text-centered">Бонус {{ bonus.name }}</p>
+                        <p class="title has-text-light has-text-centered">{{ bonus.name }}</p>
                         <span class="buttons">
 
                         <a class="button is-success is-medium promo-code-button is-fullwidth">
@@ -301,7 +301,7 @@
 
         <div class="box has-background-dark has-text-light">
 
-
+            {{ content.first.text|safe }}
         </div>
 
         <div class="box has-background-dark has-text-light">

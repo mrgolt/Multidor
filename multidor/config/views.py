@@ -7,6 +7,7 @@ def custom_serve(request):
     try:
         site = Sites.objects.first()
         bonuses = Bonus.objects.all()
+        content = Content.objects.filter(is_main=True)
     except Sites.DoesNotExist:
         site = None
 
@@ -15,4 +16,4 @@ def custom_serve(request):
 
     template_path = os.path.join(domain, 'main.html')
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content})
