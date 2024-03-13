@@ -1,7 +1,9 @@
 from django.db import models
 
 class Sites(models.Model):
-    name = models.CharField(max_length=100, default='doghouse.best')
+    name = models.CharField(max_length=200, default='doghouse.best')
+    slot_name = models.CharField(max_length=200, default='The Dog House')
+    provider_name = models.CharField(max_length=200, default='Pragmatic Play')
     site_id = models.AutoField(primary_key=True)
     allowed_domain = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='img/', default='logo.jpg')
@@ -35,6 +37,7 @@ class Content(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     keywords = models.CharField(max_length=255)
+    is_main = models.BooleanField()
 
     def __str__(self):
         return self.title
