@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import os
-from config.models import Sites, Bonus
+from config.models import Sites, Bonus, Content
 
 def custom_serve(request):
     domain = request.META.get('HTTP_HOST', '')
