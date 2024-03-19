@@ -42,7 +42,7 @@ class Content(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     keywords = models.CharField(max_length=255)
-    slug = models.CharField(max_length=255, blank=True, default='')
+    slug = models.CharField(max_length=255, default='')
     is_main = models.BooleanField()
 
 
