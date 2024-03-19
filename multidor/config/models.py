@@ -13,6 +13,7 @@ class Sites(models.Model):
     apk_file = models.FileField(upload_to='file/', default='default_apk.apk')
     promo_image = models.ImageField(upload_to='img/', default='promo.jpg')
     yt_link = models.TextField(blank=True, default='')
+    tlg_link = models.TextField(blank=True, default='https://t.me/play_sweet_bonanza')
 
     def __str__(self):
         return self.allowed_domain
