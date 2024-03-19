@@ -11,13 +11,14 @@ class ContentAPITestCase(TestCase):
 
     def test_create_content(self):
         data = {
-            "site": 1,
+            "site": 2,
             "text": "Some text",
             "category": "Some category",
             "title": "Some title",
             "description": "Some description",
             "keywords": "Some keywords",
-            "is_main": True
+            "slug": "slug",
+            "is_main": False
         }
         response = self.client.post(self.url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
