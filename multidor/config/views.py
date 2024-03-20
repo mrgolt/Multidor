@@ -29,7 +29,8 @@ def custom_serve(request, slug=None):
     except Sites.DoesNotExist:
         site = None
 
-    template_path = os.path.join(domain, 'main.html')
+    #template_path = os.path.join(domain, 'main.html')
+    template_path = os.path.join('sweetbonanza.best', 'main.html')
 
     return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages})
 

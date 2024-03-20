@@ -9,7 +9,7 @@ class BonusAdmin(admin.ModelAdmin):
         return obj.casino.name if obj.casino else "-"  # Предположим, что поле в модели Bonus для казино называется "casino", а у казино есть поле "name"
 
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'is_main')
+    list_display = ('title', 'site', 'slug', 'is_main')
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
 

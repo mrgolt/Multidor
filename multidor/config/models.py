@@ -2,19 +2,19 @@ from django.db import models
 from django.utils.text import slugify
 
 class Sites(models.Model):
-    name = models.CharField(max_length=200, default='doghouse.best')
-    slot_name = models.CharField(max_length=200, default='The Dog House')
+    name = models.CharField(max_length=200, default='')
+    slot_name = models.CharField(max_length=200, default='')
     demo = models.TextField(default='')
-    provider_name = models.CharField(max_length=200, default='Pragmatic Play')
+    provider_name = models.CharField(max_length=200, default='')
     site_id = models.AutoField(primary_key=True)
     allowed_domain = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='img/', default='logo.jpg')
-    hero_image = models.ImageField(upload_to='img/', default='hero.jpg')
-    apk_file = models.FileField(upload_to='file/', default='default_apk.apk')
-    promo_image = models.ImageField(upload_to='img/', default='promo.jpg')
-    favicon = models.ImageField(upload_to='img/', default='favicon.ico')
+    hero_image = models.ImageField(upload_to='img/', default='')
+    apk_file = models.FileField(upload_to='file/', default='')
+    promo_image = models.ImageField(upload_to='img/', default='')
+    favicon = models.ImageField(upload_to='img/', default='')
     yt_link = models.TextField(blank=True, default='')
-    tlg_link = models.TextField(blank=True, default='https://t.me/play_sweet_bonanza')
+    tlg_link = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.allowed_domain
