@@ -250,7 +250,7 @@
         </div>
 
 
-        <div class="box has-background-dark has-text-light">
+        <div class="box has-background-light content">
             <h2>{{ content.first.title }}</h2>
             {{ content.first.text|safe }}
         </div>
@@ -262,7 +262,7 @@
             <div class="buttons">
 
                 {% for page in inner_pages %}
-                    <a class="button is-success" href="/page/{{ page.slug }}/">{{ page.title }}</a>
+                    <a class="button is-success is-small" href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
 
             </div>
