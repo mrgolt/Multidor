@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="has-background-dark">
+<html lang="en" class="has-background-dark has-navbar-fixed-top">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -110,7 +110,7 @@
     <!-- End Google Tag Manager -->
 
 </head>
-<body>
+<body class="has-navbar-fixed-top">
 
 <!-- Google Tag Manager (noscript) -->
 <noscript>
@@ -120,14 +120,14 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="container">
-    <nav class="navbar is-black is-spaced has-background-dark has-text-light" role="navigation"
+    <nav class="navbar is-black is-spaced has-background-dark has-text-light is-fixed-top" role="navigation"
          aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <img src="{{ site.logo.url }}">
             </a>
             <a class="navbar-item is-hidden-mobile" href="/">
-                <h1 class="title is-3 has-text-light">
+                <h1 class="title is-3 has-text-light">Играть в {{ site.slot_name }}
                 </h1>
             </a>
 
@@ -173,6 +173,7 @@
         </div>
     </nav>
 </div>
+
 <section class="section has-background-dark has-text-light p-2">
     <div class="container">
         <div class="box has-background-dark">
