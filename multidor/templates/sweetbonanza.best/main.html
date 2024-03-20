@@ -187,7 +187,7 @@
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
                 <div class="column">
-                    <img src="{{ site.hero_image.url }}" alt="Hero Image">
+                    <img src="{{ site.hero_image.url }}" alt="Hero Image" class="is-rounded">
                 </div>
             </div>
         </div>
@@ -264,7 +264,7 @@
                 {% for page in inner_pages %}
                     <a class="button is-success is-small" href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
-
+                    <a class="button is-success is-small" href="{{ site.tlg_link }}/">Telegram канал {{ site.slot_name }}</a>
             </div>
         </div>
 
