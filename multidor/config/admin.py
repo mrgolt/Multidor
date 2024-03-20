@@ -13,7 +13,12 @@ class ContentAdmin(admin.ModelAdmin):
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
 
-admin.site.register(Sites)
+class SitesAdmin(admin.ModelAdmin):
+    list_display = ('name', 'allowed_domain', 'site_id')
+    def casino_name(self, obj):
+        return obj.casino.name if obj.casino else "-"
+
+admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
 admin.site.register(Casino)
