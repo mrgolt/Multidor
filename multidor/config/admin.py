@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Sites, Content, Bonus, Casino
+from .models import Sites, Content, Bonus, Casino, Redirect
 
 class BonusAdmin(admin.ModelAdmin):
     list_display = ('name', 'casino', 'promo_code', 'referral_link', 'website') # Перечислите поля, которые вы хотите отображать в списке бонусов
@@ -18,7 +18,13 @@ class SitesAdmin(admin.ModelAdmin):
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
 
+class RedirectAdmin(admin.ModelAdmin):
+    list_display = ('id', 'target_url', 'name')
+    def casino_name(self, obj):
+        return obj.casino.name if obj.casino else "-"
+
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
 admin.site.register(Casino)
+admin.site.register(Redirect, RedirectAdmin)

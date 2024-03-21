@@ -15,6 +15,7 @@ class Sites(models.Model):
     favicon = models.ImageField(upload_to='img/', default='')
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')
+    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.allowed_domain
@@ -54,3 +55,11 @@ class Content(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)  # Преобразовать заголовок в slug
         super().save(*args, **kwargs)
+
+class Redirect(models.Model):
+    id = models.AutoField(primary_key=True)
+    target_url = models.URLField()
+    name = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return f"{self.target_url}"

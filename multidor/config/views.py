@@ -1,6 +1,8 @@
 from django.shortcuts import render
 import os
-from config.models import Sites, Bonus, Content, Casino
+from config.models import Sites, Bonus, Content, Casino, Redirect
+from django.shortcuts import redirect, get_object_or_404
+
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -34,6 +36,9 @@ def custom_serve(request, slug=None):
 
     return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages})
 
+def redirect_view(request, redirect_id):
+    redirect_obj = get_object_or_404(Redirect, name=redirect_id)
+    return redirect(redirect_obj.target_url)
 
 @api_view(['POST'])
 def create_site(request):
