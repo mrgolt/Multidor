@@ -16,6 +16,7 @@ class Sites(models.Model):
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
+    counters = models.TextField(default='')
 
     def __str__(self):
         return self.allowed_domain
@@ -23,6 +24,7 @@ class Sites(models.Model):
 class Casino(models.Model):
     logo = models.ImageField(upload_to='img/', default='cas_logo.jpg')
     name = models.CharField(max_length=100)
+    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
@@ -33,6 +35,8 @@ class Bonus(models.Model):
     promo_code = models.CharField(max_length=50)
     referral_link = models.URLField()
     website = models.ForeignKey('Sites', on_delete=models.CASCADE)
+    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
@@ -62,4 +66,4 @@ class Redirect(models.Model):
     name = models.CharField(max_length=100, default='')
 
     def __str__(self):
-        return f"{self.target_url}"
+        return f"{self.name} -> {self.target_url}"
