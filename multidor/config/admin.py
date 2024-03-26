@@ -19,7 +19,7 @@ class SitesAdmin(admin.ModelAdmin):
         return obj.casino.name if obj.casino else "-"
 
 class RedirectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'target_url', 'name')
+    list_display = ('id', 'target_url', 'name', 'visits')
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
 

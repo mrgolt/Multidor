@@ -38,6 +38,7 @@ def custom_serve(request, slug=None):
 
 def redirect_view(request, redirect_id):
     redirect_obj = get_object_or_404(Redirect, name=redirect_id)
+    redirect_obj.increment_visits()
     return redirect(redirect_obj.target_url)
 
 @api_view(['POST'])

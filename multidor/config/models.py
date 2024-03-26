@@ -64,6 +64,14 @@ class Redirect(models.Model):
     id = models.AutoField(primary_key=True)
     target_url = models.URLField()
     name = models.CharField(max_length=100, default='')
+    visits = models.IntegerField(default=0)
+
+    def increment_visits(self):
+        """
+        Увеличивает счетчик визитов на 1
+        """
+        self.visits += 1
+        self.save()
 
     def __str__(self):
         return f"{self.name} -> {self.target_url}"
