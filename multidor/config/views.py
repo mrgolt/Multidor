@@ -72,3 +72,30 @@ def create_content(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_sites(request):
+    # Получаем все объекты Sites из базы данных
+    sites = Sites.objects.all()
+
+    # Создаем пустой список для хранения данных о сайтах
+    sites_data = []
+
+    # Итерируемся по каждому сайту
+    for site in sites:
+        # Получаем количество связанных объектов Content для текущего сайта
+        num_content = Content.objects.filter(site=site).count()
+
+        # Сериализуем данные о сайте
+        site_serializer = SitesSerializer(site)
+
+        # Добавляем количество контента к данным о сайте
+        site_data = site_serializer.data
+        site_data['num_content'] = num_content
+
+        # Добавляем данные о сайте в список
+        sites_data.append(site_data)
+
+    # Возвращаем ответ с данными и статусом HTTP 200 OK
+    return Response(sites_data)

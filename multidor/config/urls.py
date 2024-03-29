@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import custom_serve, create_site, create_casino, create_bonus, create_content, redirect_view
+from .views import custom_serve, create_site, create_casino, create_bonus, create_content, redirect_view, get_sites
 
 urlpatterns = [
 
@@ -7,6 +7,7 @@ urlpatterns = [
     path('api/create-casino/', create_casino, name='create_casino'),
     path('api/create-bonus/', create_bonus, name='create_bonus'),
     path('api/create-content/', create_content, name='create_content'),
+    path('api/get-sites/', get_sites, name='get_sites'),
     path('go/<str:redirect_id>/', redirect_view, name='redirect_view'),
     path('page/<slug:slug>/', custom_serve, name='inner_page'),
     path('', custom_serve),

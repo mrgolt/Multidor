@@ -4,19 +4,19 @@ from django.utils.text import slugify
 class Sites(models.Model):
     name = models.CharField(max_length=200, default='')
     slot_name = models.CharField(max_length=200, default='')
-    demo = models.TextField(default='')
-    provider_name = models.CharField(max_length=200, default='')
+    demo = models.TextField(blank=True, default='')
+    provider_name = models.CharField(blank=True, max_length=200, default='')
     site_id = models.AutoField(primary_key=True)
     allowed_domain = models.CharField(max_length=255)
-    logo = models.ImageField(upload_to='img/', default='logo.jpg')
-    hero_image = models.ImageField(upload_to='img/', default='')
-    apk_file = models.FileField(upload_to='file/', default='')
-    promo_image = models.ImageField(upload_to='img/', default='')
-    favicon = models.ImageField(upload_to='img/', default='')
+    logo = models.ImageField(blank=True, upload_to='img/', default='logo.jpg')
+    hero_image = models.ImageField(blank=True, upload_to='img/', default='')
+    apk_file = models.FileField(blank=True, upload_to='file/', default='')
+    promo_image = models.ImageField(blank=True, upload_to='img/', default='')
+    favicon = models.ImageField(blank=True, upload_to='img/', default='')
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
-    counters = models.TextField(default='')
+    counters = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.allowed_domain
