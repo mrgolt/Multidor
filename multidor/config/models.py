@@ -7,15 +7,15 @@ class Sites(models.Model):
     demo = models.TextField(blank=True, default='')
     provider_name = models.CharField(blank=True, max_length=200, default='')
     site_id = models.AutoField(primary_key=True)
-    allowed_domain = models.CharField(max_length=255)
-    logo = models.ImageField(blank=True, upload_to='img/', default='logo.jpg')
+    allowed_domain = models.CharField(blank=True, max_length=255)
+    logo = models.ImageField(blank=True, upload_to='img/', default='')
     hero_image = models.ImageField(blank=True, upload_to='img/', default='')
     apk_file = models.FileField(blank=True, upload_to='file/', default='')
     promo_image = models.ImageField(blank=True, upload_to='img/', default='')
     favicon = models.ImageField(blank=True, upload_to='img/', default='')
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')
-    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
+    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, blank=True)
     counters = models.TextField(blank=True, default='')
 
     def __str__(self):

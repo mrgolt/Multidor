@@ -14,7 +14,7 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
-        domain = 'sweetbonanza.best'
+        domain = 'volcano-riches.fun'
 
     try:
         site = Sites.objects.filter(allowed_domain=domain)[0]
@@ -99,3 +99,38 @@ def get_sites(request):
 
     # Возвращаем ответ с данными и статусом HTTP 200 OK
     return Response(sites_data)
+
+
+@api_view(['PUT'])
+def update_site(request, site_id):
+    try:
+        site = Sites.objects.get(site_id=site_id)
+    except Sites.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = SitesSerializer(site, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PATCH'])
+def update_site_field(request, site_id):
+    try:
+        site = Sites.objects.get(site_id=site_id)
+    except Sites.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    field_name = request.data.get('field_name')
+    field_value = request.data.get('field_value')
+
+    if not field_name or not field_value:
+        return Response({'error': 'Both field_name and field_value must be provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if field_name == 'site_id':
+        return Response({'error': 'Cannot update site_id'}, status=status.HTTP_400_BAD_REQUEST)
+
+    setattr(site, field_name, field_value)
+    site.save()
+
+    return Response({'message': f'Field {field_name} updated successfully'}, status=status.HTTP_200_OK)

@@ -14,7 +14,7 @@ class ContentAdmin(admin.ModelAdmin):
         return obj.casino.name if obj.casino else "-"
 
 class SitesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slot_name', 'allowed_domain', 'num_content', 'site_id')
+    list_display = ('name', 'slot_name', 'allowed_domain', 'num_content', 'site_id', 'provider_name')
     def num_content(self, obj):
         return obj.content_set.count()  # Подсчитываем количество объектов Content, связанных с текущим экземпляром Sites
 

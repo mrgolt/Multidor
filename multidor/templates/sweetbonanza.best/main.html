@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="{{ site.favicon.url }}">
+    <link rel="icon" type="image/x-icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
 
     <meta content="Попробуйте свою удачу в игровых автоматах прямо сейчас! Отличные выигрыши и захватывающий геймплей ждут вас. Играйте онлайн и получайте удовольствие от вращения барабанов!"
           name="description">
@@ -126,7 +126,7 @@
          aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
-                <img src="{{ site.logo.url }}">
+                <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}">
             </a>
             <a class="navbar-item is-hidden-mobile" href="/">
                 <h1 class="title is-3 has-text-light">Играть в {{ site.slot_name }}
@@ -193,7 +193,7 @@
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
                 <div class="column">
-                    <img src="{{ site.hero_image.url }}" alt="Hero Image" class="is-rounded">
+                    <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="Hero Image" class="is-rounded">
                 </div>
             </div>
         </div>
@@ -205,7 +205,7 @@
                     <span class="title is-5 has-text-light">В официальном приложении </span>
                 </div>
                 <div class="column">
-                    <a href="{{ site.apk_file.url }}" class="button is-success is-fullwidth">
+                    <a href="{% if site.apk_file %}{{ site.apk_file.url }}{% endif %}" class="button is-success is-fullwidth">
                     <span class="icon">
                     <i class="fab fa-android"></i>
                     </span><span>Скачать приложение</span></a>
@@ -216,7 +216,7 @@
         {% for bonus in bonuses %}
             <div class="columns box as-text-light has-background-grey m-2">
                 <div class="column is-two-fifths">
-                    <img width="300" src="{{ bonus.casino.logo.url }}">
+                    <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
 
                 </div>
                 <div class="column">
@@ -241,7 +241,7 @@
             <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш за вчера по нашему
                 промокоду</h2>
             <div class="box has-background-grey has-text-light has-text-centered m-1 p-1">
-                <img src="{{ site.promo_image.url }}">
+                <img src="{% if site.favicon %}{{ site.promo_image.url }}{% endif %}">
             </div>
         </div>
 
