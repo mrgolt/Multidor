@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 class Sites(models.Model):
     name = models.CharField(max_length=200, default='')
@@ -75,3 +76,9 @@ class Redirect(models.Model):
 
     def __str__(self):
         return f"{self.name} -> {self.target_url}"
+
+class Click(models.Model):
+    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
+    site = models.ForeignKey('Sites', on_delete=models.CASCADE)
+    date_clicked = models.DateTimeField(default=timezone.now)
+

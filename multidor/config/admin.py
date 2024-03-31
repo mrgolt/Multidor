@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Sites, Content, Bonus, Casino, Redirect
+from .models import *
+from django.db.models import Count
+from django.db.models.functions import TruncDate
+from django.utils.translation import gettext_lazy as _
 
 class BonusAdmin(admin.ModelAdmin):
     list_display = ('name', 'casino', 'promo_code', 'referral_link', 'website', 'is_active') # Перечислите поля, которые вы хотите отображать в списке бонусов
@@ -27,8 +30,17 @@ class RedirectAdmin(admin.ModelAdmin):
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
 
+class ClickAdmin(admin.ModelAdmin):
+    list_display = ('site', 'date_clicked', 'redirect')
+    list_filter = ('date_clicked',)
+
+
+
+
+
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
 admin.site.register(Casino)
 admin.site.register(Redirect, RedirectAdmin)
+admin.site.register(Click, ClickAdmin)

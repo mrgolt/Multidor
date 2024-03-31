@@ -1,9 +1,9 @@
 from django.shortcuts import render
 import os
-from config.models import Sites, Bonus, Content, Casino, Redirect
+from config.models import *
 from django.shortcuts import redirect, get_object_or_404
-
-
+from django.http import HttpRequest
+from urllib.parse import urlparse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -14,7 +14,7 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
-        domain = 'volcano-riches.fun'
+        domain = 'voodooendorphina.fun'
 
     try:
         site = Sites.objects.filter(allowed_domain=domain)[0]
@@ -38,7 +38,25 @@ def custom_serve(request, slug=None):
 
 def redirect_view(request, redirect_id):
     redirect_obj = get_object_or_404(Redirect, name=redirect_id)
+
+    # Получаем домен из URL-адреса запроса
+    referer = request.META.get('HTTP_REFERER')
+    parsed_referer = urlparse(referer)
+    domain = parsed_referer.netloc
+
+    if domain == '127.0.0.1:8000':
+        domain = 'voodooendorphina.fun'
+
+    # Находим объект Sites по домену
+    site = Sites.objects.get(allowed_domain=domain)
+
+    # Создаем новый объект Click
+    click = Click.objects.create(redirect=redirect_obj, site=site)
+
+    # Увеличиваем счетчик кликов для объекта Redirect
     redirect_obj.increment_visits()
+
+    # Перенаправляем на целевой URL
     return redirect(redirect_obj.target_url)
 
 @api_view(['POST'])
