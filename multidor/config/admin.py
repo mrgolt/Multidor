@@ -32,7 +32,7 @@ class RedirectAdmin(admin.ModelAdmin):
 
 class ClickAdmin(admin.ModelAdmin):
     list_display = ('site', 'date_clicked', 'redirect')
-    list_filter = ('date_clicked',)
+    list_filter = ('date_clicked', 'site', )
 
 
 
