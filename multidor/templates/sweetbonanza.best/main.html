@@ -203,9 +203,9 @@
             <div class="buttons">
 
                 {% for page in inner_pages %}
-                    <a class="button is-success is-small" href="/page/{{ page.slug }}/">{{ page.title }}</a>
+                    <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}" href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
-                <a class="button is-success is-small" href="{{ site.tlg_link }}/">Telegram
+                <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}" href="{{ site.tlg_link }}/">Telegram
                     канал {{ site.slot_name }}</a>
             </div>
         </div>
