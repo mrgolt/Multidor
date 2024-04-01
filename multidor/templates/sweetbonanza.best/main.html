@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="has-background-dark has-navbar-fixed-top">
+<html lang="en" class="has-background-dark has-navbar-fixed-top{% for class in random_classes %} {{ class }}{% endfor %}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,7 +58,7 @@
 
 
 </head>
-<body class="has-navbar-fixed-top">
+<body class="has-navbar-fixed-top{% for class in random_classes %} {{ class }}{% endfor %}">
 
 {{ site.counters|safe }}
 
