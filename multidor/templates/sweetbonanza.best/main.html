@@ -92,8 +92,8 @@
             <div class="navbar-end has-background-dark">
 
 
-                <div class="navbar-item has-background-dark">
-                    <div class="buttons has-background-dark">
+                <div class="navbar-item has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
+                    <div class="buttons has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
                         <a class="button is-darksalmon is-large " href="/go/kent/">
                             Где играть?
                         </a>
