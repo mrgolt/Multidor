@@ -1,0 +1,36 @@
+.has-background-dark {
+            background-color: #1a0e1e !important;
+        }
+
+        h2, h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        strong {
+            color: #fff;
+        }
+
+        .is-darksalmon, .is-darksalmon:hover {
+            background-color: darksalmon;
+            border: 0px;
+            color: #fff;
+        }
+
+        .has-text-light {
+            color: antiquewhite !important;
+        }
+
+        .has-background-grey {
+            background-color: #33263a !important;
+        }
+
+        .box {
+            #border: 2px darksalmon solid;
+            #border-radius: 20px;
+            #padding: 20px;
+        }
+        .content {
+            overflow-x: auto !important;
+        }

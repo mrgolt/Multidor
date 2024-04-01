@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import SitesSerializer, CasinoSerializer, BonusSerializer, ContentSerializer
+import random
 
 
 def custom_serve(request, slug=None):
@@ -15,6 +16,68 @@ def custom_serve(request, slug=None):
 
     if domain == '127.0.0.1:8000':
         domain = 'voodooendorphina.fun'
+
+    classes = [
+        'has-game-preview',
+        'is-valid-game-amount',
+        'has-provider-dark',
+        'is-valid-slot',
+        'has-game-preview-provider',
+        'is-valid-game-amount-review',
+        'has-provider-dark-game',
+        'is-active-widget-service',
+        'has-dark-theme-provider',
+        'is-responsive-layout-author',
+        'has-hidden-sidebar-game',
+        'is-expanded-menu-service',
+        'has-overlay-background-review',
+        'is-animated-button-provider',
+        'has-game-overlay-service',
+        'is-valid-provider-widget',
+        'has-review-carousel-game',
+        'is-service-popup-author',
+        'has-dark-mode-toggle-provider',
+        'is-author-bio-service',
+        'has-game-stats-review',
+        'is-provider-dropdown-game',
+        'has-service-loader-author',
+        'is-review-panel-provider',
+        'has-service-dropdown-game',
+        'is-provider-modal-review',
+        'has-game-loader-provider',
+        'is-dark-theme-toggle-service',
+        'has-author-overlay-game',
+        'is-valid-review-widget',
+        'has-game-info-provider',
+        'is-service-header-author',
+        'has-dark-mode-toggle-game',
+        'is-provider-popup-service',
+        'has-review-carousel-provider',
+        'is-active-game-panel-author',
+        'has-service-dropdown-provider',
+        'is-provider-modal-game',
+        'has-dark-theme-toggle-review',
+        'is-game-info-service',
+        'has-author-overlay-review',
+        'is-valid-service-widget',
+        'has-game-loader-author',
+        'is-dark-mode-toggle-provider',
+        'has-provider-header-game',
+        'is-review-carousel-service',
+        'has-service-dropdown-review',
+        'is-provider-modal-author',
+        'has-dark-theme-toggle-game',
+        'is-game-info-provider',
+        'has-author-overlay-review',
+        'is-valid-service-widget',
+        'has-game-loader-author',
+        'is-dark-mode-toggle-provider'
+    ]
+
+    random_classes_1 = [class_name for class_name in classes if domain[0] in class_name]
+    random_classes_2 = [class_name for class_name in classes if domain[1] in class_name]
+    random_classes_3 = [class_name for class_name in classes if domain[2] in class_name]
+    random_classes = set(random_classes_1[:2] + random_classes_2[:2] + random_classes_3[:2])
 
     try:
         site = Sites.objects.filter(allowed_domain=domain)[0]
@@ -34,7 +97,7 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', 'main.html')
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes})
 
 def redirect_view(request, redirect_id):
     redirect_obj = get_object_or_404(Redirect, name=redirect_id)
