@@ -100,12 +100,10 @@ def custom_serve(request, slug=None):
     return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes})
 
 def redirect_view(request, redirect_id):
+
     redirect_obj = get_object_or_404(Redirect, name=redirect_id)
 
-    # Получаем домен из URL-адреса запроса
-    referer = request.META.get('HTTP_REFERER')
-    parsed_referer = urlparse(referer)
-    domain = parsed_referer.netloc
+    domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
         domain = 'voodooendorphina.fun'
@@ -113,8 +111,7 @@ def redirect_view(request, redirect_id):
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)
 
-    # Создаем новый объект Click
-    click = Click.objects.create(redirect=redirect_obj, site=site)
+    Click.objects.create(redirect=redirect_obj, site=site)
 
     # Увеличиваем счетчик кликов для объекта Redirect
     redirect_obj.increment_visits()
