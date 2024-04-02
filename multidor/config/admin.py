@@ -28,7 +28,7 @@ class SitesAdmin(admin.ModelAdmin):
 
     def allowed_domain_link(self, obj):
         if obj.allowed_domain:
-            return format_html('<a href="{0}" target="_blank">{0}</a>', obj.allowed_domain)
+            return format_html('<a href="https://{0}/" target="_blank">{0}</a>', obj.allowed_domain)
         return "-"
 
     allowed_domain_link.short_description = 'Allowed Domain'
