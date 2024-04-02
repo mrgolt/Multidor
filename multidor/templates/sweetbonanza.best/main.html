@@ -1,12 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="has-background-dark has-navbar-fixed-top{% for class in random_classes %} {{ class }}{% endfor %}">
+<html lang="en"
+      class="has-background-dark has-navbar-fixed-top{% for class in random_classes %} {{ class }}{% endfor %}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
 
     <meta content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name }}."
@@ -46,11 +48,11 @@
             #border-radius: 20px;
             #padding: 20px;
         }
+
         .content {
             overflow-x: auto !important;
         }
     </style>
-
 
 
     <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
@@ -82,7 +84,8 @@
             </a>
         </div>
 
-        <div id="navbarBasic" class="navbar-menu has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
+        <div id="navbarBasic"
+             class="navbar-menu has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
             <div class="navbar-start">
 
 
@@ -107,7 +110,8 @@
     </nav>
 </div>
 
-<section class="section has-background-dark has-text-light p-2{% for class in random_classes %} {{ class }}{% endfor %}">
+<section
+        class="section has-background-dark has-text-light p-2{% for class in random_classes %} {{ class }}{% endfor %}">
     <div class="container">
         <div class="box has-background-dark">
             <div class="columns is-vcentered">
@@ -124,7 +128,8 @@
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="Hero Image" class="is-rounded">
+                    <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="Hero Image"
+                         class="is-rounded">
                 </div>
             </div>
         </div>
@@ -136,7 +141,8 @@
                     <span class="title is-5 has-text-light">В официальном приложении </span>
                 </div>
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <a href="{% if site.apk_file %}{{ site.apk_file.url }}{% endif %}" class="button is-success is-fullwidth">
+                    <a href="{% if site.apk_file %}{{ site.apk_file.url }}{% endif %}"
+                       class="button is-success is-fullwidth">
                     <span class="icon">
                     <i class="fab fa-android"></i>
                     </span><span>Скачать приложение</span></a>
@@ -158,7 +164,8 @@
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonus.promo_code }}</span>
                         </a>
-                            <a class="button is-darksalmon is-fullwidth" href="/go/{{ bonus.redirect.name }}/">Играть</a>
+                            <a class="button is-darksalmon is-fullwidth"
+                               href="/go/{{ bonus.redirect.name }}/">Играть</a>
                         </span>
                 </div>
             </div>
@@ -176,14 +183,16 @@
             </div>
         </div>
 
-        <div class="box has-background-dark has-text-light m-1 p-1{% for class in random_classes %} {{ class }}{% endfor %}" id="playdemo">
+        <div class="box has-background-dark has-text-light m-1 p-1{% for class in random_classes %} {{ class }}{% endfor %}"
+             id="playdemo">
             <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ site.slot_name }}</h2>
             <div class="box has-background-grey has-text-light has-text-centered{% for class in random_classes %} {{ class }}{% endfor %}">
                 <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         <iframe src="{{ site.demo }}" frameborder="0" width="100%" height="100%"></iframe>
                     </div>
-                    <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank" href="/go/kent/"></a>
+                    <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
+                       href="/go/kent/"></a>
                 </div>
 
                 <a class="button is-success mt-3" target="_blank" href="/go/kent/">Открыть в новом окне</a>
@@ -202,9 +211,11 @@
             <div class="buttons">
 
                 {% for page in inner_pages %}
-                    <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}" href="/page/{{ page.slug }}/">{{ page.title }}</a>
+                    <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                       href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
-                <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}" href="{{ site.tlg_link }}/">Telegram
+                <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                   href="{{ site.tlg_link }}/">Telegram
                     канал {{ site.slot_name }}</a>
             </div>
         </div>
@@ -241,7 +252,43 @@
     });
 
 </script>
+<script>
+    $(document).ready(function () {
 
+        // Check for click events on the navbar burger icon
+        $(".navbar-burger").click(function () {
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active");
+
+        });
+
+        // Получаем ссылку на кнопку с использованием jQuery
+        var $scrollButton = $('.wheretoplay');
+
+        // Добавляем обработчик событий на кнопку
+        $scrollButton.on('click', function () {
+            // Прокручиваем страницу к месту с анимацией
+            $('html, body').animate({
+                scrollTop: $('#wheretoplay').offset().top
+            }, 400); // 1000 миллисекунд (1 секунда) - длительность анимации
+        });
+
+        var $scrollButton = $('.playdemo');
+
+        // Добавляем обработчик событий на кнопку
+        $scrollButton.on('click', function () {
+            // Прокручиваем страницу к месту с анимацией
+            $('html, body').animate({
+                scrollTop: $('#playdemo').offset().top
+            }, 400); // 1000 миллисекунд (1 секунда) - длительность анимации
+        });
+
+    });
+
+
+</script>
 
 
 </body>
