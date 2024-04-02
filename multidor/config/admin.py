@@ -18,7 +18,7 @@ class ContentAdmin(admin.ModelAdmin):
         return obj.casino.name if obj.casino else "-"
 
 class SitesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slot_name', 'allowed_domain_link', 'num_content', 'site_id', 'provider_name', 'template_name')
+    list_display = ('name', 'slot_name', 'allowed_domain_link', 'num_content', 'site_id', 'provider_name', 'template_name', 'has_hero_image')
     def num_content(self, obj):
         return obj.content_set.count()  # Подсчитываем количество объектов Content, связанных с текущим экземпляром Sites
 
@@ -32,6 +32,12 @@ class SitesAdmin(admin.ModelAdmin):
         return "-"
 
     allowed_domain_link.short_description = 'Allowed Domain'
+
+    def has_hero_image(self, obj):
+        return obj.hero_image != ''
+
+    has_hero_image.boolean = True
+    has_hero_image.short_description = 'Has Hero Image'
 
 class RedirectAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'target_url', 'visits')
