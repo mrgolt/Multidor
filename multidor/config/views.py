@@ -15,7 +15,7 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
-        domain = 'voodooendorphina.fun'
+        domain = 'volcano-riches.fun'
 
     classes = [
         'has-game-preview',
