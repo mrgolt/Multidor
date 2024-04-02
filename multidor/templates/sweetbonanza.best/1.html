@@ -70,7 +70,7 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <figure class="image">
-                    <img src="{{ site.hero_image.url }}" alt="Hero Image"
+                    <img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}"
                          class="image is-rounded">
                 </figure>
             </a>
@@ -102,7 +102,7 @@
                         <a class="button is-darksalmon is-large " href="/go/kent/">
                             Где играть?
                         </a>
-                        <a class="button is-success is-large playdemo" alt="Играть Демо">
+                        <a class="button is-success is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
                             <strong>Играть демо</strong>
                         </a>
 
@@ -132,7 +132,7 @@
                 </div>
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
                     <figure class="image">
-                        <img src="{{ site.hero_image.url }}" alt="Hero Image"
+                        <img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}"
                              class="image is-rounded">
                     </figure>
                 </div>

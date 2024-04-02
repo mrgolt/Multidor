@@ -99,7 +99,7 @@
                         <a class="button is-darksalmon is-large " href="/go/kent/">
                             Где играть?
                         </a>
-                        <a class="button is-success is-large playdemo" alt="Играть Демо">
+                        <a class="button is-success is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
                             <strong>Играть демо</strong>
                         </a>
 
@@ -128,7 +128,7 @@
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="Hero Image"
+                    <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}"
                          class="is-rounded">
                 </div>
             </div>
