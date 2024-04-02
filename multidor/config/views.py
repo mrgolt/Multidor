@@ -95,7 +95,7 @@ def custom_serve(request, slug=None):
         site = None
 
     #template_path = os.path.join(domain, 'main.html')
-    template_path = os.path.join('sweetbonanza.best', 'main.html')
+    template_path = os.path.join('sweetbonanza.best', site.template_name)
 
     return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes})
 

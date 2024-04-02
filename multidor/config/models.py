@@ -18,6 +18,7 @@ class Sites(models.Model):
     tlg_link = models.TextField(blank=True, default='')
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, blank=True)
     counters = models.TextField(blank=True, default='')
+    template_name = models.CharField(blank=True, max_length=200, default='main.html')
 
     def __str__(self):
         return self.allowed_domain
