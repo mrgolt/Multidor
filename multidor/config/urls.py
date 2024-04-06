@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/update-site-field/<int:site_id>/', update_site_field, name='update_site_field'),
     path('go/<str:redirect_id>/', redirect_view, name='redirect_view'),
     path('page/<slug:slug>/', custom_serve, name='inner_page'),
+    path('postbackcats/reg/', postbackcats_reg, name='postbackcats_reg'),
+    path('postbackcats/dep/', postbackcats_dep, name='postbackcats_dep'),
     path('', custom_serve),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
     #path('<path:path>', custom_serve),

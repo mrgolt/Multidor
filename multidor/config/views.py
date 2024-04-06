@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import SitesSerializer, CasinoSerializer, BonusSerializer, ContentSerializer
 import random
+from django.shortcuts import HttpResponse
 
 
 def custom_serve(request, slug=None):
@@ -111,13 +112,71 @@ def redirect_view(request, redirect_id):
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)
 
-    Click.objects.create(redirect=redirect_obj, site=site, aff=redirect_obj.aff)
+    click = Click.objects.create(redirect=redirect_obj, site=site, aff=redirect_obj.aff)
 
     # Увеличиваем счетчик кликов для объекта Redirect
     redirect_obj.increment_visits()
 
     # Перенаправляем на целевой URL
-    return redirect(redirect_obj.target_url)
+    return redirect(redirect_obj.target_url + '?click_id=' + str(click.id))
+
+def postbackcats_reg(request):
+    campaign_id = request.GET.get('campaign_id')
+    promo_id = request.GET.get('promo_id')
+    visit_id = request.GET.get('visit_id')
+    player_id = request.GET.get('player_id')
+    click_id = request.GET.get('click_id')
+
+    click = get_object_or_404(Click, id=click_id)
+
+    if AffReg.objects.filter(player_id=player_id).exists():
+        return HttpResponse("Player ID is already exists.")
+
+    AffReg.objects.create(
+        campaign_id=campaign_id,
+        promo_id=promo_id,
+        visit_id=visit_id,
+        player_id=player_id,
+        click=click,
+        aff=click.aff,
+    )
+    return HttpResponse("Reg object created successfully.")
+
+def postbackcats_dep(request):
+    campaign_id = request.GET.get('campaign_id')
+    promo_id = request.GET.get('promo_id')
+    visit_id = request.GET.get('visit_id')
+    player_id = request.GET.get('player_id')
+    click_id = request.GET.get('click_id')
+    amount = request.GET.get('amount')
+    amount_cents = request.GET.get('amount_cents')
+    currency = request.GET.get('currency')
+    deposit_id = request.GET.get('deposit_id')
+
+    click = get_object_or_404(Click, id=click_id)
+
+    is_first = True
+
+    if AffDep.objects.filter(deposit_id=deposit_id).exists():
+        return HttpResponse("Dep ID is already exists.")
+
+    if AffDep.objects.filter(player_id=player_id).exists():
+        is_first = False
+
+    AffDep.objects.create(
+        campaign_id=campaign_id,
+        promo_id=promo_id,
+        visit_id=visit_id,
+        player_id=player_id,
+        amount=amount,
+        amount_cents=amount_cents,
+        currency=currency,
+        click=click,
+        aff=click.aff,
+        is_first=is_first,
+        deposit_id=deposit_id,
+    )
+    return HttpResponse("Dep object created successfully.")
 
 @api_view(['POST'])
 def create_site(request):

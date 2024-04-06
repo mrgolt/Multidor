@@ -94,6 +94,12 @@ class ClickAdmin(admin.ModelAdmin):
 class AffAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
+class AffRegAdmin(admin.ModelAdmin):
+    list_display = ('id', 'campaign_id', 'promo_id', 'visit_id', 'player_id', 'click_id', 'reg_date', 'aff')
+
+class AffDepAdmin(admin.ModelAdmin):
+    list_display = ('id', 'campaign_id', 'promo_id', 'visit_id', 'player_id', 'amount', 'currency', 'deposit_id', 'click_id', 'dep_date', 'aff', 'is_first')
+
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
@@ -101,5 +107,5 @@ admin.site.register(Casino)
 admin.site.register(Redirect, RedirectAdmin)
 admin.site.register(Click, ClickAdmin)
 admin.site.register(Aff, AffAdmin)
-admin.site.register(AffReg)
-admin.site.register(AffDep)
+admin.site.register(AffReg, AffRegAdmin)
+admin.site.register(AffDep, AffDepAdmin)
