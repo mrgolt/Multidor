@@ -96,9 +96,11 @@ class AffAdmin(admin.ModelAdmin):
 
 class AffRegAdmin(admin.ModelAdmin):
     list_display = ('id', 'campaign_id', 'promo_id', 'visit_id', 'player_id', 'click_id', 'reg_date', 'aff')
+    list_filter = ('reg_date', 'aff')
 
 class AffDepAdmin(admin.ModelAdmin):
     list_display = ('id', 'campaign_id', 'promo_id', 'visit_id', 'player_id', 'amount', 'currency', 'deposit_id', 'click_id', 'dep_date', 'aff', 'is_first')
+    list_filter = ('dep_date', 'aff')
 
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
