@@ -190,7 +190,7 @@ def all_stats(request):
     default_start_date = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
 
     date_clicked__gte = request.GET.get('date_clicked__gte', default_start_date)
-    date_clicked__lt = request.GET.get('date_clicked__lt', '')
+    date_clicked__lte = request.GET.get('date_clicked__lte', '')
 
     # Получаем все сайты
     all_sites = Sites.objects.all()
@@ -204,8 +204,8 @@ def all_stats(request):
         clicks = Click.objects.filter(site=site)
         if date_clicked__gte:
             clicks = clicks.filter(date_clicked__gte=date_clicked__gte)
-        if date_clicked__lt:
-            clicks = clicks.filter(date_clicked__lt=date_clicked__lt)
+        if date_clicked__lte:
+            clicks = clicks.filter(date_clicked__lte=date_clicked__lte)
 
         click_count = clicks.count()
 
@@ -213,8 +213,8 @@ def all_stats(request):
         registrations = AffReg.objects.filter(click__site=site)
         if date_clicked__gte:
             registrations = registrations.filter(click__date_clicked__gte=date_clicked__gte)
-        if date_clicked__lt:
-            registrations = registrations.filter(click__date_clicked__lt=date_clicked__lt)
+        if date_clicked__lte:
+            registrations = registrations.filter(click__date_clicked__lte=date_clicked__lte)
 
         registration_count = registrations.count()
 
@@ -222,8 +222,8 @@ def all_stats(request):
         deposits = AffDep.objects.filter(click__site=site)
         if date_clicked__gte:
             deposits = deposits.filter(click__date_clicked__gte=date_clicked__gte)
-        if date_clicked__lt:
-            deposits = deposits.filter(click__date_clicked__lt=date_clicked__lt)
+        if date_clicked__lte:
+            deposits = deposits.filter(click__date_clicked__lte=date_clicked__lte)
 
         deposit_count = deposits.count()
         fd_count = deposits.count()
