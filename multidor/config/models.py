@@ -104,3 +104,20 @@ class AffReg(models.Model):
 
     #https: // sweetbonanza.best / postbackcats / reg /?campaign_id = 237844 & promo_id = 280615 & visit_id = 6610
     #b0c755213525d570e555 & player_id = 19283593 & click_id =
+
+class AffDep(models.Model):
+    id = models.AutoField(primary_key=True)
+    campaign_id = models.PositiveIntegerField()
+    promo_id = models.PositiveIntegerField()
+    visit_id = models.PositiveIntegerField()
+    player_id = models.PositiveIntegerField()
+    amount = models.FloatField()
+    amount_cents = models.PositiveIntegerField()
+    currency = models.CharField(max_length=100)
+    deposit_id = models.PositiveIntegerField()
+    click = models.ForeignKey('Click', on_delete=models.CASCADE)
+    dep_date = models.DateTimeField(default=timezone.now)
+    aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
+    is_first = models.BooleanField(default=False)
+
+    #https://sweetbonanza.best/postbackcats/dep/?campaign_id=237844&promo_id=280615&visit_id=66106d7827419a95682f592a&amount=250.00&amount_cents=25000&currency=RUB&deposit_id=44445971&player_id=19275238&click_id=

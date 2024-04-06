@@ -111,7 +111,7 @@ def redirect_view(request, redirect_id):
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)
 
-    Click.objects.create(redirect=redirect_obj, site=site)
+    Click.objects.create(redirect=redirect_obj, site=site, aff=redirect_obj.aff)
 
     # Увеличиваем счетчик кликов для объекта Redirect
     redirect_obj.increment_visits()
