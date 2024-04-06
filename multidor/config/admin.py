@@ -50,7 +50,7 @@ class SitesAdmin(admin.ModelAdmin):
 
 
 class RedirectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'target_url', 'visits')
+    list_display = ('id', 'name', 'aff', 'target_url', 'visits')
 
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
@@ -91,9 +91,13 @@ class ClickAdmin(admin.ModelAdmin):
     click_count.short_description = 'Clicks from domain'
 
 
+class AffAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
 admin.site.register(Casino)
 admin.site.register(Redirect, RedirectAdmin)
 admin.site.register(Click, ClickAdmin)
+admin.site.register(Aff, AffAdmin)

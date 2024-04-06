@@ -67,6 +67,7 @@ class Redirect(models.Model):
     target_url = models.URLField()
     name = models.CharField(max_length=100, default='')
     visits = models.IntegerField(default=0)
+    aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
 
     def increment_visits(self):
         """
@@ -83,3 +84,9 @@ class Click(models.Model):
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
     date_clicked = models.DateTimeField(default=timezone.now)
 
+class Aff(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return f"{self.name}"
