@@ -10,6 +10,8 @@ from rest_framework.decorators import api_view
 from .serializers import SitesSerializer, CasinoSerializer, BonusSerializer, ContentSerializer
 import random
 from django.shortcuts import HttpResponse
+from django.db.models import Count, Sum
+from datetime import datetime
 
 
 def custom_serve(request, slug=None):
@@ -177,6 +179,74 @@ def postbackcats_dep(request):
         deposit_id=deposit_id,
     )
     return HttpResponse("Dep object created successfully.")
+
+
+def all_stats(request):
+    template_path = os.path.join('sweetbonanza.best', 'all_stats.html')
+
+    # Получение даты начала текущего месяца
+    default_start_date = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+
+    date_clicked__gte = request.GET.get('date_clicked__gte', default_start_date)
+    date_clicked__lt = request.GET.get('date_clicked__lt', '')
+
+    # Получаем все сайты
+    all_sites = Sites.objects.all()
+
+    # Создаем пустые списки для хранения статистики
+    site_stats = []
+
+    # Проходимся по каждому сайту
+    for site in all_sites:
+        # Фильтрация кликов по дате
+        clicks = Click.objects.filter(site=site)
+        if date_clicked__gte:
+            clicks = clicks.filter(date_clicked__gte=date_clicked__gte)
+        if date_clicked__lt:
+            clicks = clicks.filter(date_clicked__lt=date_clicked__lt)
+
+        click_count = clicks.count()
+
+        # Фильтрация регистраций по дате
+        registrations = AffReg.objects.filter(click__site=site)
+        if date_clicked__gte:
+            registrations = registrations.filter(click__date_clicked__gte=date_clicked__gte)
+        if date_clicked__lt:
+            registrations = registrations.filter(click__date_clicked__lt=date_clicked__lt)
+
+        registration_count = registrations.count()
+
+        # Фильтрация депозитов по дате
+        deposits = AffDep.objects.filter(click__site=site)
+        if date_clicked__gte:
+            deposits = deposits.filter(click__date_clicked__gte=date_clicked__gte)
+        if date_clicked__lt:
+            deposits = deposits.filter(click__date_clicked__lt=date_clicked__lt)
+
+        deposit_count = deposits.count()
+        fd_count = deposits.count()
+
+        # Агрегация суммы депозитов по дате
+        deposit_sum = deposits.aggregate(total_amount=Sum('amount'))['total_amount']
+
+        # Создаем словарь с данными статистики для текущего сайта
+        site_stat = {
+            'name': site,
+            'click_count': click_count,
+            'registration_count': registration_count,
+            'fd_count': fd_count,
+            'deposit_count': deposit_count,
+            'deposit_sum': deposit_sum,
+        }
+
+        # Добавляем данные статистики в список
+        if site_stat['click_count'] > 0 or site_stat['registration_count'] > 0 or site_stat['fd_count'] > 0 or site_stat['deposit_count'] > 0:
+            site_stats.append(site_stat)
+
+        site_stats = sorted(site_stats, key=lambda x: x['fd_count'], reverse=True)
+
+    # Передаем данные в шаблон
+    return render(request, template_path, {'site_stats': site_stats})
 
 @api_view(['POST'])
 def create_site(request):
