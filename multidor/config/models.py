@@ -83,6 +83,7 @@ class Click(models.Model):
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
     date_clicked = models.DateTimeField(default=timezone.now)
+    aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
 
 class Aff(models.Model):
     id = models.AutoField(primary_key=True)
@@ -90,3 +91,16 @@ class Aff(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
+class AffReg(models.Model):
+    id = models.AutoField(primary_key=True)
+    campaign_id = models.PositiveIntegerField()
+    promo_id = models.PositiveIntegerField()
+    visit_id = models.PositiveIntegerField()
+    player_id = models.PositiveIntegerField()
+    click = models.ForeignKey('Click', on_delete=models.CASCADE)
+    reg_date = models.DateTimeField(default=timezone.now)
+    aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
+
+    #https: // sweetbonanza.best / postbackcats / reg /?campaign_id = 237844 & promo_id = 280615 & visit_id = 6610
+    #b0c755213525d570e555 & player_id = 19283593 & click_id =
