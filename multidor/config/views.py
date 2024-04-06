@@ -182,7 +182,7 @@ def postbackcats_dep(request):
     return HttpResponse("Dep object created successfully.")
 
 
-@user_passes_test(lambda u: u.is_superuser)
+#@user_passes_test(lambda u: u.is_superuser)
 def all_stats(request):
     template_path = os.path.join('sweetbonanza.best', 'all_stats.html')
 
