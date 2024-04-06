@@ -212,24 +212,27 @@ def all_stats(request):
         # Фильтрация регистраций по дате
         registrations = AffReg.objects.filter(click__site=site)
         if date_clicked__gte:
-            registrations = registrations.filter(click__date_clicked__gte=date_clicked__gte)
+            registrations = registrations.filter(reg_date__gte=date_clicked__gte)
         if date_clicked__lte:
-            registrations = registrations.filter(click__date_clicked__lte=date_clicked__lte)
+            registrations = registrations.filter(reg_date__lte=date_clicked__lte)
 
         registration_count = registrations.count()
 
         # Фильтрация депозитов по дате
         deposits = AffDep.objects.filter(click__site=site)
         if date_clicked__gte:
-            deposits = deposits.filter(click__date_clicked__gte=date_clicked__gte)
+            deposits = deposits.filter(dep_date__gte=date_clicked__gte)
         if date_clicked__lte:
-            deposits = deposits.filter(click__date_clicked__lte=date_clicked__lte)
+            deposits = deposits.filter(dep_date__lte=date_clicked__lte)
 
         deposit_count = deposits.count()
-        fd_count = deposits.count()
+
+        fd = deposits.filter(is_first=True)
+        fd_count = fd.count()
 
         # Агрегация суммы депозитов по дате
         deposit_sum = deposits.aggregate(total_amount=Sum('amount'))['total_amount']
+        fd_sum = fd.aggregate(total_amount=Sum('amount'))['total_amount']
 
         # Создаем словарь с данными статистики для текущего сайта
         site_stat = {
@@ -238,6 +241,7 @@ def all_stats(request):
             'registration_count': registration_count,
             'fd_count': fd_count,
             'deposit_count': deposit_count,
+            'fd_sum': fd_sum,
             'deposit_sum': deposit_sum,
         }
 

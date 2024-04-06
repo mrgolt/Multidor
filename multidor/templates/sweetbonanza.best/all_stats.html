@@ -35,6 +35,7 @@
                     <th>Registrations</th>
                     <th>FD</th>
                     <th>Deposits</th>
+                    <th>FD Amount</th>
                     <th>Deposits Amount</th>
                 </tr>
             </thead>
@@ -46,6 +47,7 @@
                     <td>{{ site.registration_count }}</td>
                     <td>{{ site.fd_count }}</td>
                     <td>{{ site.deposit_count }}</td>
+                    <td>{{ site.fd_sum }}</td>
                     <td>{{ site.deposit_sum }}</td>
                 </tr>
                 {% endfor %}
