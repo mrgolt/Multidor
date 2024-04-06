@@ -12,6 +12,7 @@ import random
 from django.shortcuts import HttpResponse
 from django.db.models import Count, Sum
 from datetime import datetime
+from django.contrib.auth.decorators import user_passes_test
 
 
 def custom_serve(request, slug=None):
@@ -181,6 +182,7 @@ def postbackcats_dep(request):
     return HttpResponse("Dep object created successfully.")
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def all_stats(request):
     template_path = os.path.join('sweetbonanza.best', 'all_stats.html')
 
