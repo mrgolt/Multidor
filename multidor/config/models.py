@@ -98,7 +98,7 @@ class AffReg(models.Model):
     promo_id = models.PositiveIntegerField()
     visit_id = models.CharField(max_length=100)
     player_id = models.PositiveIntegerField()
-    click = models.ForeignKey('Click', on_delete=models.CASCADE)
+    click = models.ForeignKey('Click', on_delete=models.CASCADE, blank=True)
     reg_date = models.DateTimeField(default=timezone.now)
     aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
 
@@ -118,7 +118,7 @@ class AffDep(models.Model):
     amount_cents = models.PositiveIntegerField()
     currency = models.CharField(max_length=100)
     deposit_id = models.PositiveIntegerField()
-    click = models.ForeignKey('Click', on_delete=models.CASCADE)
+    click = models.ForeignKey('Click', on_delete=models.CASCADE, blank=True)
     dep_date = models.DateTimeField(default=timezone.now)
     aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
     is_first = models.BooleanField(default=False)
