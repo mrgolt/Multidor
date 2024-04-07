@@ -50,10 +50,15 @@ class SitesAdmin(admin.ModelAdmin):
 
 
 class RedirectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'aff', 'target_url', 'visits')
+    list_display = ('id', 'name', 'aff', 'target_url', 'site', 'visits')
+    actions = ['duplicate']
 
-    def casino_name(self, obj):
-        return obj.casino.name if obj.casino else "-"
+    def duplicate(self, request, queryset):
+        for obj in queryset:
+            obj.pk = None  # Сбросить первичный ключ, чтобы создать новую запись
+            obj.id = None  # Сбросить ID, чтобы создать новую запись (необязательно, если используется автоматический инкремент)
+            obj.save()
+    duplicate.short_description = "Duplicate selected redirects"
 
 
 class ClickAdmin(admin.ModelAdmin):

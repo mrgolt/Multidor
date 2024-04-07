@@ -16,7 +16,6 @@ class Sites(models.Model):
     favicon = models.ImageField(blank=True, upload_to='img/', default='')
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')
-    redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, blank=True)
     counters = models.TextField(blank=True, default='')
     template_name = models.CharField(blank=True, max_length=200, default='main.html')
 
@@ -68,6 +67,7 @@ class Redirect(models.Model):
     name = models.CharField(max_length=100, default='')
     visits = models.IntegerField(default=0)
     aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
+    site = models.ForeignKey('Sites', on_delete=models.CASCADE, blank=True, null=True)
 
     def increment_visits(self):
         """

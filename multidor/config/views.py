@@ -105,15 +105,21 @@ def custom_serve(request, slug=None):
 
 def redirect_view(request, redirect_id):
 
-    redirect_obj = get_object_or_404(Redirect, name=redirect_id)
-
     domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
-        domain = 'voodooendorphina.fun'
+        domain = 'gatesofolympus.best'
 
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)
+
+    redirect_obj = Redirect.objects.filter(name=redirect_id, site=site).first()
+
+    if not redirect_obj:
+        redirect_obj = Redirect.objects.filter(name=redirect_id, site=None).first()
+
+    if not redirect_obj:
+        redirect_obj = Redirect.objects.filter(name=redirect_id).first()
 
     click = Click.objects.create(redirect=redirect_obj, site=site, aff=redirect_obj.aff)
 
