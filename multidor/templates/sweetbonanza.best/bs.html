@@ -69,7 +69,7 @@
             <h1 class="display-4">{{ content.first.title }}</h1>
             <p class="lead">{{ bonuses.first.name }} по нашему промокоду: {{ bonuses.first.promo_code }}</p>
             <a class="btn btn-success btn-lg" href="/go/{{ bonuses.first.redirect.name }}/" role="button">Где играть</a>
-            <a class="btn btn-success btn-lg" href="#demo" role="button">Играть демо</a>
+            <a class="btn btn-warning btn-lg" href="#demo" role="button">Играть демо</a>
         </div>
         <div class="col-md-6{% for class in random_classes %} {{ class }}{% endfor %}">
             <img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}" class="img-fluid"
