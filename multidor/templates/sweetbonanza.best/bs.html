@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if content.first.is_main %}
+        <title>{{ site.slot_name }} - {{ bonuses.first.name }} - {{ content.first.title }}</title>
+    {% else %}
+        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name }}</title>
+    {% endif %}
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <style>
+        body {
+            background-color: #211026;
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #1b0721;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .container {
+            background-color: #1b0721;
+            color: #fff;
+        }
+
+        a, a:hover {
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+{{ site.counters|safe }}
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+
+        <a class="navbar-brand" href="/"><img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}"
+             class="image is-rounded" width="100"> {{ site.slot_name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/go/{{ bonuses.first.redirect.name }}/">Где играть</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#demo">Играть демо</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-3 jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">{{ content.first.title }}</h1>
+            <p class="lead">{{ bonuses.first.name }} по нашему промокоду: {{ bonuses.first.promo_code }}</p>
+            <a class="btn btn-success btn-lg" href="/go/{{ bonuses.first.redirect.name }}/" role="button">Где играть</a>
+            <a class="btn btn-success btn-lg" href="#demo" role="button">Играть демо</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}" class="img-fluid" alt="Image">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3 jumbotron text-center py-3" id="demo">
+    <h2>Играть демо в {{ site.slot_name }}</h2>
+    <div>
+        <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                <iframe src="{{ site.demo }}" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+            <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
+               href="/go/{{ bonuses.first.redirect.name }}/"></a>
+        </div>
+    </div>
+
+    <a class="btn btn-success btn-lg mt-2" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
+</div>
+
+<div class="container mt-3 jumbotron py-3">
+<h2>{{ content.first.title }}</h2>
+            {{ content.first.text|safe }}
+
+</div>
+
+<div class="container mt-3 jumbotron py-3">
+<h2>Часто ищут</h2>
+    {% for page in inner_pages %}
+        <a class="btn btn-success btn-sm mt-1" href="/page/{{ page.slug }}/">{{ page.title }}</a>
+                {% endfor %}
+
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

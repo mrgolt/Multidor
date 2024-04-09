@@ -76,7 +76,7 @@
                 <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}">
             </a>
             <a class="navbar-item" href="/">
-                <h1 class="title is-3 has-text-light is-size-7-mobile">Играть в {{ site.slot_name }}
+                <h1 class="title is-3 has-text-light is-size-7-mobile">{{ site.slot_name }}
                 </h1>
             </a>
 
@@ -120,7 +120,7 @@
         <div class="box has-background-dark">
             <div class="columns is-vcentered">
                 <div class="column is-half">
-                    <h1 class="title is-1 has-text-light has-text-weight-bold"></h1>
+                    <h1 class="title is-1 has-text-light has-text-weight-bold">{{ content.first.title }}</h1>
                     <span class="title is-3 has-text-light">{{ bonuses.first.name }} по нашему промокоду</span>
                     <div class="buttons mt-4{% for class in random_classes %} {{ class }}{% endfor %}">
                         <a class="button is-success is-large promo-code-button">
