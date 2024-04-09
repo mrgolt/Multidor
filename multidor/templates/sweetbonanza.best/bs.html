@@ -45,7 +45,7 @@
     <div class="container">
 
         <a class="navbar-brand" href="/"><img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}"
-             class="image is-rounded" width="100"> {{ site.slot_name }}</a>
+                                              class="image is-rounded" width="100"> {{ site.slot_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -72,12 +72,33 @@
             <a class="btn btn-success btn-lg" href="#demo" role="button">Играть демо</a>
         </div>
         <div class="col-md-6{% for class in random_classes %} {{ class }}{% endfor %}">
-            <img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}" class="img-fluid" alt="{{ site.slot_name }}">
+            <img src="{{ site.hero_image.url }}" alt="{{ site.slot_name }}" class="img-fluid"
+                 alt="{{ site.slot_name }}">
         </div>
     </div>
 </div>
 
-<div class="container mt-3 jumbotron text-center py-3{% for class in random_classes %} {{ class }}{% endfor %}" id="demo">
+{% for bonus in bonuses %}
+    <div class="container jumbotron text-center py-3{% for class in random_classes %} {{ class }}{% endfor %}">
+        <div class="row{% for class in random_classes %} {{ class }}{% endfor %}">
+            <div class="col-md-4">
+                <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
+            </div>
+            <div class="col-md-8{% for class in random_classes %} {{ class }}{% endfor %}">
+                <h3>{{ bonus.name }}</h3>
+
+                    <a class="btn btn-success btn-lg mt-2{% for class in random_classes %} {{ class }}{% endfor %}"
+                       target="_blank"
+                       href="/go/{{ bonus.redirect.name }}/" style="width: 100%;">Играть</a>
+
+
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container jumbotron text-center py-3{% for class in random_classes %} {{ class }}{% endfor %}"
+     id="demo">
     <h2>Играть демо в {{ site.slot_name }}</h2>
     <div class="{% for class in random_classes %} {{ class }}{% endfor %}">
         <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
@@ -89,20 +110,22 @@
         </div>
     </div>
 
-    <a class="btn btn-success btn-lg mt-2{% for class in random_classes %} {{ class }}{% endfor %}" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
+    <a class="btn btn-success btn-lg mt-2{% for class in random_classes %} {{ class }}{% endfor %}" target="_blank"
+       href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
 </div>
 
 <div class="container mt-3 jumbotron py-3{% for class in random_classes %} {{ class }}{% endfor %}">
-<h2>{{ content.first.title }}</h2>
-            {{ content.first.text|safe }}
+    <h2>{{ content.first.title }}</h2>
+    {{ content.first.text|safe }}
 
 </div>
 
 <div class="container mt-3 jumbotron py-3{% for class in random_classes %} {{ class }}{% endfor %}">
-<h2>Часто ищут</h2>
+    <h2>Часто ищут</h2>
     {% for page in inner_pages %}
-        <a class="btn btn-success btn-sm mt-1{% for class in random_classes %} {{ class }}{% endfor %}" href="/page/{{ page.slug }}/">{{ page.title }}</a>
-                {% endfor %}
+        <a class="btn btn-success btn-sm mt-1{% for class in random_classes %} {{ class }}{% endfor %}"
+           href="/page/{{ page.slug }}/">{{ page.title }}</a>
+    {% endfor %}
 
 </div>
 
