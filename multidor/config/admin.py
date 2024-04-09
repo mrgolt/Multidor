@@ -8,7 +8,7 @@ from django.db.models import Max
 
 
 class BonusAdmin(admin.ModelAdmin):
-    list_display = ('name', 'casino', 'promo_code', 'referral_link', 'website',
+    list_display = ('name', 'casino', 'promo_code', 'referral_link', 'website', 'sorting_order',
                     'is_active')  # Перечислите поля, которые вы хотите отображать в списке бонусов
 
     def casino_name(self, obj):

@@ -19,7 +19,7 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
-        domain = 'volcano-riches.fun'
+        domain = 'voodooendorphina.fun'
 
     classes = [
         'has-game-preview',
@@ -85,7 +85,7 @@ def custom_serve(request, slug=None):
 
     try:
         site = Sites.objects.filter(allowed_domain=domain)[0]
-        bonuses = Bonus.objects.filter(is_active=True)
+        bonuses = Bonus.objects.filter(is_active=True).order_by('sorting_order')
         content = Content.objects.filter(is_main=True, site=site)
 
         # Фильтрация контента на основе переданного slug

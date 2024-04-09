@@ -37,6 +37,7 @@ class Bonus(models.Model):
     referral_link = models.URLField()
     website = models.ForeignKey('Sites', on_delete=models.CASCADE)
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE)
+    sorting_order = models.PositiveIntegerField(default=10)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
