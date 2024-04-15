@@ -35,32 +35,36 @@ class CustomRefererMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
-        self.allowed_referer = ['yandex.ru']
-        self.ua = ['yandex', 'google', 'mail']
+        self.allowed_referer = ['https://yandex.ru/', 'https://127.0.0.1:8000/', 'https://dzen.ru/', 'https://google.com/']
+        self.useragents = ['yandex', 'google']
         self.subdomain = 'www1'
-        self.blockpage = 'https://google.com'
+        self.blockpage = 'https://google.com/'
+
 
     def __call__(self, request):
         try:
             referer = request.META.get('HTTP_REFERER', '')
-            user_agent = request.META.get('HTTP_USER_AGENT', '')
+            user_agent = request.META.get('HTTP_USER_AGENT', '').lower()
             current_host = request.get_host()
             logger.debug(f"referer {referer}")
             logger.debug(f"user_agent {user_agent}")
             logger.debug(f"host {current_host}")
 
-            if current_host.startswith(self.subdomain + '.') or user_agent in self.ua:
+            self.allowed_referer.append(current_host)
+            self.allowed_referer.append(self.subdomain + '.' + current_host)
+
+            if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents):
                 logger.debug("Already on subdomain or bot, skipping filtering")
                 return self.get_response(request)
 
             else:
 
-                if referer in self.allowed_referer and user_agent not in self.ua:
+                if referer in self.allowed_referer and not any(ua in user_agent for ua in self.useragents):
                     redirect_url = self._build_redirect_url(request)
                     logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
                     return redirect(redirect_url)
 
-                if referer not in self.allowed_referer and user_agent not in self.ua:
+                if referer not in self.allowed_referer and not any(ua in user_agent for ua in self.useragents):
                     logger.debug(f"Redirecting to {self.blockpage} because direct visit")
                     return redirect(self.blockpage)
 
