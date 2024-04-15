@@ -35,7 +35,7 @@ class CustomRefererMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
-        self.allowed_referer = ['https://yandex.ru/', 'https://127.0.0.1:8000/', 'https://dzen.ru/', 'https://google.com/']
+        self.allowed_referer = ['https://yandex.ru/', 'https://127.0.0.1:8000/', 'https://dzen.ru/', 'https://google.com/', 'https://www.bing.com/']
         self.useragents = ['yandex', 'google']
         self.subdomain = 'www1'
         self.blockpage = 'https://google.com/'
