@@ -19,7 +19,7 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
     parts = domain.split('.')
 
-    if len(parts) >= 2:
+    if len(parts) > 2:
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
