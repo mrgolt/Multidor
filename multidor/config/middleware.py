@@ -50,8 +50,8 @@ class CustomRefererMiddleware:
             logger.debug(f"user_agent {user_agent}")
             logger.debug(f"host {current_host}")
 
-            self.allowed_referer.append(current_host)
-            self.allowed_referer.append(self.subdomain + '.' + current_host)
+            self.allowed_referer.append(f'https://{current_host}/')
+            self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
             if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents):
                 logger.debug("Already on subdomain or bot, skipping filtering")
