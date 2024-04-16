@@ -35,12 +35,13 @@ class CustomRefererMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
-        self.allowed_referer = ['yandex', '127.0.0.1:8000', 'dzen.ru', 'google', 'bing']
+        self.allowed_referer = ['yandex', '127.0.0.1:8000', 'dzen', 'google', 'bing']
         self.useragents = ['yandex', 'google']
         self.subdomain = 'www1'
         self.blockpage = 'https://google.com/'
         self.pass_paths = ['/go/', '/admin/']
-        self.pass_domains = ['gatesofolympus.best', 'sugar-rush.best', 'sweetbonanza.best']
+        #self.pass_domains = ['gatesofolympus.best', 'sugar-rush.best', 'sweetbonanza.best']
+        self.pass_domains = []
 
 
     def __call__(self, request):
