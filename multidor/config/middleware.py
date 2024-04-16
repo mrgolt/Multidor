@@ -39,7 +39,7 @@ class CustomRefererMiddleware:
         self.useragents = ['yandex', 'google']
         self.subdomain = 'www1'
         self.blockpage = 'https://google.com/'
-        self.redirect_template = '/go/'
+        self.pass_paths = ['/go/', '/admin/']
 
 
     def __call__(self, request):
@@ -55,7 +55,7 @@ class CustomRefererMiddleware:
             self.allowed_referer.append(f'https://{current_host}/')
             self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
-            if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents) or self.redirect_template in path:
+            if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents) or any(pt in path for pt in self.pass_paths):
                 logger.debug("Already on subdomain or bot, skipping filtering")
                 return self.get_response(request)
 
