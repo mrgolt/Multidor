@@ -107,6 +107,10 @@ class AffDepAdmin(admin.ModelAdmin):
     list_display = ('id', 'campaign_id', 'promo_id', 'visit_id', 'player_id', 'amount', 'currency', 'deposit_id', 'click_id', 'dep_date', 'aff', 'is_first')
     list_filter = ('dep_date', 'aff')
 
+class SymbolAdmin(admin.ModelAdmin):
+    list_display = ('id', 'website', 'is_active', 'sorting_order', 'image')
+
+
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
@@ -116,3 +120,4 @@ admin.site.register(Click, ClickAdmin)
 admin.site.register(Aff, AffAdmin)
 admin.site.register(AffReg, AffRegAdmin)
 admin.site.register(AffDep, AffDepAdmin)
+admin.site.register(Symbol, SymbolAdmin)

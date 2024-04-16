@@ -43,6 +43,14 @@ class Bonus(models.Model):
     def __str__(self):
         return self.name
 
+class Symbol(models.Model):
+    info = models.TextField()
+    website = models.ForeignKey('Sites', on_delete=models.CASCADE)
+    sorting_order = models.PositiveIntegerField(default=20)
+    is_active = models.BooleanField(default=True)
+    image = models.ImageField(blank=True, upload_to='img/', default='')
+
+
 class Content(models.Model):
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
     text = models.TextField()

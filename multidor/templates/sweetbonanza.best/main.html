@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%  if content.first.is_main  %}
-    <title>{{ site.slot_name }} - {{ bonuses.first.name }} - {{ content.first.title }}</title>
+    {% if content.first.is_main %}
+        <title>{{ site.slot_name }} - {{ bonuses.first.name }} - {{ content.first.title }}</title>
     {% else %}
-    <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name }}</title>
+        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name }}</title>
     {% endif %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -179,11 +179,11 @@
 
 
 
-        <div class="box has-background-dark has-text-light p-0 is-hidden">
+        <div class="box has-background-dark has-text-light p-0">
             <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш за вчера по нашему
                 промокоду</h2>
             <div class="box has-background-grey has-text-light has-text-centered m-1 p-1{% for class in random_classes %} {{ class }}{% endfor %}">
-                <img src="{% if site.favicon %}{{ site.promo_image.url }}{% endif %}">
+                <img src="{{ site.promo_image.url }}">
             </div>
         </div>
 
@@ -203,6 +203,25 @@
             </div>
         </div>
 
+        {% if symbols %}
+            <div class="box has-background-dark has-text-light m-1 p-4{% for class in random_classes %} {{ class }}{% endfor %}">
+                <h2 class="title is-4 has-text-light has-background-dark">Символы и коэффициенты
+                    в {{ site.slot_name }} </h2>
+
+                <div class="box has-background-grey has-text-light">
+                    <div class="columns is-multiline">
+                        {% for symbol in symbols %}
+                            <div class="column is-2">
+                                <span class="box has-background-dark has-text-light symbol-block has-text-centered">
+                                    <img src="{{ symbol.image.url }}">
+                                    <p>{{ symbol.info|safe }}</p>
+                                </span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
         <div class="box has-background-light content m-2{% for class in random_classes %} {{ class }}{% endfor %}">
             <h2>{{ content.first.title }}</h2>

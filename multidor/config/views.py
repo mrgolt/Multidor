@@ -19,11 +19,11 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
     parts = domain.split('.')
 
-    if len(parts) > 2:
+    if len(parts) > 2 and domain != '127.0.0.1:8000':
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'volcano-riches.fun'
+        domain = 'sweetbonanza.best'
 
     classes = [
         'has-game-preview',
@@ -91,6 +91,7 @@ def custom_serve(request, slug=None):
         site = Sites.objects.filter(allowed_domain=domain)[0]
         bonuses = Bonus.objects.filter(is_active=True).order_by('sorting_order')
         content = Content.objects.filter(is_main=True, site=site)
+        symbols = Symbol.objects.filter(is_active=True, website=site).order_by('sorting_order')
 
         # Фильтрация контента на основе переданного slug
         if slug:
@@ -105,7 +106,7 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes})
 
 def redirect_view(request, redirect_id):
 
@@ -113,7 +114,7 @@ def redirect_view(request, redirect_id):
 
     parts = domain.split('.')
 
-    if len(parts) > 2:
+    if len(parts) > 2 and domain != '127.0.0.1:8000':
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
