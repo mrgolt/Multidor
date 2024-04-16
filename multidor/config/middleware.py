@@ -39,7 +39,7 @@ class CustomRefererMiddleware:
         self.useragents = ['yandex', 'google']
         self.subdomain = 'www1'
         self.blockpage = 'https://yandex.ru/games/'
-        self.pass_paths = ['/go/', '/admin/']
+        self.pass_paths = ['/go/', '/admin/', '/all-stats/']
         #self.pass_domains = ['gatesofolympus.best', 'sugar-rush.best', 'sweetbonanza.best']
         self.pass_domains = []
 
