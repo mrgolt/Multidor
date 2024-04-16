@@ -35,7 +35,7 @@ class CustomRefererMiddleware:
 
     def __init__(self, get_response):
         self.get_response = get_response
-        self.allowed_referer = ['https://yandex.ru/', 'https://127.0.0.1:8000/', 'https://dzen.ru/', 'https://google.com/', 'https://www.bing.com/']
+        self.allowed_referer = ['yandex', '127.0.0.1:8000', 'dzen.ru', 'google', 'bing']
         self.useragents = ['yandex', 'google']
         self.subdomain = 'www1'
         self.blockpage = 'https://google.com/'
@@ -53,8 +53,8 @@ class CustomRefererMiddleware:
             logger.debug(f"user_agent {user_agent}")
             logger.debug(f"host {current_host}")
 
-            self.allowed_referer.append(f'https://{current_host}/')
-            self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
+            # self.allowed_referer.append(f'https://{current_host}/')
+            # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
             if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents) or any(pt in path for pt in self.pass_paths) or current_host in self.pass_domains:
                 logger.debug("Already on subdomain or bot, skipping filtering")
@@ -62,12 +62,12 @@ class CustomRefererMiddleware:
 
             else:
 
-                if referer in self.allowed_referer and not any(ua in user_agent for ua in self.useragents):
+                if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     redirect_url = self._build_redirect_url(request)
                     logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
                     return redirect(redirect_url)
 
-                if referer not in self.allowed_referer and not any(ua in user_agent for ua in self.useragents):
+                if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     logger.debug(f"Redirecting to {self.blockpage} because direct visit")
                     return redirect(self.blockpage)
 
