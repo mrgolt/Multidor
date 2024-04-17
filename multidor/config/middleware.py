@@ -9,6 +9,17 @@ from urllib.parse import urlparse
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+# class SaveHeadersMiddleware:
+#     def process_response(self, request, response):
+#         # Проверяем, является ли ответ редиректом
+#         if isinstance(response, HttpResponseRedirect):
+#             # Создаем копию заголовков исходного запроса
+#             headers = {key: value for key, value in request.headers.items()}
+#             # Добавляем заголовки к новому запросу
+#             for key, value in headers.items():
+#                 response[key] = value
+#         return response
+
 class RedirectMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response

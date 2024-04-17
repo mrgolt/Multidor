@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'multidor.middleware.RedirectMiddleware',
     'config.middleware.CustomRefererMiddleware',
+    #'config.middleware.SaveHeadersMiddleware',
 ]
 
 ROOT_URLCONF = 'multidor.urls'
