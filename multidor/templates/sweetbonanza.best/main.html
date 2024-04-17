@@ -223,6 +223,18 @@
             </div>
         {% endif %}
 
+        <div class="box has-background-dark has-text-light{% for class in random_classes %} {{ class }}{% endfor %}">
+            <h2 class="title is-4 has-text-light has-background-dark">Популярные страницы</h2>
+            <div class="buttons">
+
+                {% for page in inner_pages %}
+                    <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                       href="/page/{{ page.slug }}/">{{ page.title }}</a>
+                {% endfor %}
+
+            </div>
+        </div>
+
         <div class="box has-background-light content m-2{% for class in random_classes %} {{ class }}{% endfor %}">
             <h2>{{ content.first.title }}</h2>
             {{ content.first.text|safe }}
