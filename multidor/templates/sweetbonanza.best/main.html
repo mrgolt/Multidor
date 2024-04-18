@@ -238,6 +238,23 @@
         <div class="box has-background-light content m-2{% for class in random_classes %} {{ class }}{% endfor %}">
             <h2>{{ content.first.title }}</h2>
             {{ content.first.text|safe }}
+
+            {% if faqs %}
+                <!-- faq block -->
+
+                <h2 id="faq">FAQ по Gates of Olympus</h2>
+
+                <div id="accordion">
+                    {% for faq in faqs %}
+                    <h3>{{ faq.question }}</h3>
+
+                    <p>{{ faq.answer }}</p>
+                    {% endfor %}
+
+                </div><p><a href="#tableofcontents">К оглавлению</a></p>
+
+                <!-- end of faq block -->
+            {% endif %}
         </div>
 
 
@@ -257,6 +274,35 @@
 
     </div>
 </section>
+
+{% if accepted_answer %}
+<script type="application/ld+json"> {
+ "@context": "http://schema.org",
+ "@type": "QAPage",
+ "mainEntity": {
+ "@type": "Question",
+ "name": "Gates of Olympus",
+ "text": "{{ accepted_answer.question }}",
+ "answerCount": "1",
+ "dateCreated": "2024-02-02",
+ "author": {
+ "@type": "Person",
+ "name": "Peter Green"
+ },
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "{{ accepted_answer.answer }}",
+ "dateCreated": "2024-02-02",
+ "upvoteCount": "567",
+ "url": "https://gatesofolympus.best/",
+ "author": {
+ "@type": "Person",
+ "name": "Alex Brown"
+ }
+ }
+ }
+} </script>
+{% endif %}
 
 {% if faqs %}
 <script type="application/ld+json"> {

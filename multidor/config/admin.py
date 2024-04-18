@@ -112,7 +112,7 @@ class SymbolAdmin(admin.ModelAdmin):
     list_display = ('id', 'website', 'is_active', 'sorting_order', 'image')
 
 class FAQAdmin(admin.ModelAdmin):
-    list_display = ('content', 'question')
+    list_display = ('content', 'question', 'is_accepted')
 
     actions = ['duplicate']
 

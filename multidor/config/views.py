@@ -101,6 +101,7 @@ def custom_serve(request, slug=None):
 
         inner_pages = Content.objects.filter(is_main=False, site=site)
         faqs = FAQ.objects.filter(content=content.first())
+        accepted_answer = FAQ.objects.filter(content=content.first(), is_accepted=True).first()
 
     except Sites.DoesNotExist:
         site = None
@@ -108,7 +109,7 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs, 'accepted_answer': accepted_answer})
 
 def redirect_view(request, redirect_id):
 

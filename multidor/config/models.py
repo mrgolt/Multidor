@@ -54,6 +54,7 @@ class FAQ(models.Model):
     content = models.ForeignKey('Content', on_delete=models.CASCADE)
     question = models.TextField()
     answer = models.TextField()
+    is_accepted = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Вопрос "{self.question}" к странице "{self.content}"'
