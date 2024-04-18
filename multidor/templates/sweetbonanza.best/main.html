@@ -257,6 +257,23 @@
 
     </div>
 </section>
+
+{% if faqs %}
+<script type="application/ld+json"> {
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{% for faq in faqs %}{
+ "@type": "Question",
+ "name": "{{ faq.question }}",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "{{ faq.answer }}"
+ }
+ }{% if not forloop.last %},{% endif %}
+{% endfor %}]
+} </script>
+{% endif %}
+
 <script type="text/javascript">
     document.querySelectorAll('.promo-code-button').forEach(function (promoButton) {
 

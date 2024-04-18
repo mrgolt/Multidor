@@ -18,6 +18,7 @@ class BonusAdmin(admin.ModelAdmin):
 
 class ContentAdmin(admin.ModelAdmin):
     list_display = ('title', 'site', 'slug', 'is_main')
+    list_filter = ('site',)
 
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
@@ -110,6 +111,19 @@ class AffDepAdmin(admin.ModelAdmin):
 class SymbolAdmin(admin.ModelAdmin):
     list_display = ('id', 'website', 'is_active', 'sorting_order', 'image')
 
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ('content', 'question')
+
+    actions = ['duplicate']
+
+    def duplicate(self, request, queryset):
+        for obj in queryset:
+            obj.pk = None  # Сбросить первичный ключ, чтобы создать новую запись
+            obj.id = None  # Сбросить ID, чтобы создать новую запись (необязательно, если используется автоматический инкремент)
+            obj.save()
+
+    duplicate.short_description = "Duplicate selected items"
+
 
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
@@ -121,3 +135,4 @@ admin.site.register(Aff, AffAdmin)
 admin.site.register(AffReg, AffRegAdmin)
 admin.site.register(AffDep, AffDepAdmin)
 admin.site.register(Symbol, SymbolAdmin)
+admin.site.register(FAQ, FAQAdmin)

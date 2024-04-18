@@ -23,7 +23,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'sweetbonanza.best'
+        domain = 'gatesofolympus.best'
 
     classes = [
         'has-game-preview',
@@ -93,12 +93,14 @@ def custom_serve(request, slug=None):
         content = Content.objects.filter(is_main=True, site=site)
         symbols = Symbol.objects.filter(is_active=True, website=site).order_by('sorting_order')
 
+
         # Фильтрация контента на основе переданного slug
         if slug:
             content = Content.objects.filter(site=site, slug=slug)
 
 
         inner_pages = Content.objects.filter(is_main=False, site=site)
+        faqs = FAQ.objects.filter(content=content.first())
 
     except Sites.DoesNotExist:
         site = None
@@ -106,7 +108,7 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs})
 
 def redirect_view(request, redirect_id):
 

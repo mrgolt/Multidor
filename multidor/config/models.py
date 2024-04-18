@@ -50,6 +50,14 @@ class Symbol(models.Model):
     is_active = models.BooleanField(default=True)
     image = models.ImageField(blank=True, upload_to='img/', default='')
 
+class FAQ(models.Model):
+    content = models.ForeignKey('Content', on_delete=models.CASCADE)
+    question = models.TextField()
+    answer = models.TextField()
+
+    def __str__(self):
+        return f'Вопрос "{self.question}" к странице "{self.content}"'
+
 
 class Content(models.Model):
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
