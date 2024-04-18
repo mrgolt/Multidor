@@ -77,7 +77,7 @@ class CustomRefererMiddleware:
                 if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     redirect_url = self._build_redirect_url(request)
                     logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
-                    return redirect(redirect_url)
+                    return redirect(redirect_url, code=301)
 
                 if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     logger.debug(f"Redirecting to {self.blockpage} because direct visit")
