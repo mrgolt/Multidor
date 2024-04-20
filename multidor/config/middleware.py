@@ -33,7 +33,7 @@ class RedirectMiddleware:
             try:
                 redirect_obj = Redirect.objects.get(id=redirect_id)
             except Redirect.DoesNotExist:
-                raise Http404("Redirect does not exist")
+                raise Http404("Url does not exist")
 
             target_url = redirect_obj.target_url
 
@@ -77,7 +77,7 @@ class CustomRefererMiddleware:
                 if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     redirect_url = self._build_redirect_url(request)
                     logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
-                    return redirect(redirect_url, permanent=True)
+                    return self._redirect_with_headers(request, redirect_url)
 
                 if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     logger.debug(f"Redirecting to {self.blockpage} because direct visit")
@@ -93,3 +93,9 @@ class CustomRefererMiddleware:
         netloc = f"{self.subdomain}.{parsed_url.hostname}"
         redirect_url = parsed_url._replace(netloc=netloc, scheme='https').geturl()
         return redirect_url
+
+    def _redirect_with_headers(self, request, new_url):
+        response = redirect(new_url, permanent=True)
+        for key, value in request.META.items():
+            response[key] = value
+        return response
