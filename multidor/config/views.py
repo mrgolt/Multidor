@@ -142,6 +142,27 @@ def redirect_view(request, redirect_id):
     # Перенаправляем на целевой URL
     return redirect(redirect_obj.target_url + '?click_id=' + str(click.id))
 
+def sitemap_generator(request):
+    domain = request.META.get('HTTP_HOST', '')
+    parts = domain.split('.')
+
+    if len(parts) > 2 and domain != '127.0.0.1:8000':
+        domain = '.'.join(parts[-2:])
+
+    if domain == '127.0.0.1:8000':
+        domain = 'gatesofolympus.best'
+
+    try:
+        site = Sites.objects.filter(allowed_domain=domain)[0]
+        inner_pages = Content.objects.filter(is_main=False, site=site)
+    except Sites.DoesNotExist:
+        site = None
+
+    template_path = os.path.join('sweetbonanza.best', 'sitemap.xml')
+
+    return render(request, template_path, {'domain': domain, 'inner_pages': inner_pages})
+
+
 def postbackcats_reg(request):
     campaign_id = request.GET.get('campaign_id')
     promo_id = request.GET.get('promo_id')
