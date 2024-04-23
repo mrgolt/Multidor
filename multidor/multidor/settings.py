@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'multidor.middleware.RedirectMiddleware',
-    #'config.middleware.CustomRefererMiddleware',
+    'config.middleware.CustomRefererMiddleware',
     #'config.middleware.SaveHeadersMiddleware',
 ]
 
