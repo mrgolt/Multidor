@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import resolve
 from django.http import Http404
 from .models import Redirect
@@ -52,7 +52,7 @@ class CustomRefererMiddleware:
         self.blockpage = 'https://yandex.ru/games/'
         self.pass_paths = ['/go/', '/admin/', '/all-stats/', '/robots.txt', '/sitemap.xml']
         #self.pass_domains = ['gatesofolympus.best', 'sugar-rush.best', 'sweetbonanza.best']
-        self.pass_domains = ['127.0.0.1:8000']
+        self.pass_domains = []
 
 
     def __call__(self, request):
@@ -77,7 +77,9 @@ class CustomRefererMiddleware:
                 if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     redirect_url = self._build_redirect_url(request)
                     # logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
-                    return redirect(redirect_url, permanent=True)
+                    responce = HttpResponse(status=301)
+                    responce['Location'] = redirect_url
+                    return responce
 
                 if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                     # logger.debug(f"Redirecting to {self.blockpage} because direct visit")
