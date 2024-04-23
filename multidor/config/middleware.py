@@ -79,8 +79,6 @@ class CustomRefererMiddleware:
                     # logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
                     response = HttpResponse(status=301)
                     response['Location'] = redirect_url
-                    response['Referer'] = referer
-                    #print(response)
                     return response
 
                 if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
