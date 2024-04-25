@@ -113,6 +113,8 @@ def custom_serve(request, slug=None):
 
 def redirect_view(request, redirect_id):
 
+    redirect_type = 'CPA'
+
     domain = request.META.get('HTTP_HOST', '')
 
     parts = domain.split('.')
@@ -126,13 +128,13 @@ def redirect_view(request, redirect_id):
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)
 
-    redirect_obj = Redirect.objects.filter(name=redirect_id, site=site).first()
+    redirect_obj = Redirect.objects.filter(name=redirect_id, site=site, type=redirect_type).first()
 
     if not redirect_obj:
-        redirect_obj = Redirect.objects.filter(name=redirect_id, site=None).first()
+        redirect_obj = Redirect.objects.filter(name=redirect_id, site=None, type=redirect_type).first()
 
     if not redirect_obj:
-        redirect_obj = Redirect.objects.filter(name=redirect_id).first()
+        redirect_obj = Redirect.objects.filter(name=redirect_id, type=redirect_type).first()
 
     click = Click.objects.create(redirect=redirect_obj, site=site, aff=redirect_obj.aff)
 

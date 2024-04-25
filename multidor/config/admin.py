@@ -51,7 +51,7 @@ class SitesAdmin(admin.ModelAdmin):
 
 
 class RedirectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'aff', 'target_url', 'site', 'visits')
+    list_display = ('id', 'name', 'aff', 'target_url', 'site', 'type', 'visits')
     actions = ['duplicate']
 
     def duplicate(self, request, queryset):

@@ -86,6 +86,7 @@ class Redirect(models.Model):
     visits = models.IntegerField(default=0)
     aff = models.ForeignKey('Aff', on_delete=models.CASCADE, default=1)
     site = models.ForeignKey('Sites', on_delete=models.CASCADE, blank=True, null=True)
+    type = models.CharField(max_length=100, default='CPA', blank=True, null=True)
 
     def increment_visits(self):
         """
