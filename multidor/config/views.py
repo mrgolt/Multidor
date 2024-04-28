@@ -23,7 +23,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'gatesofolympus.best'
+        domain = 'sugar-rush.best'
 
     classes = [
         'has-game-preview',
@@ -92,6 +92,7 @@ def custom_serve(request, slug=None):
         bonuses = Bonus.objects.filter(is_active=True).order_by('sorting_order')
         content = Content.objects.filter(is_main=True, site=site)
         symbols = Symbol.objects.filter(is_active=True, website=site).order_by('sorting_order')
+        images = Image.objects.filter(site=site)
 
 
         # Фильтрация контента на основе переданного slug
@@ -109,7 +110,7 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs, 'accepted_answer': accepted_answer})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'images': images, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs, 'accepted_answer': accepted_answer})
 
 def redirect_view(request, redirect_id):
 
@@ -123,7 +124,7 @@ def redirect_view(request, redirect_id):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'gatesofolympus.best'
+        domain = 'sugar-rush.best'
 
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)

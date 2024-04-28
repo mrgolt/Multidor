@@ -246,9 +246,9 @@
 
                 <div id="accordion">
                     {% for faq in faqs %}
-                    <h3>{{ faq.question }}</h3>
+                        <h3>{{ faq.question }}</h3>
 
-                    <p>{{ faq.answer }}</p>
+                        <p>{{ faq.answer }}</p>
                     {% endfor %}
 
                 </div><p><a href="#tableofcontents">К оглавлению</a></p>
@@ -256,6 +256,26 @@
                 <!-- end of faq block -->
             {% endif %}
         </div>
+
+        {% if images %}
+            <div class="box has-background-dark has-text-light m-1 p-4{% for class in random_classes %} {{ class }}{% endfor %}">
+                <h2 class="title is-4 has-text-light has-background-dark">Игровой интерфейс
+                     {{ site.slot_name }} </h2>
+
+                <div class="box has-background-grey has-text-light">
+                    <div class="columns is-multiline">
+                        {% for image in images %}
+                            <div class="column is-6">
+                                <span class="box has-background-dark has-text-light symbol-block has-text-centered">
+                                    <img src="{{ image.image.url }}" alt="{{ image.title }}" title="{{ image.title }}">
+                                    <h3>{{ image.description|safe }}</h3>
+                                </span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
 
         <div class="box has-background-dark has-text-light{% for class in random_classes %} {{ class }}{% endfor %}">
@@ -276,7 +296,7 @@
 </section>
 
 {% if accepted_answer %}
-<script type="application/ld+json"> {
+    <script type="application/ld+json"> {
  "@context": "http://schema.org",
  "@type": "QAPage",
  "mainEntity": {
@@ -301,11 +321,12 @@
  }
  }
  }
-} </script>
+}
+    </script>
 {% endif %}
 
 {% if faqs %}
-<script type="application/ld+json"> {
+    <script type="application/ld+json"> {
  "@context": "https://schema.org",
  "@type": "FAQPage",
  "mainEntity": [{% for faq in faqs %}{
@@ -315,9 +336,10 @@
  "@type": "Answer",
  "text": "{{ faq.answer }}"
  }
- }{% if not forloop.last %},{% endif %}
+ }{% if not forloop.last %}{% endif %}
 {% endfor %}]
-} </script>
+}
+    </script>
 {% endif %}
 
 <script type="text/javascript">

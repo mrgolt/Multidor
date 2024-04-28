@@ -111,6 +111,9 @@ class AffDepAdmin(admin.ModelAdmin):
 class SymbolAdmin(admin.ModelAdmin):
     list_display = ('id', 'website', 'is_active', 'sorting_order', 'image')
 
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ('site', 'title', 'description', 'image')
+
 class FAQAdmin(admin.ModelAdmin):
     list_display = ('content', 'question', 'is_accepted')
 
@@ -136,3 +139,4 @@ admin.site.register(AffReg, AffRegAdmin)
 admin.site.register(AffDep, AffDepAdmin)
 admin.site.register(Symbol, SymbolAdmin)
 admin.site.register(FAQ, FAQAdmin)
+admin.site.register(Image, ImageAdmin)

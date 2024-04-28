@@ -79,6 +79,15 @@ class Content(models.Model):
             self.slug = slugify(self.title)  # Преобразовать заголовок в slug
         super().save(*args, **kwargs)
 
+class Image(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.CharField(max_length=500)
+    site = models.ForeignKey('Sites', on_delete=models.CASCADE)
+    image = models.ImageField(blank=True, upload_to='img/', default='')
+
+    def __str__(self):
+        return self.title
+
 class Redirect(models.Model):
     id = models.AutoField(primary_key=True)
     target_url = models.URLField()
