@@ -84,6 +84,7 @@ class Image(models.Model):
     description = models.CharField(max_length=500)
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
     image = models.ImageField(blank=True, upload_to='img/', default='')
+    in_gallery = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

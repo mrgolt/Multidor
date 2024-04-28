@@ -112,7 +112,16 @@ class SymbolAdmin(admin.ModelAdmin):
     list_display = ('id', 'website', 'is_active', 'sorting_order', 'image')
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('site', 'title', 'description', 'image')
+    list_display = ('site', 'title', 'description', 'image', 'in_gallery')
+
+    actions = ['duplicate']
+    def duplicate(self, request, queryset):
+        for obj in queryset:
+            obj.pk = None  # Сбросить первичный ключ, чтобы создать новую запись
+            obj.id = None  # Сбросить ID, чтобы создать новую запись (необязательно, если используется автоматический инкремент)
+            obj.save()
+
+    duplicate.short_description = "Duplicate selected items"
 
 class FAQAdmin(admin.ModelAdmin):
     list_display = ('content', 'question', 'is_accepted')
