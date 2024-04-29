@@ -125,7 +125,7 @@
             <div class="columns is-vcentered">
                 <div class="column is-half">
                     <h1 class="title is-1 has-text-light has-text-weight-bold">{{ content.first.title }}</h1>
-                    <span class="title is-3 has-text-light">{{ bonuses.first.name }} по нашему промокоду</span>
+                    <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} по нашему промокоду</span>
                     <div class="buttons mt-4{% for class in random_classes %} {{ class }}{% endfor %}">
                         <a class="button is-success is-large promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
@@ -154,7 +154,7 @@
 
                 </div>
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <p class="title has-text-light has-text-centered is-4">{{ bonus.name }}</p>
+                    <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
                     <span class="buttons">
 
                         <a class="button is-success  promo-code-button is-fullwidth">
