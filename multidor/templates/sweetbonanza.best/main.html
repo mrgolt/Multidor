@@ -18,6 +18,7 @@
     <meta content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name }}."
           name="description">
 
+    {% if not site.custom_css %}
     <style>
         .has-background-dark, .navbar-item {
             background-color: #1a0e1e !important;
@@ -57,6 +58,9 @@
             overflow-x: auto !important;
         }
     </style>
+    {% else %}
+        {{ site.custom_css|safe }}
+    {% endif %}
 
 
     <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
@@ -137,22 +141,11 @@
                 </div>
             </div>
         </div>
-        <div class="box has-background-dark p-1" id="wheretoplay">
+        <div class="box has-background-dark p-3" id="wheretoplay">
             <h2 class="title is-4 has-text-light has-background-dark">Где играть в {{ site.slot_name }}?</h2>
 
-            <div class="columns box has-text-light has-background-grey m-2 is-hidden">
-                <div class="column">
-                    <span class="title is-5 has-text-light">В официальном приложении </span>
-                </div>
-                <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <a href="{% if site.apk_file %}{{ site.apk_file.url }}{% endif %}"
-                       class="button is-success is-fullwidth">
-                    <span class="icon">
-                    <i class="fab fa-android"></i>
-                    </span><span>Скачать приложение</span></a>
-                </div>
-            </div>
-        </div>
+
+
 
         {% for bonus in bonuses %}
             <div class="columns box as-text-light has-background-grey m-2{% for class in random_classes %} {{ class }}{% endfor %}">
@@ -174,12 +167,13 @@
                 </div>
             </div>
         {% endfor %}
+        </div>
 
 
 
 
 
-        <div class="box has-background-dark has-text-light p-0">
+        <div class="box has-background-dark has-text-light p-2">
             <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш за вчера по нашему
                 промокоду</h2>
             <div class="box has-background-grey has-text-light has-text-centered m-1 p-3{% for class in random_classes %} {{ class }}{% endfor %}">
@@ -187,7 +181,7 @@
             </div>
         </div>
 
-        <div class="box has-background-dark has-text-light m-1 p-1{% for class in random_classes %} {{ class }}{% endfor %}"
+        <div class="box has-background-dark has-text-light m-0 p-2{% for class in random_classes %} {{ class }}{% endfor %}"
              id="playdemo">
             <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ site.slot_name }}</h2>
             <div class="box has-background-grey has-text-light has-text-centered{% for class in random_classes %} {{ class }}{% endfor %}">

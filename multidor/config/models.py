@@ -18,6 +18,7 @@ class Sites(models.Model):
     tlg_link = models.TextField(blank=True, default='')
     counters = models.TextField(blank=True, default='')
     template_name = models.CharField(blank=True, max_length=200, default='main.html')
+    custom_css = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.allowed_domain
