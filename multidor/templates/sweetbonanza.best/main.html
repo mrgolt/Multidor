@@ -7,16 +7,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if content.first.is_main %}
-        <title>{{ site.slot_name }} - {{ bonuses.first.name }} - {{ content.first.title }}</title>
+        <title>{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}</title>
     {% else %}
-        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name }}</title>
+        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }}</title>
     {% endif %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
 
-    <meta content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name }}."
+    <meta content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."
           name="description">
+
+    {% if content.first.is_main %}
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/" />
+    {% else %}
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/{{ content.first.slug }}/" />
+    {% endif %}
+
+    <meta property="og:locale" content="ru_RU"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
+    <meta property="og:description" content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
+
+    {% if content.first.is_main %}
+        <meta property="og:url" content="https://{{ site.allowed_domain }}/"/>
+    {% else %}
+        <meta property="og:url" content="https://{{ site.allowed_domain }}/{{ content.first.slug }}/"/>
+    {% endif %}
+
+
+    <meta property="og:site_name" content="Играть в игровой слот {{ site.slot_name }} демо и на реальные деньги"/>
+    <meta property="og:image" content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
+    <meta property="og:image:width" content="1000"/>
+    <meta property="og:image:height" content="625"/>
+    <meta property="og:image:secure_url" content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
+    <meta name="twitter:description" content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
+    <meta name="twitter:image" content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
 
     {% if not site.custom_css %}
     <style>
@@ -34,8 +63,8 @@
             color: #fff;
         }
 
-        .is-darksalmon, .is-darksalmon:hover {
-            background-color: darksalmon;
+        .is-primary, .is-primary:hover {
+            background-color: darksalmon !important;
             border: 0px;
             color: #fff;
         }
@@ -104,7 +133,7 @@
 
                 <div class="navbar-item has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
                     <div class="buttons has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
-                        <a class="button is-darksalmon is-large " href="/go/{{ bonuses.first.redirect.name }}/">
+                        <a class="button is-primary is-large " href="/go/{{ bonuses.first.redirect.name }}/">
                             Где играть?
                         </a>
                         <a class="button is-success is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
@@ -131,7 +160,7 @@
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
                         </a>
-                        <a class="button is-darksalmon is-large" href="/go/{{ bonuses.first.redirect.name }}/">Где играть</a>
+                        <a class="button is-primary is-large" href="/go/{{ bonuses.first.redirect.name }}/">Где играть</a>
                     </div>
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
@@ -161,7 +190,7 @@
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonus.promo_code }}</span>
                         </a>
-                            <a class="button is-darksalmon is-fullwidth"
+                            <a class="button is-primary is-fullwidth"
                                href="/go/{{ bonus.redirect.name }}/">Играть</a>
                         </span>
                 </div>
