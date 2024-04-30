@@ -19,6 +19,10 @@ class Sites(models.Model):
     counters = models.TextField(blank=True, default='')
     template_name = models.CharField(blank=True, max_length=200, default='main.html')
     custom_css = models.TextField(blank=True, default='')
+    background_color_primary = models.CharField(max_length=10, default='#1a0e1e', blank=True)
+    background_color_secondary = models.CharField(max_length=10, default='#33263a', blank=True)
+    primary_color = models.CharField(max_length=10, default='darksalmon', blank=True)
+    secondary_color = models.CharField(max_length=10, default='#48c78e', blank=True)
 
     def __str__(self):
         return self.allowed_domain

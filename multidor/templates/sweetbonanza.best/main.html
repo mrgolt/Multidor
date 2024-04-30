@@ -50,7 +50,7 @@
     {% if not site.custom_css %}
     <style>
         .has-background-dark, .navbar-item {
-            background-color: #1a0e1e !important;
+            background-color: {{ site.background_color_primary }} !important;
         }
 
         h2, h1 {
@@ -64,7 +64,13 @@
         }
 
         .is-primary, .is-primary:hover {
-            background-color: darksalmon !important;
+            background-color: {{ site.primary_color }} !important;
+            border: 0px;
+            color: #fff;
+        }
+
+        .is-secondary, .is-secondary:hover{
+            background-color: {{ site.secondary_color }} !important;
             border: 0px;
             color: #fff;
         }
@@ -74,7 +80,7 @@
         }
 
         .has-background-grey {
-            background-color: #33263a !important;
+            background-color: {{ site.background_color_secondary }} !important;
         }
 
         .box {
@@ -136,7 +142,7 @@
                         <a class="button is-primary is-large " href="/go/{{ bonuses.first.redirect.name }}/">
                             Где играть?
                         </a>
-                        <a class="button is-success is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
+                        <a class="button is-secondary is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
                             <strong>Играть демо</strong>
                         </a>
 
@@ -156,7 +162,7 @@
                     <h1 class="title is-1 has-text-light has-text-weight-bold">{{ content.first.title }}</h1>
                     <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} по нашему промокоду</span>
                     <div class="buttons mt-4{% for class in random_classes %} {{ class }}{% endfor %}">
-                        <a class="button is-success is-large promo-code-button">
+                        <a class="button is-secondary is-large promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
                         </a>
@@ -186,7 +192,7 @@
                     <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
                     <span class="buttons">
 
-                        <a class="button is-success  promo-code-button is-fullwidth">
+                        <a class="button is-secondary  promo-code-button is-fullwidth">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonus.promo_code }}</span>
                         </a>
@@ -252,7 +258,7 @@
             <div class="buttons">
 
                 {% for page in inner_pages %}
-                    <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                    <a class="button is-secondary is-small{% for class in random_classes %} {{ class }}{% endfor %}"
                        href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
 
@@ -307,12 +313,14 @@
             <div class="buttons">
 
                 {% for page in inner_pages %}
-                    <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                    <a class="button is-secondary is-small{% for class in random_classes %} {{ class }}{% endfor %}"
                        href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
-                <a class="button is-success is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+            {% if site.tlg_link %}
+                <a class="button is-secondary is-small{% for class in random_classes %} {{ class }}{% endfor %}"
                    href="{{ site.tlg_link }}/">Telegram
                     канал {{ site.slot_name }}</a>
+            {% endif %}
             </div>
         </div>
 
