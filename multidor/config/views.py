@@ -23,7 +23,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'book-of-dead-slot.fun'
+        domain = 'fruit-cocktail-slot.fun'
 
     classes = [
         'has-game-preview',
