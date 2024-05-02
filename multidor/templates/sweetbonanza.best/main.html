@@ -21,7 +21,7 @@
     {% if content.first.is_main %}
         <link rel="canonical" href="https://{{ site.allowed_domain }}/" />
     {% else %}
-        <link rel="canonical" href="https://{{ site.allowed_domain }}/{{ content.first.slug }}/" />
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/" />
     {% endif %}
 
     <meta property="og:locale" content="ru_RU"/>
@@ -32,7 +32,7 @@
     {% if content.first.is_main %}
         <meta property="og:url" content="https://{{ site.allowed_domain }}/"/>
     {% else %}
-        <meta property="og:url" content="https://{{ site.allowed_domain }}/{{ content.first.slug }}/"/>
+        <meta property="og:url" content="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>
     {% endif %}
 
 
@@ -215,7 +215,9 @@
                     <img src="{{ site.promo_image.url }}">
                 </div>
             </div>
+        {% endif %}
 
+        {% if site.demo %}
             <div class="box has-background-dark has-text-light m-0 p-2{% for class in random_classes %} {{ class }}{% endfor %}"
                  id="playdemo">
                 <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ site.slot_name }}</h2>
@@ -228,7 +230,7 @@
                            href="/go/{{ bonuses.first.redirect.name }}/"></a>
                     </div>
 
-                    <a class="button is-success mt-3" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
+                    <a class="button is-primary mt-3" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
                 </div>
             </div>
         {% endif %}
