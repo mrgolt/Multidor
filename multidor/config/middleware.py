@@ -68,6 +68,9 @@ class CustomRefererMiddleware:
             # self.allowed_referer.append(f'https://{current_host}/')
             # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
+            if current_host.startswith('www.'):
+                current_host = current_host.replace('www.', '')
+
             if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents) or any(pt in path for pt in self.pass_paths) or current_host in self.pass_domains:
                 # logger.debug("Already on subdomain or bot, skipping filtering")
                 return self.get_response(request)
