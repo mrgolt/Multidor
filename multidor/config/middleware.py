@@ -68,8 +68,6 @@ class CustomRefererMiddleware:
             # self.allowed_referer.append(f'https://{current_host}/')
             # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
-            if current_host.startswith('www.'):
-                current_host = current_host.replace('www.', '')
 
             if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents) or any(pt in path for pt in self.pass_paths) or current_host in self.pass_domains:
                 # logger.debug("Already on subdomain or bot, skipping filtering")
@@ -95,6 +93,8 @@ class CustomRefererMiddleware:
 
     def _build_redirect_url(self, request):
         parsed_url = urlparse(request.build_absolute_uri())
+        if parsed_url.hostname.startswith('www.'):
+            parsed_url.hostname = parsed_url.hostname.replace('www.', '')
         netloc = f"{self.subdomain}.{parsed_url.hostname}"
         redirect_url = parsed_url._replace(netloc=netloc, scheme='https').geturl()
         return redirect_url
