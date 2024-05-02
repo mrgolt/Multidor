@@ -112,7 +112,9 @@
          aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
-                <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}">
+                <figure class="image">
+                    <img class="image is-rounded" src="{% if site.logo %}{{ site.logo.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}">
+                </figure>
             </a>
             <a class="navbar-item" href="/">
                 <h1 class="title is-3 has-text-light is-size-7-mobile">{{ site.slot_name }}
@@ -171,8 +173,10 @@
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}"
-                         class="is-rounded">
+                    <figure class="image">
+                        <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}"
+                             class="imageis-rounded">
+                    </figure>
                 </div>
             </div>
         </div>
