@@ -156,14 +156,12 @@
     <nav class="navbar is-fixed-bottom has-background-dark is-hidden-desktop" >
         <div class="m-auto navbar-item has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
                     <div class="buttons is-centered has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <a class="button is-secondary playdemo" alt="Играть Демо в {{ site.slot_name }}">
+                        <a class="button is-secondary playdemo" alt="Играть Демо в {{ site.slot_name }}">
                             Играть демо
                         </a>
                         <a class="button is-primary " href="/go/{{ bonuses.first.redirect.name }}/">
                             <strong>Где играть?</strong>
                         </a>
-
-
                     </div>
                 </div>
     </nav>
