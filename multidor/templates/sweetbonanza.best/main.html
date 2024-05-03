@@ -213,10 +213,9 @@
 
         {% if site.promo_image %}
             <div class="box has-background-dark has-text-light p-2">
-                <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш за вчера по нашему
-                    промокоду</h2>
+                <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду</h2>
                 <div class="box has-background-grey has-text-light has-text-centered m-1 p-3{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <img src="{{ site.promo_image.url }}">
+                    <img loading="lazy" src="{{ site.promo_image.url }}" title="Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду" alt="Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду" loading="lazy">
                 </div>
             </div>
         {% endif %}
@@ -228,7 +227,7 @@
                 <div class="box has-background-grey has-text-light has-text-centered{% for class in random_classes %} {{ class }}{% endfor %}">
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <iframe src="{{ site.demo }}" frameborder="0" width="100%" height="100%"></iframe>
+                            <iframe src="{{ site.demo }}" frameborder="0" width="100%" height="100%" loading="lazy"></iframe>
                         </div>
                         <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
                            href="/go/{{ bonuses.first.redirect.name }}/"></a>
@@ -249,7 +248,7 @@
                         {% for symbol in symbols %}
                             <div class="column is-one-fifth">
                                 <span class="box has-background-dark has-text-light symbol-block has-text-centered">
-                                    <img src="{{ symbol.image.url }}" title="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}" alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}">
+                                    <img loading="lazy" src="{{ symbol.image.url }}" title="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}" alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}">
                                     <p>{{ symbol.info|safe }}</p>
                                 </span>
                             </div>
@@ -343,8 +342,36 @@
             </div>
         {% endif %}
 
+        <div class="box has-background-dark p-4 m-1" id="wheretoplay">
+            <h2 class="title is-4 has-text-light has-background-dark">Где играть в {{ site.slot_name }}?</h2>
 
-        <div class="box has-background-dark has-text-light{% for class in random_classes %} {{ class }}{% endfor %}">
+
+
+
+        {% for bonus in bonuses %}
+            <div class="columns box as-text-light has-background-grey m-2{% for class in random_classes %} {{ class }}{% endfor %}">
+                <div class="column is-two-fifths">
+                    <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
+
+                </div>
+                <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
+                    <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
+                    <span class="buttons">
+
+                        <a class="button is-secondary  promo-code-button is-fullwidth">
+                            <span class="promo-label">Промокод</span>:&nbsp;<span
+                                class="promo-code-text-button">{{ bonus.promo_code }}</span>
+                        </a>
+                            <a class="button is-primary is-fullwidth"
+                               href="/go/{{ bonus.redirect.name }}/">Играть</a>
+                        </span>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+
+        <div class="box has-background-dark has-text-light m-1{% for class in random_classes %} {{ class }}{% endfor %}">
             <h2 class="title is-4 has-text-light has-background-dark">Часто ищут</h2>
             <div class="buttons">
 
