@@ -26,7 +26,7 @@ class ContentAdmin(admin.ModelAdmin):
 
 class SitesAdmin(admin.ModelAdmin):
     list_display = (
-    'site_id', 'allowed_domain_link', 'slot_name', 'num_content', 'provider_name', 'template_name', 'has_hero_image')
+    'site_id', 'allowed_domain_link', 'slot_name', 'num_content', 'provider_name', 'template_name', 'has_hero_image', 'author')
 
     def num_content(self, obj):
         return obj.content_set.count()  # Подсчитываем количество объектов Content, связанных с текущим экземпляром Sites
@@ -114,6 +114,9 @@ class SymbolAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('site', 'title', 'description', 'image', 'in_gallery')
 
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position', 'short_bio')
+
     actions = ['duplicate']
     def duplicate(self, request, queryset):
         for obj in queryset:
@@ -149,3 +152,4 @@ admin.site.register(AffDep, AffDepAdmin)
 admin.site.register(Symbol, SymbolAdmin)
 admin.site.register(FAQ, FAQAdmin)
 admin.site.register(Image, ImageAdmin)
+admin.site.register(Author, AuthorAdmin)

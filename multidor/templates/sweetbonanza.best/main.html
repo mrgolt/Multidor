@@ -291,6 +291,36 @@
 
                 <!-- end of faq block -->
             {% endif %}
+
+            {% if site.author %}
+                        <hr>
+                <p>Материал проверен экспертом сайта <b>{{ site.allowed_domain|upper }}</b>:</p>
+                        <div class="box">
+                            <div class="columns">
+                                <div class="column is-one-fifth">
+
+                                    <figure class="image is-96x96">
+                                        <img class="is-rounded"
+                                                src="{{ site.author.photo.url }}"
+                                                alt="{{ site.author.position }} {{ site.allowed_domain|upper }}"
+                                        />
+                                    </figure>
+                                </div>
+                                <div class="column is-one-quarter">
+                                    <p class="title is-5">{{ site.author.name }}</p>
+                                    <p class="subtitle is-6">{{ site.author.position }} {{ site.allowed_domain|upper }}</p>
+                                </div>
+                                <div class="column">
+                                    <p class="subtitle is-6">{{ site.author.short_bio }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    {% endif %}
+
+
         </div>
 
         {% if images %}

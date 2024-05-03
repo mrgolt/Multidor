@@ -2,6 +2,18 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
 
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True)
+    short_bio = models.TextField(default='', blank=True)
+    bio = models.TextField(default='', blank=True)
+    photo = models.ImageField(upload_to='authors/', null=True, blank=True)
+    position = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name
+
 class Sites(models.Model):
     name = models.CharField(max_length=200, default='')
     slot_name = models.CharField(max_length=200, default='')
@@ -23,6 +35,7 @@ class Sites(models.Model):
     background_color_secondary = models.CharField(max_length=10, default='#33263a', blank=True)
     primary_color = models.CharField(max_length=10, default='darksalmon', blank=True)
     secondary_color = models.CharField(max_length=10, default='#48c78e', blank=True)
+    author = models.ForeignKey(Author, on_delete=models.PROTECT, default=None, null=True)
 
     def __str__(self):
         return self.allowed_domain
@@ -58,6 +71,8 @@ class Symbol(models.Model):
 
     def __str__(self):
         return self.name
+
+
 
 class FAQ(models.Model):
     content = models.ForeignKey('Content', on_delete=models.CASCADE)
