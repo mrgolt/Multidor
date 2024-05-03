@@ -332,7 +332,7 @@
                         {% for image in images %}
                             <div class="column is-6">
                                 <span class="box has-background-dark has-text-light symbol-block has-text-centered">
-                                    <img src="{{ image.image.url }}" alt="{{ image.title }}" title="{{ image.title }}">
+                                    <img loading="lazy" src="{{ image.image.url }}" alt="{{ image.title }}" title="{{ image.title }}">
                                     <h3>{{ image.description|safe }}</h3>
                                 </span>
                             </div>
