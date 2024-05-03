@@ -113,7 +113,7 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <figure class="image">
-                    <img class="image is-rounded" src="{% if site.logo %}{{ site.logo.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}">
+                    <img class="image" src="{% if site.logo %}{{ site.logo.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}">
                 </figure>
             </a>
             <a class="navbar-item" href="/">
@@ -175,7 +175,7 @@
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
                     <figure class="image">
                         <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}"
-                             class="imageis-rounded">
+                             class="image">
                     </figure>
                 </div>
             </div>
