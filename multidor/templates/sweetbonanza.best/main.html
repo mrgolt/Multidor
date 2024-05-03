@@ -236,17 +236,38 @@
             <div class="box has-background-dark has-text-light m-0 p-2{% for class in random_classes %} {{ class }}{% endfor %}"
                  id="playdemo">
                 <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ site.slot_name }}</h2>
-                <div class="box has-background-grey has-text-light has-text-centered{% for class in random_classes %} {{ class }}{% endfor %}">
+                <div class="box has-background-grey has-text-light {% for class in random_classes %} {{ class }}{% endfor %}">
+
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
+                        <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
+                             id="iframeContainer">
+                            <button class="button is-secondary is-large" id="loadIframeBtn"
+                                    style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    <span class="icon">
+                                        <i class="fa fa-play"></i>
+                                    </span>
+                                <span>Играть демо</span>
+                            </button>
+                        <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
+                               href="/go/{{ bonuses.first.redirect.name }}/"></a>
+                        </div>
+
+                    </div>
+                    <div class="has-text-centered">
+                        <a class="button is-primary mt-3" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
+                    </div>
+
+
+                    <div style="position: relative; width: 100%; padding-bottom: 62.5%;" class="is-hidden">
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <iframe src="{{ site.demo }}" frameborder="0" width="100%" height="100%" loading="lazy"></iframe>
                         </div>
-                        <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
-                           href="/go/{{ bonuses.first.redirect.name }}/"></a>
                     </div>
 
-                    <a class="button is-primary mt-3" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
                 </div>
+
+
+
             </div>
         {% endif %}
 

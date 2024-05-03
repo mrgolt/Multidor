@@ -26,6 +26,7 @@ class Sites(models.Model):
     hero_image_is_rounded = models.BooleanField(default=False)
     apk_file = models.FileField(blank=True, upload_to='file/', default='')
     promo_image = models.ImageField(blank=True, upload_to='img/', default='')
+    interface_image = models.ImageField(blank=True, upload_to='interface-img/', default='')
     favicon = models.ImageField(blank=True, upload_to='img/', default='')
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')

@@ -26,7 +26,7 @@ class ContentAdmin(admin.ModelAdmin):
 
 class SitesAdmin(admin.ModelAdmin):
     list_display = (
-    'site_id', 'allowed_domain_link', 'slot_name', 'num_content', 'provider_name', 'template_name', 'has_hero_image', 'author')
+    'site_id', 'allowed_domain_link', 'slot_name', 'num_content', 'provider_name', 'template_name', 'has_hero_image', 'interface_image', 'author')
 
     def num_content(self, obj):
         return obj.content_set.count()  # Подсчитываем количество объектов Content, связанных с текущим экземпляром Sites
