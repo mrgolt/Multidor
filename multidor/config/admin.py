@@ -114,6 +114,15 @@ class SymbolAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('site', 'title', 'description', 'image', 'in_gallery')
 
+    actions = ['duplicate']
+    def duplicate(self, request, queryset):
+        for obj in queryset:
+            obj.pk = None  # Сбросить первичный ключ, чтобы создать новую запись
+            obj.id = None  # Сбросить ID, чтобы создать новую запись (необязательно, если используется автоматический инкремент)
+            obj.save()
+
+    duplicate.short_description = "Duplicate selected items"
+
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('name', 'position', 'short_bio')
 

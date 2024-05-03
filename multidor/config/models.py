@@ -23,6 +23,7 @@ class Sites(models.Model):
     allowed_domain = models.CharField(blank=True, max_length=255)
     logo = models.ImageField(blank=True, upload_to='img/', default='')
     hero_image = models.ImageField(blank=True, upload_to='img/', default='')
+    hero_image_is_rounded = models.BooleanField(default=False)
     apk_file = models.FileField(blank=True, upload_to='file/', default='')
     promo_image = models.ImageField(blank=True, upload_to='img/', default='')
     favicon = models.ImageField(blank=True, upload_to='img/', default='')

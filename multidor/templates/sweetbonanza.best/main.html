@@ -175,7 +175,7 @@
                 <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
                     <figure class="image">
                         <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}"
-                             class="image">
+                             class="image{% if site.hero_image_is_rounded %} is-rounded{% endif %}">
                     </figure>
                 </div>
             </div>
