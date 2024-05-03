@@ -410,6 +410,40 @@
     </script>
 {% endif %}
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": "{{ site.slot_name }}",
+            "image": "https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}",
+            "description": "{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}.",
+            "applicationCategory": "Game",
+            "applicationSubcategory": "Slot Machine",
+            "operatingSystem": "Multi-platform",
+            "author": {
+                "@type": "Organization",
+                "name": "{{ site.allowed_domain|upper }}"
+            }
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://{{ site.allowed_domain }}/#organization",
+            "name": "{{ content.first.title }}",
+            "url": "https://{{ site.allowed_domain }}/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}",
+                "width": "360",
+                "height": "360"
+            },
+            "brand": "{{ site.allowed_domain|upper }}"
+        }
+    </script>
+
 <script type="text/javascript">
     document.querySelectorAll('.promo-code-button').forEach(function (promoButton) {
 
