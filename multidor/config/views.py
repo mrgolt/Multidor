@@ -23,7 +23,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'crazy-monkey.fun'
+        domain = 'gatesofolympus.best'
 
     classes = [
         'has-game-preview',
@@ -124,7 +124,7 @@ def redirect_view(request, redirect_id):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'sugar-rush.best'
+        domain = 'gatesofolympus.best'
 
     # Находим объект Sites по домену
     site = Sites.objects.get(allowed_domain=domain)
