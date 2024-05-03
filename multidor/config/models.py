@@ -50,10 +50,14 @@ class Bonus(models.Model):
 
 class Symbol(models.Model):
     info = models.TextField()
+    name = models.CharField(max_length=100, blank=True, default='')
     website = models.ForeignKey('Sites', on_delete=models.CASCADE)
     sorting_order = models.PositiveIntegerField(default=20)
     is_active = models.BooleanField(default=True)
     image = models.ImageField(blank=True, upload_to='img/', default='')
+
+    def __str__(self):
+        return self.name
 
 class FAQ(models.Model):
     content = models.ForeignKey('Content', on_delete=models.CASCADE)

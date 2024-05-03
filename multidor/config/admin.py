@@ -109,7 +109,7 @@ class AffDepAdmin(admin.ModelAdmin):
     list_filter = ('dep_date', 'aff')
 
 class SymbolAdmin(admin.ModelAdmin):
-    list_display = ('id', 'website', 'is_active', 'sorting_order', 'image')
+    list_display = ('id', 'name', 'website', 'is_active', 'sorting_order', 'image')
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('site', 'title', 'description', 'image', 'in_gallery')

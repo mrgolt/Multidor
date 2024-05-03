@@ -249,7 +249,7 @@
                         {% for symbol in symbols %}
                             <div class="column is-one-fifth">
                                 <span class="box has-background-dark has-text-light symbol-block has-text-centered">
-                                    <img src="{{ symbol.image.url }}">
+                                    <img src="{{ symbol.image.url }}" title="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}" alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}">
                                     <p>{{ symbol.info|safe }}</p>
                                 </span>
                             </div>
