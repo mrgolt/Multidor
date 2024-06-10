@@ -426,30 +426,30 @@
             </div>
         </div>
     <footer>
-        <div class="box has-background-dark has-text-light m-1{% for class in random_classes %} {{ class }}{% endfor %}">
-            <div class="columns">
-                <div class="column is-one-quarter">
+        <div class="box  has-text-centered has-background-dark has-text-light m-1{% for class in random_classes %} {{ class }}{% endfor %}">
+<div class="is-size-7 has-text-centered">
                     <h3 class="title is-4 has-text-light has-background-dark">
                         {{ site.allowed_domain|upper }}
                     </h3>
-
-                </div>
-                <div class="column is-size-7">
                     Сайт использует IP адреса, сookie и данные геолокации пользователей сайта. Условия использования содержатся в <a href="/page/privacy-policy/">Политике конфиденциальности</a> и <a href="/page/terms/">Правилах сайта</a><br />
                     <span class="is-size-3">18+</span><br />
                     Данный портал предназначен для ознакомления только для лиц, достигших возраста 18 лет. Мы не рекламируем услуги онлайн-казино. Сайт {{ site.allowed_domain|upper }} носит исключительно информационный характер и не пропагандирует азартные игры среди несовершеннолетних граждан.<br />
                     Администрация сайта {{ site.allowed_domain|upper }} не несет никакой ответственности за ознакомление с материалами лицами, не достигшими восемнадцатилетнего возраста. Любой контент, представленный на страницах сайта {{ site.allowed_domain|upper }}, является исключительно информационным.
-                </div>
-            </div>
-        <div class="is-size-7 has-text-centered">
-            <p>Полное или частичное копирование материалов сайта {{ site.allowed_domain|upper }} возможно только с письменного разрешения редакции. По вопросам сотрудничества обращайтесь через <a href="/page/feedback/"> форму обратной связи</a> или по электронной почте <a href="mailto:info@{{ site.allowed_domain }}">info@{{ site.allowed_domain }}</a>.</p>
 
-            <p>Любой контент, размещаемый на страницах сайта {{ site.allowed_domain|upper }}, регулярно обновляется и поддерживается в актуальном
-                состоянии. Пользуйтесь только проверенными источниками информации.</p>
-            <p>Сайт {{ site.allowed_domain|upper }} носит исключительно информационный характер и не принимает денежных платежей со стороны
-                пользователей.</p>
-            <p>Азартные игры должны расцениваться как развлечение, а не как способ заработка. Чрезмерное увлечение может
-                привести к стремительному развитию <a href="/page/ludomania/">игровой зависимости</a>, играйте <a href="/page/otvetstvennaya-igra/">ответственно</a>. </p>
+
+                <p>Полное или частичное копирование материалов сайта {{ site.allowed_domain|upper }} возможно только с письменного разрешения редакции. По вопросам сотрудничества обращайтесь через <a href="/page/feedback/"> форму обратной связи</a> или по электронной почте <a href="mailto:info@{{ site.allowed_domain }}">info@{{ site.allowed_domain }}</a>.</p>
+
+                <p>Любой контент, размещаемый на страницах сайта {{ site.allowed_domain|upper }}, регулярно обновляется и поддерживается в актуальном
+                    состоянии. Пользуйтесь только проверенными источниками информации.</p>
+                <p>Сайт {{ site.allowed_domain|upper }} носит исключительно информационный характер и не принимает денежных платежей со стороны
+                    пользователей.</p>
+                <p>Азартные игры должны расцениваться как развлечение, а не как способ заработка. Чрезмерное увлечение может
+                    привести к стремительному развитию <a href="/page/ludomania/">игровой зависимости</a>, играйте <a href="/page/otvetstvennaya-igra/">ответственно</a>. </p>
+            </div>
+            <div class="is-size-7 has-text-centered">
+                {% for res in gambling_resources %}
+                    <a href="{{ res.url }}" target="_blank" rel="nofollow"><img scr="{{ res.logo.url }}" alt="{{ res.name }}" title="{{ res.name }}" /></a>
+                {% endfor %}
             </div>
 
         </div>

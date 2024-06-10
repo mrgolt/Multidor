@@ -17,7 +17,7 @@ class BonusAdmin(admin.ModelAdmin):
 
 
 class ContentAdmin(admin.ModelAdmin):
-    list_display = ('title', 'site', 'slug', 'is_main')
+    list_display = ('title', 'site', 'slug', 'is_main', 'is_popular')
     list_filter = ('site',)
 
     def casino_name(self, obj):
