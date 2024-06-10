@@ -101,6 +101,7 @@ def custom_serve(request, slug=None):
 
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
+        gambling_resources = GamblingResource.objects.filter(is_active=True)
         faqs = FAQ.objects.filter(content=content.first())
         accepted_answer = FAQ.objects.filter(content=content.first(), is_accepted=True).first()
 
@@ -110,7 +111,7 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'images': images, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs, 'accepted_answer': accepted_answer})
+    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'images': images, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs, 'accepted_answer': accepted_answer, 'gambling_resources': gambling_resources})
 
 def redirect_view(request, redirect_id):
 
