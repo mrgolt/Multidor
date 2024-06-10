@@ -100,7 +100,7 @@ def custom_serve(request, slug=None):
             content = Content.objects.filter(site=site, slug=slug)
 
 
-        inner_pages = Content.objects.filter(is_main=False, site=site)
+        inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
         faqs = FAQ.objects.filter(content=content.first())
         accepted_answer = FAQ.objects.filter(content=content.first(), is_accepted=True).first()
 

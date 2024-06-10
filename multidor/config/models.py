@@ -95,6 +95,7 @@ class Content(models.Model):
     keywords = models.CharField(max_length=255)
     slug = models.CharField(max_length=255, default='')
     is_main = models.BooleanField()
+    is_popular = models.BooleanField(default=True)
 
 
     def __str__(self):
@@ -182,3 +183,15 @@ class AffDep(models.Model):
         return f"{self.deposit_id}"
 
     #https://sweetbonanza.best/postbackcats/dep/?campaign_id=237844&promo_id=280615&visit_id=66106d7827419a95682f592a&amount=250.00&amount_cents=25000&currency=RUB&deposit_id=44445971&player_id=19275238&click_id=
+
+
+
+class GamblingResource(models.Model):
+    name = models.CharField(max_length=100, blank=True, default='')
+    url = models.URLField()
+    info = models.TextField()
+    is_active = models.BooleanField(default=True)
+    logo = models.ImageField(blank=True, upload_to='gambling-resources-img/', default='')
+
+    def __str__(self):
+        return self.name
