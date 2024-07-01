@@ -23,7 +23,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'sweetbonanza.best'
+        domain = 'gatesofolympus.best'
 
     classes = [
         'has-game-preview',
@@ -98,6 +98,9 @@ def custom_serve(request, slug=None):
         # Фильтрация контента на основе переданного slug
         if slug:
             content = Content.objects.filter(site=site, slug=slug)
+
+        if not content:
+            content = Content.objects.filter(slug=slug)
 
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
