@@ -13,6 +13,7 @@ from django.shortcuts import HttpResponse
 from django.db.models import Count, Sum
 from datetime import datetime
 from django.contrib.auth.decorators import user_passes_test
+from django.utils import timezone
 
 
 def custom_serve(request, slug=None):
@@ -102,6 +103,8 @@ def custom_serve(request, slug=None):
         if not content:
             content = Content.objects.filter(slug=slug)
 
+        comments = Comment.objects.filter(content=content, created_at__lte=timezone.now()).order_by('created_at')
+
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
         gambling_resources = GamblingResource.objects.filter(is_active=True)
@@ -114,7 +117,21 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    return render(request, template_path, {'site': site, 'bonuses': bonuses, 'symbols': symbols, 'content': content, 'images': images, 'inner_pages': inner_pages, 'random_classes': random_classes, 'faqs': faqs, 'accepted_answer': accepted_answer, 'gambling_resources': gambling_resources})
+    context = {'site': site,
+               'bonuses': bonuses,
+               'symbols': symbols,
+               'content': content,
+               'images': images,
+               'inner_pages': inner_pages,
+               'random_classes': random_classes,
+               'faqs': faqs,
+               'accepted_answer': accepted_answer,
+               'gambling_resources': gambling_resources,
+               'comments': comments,
+
+               }
+
+    return render(request, template_path, context)
 
 def redirect_view(request, redirect_id):
 

@@ -149,6 +149,10 @@ class FAQAdmin(admin.ModelAdmin):
     duplicate.short_description = "Duplicate selected items"
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author', 'page', 'text', 'created_at')
+    list_filter = ('page', )
+
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
@@ -162,4 +166,5 @@ admin.site.register(Symbol, SymbolAdmin)
 admin.site.register(FAQ, FAQAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Author, AuthorAdmin)
+admin.site.register(Comment, CommentAdmin)
 admin.site.register(GamblingResource)

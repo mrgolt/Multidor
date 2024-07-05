@@ -384,7 +384,29 @@
             </div>
         {% endif %}
 
-
+        <div class="box has-background-dark has-text-light m-1">
+            <h2 class="title is-4 has-text-light has-background-dark">Комментарии</h2>
+            <div>
+                {% for comment in comments %}
+                    <div>
+                        <div class="columns">
+                            <div class="column is-one-fifth">
+                                <figure class="image">
+                                    <img class="is-rounded" src="/media/img/avatar.jpg" alt="{{ comment.author }}" width="50">
+                                </figure>
+                            </div>
+                            <div class="column">
+                                <h4>{{ comment.author }}</h4>
+                                <p>{{ comment.created_at }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            {{ comment.text }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 
 
         <div class="box has-background-dark has-text-light m-1">
@@ -402,6 +424,8 @@
             {% endif %}
             </div>
         </div>
+
+
     <footer>
         <div class="box  has-text-centered has-background-dark has-text-light m-1">
 <div class="is-size-7 has-text-centered">
