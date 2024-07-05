@@ -586,6 +586,44 @@
 
 </script>
 
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            // Check for click events on the navbar burger icon
+            $(".navbar-burger").click(function () {
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                $(".navbar-burger").toggleClass("is-active");
+                $(".navbar-menu").toggleClass("is-active");
+
+            });
+
+                // Получаем ссылку на кнопку с использованием jQuery
+            var $scrollButton = $('.wheretoplay');
+
+            // Добавляем обработчик событий на кнопку
+            $scrollButton.on('click', function () {
+                // Прокручиваем страницу к месту с анимацией
+                $('html, body').animate({
+                    scrollTop: $('#wheretoplay').offset().top - 40
+                }, 400); // 1000 миллисекунд (1 секунда) - длительность анимации
+            });
+
+            var $scrollButton = $('.playdemo');
+
+            // Добавляем обработчик событий на кнопку
+            $scrollButton.on('click', function () {
+                // Прокручиваем страницу к месту с анимацией
+                $('html, body').animate({
+                    scrollTop: $('#playdemo').offset().top
+                }, 400); // 1000 миллисекунд (1 секунда) - длительность анимации
+            });
+
+        });
+
+
+    </script>
+
 
 </body>
 </html>
