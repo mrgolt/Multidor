@@ -178,7 +178,7 @@
         <div class="box has-background-dark">
             <div class="columns is-vcentered">
                 <div class="column is-half">
-                    <h1 class="title is-1 has-text-light has-text-weight-bold">{{ content.first.title }}</h1>
+                    <h1 class="title is-1 has-text-light has-text-weight-bold" {% if content.first.is_main %}style="font-size: 4.2rem;"{% endif %}>{{ content.first.title }}</h1>
                     <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} по нашему промокоду</span>
                     <div class="buttons mt-4">
                         <a class="button is-secondary is-large promo-code-button">
