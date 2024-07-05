@@ -388,7 +388,7 @@
             <h2 class="title is-4 has-text-light has-background-dark">Комментарии</h2>
             <div>
                 {% for comment in comments %}
-                    <div>
+                    <div class="pb-3">
                         <div class="columns">
                             <div class="column is-1">
                                 <figure class="image is-32x32">
@@ -405,10 +405,11 @@
                         </div>
                     </div>
                 {% endfor %}
+            <h3 class="title is-4 has-text-light has-background-dark">Оставить комментарий</h3>
                 <form id="comment-form">
                     <div class="field is-horizontal">
-                      <div class="field-label is-normal">
-                        <label class="label">Имя</label>
+                      <div class="field-label is-normal ">
+                        <label class="label has-text-light">От кого</label>
                       </div>
                       <div class="field-body">
                         <div class="field">
@@ -437,7 +438,7 @@
 
                     <div class="field is-horizontal">
                       <div class="field-label is-normal">
-                        <label class="label">Текст комментария</label>
+                        <label class="label has-text-light">Текст комментария</label>
                       </div>
                       <div class="field-body">
                         <div class="field">
