@@ -19,6 +19,7 @@ class Sites(models.Model):
     slot_name = models.CharField(max_length=200, default='')
     demo = models.TextField(blank=True, default='')
     provider_name = models.CharField(blank=True, max_length=200, default='')
+    provider_description = models.TextField(blank=True, default='')
     site_id = models.AutoField(primary_key=True)
     allowed_domain = models.CharField(blank=True, max_length=255)
     logo = models.ImageField(blank=True, upload_to='img/', default='')

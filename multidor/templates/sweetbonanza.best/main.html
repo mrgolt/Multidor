@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if content.first.is_main %}
-        <title>{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}</title>
+        <title>{{ content.first.title }} - Бонус {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% else %}
-        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }}</title>
+        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% endif %}
     <link rel="stylesheet" href="/static/bulma.min.css">
     <script src="/static/jquery-3.6.4.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
 
-    <meta content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."
+    <meta content="{{ content.first.title }}. Попробуйте свою удачу в {{ site.slot_name }} от {{ site.provider_name }} прямо сейчас! Большие выигрыши и захватывающий геймплей ждут вас. Бонус по нашему промокоду {{ bonuses.first.name|striptags }}"
           name="description">
 
     {% if content.first.is_main %}
@@ -101,12 +101,12 @@
 
 
 </head>
-<body class="has-navbar-fixed-top{% for class in random_classes %} {{ class }}{% endfor %}">
+<body class="has-navbar-fixed-top">
 
 {{ site.counters|safe }}
 
 
-<div class="container{% for class in random_classes %} {{ class }}{% endfor %}">
+<div class="container">
     <nav class="navbar is-black is-spaced has-background-dark has-text-light is-fixed-top" role="navigation"
          aria-label="main navigation">
         <div class="navbar-brand">
@@ -129,7 +129,7 @@
         </div>
 
         <div id="navbarBasic"
-             class="navbar-menu has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
+             class="navbar-menu has-background-dark">
             <div class="navbar-start">
 
 
@@ -138,9 +138,9 @@
             <div class="navbar-end has-background-dark">
 
 
-                <div class="navbar-item has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <div class="buttons has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
-                        <a class="button is-primary is-large " href="/go/{{ bonuses.first.redirect.name }}/">
+                <div class="navbar-item has-background-dark">
+                    <div class="buttons has-background-dark">
+                        <a class="button is-primary is-large " href="#wheretoplay">
                             Где играть?
                         </a>
                         <a class="button is-secondary is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
@@ -153,12 +153,12 @@
         </div>
     </nav>
     <nav class="navbar is-fixed-bottom has-background-dark is-hidden-desktop" >
-        <div class="m-auto navbar-item has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <div class="buttons is-centered has-background-dark{% for class in random_classes %} {{ class }}{% endfor %}">
+        <div class="m-auto navbar-item has-background-dark">
+                    <div class="buttons is-centered has-background-dark">
                         <a class="button is-secondary playdemo" alt="Играть Демо в {{ site.slot_name }}">
                             Играть демо
                         </a>
-                        <a class="button is-primary " href="/go/{{ bonuses.first.redirect.name }}/">
+                        <a class="button is-primary" href="/go/{{ bonuses.first.redirect.name }}/">
                             <strong>Где играть?</strong>
                         </a>
                     </div>
@@ -167,23 +167,23 @@
 </div>
 
 <section
-        class="section has-background-dark has-text-light p-2{% for class in random_classes %} {{ class }}{% endfor %}">
+        class="section has-background-dark has-text-light p-2">
     <div class="container">
         <div class="box has-background-dark">
             <div class="columns is-vcentered">
                 <div class="column is-half">
                     <h1 class="title is-1 has-text-light has-text-weight-bold">{{ content.first.title }}</h1>
                     <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} по нашему промокоду</span>
-                    <div class="buttons mt-4{% for class in random_classes %} {{ class }}{% endfor %}">
+                    <div class="buttons mt-4">
                         <a class="button is-secondary is-large promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
                         </a>
-                        <a class="button is-primary is-large" href="/go/{{ bonuses.first.redirect.name }}/">Где играть</a>
+                        <a class="button is-primary is-large" href="#wheretoplay">Где играть</a>
                     </div>
                     <span class="title is-5 has-text-light">Провайдер игры: {{ site.provider_name }}</span>
                 </div>
-                <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
+                <div class="column">
                     <figure class="image">
                         <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}"
                              class="image{% if site.hero_image_is_rounded %} is-rounded{% endif %}">
@@ -198,12 +198,12 @@
 
 
         {% for bonus in bonuses %}
-            <div class="columns box as-text-light has-background-grey m-2{% for class in random_classes %} {{ class }}{% endfor %}">
+            <div class="columns box as-text-light has-background-grey m-2">
                 <div class="column is-two-fifths">
                     <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
 
                 </div>
-                <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
+                <div class="column">
                     <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
                     <span class="buttons">
 
@@ -225,17 +225,17 @@
         {% if site.promo_image %}
             <div class="box has-background-dark has-text-light p-2">
                 <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду</h2>
-                <div class="box has-background-grey has-text-light has-text-centered m-1 p-3{% for class in random_classes %} {{ class }}{% endfor %}">
+                <div class="box has-background-grey has-text-light has-text-centered m-1 p-3">
                     <img loading="lazy" src="{{ site.promo_image.url }}" title="Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду" alt="Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду" loading="lazy">
                 </div>
             </div>
         {% endif %}
 
         {% if site.demo %}
-            <div class="box has-background-dark has-text-light m-0 p-2{% for class in random_classes %} {{ class }}{% endfor %}"
+            <div class="box has-background-dark has-text-light m-0 p-2"
                  id="playdemo">
                 <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ site.slot_name }}</h2>
-                <div class="box has-background-grey has-text-light {% for class in random_classes %} {{ class }}{% endfor %}">
+                <div class="box has-background-grey has-text-light ">
 
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                         <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image.url }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
@@ -271,7 +271,7 @@
         {% endif %}
 
         {% if symbols %}
-            <div class="box has-background-dark has-text-light m-1 p-4{% for class in random_classes %} {{ class }}{% endfor %}">
+            <div class="box has-background-dark has-text-light m-1 p-4">
                 <h2 class="title is-4 has-text-light has-background-dark">Символы и коэффициенты
                     в {{ site.slot_name }} </h2>
 
@@ -296,26 +296,15 @@
             </div>
         {% endif %}
 
-        <div class="box has-background-dark has-text-light{% for class in random_classes %} {{ class }}{% endfor %}">
-            <h2 class="title is-4 has-text-light has-background-dark">Популярные страницы</h2>
-            <div class="buttons">
 
-                {% for page in inner_pages %}
-                    <a class="button is-secondary is-small{% for class in random_classes %} {{ class }}{% endfor %}"
-                       href="/page/{{ page.slug }}/">{{ page.title }}</a>
-                {% endfor %}
-
-            </div>
-        </div>
-
-        <div class="box has-background-light content m-2{% for class in random_classes %} {{ class }}{% endfor %}">
+        <div class="box has-background-light content m-2">
             <h2>{{ content.first.title }}</h2>
             {{ content.first.text|safe }}
 
             {% if faqs %}
                 <!-- faq block -->
 
-                <h2 id="faq">FAQ по слоту {{ site.slot_name }}</h2>
+                <h2 id="faq">FAQ</h2>
 
                 <div id="accordion">
                     {% for faq in faqs %}
@@ -360,8 +349,17 @@
 
         </div>
 
+    {% if site.provider_description %}
+    <div class="box has-background-dark has-text-light m-1">
+            <h2 class="title is-4 has-text-light has-background-dark">О провадере {{ site.provider_name }}</h2>
+    <p>{{ site.provider_description }}</p>
+
+
+        </div>
+    {% endif %}
+
         {% if images %}
-            <div class="box has-background-dark has-text-light m-1 p-4{% for class in random_classes %} {{ class }}{% endfor %}">
+            <div class="box has-background-dark has-text-light m-1 p-4">
                 <h2 class="title is-4 has-text-light has-background-dark">Игровой интерфейс
                      {{ site.slot_name }} </h2>
 
@@ -380,52 +378,26 @@
             </div>
         {% endif %}
 
-        <div class="box has-background-dark p-4 m-1" id="wheretoplay">
-            <h2 class="title is-4 has-text-light has-background-dark">Где играть в {{ site.slot_name }}?</h2>
 
 
 
-
-        {% for bonus in bonuses %}
-            <div class="columns box as-text-light has-background-grey m-2{% for class in random_classes %} {{ class }}{% endfor %}">
-                <div class="column is-two-fifths">
-                    <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
-
-                </div>
-                <div class="column{% for class in random_classes %} {{ class }}{% endfor %}">
-                    <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
-                    <span class="buttons">
-
-                        <a class="button is-secondary  promo-code-button is-fullwidth">
-                            <span class="promo-label">Промокод</span>:&nbsp;<span
-                                class="promo-code-text-button">{{ bonus.promo_code }}</span>
-                        </a>
-                            <a class="button is-primary is-fullwidth"
-                               href="/go/{{ bonus.redirect.name }}/">Играть</a>
-                        </span>
-                </div>
-            </div>
-        {% endfor %}
-        </div>
-
-
-        <div class="box has-background-dark has-text-light m-1{% for class in random_classes %} {{ class }}{% endfor %}">
+        <div class="box has-background-dark has-text-light m-1">
             <h2 class="title is-4 has-text-light has-background-dark">Часто ищут</h2>
             <div class="buttons">
 
                 {% for page in inner_pages %}
-                    <a class="button is-secondary is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                    <a class="button is-secondary is-small"
                        href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
             {% if site.tlg_link %}
-                <a class="button is-secondary is-small{% for class in random_classes %} {{ class }}{% endfor %}"
+                <a class="button is-secondary is-small"
                    href="{{ site.tlg_link }}/">Telegram
                     канал {{ site.slot_name }}</a>
             {% endif %}
             </div>
         </div>
     <footer>
-        <div class="box  has-text-centered has-background-dark has-text-light m-1{% for class in random_classes %} {{ class }}{% endfor %}">
+        <div class="box  has-text-centered has-background-dark has-text-light m-1">
 <div class="is-size-7 has-text-centered">
                     <h3 class="title is-4 has-text-light has-background-dark">
                         {{ site.allowed_domain|upper }}
