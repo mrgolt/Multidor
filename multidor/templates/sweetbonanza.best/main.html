@@ -390,13 +390,13 @@
                 {% for comment in comments %}
                     <div>
                         <div class="columns">
-                            <div class="column is-one-fifth">
-                                <figure class="image">
-                                    <img class="is-rounded" src="/media/img/avatar.jpg" alt="{{ comment.author }}" width="50">
+                            <div class="column is-1">
+                                <figure class="image is-32x32">
+                                    <img class="is-rounded" src="/media/img/avatar.jpg" alt="{{ comment.author }}">
                                 </figure>
                             </div>
                             <div class="column">
-                                <h4>{{ comment.author }}</h4>
+                                <h4><b>{{ comment.author }}</b></h4>
                                 <p>{{ comment.created_at }}</p>
                             </div>
                         </div>
@@ -405,6 +405,64 @@
                         </div>
                     </div>
                 {% endfor %}
+                <form id="comment-form">
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Имя</label>
+                      </div>
+                      <div class="field-body">
+                        <div class="field">
+                          <p class="control is-expanded has-icons-left">
+                            <input class="input" type="text" placeholder="Имя">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-user"></i>
+                            </span>
+                          </p>
+                        </div>
+                        <div class="field">
+                          <p class="control is-expanded has-icons-left has-icons-right">
+                            <input class="input is-success" type="email" placeholder="Email" value="Email">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                              <i class="fas fa-check"></i>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Текст комментария</label>
+                      </div>
+                      <div class="field-body">
+                        <div class="field">
+                          <div class="control">
+                            <textarea class="textarea" placeholder="Текст комментария"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field is-horizontal">
+                      <div class="field-label">
+                        <!-- Left empty for spacing -->
+                      </div>
+                      <div class="field-body">
+                        <div class="field">
+                          <div class="control">
+                            <button class="button is-primary">
+                              Отправить
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </form>
             </div>
         </div>
 
