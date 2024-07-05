@@ -246,7 +246,7 @@
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                         <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image.url }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
                              id="iframeContainer">
-                            <button class="button is-secondary is-large" id="loadIframeBtn"
+                            <button class="button is-secondary is-large" class="loadIframeBtn"
                                     style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                                     <span class="icon">
                                         <i class="fa fa-play"></i>
@@ -254,12 +254,13 @@
                                 <span>Играть демо</span>
                             </button>
                         <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
-                               href="/go/{{ bonuses.first.redirect.name }}/"></a>
+                               class="loadIframeBtn"></a>
                         </div>
 
                     </div>
                     <div class="has-text-centered">
                         <a class="button is-primary mt-3" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
+                        <a class="button is-primary mt-3 ms-3" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Бонус 100 FS</a>
                     </div>
 
 
@@ -631,6 +632,34 @@
     });
 
 </script>
+
+<script type="0e3458011b4f07fafa15c851-text/javascript">
+        $(document).ready(function () {
+            $(".loadIframeBtn").on("click", function () {
+                // Создаем элемент iframe
+                var iframe = $("<iframe>");
+
+                // Устанавливаем атрибуты iframe (src, width, height и т.д.)
+                iframe.attr({
+                    src: "{{ site.demo }}", // ваш URL для iframe
+                    width: "100%",
+                    height: "100%",
+                    frameborder: "0",
+                    allowfullscreen: true
+                });
+
+                // Вставляем iframe в контейнер
+                $("#iframeContainer").html(iframe);
+
+                setTimeout(function() {
+                    var popup = document.getElementById("popup");
+                    popup.classList.add("is-active");
+                }, 20000);
+
+            });
+        });
+
+    </script>
 
 <script>
     $(document).ready(function () {
