@@ -264,11 +264,7 @@
                     </div>
 
 
-                    <div style="position: relative; width: 100%; padding-bottom: 62.5%;" class="is-hidden">
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <iframe src="{{ site.demo }}" frameborder="0" width="100%" height="100%" loading="lazy"></iframe>
-                        </div>
-                    </div>
+
 
                 </div>
 
@@ -641,7 +637,7 @@
 
                 // Устанавливаем атрибуты iframe (src, width, height и т.д.)
                 iframe.attr({
-                    src: "{{ site.demo }}", // ваш URL для iframe
+                    src: "{{ site.demo|safe }}", // ваш URL для iframe
                     width: "100%",
                     height: "100%",
                     frameborder: "0",
