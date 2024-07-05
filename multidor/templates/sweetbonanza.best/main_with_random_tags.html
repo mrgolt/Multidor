@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ru" class="has-background-dark has-navbar-fixed-bottom has-navbar-fixed-top">
+<html lang="ru"
+      class="has-background-dark has-navbar-fixed-bottom has-navbar-fixed-top{% for class in random_classes %} {{ class }}{% endfor %}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
