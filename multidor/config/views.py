@@ -103,7 +103,7 @@ def custom_serve(request, slug=None):
         if not content:
             content = Content.objects.filter(slug=slug)
 
-        comments = Comment.objects.filter(content=content, created_at__lte=timezone.now()).order_by('created_at')
+        comments = Comment.objects.filter(page=content[0], created_at__lte=timezone.now()).order_by('created_at')
 
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
