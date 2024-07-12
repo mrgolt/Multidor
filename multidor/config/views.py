@@ -165,7 +165,7 @@ def redirect_view(request, redirect_id):
 
     # Перенаправляем на целевой URL
     # return redirect(redirect_obj.target_url + '?click_id=' + str(click.id))
-    return redirect(redirect_obj.target_url)
+    return redirect(redirect_obj.target_url + '&domain=' + domain)
 
 def sitemap_generator(request):
     domain = request.META.get('HTTP_HOST', '')
