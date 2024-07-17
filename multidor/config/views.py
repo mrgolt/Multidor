@@ -14,6 +14,8 @@ from django.db.models import Count, Sum
 from datetime import datetime
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
+import requests
+import time
 
 
 def custom_serve(request, slug=None):
@@ -245,6 +247,38 @@ def postbackcats_dep(request):
         deposit_id=deposit_id,
     )
     return HttpResponse("Dep object created successfully.")
+
+
+def offlineconv(request):
+
+    #https://www1.doghouseslot.online/#access_token=y0_AgAAAABn9W-5AAwcwwAAAAEKqUHyAABRiA25H0FJV7_7kShXd_cN4mqbow&token_type=bearer&expires_in=31536000&cid=95u42dc804yrdqy6yn7tcdftug
+
+    #/offlineconv/?event_type=offline_reg&yaid=1712766804149415684&ymcounter=96162480
+
+    event_type = request.GET.get('event_type')
+    yaid = request.GET.get('yaid')
+    ymcounter = request.GET.get('ymcounter')
+
+    token = "y0_AgAAAABn9W-5AAwcwwAAAAEKqUHyAABRiA25H0FJV7_7kShXd_cN4mqbow"
+
+    file = f'ClientId,Target,DateTime\n{yaid},{event_type},{int(time.time())}'
+
+    id_type = "CLIENT_ID"
+
+    url = "https://api-metrika.yandex.net/management/v1/counter/{}/offline_conversions/upload?client_id_type={}".format(
+        ymcounter, id_type)
+
+    headers = {
+        "Authorization": "OAuth {}".format(token)
+    }
+
+    res = requests.post(url, headers=headers, files={"file":file})
+
+    return HttpResponse(res)
+
+
+
+
 
 
 #@user_passes_test(lambda u: u.is_superuser)
