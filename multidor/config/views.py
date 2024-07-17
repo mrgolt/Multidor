@@ -259,7 +259,7 @@ def offlineconv(request):
     yaid = request.GET.get('yaid')
     ymcounter = request.GET.get('ymcounter')
 
-    token = "y0_AgAAAABn9W-5AAwcwwAAAAEKqUHyAABRiA25H0FJV7_7kShXd_cN4mqbow"
+    token = "y0_AgAAAABn9W-5AAwdRAAAAAEKrpCXAADPV940gX5BzLbS0CkKtBRtMu78Dw"
 
     file = f'ClientId,Target,DateTime\n{yaid},{event_type},{int(time.time())}'
 
