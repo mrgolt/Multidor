@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if content.first.is_main %}
-        <title>{{ content.first.title }} - Бонус {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
+        <title>{{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% else %}
         <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% endif %}
