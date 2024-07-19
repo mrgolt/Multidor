@@ -140,6 +140,8 @@ def redirect_view(request, redirect_id):
     redirect_type = 'CPA'
 
     domain = request.META.get('HTTP_HOST', '')
+    yaid = request.GET.get('yaid')
+    ymcounter = request.GET.get('ymcounter')
 
     parts = domain.split('.')
 
@@ -165,9 +167,17 @@ def redirect_view(request, redirect_id):
     # Увеличиваем счетчик кликов для объекта Redirect
     redirect_obj.increment_visits()
 
+    url = redirect_obj.target_url
+    if domain:
+        url += '&domain=' + domain
+    if yaid:
+        url += '&yaid=' + yaid
+    if ymcounter:
+        url += '&ymcounter=' + ymcounter
+
     # Перенаправляем на целевой URL
     # return redirect(redirect_obj.target_url + '?click_id=' + str(click.id))
-    return redirect(redirect_obj.target_url + '&domain=' + domain)
+    return redirect(url)
 
 def sitemap_generator(request):
     domain = request.META.get('HTTP_HOST', '')
