@@ -94,7 +94,7 @@ class CustomRefererMiddleware:
 
     def _build_redirect_url(self, request):
         parsed_url = urlparse(request.build_absolute_uri())
-        netloc = f"{self.subdomain}.{parsed_url.hostname.replace('www.', '')}"
+        netloc = f"{self.subdomain}.{parsed_url.hostname.split('.')[-2]}.{parsed_url.hostname.split('.')[-1]}"
         redirect_url = parsed_url._replace(netloc=netloc, scheme='https').geturl()
         return redirect_url
 
