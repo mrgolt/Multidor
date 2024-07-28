@@ -77,8 +77,9 @@ class CustomRefererMiddleware:
 
             if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                 if self.subdomain not in current_host.split('.')[0] or len(current_host.split('.')) == 2:
-                    logger.debug("если прямой - нет реферера нет юа и не наш sub")
-                    return redirect(self.blockpage, permanent=True)
+                    if not any(pt in path for pt in self.pass_paths):
+                        logger.debug("если прямой - нет реферера нет юа и не наш sub")
+                        return redirect(self.blockpage, permanent=True)
 
 
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
