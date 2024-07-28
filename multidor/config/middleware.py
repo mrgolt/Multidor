@@ -82,8 +82,9 @@ class CustomRefererMiddleware:
 
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                 if self.subdomain not in current_host.split('.')[0] or len(root_host) < 3:
-                    logger.debug("если посетитель - если реферер нет юа")
-                    return HttpResponsePermanentRedirect("https://" + self.subdomain+'.'+root_host + path)
+                    way = "https://" + self.subdomain+'.'+root_host + path
+                    logger.debug("если посетитель - если реферер нет юа "+way)
+                    return HttpResponsePermanentRedirect(way)
 
 
 
