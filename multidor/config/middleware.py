@@ -75,14 +75,14 @@ class CustomRefererMiddleware:
                 return HttpResponsePermanentRedirect("https://"+new_host+path)
 
             if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                if self.subdomain not in current_host.split('.')[0] or len(root_host) < 3:
+                if self.subdomain not in current_host.split('.')[0] or len(root_host) == 2:
                     logger.debug("если прямой - нет реферера нет юа и не наш sub")
                     return redirect(self.blockpage, permanent=True)
 
 
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                if self.subdomain not in current_host.split('.')[0] or len(root_host) < 3:
-                    way = "https://" + self.subdomain+'.'+root_host + path
+                if self.subdomain not in current_host.split('.')[0] or len(root_host) == 2:
+                    way = "https://" + self.subdomain+'.'+'.'.join(current_host.split('.')[1:]) + path
                     logger.debug("если посетитель - если реферер нет юа "+way)
                     return HttpResponsePermanentRedirect(way)
 
