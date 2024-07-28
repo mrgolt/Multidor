@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponsePermanentRedirect
 from django.urls import resolve
 from django.http import Http404
 from .models import Redirect
@@ -68,24 +68,20 @@ class CustomRefererMiddleware:
             # self.allowed_referer.append(f'https://{current_host}/')
             # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
+            root_host = current_host.split('.')
+            if len(root_host) > 2 and any(ua in user_agent for ua in self.useragents):
+                logger.debug("если бот - если юа & sub")
+                new_host = '.'.join(current_host.split('.')[1:])
+                return HttpResponsePermanentRedirect("https://"+new_host+path)
 
-            if current_host.startswith(self.subdomain + '.') or any(ua in user_agent for ua in self.useragents) or any(pt in path for pt in self.pass_paths) or current_host in self.pass_domains:
-                # logger.debug("Already on subdomain or bot, skipping filtering")
-                return self.get_response(request)
+            if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
+                logger.debug("если посетитель - если реферер нет юа")
+                redirect_url = self._build_redirect_url(request)
+                return redirect(redirect_url)
 
-            else:
-
-                if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                    redirect_url = self._build_redirect_url(request)
-                    # logger.debug(f"Redirecting to {redirect_url} because of valid referer {referer}")
-                    # response = HttpResponse(status=302)
-                    # response['Location'] = redirect_url
-                    # return response
-                    return redirect(redirect_url)
-
-                if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                    # logger.debug(f"Redirecting to {self.blockpage} because direct visit")
-                    return redirect(self.blockpage)
+            if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
+                logger.debug("если прямой - нет реферера нет юа")
+                return redirect(self.blockpage, permanent=True)
 
         except Exception as e:
             logger.error(f"An error occurred: {e}")
@@ -103,3 +99,22 @@ class CustomRefererMiddleware:
         for key, value in request.META.items():
             response[key] = value
         return response
+
+
+    """
+    
+    если бот - если юа 
+        если домен != domain
+            301 => domain
+    
+    +
+    если прямой - нет реферера нет юа
+        если домен != sub.domain
+            301 => white
+    
+    
+    если посетитель - если реферер нет юа
+        если домен != sub.domain
+            301 => domain
+    
+    """
