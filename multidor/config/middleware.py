@@ -74,14 +74,18 @@ class CustomRefererMiddleware:
                 new_host = '.'.join(current_host.split('.')[1:])
                 return HttpResponsePermanentRedirect("https://"+new_host+path)
 
+            if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
+                if self.subdomain != current_host.split('.')[0]:
+                    logger.debug("если прямой - нет реферера нет юа")
+                    return redirect(self.blockpage, permanent=True)
+
+
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
                 logger.debug("если посетитель - если реферер нет юа")
                 redirect_url = self._build_redirect_url(request)
                 return redirect(redirect_url)
 
-            if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                logger.debug("если прямой - нет реферера нет юа")
-                return redirect(self.blockpage, permanent=True)
+
 
         except Exception as e:
             logger.error(f"An error occurred: {e}")
