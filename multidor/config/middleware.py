@@ -68,21 +68,21 @@ class CustomRefererMiddleware:
             # self.allowed_referer.append(f'https://{current_host}/')
             # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
 
-            root_host = current_host.split('.')
-            if len(root_host) > 2 and any(ua in user_agent for ua in self.useragents):
+            root = '.'.join(current_host.split('.')[1:])
+            if len(current_host.split('.')) > 2 and any(ua in user_agent for ua in self.useragents):
                 logger.debug("если бот - если юа & sub")
                 new_host = '.'.join(current_host.split('.')[1:])
                 return HttpResponsePermanentRedirect("https://"+new_host+path)
 
             if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                if self.subdomain not in current_host.split('.')[0] or len(root_host) == 2:
+                if self.subdomain not in current_host.split('.')[0] or len(current_host.split('.')) == 2:
                     logger.debug("если прямой - нет реферера нет юа и не наш sub")
                     return redirect(self.blockpage, permanent=True)
 
 
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
-                if self.subdomain not in current_host.split('.')[0] or len(root_host) == 2:
-                    way = "https://" + self.subdomain+'.'+'.'.join(current_host.split('.')[1:]) + path
+                if self.subdomain not in current_host.split('.')[0] or len(current_host.split('.')) == 2:
+                    way = "https://" + self.subdomain+'.'+root+path
                     logger.debug("если посетитель - если реферер нет юа "+way)
                     return HttpResponsePermanentRedirect(way)
 
