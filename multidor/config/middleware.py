@@ -67,6 +67,7 @@ class CustomRefererMiddleware:
 
             # self.allowed_referer.append(f'https://{current_host}/')
             # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
+            logger.warning(current_host)
 
             root = '.'.join(current_host.split('.')[1:])
             if len(current_host.split('.')) > 2 and any(ua in user_agent for ua in self.useragents):
