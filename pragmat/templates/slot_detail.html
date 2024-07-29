@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero section with layer parallax gfx -->
+      <section class="position-relative py-5">
+
+        <!-- Gradient BG -->
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-primary opacity-10"></div>
+
+        <!-- Content -->
+        <div class="container position-relative zindex-2 py-lg-4">
+          <div class="row">
+
+            <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="shadow-primary">
+                <iframe id="iframe" allowfullscreen="true" tabindex="0" frameborder="0" scrolling="no"  width="100%" height="100%" src="https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol={{ slot.game_symbol }}&websiteUrl=https%3A%2F%2Fdemogamesfree.pragmaticplay.net&jurisdiction=99&lobby_url=https%3A%2F%2Fwww.pragmaticplay.com%2Fru%2F" style="border:none;"></iframe>
+
+              </div>
+          </div>
+
+          </div>
+        </div>
+      </section>
+
+            <!-- Story -->
+            <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
+              <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto" style="max-width: 46.625rem;">
+
+                  <h1 class="h1 mb-4">
+                      <span class="text-primary">
+                          {{ slot.name }}{% if slot.folk_name %} ({{ slot.folk_name }}){% endif %}
+                      </span>
+                  </h1>
+
+                  {{ slot.description|safe }}
+
+
+
+
+              </div>
+
+
+            </section>
+
+    {% if reviews %}
+                  <!-- Testimonials -->
+      <section class="container py-5 my-1 my-md-4 my-lg-5">
+        <div class="row pt-2 py-xl-3">
+          <div class="col-lg-3 col-md-4">
+            <h2 class="h1 text-center text-md-start mx-auto mx-md-0 pb-3 pb-sm-4 pb-md-0 pt-md-2" style="max-width: 300px;">Отзывы<br class="d-none d-md-inline">игроков</h2>
+
+            <!-- Slider controls (Prev / next buttons) -->
+            <div class="d-none d-md-flex justify-content-center justify-content-md-start pb-4 mb-2 pt-2 pt-md-4 mt-md-5">
+              <button type="button" id="prev-testimonial" class="btn btn-prev btn-icon btn-sm me-2" aria-label="Previous">
+                <i class="bx bx-chevron-left"></i>
+              </button>
+              <button type="button" id="next-testimonial" class="btn btn-next btn-icon btn-sm ms-2" aria-label="Next">
+                <i class="bx bx-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-8">
+            <div class="swiper mx-n2" data-swiper-options='{
+              "slidesPerView": 1,
+              "spaceBetween": 8,
+              "loop": true,
+              "navigation": {
+                "prevEl": "#prev-testimonial",
+                "nextEl": "#next-testimonial"
+              },
+              "pagination": {
+                "el": ".swiper-pagination",
+                "clickable": true
+              },
+              "breakpoints": {
+                "500": {
+                  "slidesPerView": 2
+                },
+                "1000": {
+                  "slidesPerView": 2
+                },
+                "1200": {
+                  "slidesPerView": 3
+                }
+              }
+            }'>
+              <div class="swiper-wrapper">
+
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                    <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                      <blockquote class="card-body pb-3 mb-0">
+                        <h3 class="h5 mb-2">
+                          <a href="portfolio-single-course.html">Gates of Olympus</a>
+                        </h3>
+                        <p class="mb-0">Id mollis consectetur congue egestas egestas suspendisse blandit justo. Tellus augue commodo id quis tempus etiam pulvinar at maecenas.</p>
+                      </blockquote>
+                      <div class="card-footer border-0 text-nowrap pt-0">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bx-star text-muted opacity-75"></i>
+                      </div>
+                    </div>
+                    <figcaption class="ps-4 pt-4">
+                      <h6 class="fs-sm fw-semibold mb-0">Ludoman</h6>
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                    <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                      <blockquote class="card-body pb-3 mb-0">
+                        <p class="mb-0">Phasellus luctus nisi id orci condimentum, at cursus nisl vestibulum. Orci varius natoque penatibus et magnis dis parturient montes commodo.</p>
+                      </blockquote>
+                      <div class="card-footer border-0 text-nowrap pt-0">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                      </div>
+                    </div>
+                    <figcaption class="ps-4 pt-4">
+                      <h6 class="fs-sm fw-semibold mb-0">Annette Black</h6>
+                      <span class="fs-xs text-muted">CEO of Ipsum Company</span>
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                    <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                      <blockquote class="card-body pb-3 mb-0">
+                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ipsum odio, bibendum ornare mi at, efficitur urna.</p>
+                      </blockquote>
+                      <div class="card-footer border-0 text-nowrap pt-0">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bx-star text-muted opacity-75"></i>
+                      </div>
+                    </div>
+                    <figcaption class="ps-4 pt-4">
+                      <h6 class="fs-sm fw-semibold mb-0">Jerome Bell</h6>
+                      <span class="fs-xs text-muted">Founder of the Agency </span>
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide h-auto pt-4">
+                  <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                    <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                      <blockquote class="card-body pb-3 mb-0">
+                        <p class="mb-0">Pellentesque finibus congue egestas egestas suspendisse blandit justo. Tellus augue commodo id quis tempus etiam pulvinar at maecenas.</p>
+                      </blockquote>
+                      <div class="card-footer border-0 text-nowrap pt-0">
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                        <i class="bx bxs-star text-warning"></i>
+                      </div>
+                    </div>
+                    <figcaption class="ps-4 pt-4">
+                      <h6 class="fs-sm fw-semibold mb-0">Albert Flores</h6>
+                      <span class="fs-xs text-muted">CEO of Dolor Ltd.</span>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <!-- Pagination (bullets) -->
+              <div class="swiper-pagination position-relative d-md-none mt-5"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+
+
+
+      <!-- Similar slots -->
+      <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2">
+        <div class="row py-5">
+
+          <div>
+
+            <!-- Title + prev/next buttons -->
+            <div class="d-flex align-items-center justify-content-between pb-4 mb-3">
+              <h2 class="h1 mb-0 me-3">Популярные слоты</h2>
+              <div class="d-flex">
+                <button type="button" id="popular-prev" class="btn btn-prev btn-icon btn-sm me-2" aria-label="Previous">
+                  <i class="bx bx-chevron-left"></i>
+                </button>
+                <button type="button" id="popular-next" class="btn btn-next btn-icon btn-sm ms-2" aria-label="Next">
+                  <i class="bx bx-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Courses slider -->
+            <div class="swiper swiper-nav-onhover mx-n2" data-swiper-options='{
+              "slidesPerView": 1,
+              "spaceBetween": 8,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "clickable": true
+              },
+              "navigation": {
+                "prevEl": "#popular-prev",
+                "nextEl": "#popular-next"
+              },
+              "breakpoints": {
+                "560": {
+                  "slidesPerView": 2
+                },
+                "768": {
+                  "slidesPerView": 2
+                },
+                "850": {
+                  "slidesPerView": 2
+                },
+                "1200": {
+                  "slidesPerView": 3
+                }
+              }
+            }'>
+              <div class="swiper-wrapper">
+
+                {% for slot in popular_slots %}
+                            <!-- Item -->
+                            <div class="swiper-slide h-auto pb-3">
+                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
+                                    <div class="position-relative">
+                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
+                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
+                                           aria-label="{{ slot.name }}"></a>
+                                        {% if slot.users_choice %}<span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">Выбор игроков</span>{% endif %}
+
+                                        <img src="{{ slot.logo.url }}"
+                                             class="card-img-top" alt="{{ slot.name }}">
+                                    </div>
+                                    <div class="card-body pb-3">
+                                        <h3 class="h5 mb-2">
+                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
+                                        </h3>
+                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
+                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
+                                           class="btn btn-primary mt-2 stretched-link">Играть сейчас</a>
+                                    </div>
+                                    <div class="card-footer d-flex fs-sm text-muted py-3">
+                                        <div class="d-flex me-4">
+                                            RTP: {{ slot.rtp }}%
+                                        </div>
+                                        <div class="d-flex ms-auto">
+                                            <i class="bx bx-like fs-xl me-1"></i>
+                                            {{ slot.rating }}%
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        {% endfor %}
+
+
+
+
+              </div>
+
+              <!-- Pagination (bullets) -->
+              <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+            </div>
+            <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
+              Все слоты
+              <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

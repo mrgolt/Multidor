@@ -6,12 +6,21 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: gunicorn -w 4 -b 0.0.0.0:8000 multidor.wsgi:application
+    command: gunicorn -w 2 -b 0.0.0.0:8000 multidor.wsgi:application
     ports:
       - 8000:8000
     volumes:
       - ./multidor/db.sqlite3:/app/multidor/db.sqlite3
       - ./multidor/media:/app/multidor/media
+    restart: always
+
+  pragmatic:
+    build:
+      context: ./pragmat
+      dockerfile: Dockerfile
+    command: gunicorn -w 2 -b 0.0.0.0:8000 pragmatic.wsgi:application
+    ports:
+      - 8888:8000
     restart: always
 
   nginx:

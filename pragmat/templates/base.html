@@ -1,0 +1,377 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% if page.title %}{{ page.title }} - {% endif %}
+        {% if slot.name %}Слот {{ slot.name }} - {% endif %}
+        {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
+        {% if slots %}Все слоты - {% endif %}
+        Pragmatic Play - самый популярный провайдер слотов. Играйте на нашем сайте в любой слот прямо сейчас!
+    </title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% if page.title %}{{ page.title }} - {% endif %}
+        {% if slot.name %}Слот {{ slot.name }} - {% endif %}
+        {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
+        {% if slots %}Все слоты - {% endif %}
+        Pragmatic Play - самый популярный провайдер слотов. Все слоты провайдера на одном сайте! Играйте в любой слот прямо сейчас!">
+    <meta name="keywords"
+      content="онлайн казино, игровые автоматы, азартные игры, слоты, рулетка, блэкджек, покер, бонусы казино, бесплатные вращения, джекпот, регистрация в казино, лучшие казино, отзывы о казино, стратегии игр, слоты онлайн, демо игры, лицензированные казино, казино на деньги, безопасные казино, мобильное казино, казино с живыми дилерами, pragmatic play{% if slot.name %}, {{ slot.name }}{% endif %}{% if slot.folk_name %}, слот {{ slot.folk_name }}{% endif %}">
+
+    <meta name="author" content="Pragmatic Play">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Theme switcher (color modes) -->
+    <script src="{% static 'assets/js/theme-switcher.js' %}"></script>
+
+    <!-- Favicon and Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'assets/favicon/safari-pinned-tab.svg" color="#6366f1' %}">
+    <link rel="shortcut icon" href="{% static 'assets/favicon/favicon-32x32.png' %}">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="{% static 'assets/favicon/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}">
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}">
+
+    <!-- Main Theme Styles + Bootstrap -->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/css/theme.min.css' %}">
+
+    <!-- Page loading styles -->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        [data-bs-theme="dark"] .page-loading {
+            background-color: #0b0f19;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active > .page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner > span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #9397ad;
+        }
+
+        [data-bs-theme="dark"] .page-loading-inner > span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            border: .15em solid #b4b7c9;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        [data-bs-theme="dark"] .page-spinner {
+            border-color: rgba(255, 255, 255, .4);
+            border-right-color: transparent;
+        }
+
+        @-webkit-keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    <!-- Page loading scripts -->
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1000);
+            };
+        })();
+    </script>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(97614878, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/97614878" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
+</head>
+
+
+<!-- Body -->
+<body>
+
+
+
+<!-- Page wrapper for sticky footer -->
+<!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+<main class="page-wrapper">
+
+
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <header class="header navbar navbar-expand-lg bg-light navbar-sticky">
+        <div class="container px-3">
+            <a href="/" class="navbar-brand pe-3">
+                <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="Pragmatic Play"
+                     class="d-dark-mode-block d-none">
+                <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="Pragmatic Play"
+                     class="d-dark-mode-none">
+            </a>
+            <div id="navbarNav" class="offcanvas offcanvas-end">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">Меню</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Популярные</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <h6 class="px-3 mb-2">Выбор игроков</h6>
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in users_choice_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                    <div class="mega-dropdown-column me-5">
+                                        <h6 class="px-3 mb-2">Популярные</h6>
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in popular_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Новые</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in new_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Категории</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            <li><a href="/slots/?slot_name=Собаки" class="dropdown-item py-1">Собаки</a></li>
+                                            <li><a href="/slots/?slot_name=Рыбалка" class="dropdown-item py-1">Рыбалка</a></li>
+                                            <li><a href="/slots/?slot_name=Дикий запад" class="dropdown-item py-1">Дикий запад</a></li>
+                                            <li><a href="/slots/?slot_name=Сладости и Фрукты" class="dropdown-item py-1">Сладости и Фрукты</a></li>
+                                            <li><a href="/slots/?slot_name=Megaways" class="dropdown-item py-1">Megaways</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="offcanvas-header border-top">
+                    <a href="/"
+                       class="btn btn-primary w-100" target="_blank" rel="noopener">
+                        <i class="bx bx-money fs-4 lh-1 me-1"></i>
+                        &nbsp;Получить бонус
+                    </a>
+                </div>
+            </div>
+            <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+                <input type="checkbox" class="form-check-input" id="theme-mode" checked>
+                <label class="form-check-label d-none d-sm-block" for="theme-mode">Светло</label>
+                <label class="form-check-label d-none d-sm-block" for="theme-mode">Темно</label>
+            </div>
+            <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="/"
+               class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+                <i class="bx bx-money fs-5 lh-1 me-1"></i>
+                &nbsp;Получить бонус
+            </a>
+        </div>
+    </header>
+
+
+    {% block content %}
+    {% endblock %}
+
+
+</main>
+
+
+<!-- Footer -->
+<footer class="footer pt-5 pb-4 pb-lg-5">
+    <div class="container pt-lg-4">
+        <div class="row pb-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
+                    <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="Pragmatic Play"
+                         class="d-dark-mode-block d-none">
+                    <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="Pragmatic Play"
+                         class="d-dark-mode-none">
+                </div>
+                <p class="fs-sm pb-lg-3 mb-4">Веб-ресурс не является официальным сайтом Pragmatic Play. Сайт носит
+                    исключительно информационный характер и не принимает денежных платежей со стороны пользователей. Все
+                    права на бренд, торговую марку и игры, размещенные на данном ресурсе, принадлежат компании Pragmatic
+                    Play.</p>
+
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
+                <div id="footer-links" class="row">
+                    <div class="col-lg-4">
+                        <h6 class="mb-2">
+                            <a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                               data-bs-toggle="collapse">Меню</a>
+                        </h6>
+                        <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                            <ul class="nav flex-column pb-lg-1 mb-lg-3">
+                                <li class="nav-item"><a href="/" class="nav-link d-inline-block px-0 pt-1 pb-2">Главная</a>
+                                </li>
+                                <li class="nav-item"><a href="/page/feedback/" class="nav-link d-inline-block px-0 pt-1 pb-2">Обратная связь</a></li>
+
+
+
+                            </ul>
+                            <ul class="nav flex-column mb-2 mb-lg-0">
+                                <li class="nav-item"><a href="/page/terms/" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms
+                                    &amp; Conditions</a></li>
+                                <li class="nav-item"><a href="/page/privacy/" class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy
+                                    Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-3">
+                        <h6 class="mb-2">
+                            <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                               data-bs-toggle="collapse">Полезные ссылки</a>
+                        </h6>
+                        <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                            <ul class="nav flex-column mb-2 mb-lg-0">
+                                <li class="nav-item"><a href="/page/ludomania/"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Об игровой зависимости</a></li>
+                                <li class="nav-item"><a href="/page/otvetstvennaya-igra/"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Ответственная игра</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
+                        <h6 class="mb-2">Напишите нам</h6>
+                        <a href="mailto:play@pragmatic-play.cloud" class="fw-medium">play@pragmatic-play.cloud</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- Back to top button -->
+<a href="#top" class="btn-scroll-top" data-scroll>
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+    <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+</a>
+
+
+<!-- Vendor Scripts -->
+<script src="{% static 'assets/vendor/parallax-js/dist/parallax.min.js' %}"></script>
+<script src="{% static 'assets/vendor/rellax/rellax.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+<!-- Main Theme Script -->
+<script src="{% static 'assets/js/theme.min.js' %}"></script>
+</body>
+</html>

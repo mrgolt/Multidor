@@ -1,0 +1,766 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Hero section with layer parallax gfx -->
+    <section class="position-relative py-5">
+
+        <!-- Gradient BG -->
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-primary opacity-10"></div>
+
+        <!-- Content -->
+        <div class="container position-relative zindex-2 py-lg-4">
+            <div class="row">
+                <div class="col-lg-5 d-flex flex-column pt-lg-4 pt-xl-5">
+                    <h5 class="my-2">Добро пожаловать!</h5>
+                    <h1 class="display-1 mb-4"><span class="text-primary">Pragmatic Play</span></h1>
+                    <p class="fs-lg mb-5">Играй в любимые слоты в демо-режиме и на реальные деньги!</p>
+
+                    <!-- Desktop form -->
+                    <form class="d-none d-sm-flex mb-5" action="{% url 'slot_list' %}" method="get">
+                        <div class="input-group d-block d-sm-flex input-group-lg me-3">
+
+                                <input type="text" class="form-control w-50" placeholder="Найти слот..." name="slot_name">
+
+                        </div>
+                        <button type="submit" class="btn btn-icon btn-primary btn-lg" aria-label="Поиск">
+                            <i class="bx bx-search"></i>
+                        </button>
+                    </form>
+
+                    <!-- Mobile form -->
+                    <form class="d-sm-none mb-5" action="{% url 'slot_list' %}" method="get">
+                        <input type="text" class="form-control form-control-lg mb-2" placeholder="Найти слот..." name="slot_name">
+                        <button type="submit" class="btn btn-icon btn-primary btn-lg w-100 d-sm-none"
+                                aria-label="Поиск">
+                            <i class="bx bx-search"></i>
+                        </button>
+                    </form>
+                    <div class="d-flex align-items-center mt-auto mb-3 mb-lg-0 pb-4 pb-lg-0 pb-xl-5">
+                        <div class="d-flex me-3">
+                            <div class="d-flex align-items-center justify-content-center bg-light rounded-circle"
+                                 style="width: 52px; height: 52px;">
+                                <img src="{% static 'assets/img/avatar/36.jpg' %}" class="rounded-circle" width="48"
+                                     alt="Avatar">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3"
+                                 style="width: 52px; height: 52px;">
+                                <img src="{% static 'assets/img/avatar/53.jpg' %}" class="rounded-circle" width="48"
+                                     alt="Avatar">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3"
+                                 style="width: 52px; height: 52px;">
+                                <img src="{% static 'assets/img/avatar/32.jpg' %}" class="rounded-circle" width="48"
+                                     alt="Avatar">
+                            </div>
+                        </div>
+                        <span class="fs-sm"><span
+                                class="text-primary fw-semibold">10K+</span> игроков сейчас на сайте</span>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+
+                    <!-- Parallax gfx -->
+                    <div class="parallax mx-auto me-lg-0" style="max-width: 648px;">
+                        <div class="parallax-layer" data-depth="0.1">
+                            <img src="{% static 'assets/img/landing/online-courses/hero/layer01.png' %}" alt="Layer">
+                        </div>
+                        <div class="parallax-layer" data-depth="0.13">
+                            <img src="{% static 'assets/img/landing/online-courses/hero/layer02.png' %}" alt="Layer">
+                        </div>
+                        <div class="parallax-layer zindex-5" data-depth="-0.12">
+                            <img src="{% static 'assets/img/landing/online-courses/hero/starlight.png' %}" alt="Layer">
+                        </div>
+                        <div class="parallax-layer zindex-3" data-depth="0.27">
+                            <img src="{% static 'assets/img/landing/online-courses/hero/gates.png' %}" alt="Layer">
+                        </div>
+                        <div class="parallax-layer zindex-1" data-depth="-0.18">
+                            <img src="{% static 'assets/img/landing/online-courses/hero/dog.png' %}" alt="Layer">
+                        </div>
+                        <div class="parallax-layer zindex-1" data-depth="0.1">
+                            <img src="{% static 'assets/img/landing/online-courses/hero/pyramides.png' %}" alt="Layer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
+        <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
+            <h2 class="h1 mb-4"><span class="text-primary">Pragmatic Play</span> меняет подход к азартным играм c 2015
+            </h2>
+            <p class="mb-4">«Pragmatic Play» — ведущий разработчик игр, представляющий самые успешные мировые бренды в
+                индустрии iGaming.</p>
+
+            <p class="mb-4"></p>Профессиональная команда Pragmatic Play, движимая настойчивостью в создании
+            захватывающих впечатлений и ответственной игры, постоянно предоставляет лучшие в своем классе услуги по
+            всему миру, стремясь создавать игры, которые игроки будут любить снова и снова.</p>
+
+        </div>
+
+
+    </section>
+
+    <!-- Benefits (features) -->
+    <section class="container mb-5 pt-lg-1" id="benefits">
+        <div class="swiper pt-3" data-swiper-options='{
+          "slidesPerView": 1,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "breakpoints": {
+            "500": {
+              "slidesPerView": 2
+            },
+            "991": {
+              "slidesPerView": 3
+            }
+          }
+        }'>
+            <div class="swiper-wrapper">
+
+                <!-- Item -->
+                <div class="swiper-slide border-end-lg px-2">
+                    <div class="text-center">
+                        <img src="{% static 'assets/img/landing/digital-agency/icons/team.svg' %}" width="48"
+                             alt="Bulb icon" class="d-block mb-4 mx-auto">
+                        <h4 class="mb-2 pb-1">Доверие игроков</h4>
+                        <p class="mx-auto" style="max-width: 336px;">Pragmatic Play сертифицирован и лицензирован
+                            в более чем 40 странах</p>
+                    </div>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide border-end-lg px-2">
+                    <div class="text-center">
+                        <img src="{% static 'assets/img/landing/digital-agency/icons/award.svg' %}" width="48"
+                             alt="Award icon" class="d-block mb-4 mx-auto">
+                        <h4 class="mb-2 pb-1">Заслуженный успех</h4>
+                        <p class="mx-auto" style="max-width: 336px;">Pragmatic Play получил множество международных
+                            наград</p>
+                    </div>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide px-2">
+                    <div class="text-center">
+                        <img src="{% static 'assets/img/landing/digital-agency/icons/idea.svg' %}" width="48"
+                             alt="Team icon" class="d-block mb-4 mx-auto">
+                        <h4 class="mb-2 pb-1">Доступность</h4>
+                        <p class="mx-auto" style="max-width: 336px;">Слоты Pragmatic Play доступны на мобильных
+                            устройствах, компьютерах, на 33 языках и во всех валютах.</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- Pagination (bullets) -->
+            <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+        </div>
+    </section>
+
+    <!-- Popular slots -->
+    <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2">
+        <div class="row py-5">
+
+            <div>
+
+                <!-- Title + prev/next buttons -->
+                <div class="d-flex align-items-center justify-content-between pb-4 mb-3">
+                    <h2 class="h1 mb-0 me-3">Популярные слоты</h2>
+                    <div class="d-flex">
+                        <button type="button" id="popular-prev" class="btn btn-prev btn-icon btn-sm me-2"
+                                aria-label="Previous">
+                            <i class="bx bx-chevron-left"></i>
+                        </button>
+                        <button type="button" id="popular-next" class="btn btn-next btn-icon btn-sm ms-2"
+                                aria-label="Next">
+                            <i class="bx bx-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Courses slider -->
+                <div class="swiper swiper-nav-onhover mx-n2" data-swiper-options='{
+              "slidesPerView": 1,
+              "spaceBetween": 8,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "clickable": true
+              },
+              "navigation": {
+                "prevEl": "#popular-prev",
+                "nextEl": "#popular-next"
+              },
+              "breakpoints": {
+                "560": {
+                  "slidesPerView": 2
+                },
+                "768": {
+                  "slidesPerView": 2
+                },
+                "850": {
+                  "slidesPerView": 2
+                },
+                "1200": {
+                  "slidesPerView": 3
+                }
+              }
+            }'>
+                    <div class="swiper-wrapper">
+
+
+                        {% for slot in popular_slots %}
+                            <!-- Item -->
+                            <div class="swiper-slide h-auto pb-3">
+                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
+                                    <div class="position-relative">
+                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
+                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
+                                           aria-label="{{ slot.name }}"></a>
+                                        {% if slot.users_choice %}
+                                            <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">Выбор игроков</span>{% endif %}
+
+                                        <img src="{{ slot.logo.url }}"
+                                             class="card-img-top" alt="{{ slot.name }}">
+                                    </div>
+                                    <div class="card-body pb-3">
+                                        <h3 class="h5 mb-2">
+                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
+                                        </h3>
+                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
+                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
+                                           class="btn btn-primary mt-2 stretched-link">Играть сейчас</a>
+                                    </div>
+                                    <div class="card-footer d-flex fs-sm text-muted py-3">
+                                        <div class="d-flex me-4">
+                                            RTP: {{ slot.rtp }}%
+                                        </div>
+                                        <div class="d-flex ms-auto">
+                                            <i class="bx bx-like fs-xl me-1"></i>
+                                            {{ slot.rating }}%
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+
+                    <!-- Pagination (bullets) -->
+                    <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+                </div>
+                <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
+                    Все слоты
+                    <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- New slots -->
+    <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2">
+        <div class="row py-1">
+
+            <div>
+
+                <!-- Title + prev/next buttons -->
+                <div class="d-flex align-items-center justify-content-between pb-4 mb-3">
+                    <h2 class="h1 mb-0 me-3">Новые слоты</h2>
+                    <div class="d-flex">
+                        <button type="button" id="new-prev" class="btn btn-prev btn-icon btn-sm me-2"
+                                aria-label="Previous">
+                            <i class="bx bx-chevron-left"></i>
+                        </button>
+                        <button type="button" id="new-next" class="btn btn-next btn-icon btn-sm ms-2" aria-label="Next">
+                            <i class="bx bx-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Courses slider -->
+                <div class="swiper swiper-nav-onhover mx-n2" data-swiper-options='{
+              "slidesPerView": 1,
+              "spaceBetween": 8,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "clickable": true
+              },
+              "navigation": {
+                "prevEl": "#new-prev",
+                "nextEl": "#new-next"
+              },
+              "breakpoints": {
+                "560": {
+                  "slidesPerView": 2
+                },
+                "768": {
+                  "slidesPerView": 2
+                },
+                "850": {
+                  "slidesPerView": 2
+                },
+                "1200": {
+                  "slidesPerView": 3
+                }
+              }
+            }'>
+                    <div class="swiper-wrapper">
+                        {% for slot in new_slots %}
+                            <!-- Item -->
+                            <div class="swiper-slide h-auto pb-3">
+                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
+                                    <div class="position-relative">
+                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
+                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
+                                           aria-label="{{ slot.name }}"></a>
+                                        {% if slot.users_choice %}
+                                            <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">Выбор игроков</span>{% endif %}
+
+                                        <img src="{{ slot.logo.url }}"
+                                             class="card-img-top" alt="{{ slot.name }}">
+                                    </div>
+                                    <div class="card-body pb-3">
+                                        <h3 class="h5 mb-2">
+                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
+                                        </h3>
+                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
+                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
+                                           class="btn btn-primary mt-2 stretched-link">Играть сейчас</a>
+                                    </div>
+                                    <div class="card-footer d-flex fs-sm text-muted py-3">
+                                        <div class="d-flex me-4">
+                                            RTP: {{ slot.rtp }}%
+                                        </div>
+                                        <div class="d-flex ms-auto">
+                                            <i class="bx bx-like fs-xl me-1"></i>
+                                            {{ slot.rating }}%
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+
+                    <!-- Pagination (bullets) -->
+                    <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+                </div>
+                <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
+                    Все слоты
+                    <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% if reviews %}
+    <!-- Testimonials -->
+    <section class="container py-5 my-1 my-md-4 my-lg-5">
+        <div class="row pt-2 py-xl-3">
+            <div class="col-lg-3 col-md-4">
+                <h2 class="h1 text-center text-md-start mx-auto mx-md-0 pb-3 pb-sm-4 pb-md-0 pt-md-2"
+                    style="max-width: 300px;">Отзывы<br class="d-none d-md-inline">игроков</h2>
+
+                <!-- Slider controls (Prev / next buttons) -->
+                <div class="d-none d-md-flex justify-content-center justify-content-md-start pb-4 mb-2 pt-2 pt-md-4 mt-md-5">
+                    <button type="button" id="prev-testimonial" class="btn btn-prev btn-icon btn-sm me-2"
+                            aria-label="Previous">
+                        <i class="bx bx-chevron-left"></i>
+                    </button>
+                    <button type="button" id="next-testimonial" class="btn btn-next btn-icon btn-sm ms-2"
+                            aria-label="Next">
+                        <i class="bx bx-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="swiper mx-n2" data-swiper-options='{
+              "slidesPerView": 1,
+              "spaceBetween": 8,
+              "loop": true,
+              "navigation": {
+                "prevEl": "#prev-testimonial",
+                "nextEl": "#next-testimonial"
+              },
+              "pagination": {
+                "el": ".swiper-pagination",
+                "clickable": true
+              },
+              "breakpoints": {
+                "500": {
+                  "slidesPerView": 2
+                },
+                "1000": {
+                  "slidesPerView": 2
+                },
+                "1200": {
+                  "slidesPerView": 3
+                }
+              }
+            }'>
+                    <div class="swiper-wrapper">
+
+                        <!-- Item -->
+                        <div class="swiper-slide h-auto pt-4">
+                            <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                                <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                                    <blockquote class="card-body pb-3 mb-0">
+                                        <h3 class="h5 mb-2">
+                                            <a href="portfolio-single-course.html">Gates of Olympus</a>
+                                        </h3>
+                                        <p class="mb-0">Id mollis consectetur congue egestas egestas suspendisse blandit
+                                            justo. Tellus augue commodo id quis tempus etiam pulvinar at maecenas.</p>
+                                    </blockquote>
+                                    <div class="card-footer border-0 text-nowrap pt-0">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bx-star text-muted opacity-75"></i>
+                                    </div>
+                                </div>
+                                <figcaption class="ps-4 pt-4">
+                                    <h6 class="fs-sm fw-semibold mb-0">Ludoman</h6>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="swiper-slide h-auto pt-4">
+                            <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                                <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                                    <blockquote class="card-body pb-3 mb-0">
+                                        <p class="mb-0">Phasellus luctus nisi id orci condimentum, at cursus nisl
+                                            vestibulum. Orci varius natoque penatibus et magnis dis parturient montes
+                                            commodo.</p>
+                                    </blockquote>
+                                    <div class="card-footer border-0 text-nowrap pt-0">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <figcaption class="ps-4 pt-4">
+                                    <h6 class="fs-sm fw-semibold mb-0">Annette Black</h6>
+                                    <span class="fs-xs text-muted">CEO of Ipsum Company</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="swiper-slide h-auto pt-4">
+                            <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                                <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                                    <blockquote class="card-body pb-3 mb-0">
+                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                                            ipsum odio, bibendum ornare mi at, efficitur urna.</p>
+                                    </blockquote>
+                                    <div class="card-footer border-0 text-nowrap pt-0">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bx-star text-muted opacity-75"></i>
+                                    </div>
+                                </div>
+                                <figcaption class="ps-4 pt-4">
+                                    <h6 class="fs-sm fw-semibold mb-0">Jerome Bell</h6>
+                                    <span class="fs-xs text-muted">Founder of the Agency </span>
+                                </figcaption>
+                            </figure>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="swiper-slide h-auto pt-4">
+                            <figure class="d-flex flex-column h-100 px-2 px-sm-0 mb-0 mx-2">
+                                <div class="card h-100 position-relative border-0 shadow-sm pt-4">
+                      <span class="btn btn-icon btn-primary shadow-primary pe-none position-absolute top-0 start-0 translate-middle-y ms-4">
+                        <i class="bx bxs-quote-left"></i>
+                      </span>
+                                    <blockquote class="card-body pb-3 mb-0">
+                                        <p class="mb-0">Pellentesque finibus congue egestas egestas suspendisse blandit
+                                            justo. Tellus augue commodo id quis tempus etiam pulvinar at maecenas.</p>
+                                    </blockquote>
+                                    <div class="card-footer border-0 text-nowrap pt-0">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <figcaption class="ps-4 pt-4">
+                                    <h6 class="fs-sm fw-semibold mb-0">Albert Flores</h6>
+                                    <span class="fs-xs text-muted">CEO of Dolor Ltd.</span>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- Pagination (bullets) -->
+                    <div class="swiper-pagination position-relative d-md-none mt-5"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+    <!-- Brands (Carousel) -->
+    <section class="container mt-2 mb-lg-2 mb-xl-4 pt-3 pt-lg-5 pb-5">
+        <h2 class="text-center pb-md-2">Награды Pragmatic Play</h2>
+        <div class="swiper mx-n2" data-swiper-options='{
+          "slidesPerView": 2,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "breakpoints": {
+            "500": {
+              "slidesPerView": 3,
+              "spaceBetween": 8
+            },
+            "650": {
+              "slidesPerView": 4,
+              "spaceBetween": 8
+            },
+            "900": {
+              "slidesPerView": 5,
+              "spaceBetween": 8
+            },
+            "1100": {
+              "slidesPerView": 6,
+              "spaceBetween": 8
+            }
+          }
+        }'>
+            <div class="swiper-wrapper">
+
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/IGA.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/iGB-Affiliate-logo.png' %}"
+                             class="d-block mx-auto my-auto" alt="Brand" style="max-height: 100px !important;">
+                    </a>
+                </div>
+
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/SIGMA-AMERICAS-logo.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/askgamblers.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/online-casino-supplier2.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/product-launch.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/CasinoBeats_GameDeveloperAwards_logo-white.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/EGR-B2B-Logo-1-1.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/SBC-Awards-logo.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+                <!-- Item -->
+                <div class="swiper-slide py-3 h-auto">
+                    <a class="card card-body px-2 mx-2 h-100">
+                        <img src="{% static 'assets/img/awards/MiGEA-Logo.png' %}"
+                             class="d-block mx-auto my-auto" style="max-height: 100px !important;" alt="Brand">
+                    </a>
+                </div>
+
+
+            </div>
+
+            <!-- Pagination (bullets) -->
+            <div class="swiper-pagination position-relative pt-2 mt-4"></div>
+        </div>
+    </section>
+
+
+    <!-- FAQ (Accordion) -->
+    <section class="container pt-1 pt-lg-3">
+        <div class="position-relative bg-secondary rounded-3 overflow-hidden px-3 px-sm-4 px-md-0 py-5">
+
+            <!-- Parallax patterns -->
+            <div class="rellax position-absolute top-0 start-0 w-100 h-100 d-none d-lg-block"
+                 data-rellax-percentage="0.5" data-rellax-speed="1.75">
+                <img src="{% static 'assets/img/landing/online-courses/pattern-1.svg' %}"
+                     class="position-absolute top-0 start-100 translate-middle ms-n4" alt="Pattern">
+                <img src="{% static 'assets/img/landing/online-courses/pattern-2.svg' %}"
+                     class="position-absolute top-50 start-0 mt-n5 ms-n5" alt="Pattern">
+                <img src="{% static 'assets/img/landing/online-courses/pattern-3.svg' %}"
+                     class="position-absolute top-100 start-100 translate-middle ms-n5 mt-n5" alt="Pattern">
+            </div>
+
+            <div class="row justify-content-center position-relative zindex-2 py-lg-4">
+                <div class="col-xl-8 col-lg-9 col-md-10 py-2">
+                    <h2 class="h1 text-center mt-n2 mt-lg-0 mb-4 mb-lg-5">Часто задаваемые вопросы</h2>
+                    <div class="accordion" id="faq">
+
+                        <!-- Item -->
+                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button shadow-none rounded-3" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#q-1" aria-expanded="true"
+                                        aria-controls="q-1">Что такое Pragmatic Play?
+                                </button>
+                            </h3>
+                            <div class="accordion-collapse collapse show" id="q-1" data-bs-parent="#faq">
+                                <div class="accordion-body fs-sm pt-0">
+                                    <p>Pragmatic Play - ведущий поставщик игрового контента для онлайн-казино,
+                                        предлагающий широкий спектр продуктов, включая слоты, игры с живыми дилерами,
+                                        бинго и многое другое. Компания известна своими инновационными решениями и
+                                        высококачественными играми.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#q-2" aria-expanded="false"
+                                        aria-controls="q-2">Где лицензирована компания Pragmatic Play?
+                                </button>
+                            </h3>
+                            <div class="accordion-collapse collapse" id="q-2" data-bs-parent="#faq">
+                                <div class="accordion-body fs-sm pt-0">
+                                    <p>Pragmatic Play имеет лицензии на деятельность в различных юрисдикциях, включая
+                                        Великобританию, Мальту и Кюрасао.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#q-3" aria-expanded="false"
+                                        aria-controls="q-3">Где я могу играть в игры Pragmatic Play?
+                                </button>
+                            </h3>
+                            <div class="accordion-collapse collapse" id="q-3" data-bs-parent="#faq">
+                                <div class="accordion-body fs-sm pt-0">
+                                    <p>Игры Pragmatic Play доступны в широком спектре онлайн-казино. Вы можете найти
+                                        список казино на сайте Pragmatic Play. Вы можете поиграть в демо слотов на
+                                        нашем сайте. </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#q-4" aria-expanded="false"
+                                        aria-controls="q-4">Являются ли игры Pragmatic Play безопасными?
+                                </button>
+                            </h3>
+                            <div class="accordion-collapse collapse" id="q-4" data-bs-parent="#faq">
+                                <div class="accordion-body fs-sm pt-0">
+                                    <p>Да, игры Pragmatic Play безопасны. Они регулярно тестируются независимыми
+                                        лабораториями, чтобы гарантировать честность и справедливость.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item -->
+                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#q-5" aria-expanded="false"
+                                        aria-controls="q-5">Как Pragmatic Play обеспечивает честность своих игр?
+                                </button>
+                            </h3>
+                            <div class="accordion-collapse collapse" id="q-5" data-bs-parent="#faq">
+                                <div class="accordion-body fs-sm pt-0">
+                                    <p>Pragmatic Play использует сертифицированный генератор случайных чисел (ГСЧ) для
+                                        обеспечения честности своих игр. Игры также регулярно тестируются независимыми
+                                        лабораториями.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
