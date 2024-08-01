@@ -38,10 +38,10 @@ services:
     restart: always
 
   php:
-    build: .
+    build: ./matrix
     ports:
       - "888"
     volumes:
-      - .:/var/www/html/
+      - ./matrix:/var/www/html/
     environment:
       - APP_ENV=development
