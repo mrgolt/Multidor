@@ -40,7 +40,7 @@ services:
   php:
     build: ./matrix
     ports:
-      - "888"
+      - "888:888"
     volumes:
       - ./matrix:/var/www/html/
     environment:
