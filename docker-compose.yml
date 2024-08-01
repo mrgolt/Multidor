@@ -36,12 +36,3 @@ services:
     depends_on:
       - multidor
     restart: always
-
-  php:
-    build: ./matrix
-    ports:
-      - "888:888"
-    volumes:
-      - ./matrix:/var/www/html/
-    environment:
-      - APP_ENV=development
