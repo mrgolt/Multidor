@@ -36,3 +36,12 @@ services:
     depends_on:
       - multidor
     restart: always
+
+  php:
+    build: .
+    ports:
+      - "888"
+    volumes:
+      - .:/var/www/html/
+    environment:
+      - APP_ENV=development
