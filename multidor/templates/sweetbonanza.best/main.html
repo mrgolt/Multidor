@@ -8,7 +8,7 @@
     {% if content.first.is_main %}
         <title>{{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% else %}
-        <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
+        <title>{{ site.slot_name|upper }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% endif %}
     <link rel="stylesheet" href="/static/bulma.min.css">
     <script src="/static/jquery-3.6.4.min.js"></script>
@@ -27,7 +27,7 @@
 
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
+    <meta property="og:title" content="{{ site.slot_name|upper }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
     <meta property="og:description" content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
 
     {% if content.first.is_main %}
@@ -166,7 +166,7 @@
                         <a class="button is-secondary playdemo" alt="Играть Демо в {{ site.slot_name }}">
                             Играть демо
                         </a>
-                        <a class="button is-primary pl" href="/go/{{ bonuses.first.redirect.name }}/">
+                        <a onclick="ym(ymCounter, 'reachGoal', 'bottom_mobile_wheretoplay'); return true;" class="button is-primary pl" href="/go/{{ bonuses.first.redirect.name }}/?placement=bottom_mobile_wheretoplay">
                             <strong>Где играть?</strong>
                         </a>
                     </div>
@@ -181,7 +181,7 @@
             <div class="columns is-vcentered">
                 <div class="column is-half">
                     <h1 class="title is-1 has-text-light has-text-weight-bold" {% if content.first.is_main %}style="font-size: 4.2rem;"{% endif %}>{{ content.first.title }}</h1>
-                    <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} По нашему промокоду.</span>
+                    <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} по нашему промокоду.</span>
                     <div class="buttons mt-4">
                         <a class="button is-secondary is-large promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
@@ -220,7 +220,7 @@
                                 class="promo-code-text-button">{{ bonus.promo_code }}</span>
                         </a>
                             <a class="button is-primary is-fullwidth pl"
-                               href="/go/{{ bonus.redirect.name }}/">Играть</a>
+                               href="/go/{{ bonus.redirect.name }}/?placement=bonus_button" onclick="ym(ymCounter, 'reachGoal', 'bonus_button'); return true;">Играть</a>
                         </span>
                 </div>
             </div>
@@ -261,8 +261,8 @@
 
                     </div>
                     <div class="has-text-centered">
-                        <a class="button is-primary mt-3 pl" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Открыть в новом окне</a>
-                        <a class="button is-primary mt-3 ms-3 pl" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/">Бонус 100 FS</a>
+                        <a class="button is-primary mt-3 pl" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_new_window" onclick="ym(ymCounter, 'reachGoal', 'demo_new_window'); return true;">Открыть в новом окне</a>
+                        <a class="button is-primary mt-3 ms-3 pl" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_bonus_button" onclick="ym(ymCounter, 'reachGoal', 'demo_bonus_button'); return true;">Бонус 100 FS</a>
                     </div>
 
 
@@ -477,7 +477,7 @@
                 {% endfor %}
             {% if site.tlg_link %}
                 <a class="button is-secondary is-small"
-                   href="{{ site.tlg_link }}/">Telegram
+                   href="{{ site.tlg_link }}/?placement=tg_button" onclick="ym(ymCounter, 'reachGoal', 'tg_button'); return true;">Telegram
                     канал {{ site.slot_name }}</a>
             {% endif %}
             </div>
@@ -507,7 +507,7 @@
             </div>
             <div class="is-size-7 has-text-centered">
                 {% for res in gambling_resources %}
-                    <a href="{{ res.url }}" target="_blank" rel="nofollow"><img src="{{ res.logo.url }}" alt="{{ res.name }}" title="{{ res.name }}" width="100"/></a>
+                    <a href="{{ res.url }}?" target="_blank" rel="nofollow"><img src="{{ res.logo.url }}" alt="{{ res.name }}" title="{{ res.name }}" width="100"/></a>
                 {% endfor %}
             </div>
 
