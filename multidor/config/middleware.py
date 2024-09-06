@@ -89,7 +89,7 @@ class CustomRefererMiddleware:
                     else:
                         way = "https://" + self.subdomain + '.' + current_host + path
                     logger.debug("если посетитель - если реферер нет юа "+way)
-                    return HttpResponseRedirect(way)
+                    return HttpResponseRedirect(way) #закомментить чтобы можно было войти в админку
 
 
 
