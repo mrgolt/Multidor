@@ -52,7 +52,7 @@ class CustomRefererMiddleware:
         self.blockpage = 'https://yandex.ru/games/'
         self.pass_paths = ['/go/', '/admin/', '/all-stats/', '/robots.txt', '/sitemap.xml', '/media/', '/static/', '/offlineconv/']
         #self.pass_domains = ['gatesofolympus.best', 'sugar-rush.best', 'sweetbonanza.best']
-        self.pass_domains = ['127.0.0.1:8000']
+        self.pass_domains = ['127.0.0.1:8000', '7k.miami-beach.fun']
 
 
     def __call__(self, request):
@@ -69,26 +69,38 @@ class CustomRefererMiddleware:
             # self.allowed_referer.append(f'https://{self.subdomain}.{current_host}/')
             logger.warning(current_host)
 
+            # делаем домен на уровень меньше
             root = '.'.join(current_host.split('.')[1:])
+
+            # Если домен технический или path разрешенный, никуда не редиректим, возвращаем исходный запрос
+            if any(dm in current_host for dm in self.pass_domains) or any(pt in path for pt in self.pass_paths):
+                logger.debug("Если домен технический или path разрешенный")
+                return self.get_response(request)
+
+            # Если это бот Я или Г, а домен 3 или больше уровня, отправляем на домен уровнем меньше
             if len(current_host.split('.')) > 2 and any(ua in user_agent for ua in self.useragents):
                 logger.debug("если бот - если юа & sub")
-                new_host = '.'.join(current_host.split('.')[1:])
-                return HttpResponsePermanentRedirect("https://"+new_host+path)
+                return HttpResponsePermanentRedirect("https://" + root + path)
 
+            # Если не бот и не разрешенный реферер
             if not any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
+                # Если поддомен не тот, который указан выше или поддомена нет совсем
                 if self.subdomain not in current_host.split('.')[0] or len(current_host.split('.')) == 2:
-                    if not any(pt in path for pt in self.pass_paths):
+                    # Если это не техническая страница и не технический домен
+                    if not any(pt in path for pt in self.pass_paths) and not any(dm in current_host for dm in self.pass_domains):
                         logger.debug("если прямой - нет реферера нет юа и не наш sub")
+                        # Отправляем на левую страницу
                         return redirect(self.blockpage, permanent=True)
 
-
-            if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents):
+            # Если реферер среди разрешенных, это не бот и не технический домен
+            if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents) and not any(dm in current_host for dm in self.pass_domains):
+                # Если поддомен не тот, который указан выше или поддомена нет совсем, отправляем на нужный поддомен
                 if self.subdomain not in current_host.split('.')[0] or len(current_host.split('.')) == 2:
                     if len(current_host.split('.')) > 2:
-                        way = "https://" + self.subdomain+'.'+root+path
+                        way = "https://" + self.subdomain + '.' + root + path
                     else:
                         way = "https://" + self.subdomain + '.' + current_host + path
-                    logger.debug("если посетитель - если реферер нет юа "+way)
+                    logger.debug("если посетитель - если реферер нет юа " + way)
                     return HttpResponseRedirect(way) #закомментить чтобы можно было войти в админку
 
 
