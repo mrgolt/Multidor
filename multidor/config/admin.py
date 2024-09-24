@@ -26,7 +26,7 @@ class ContentAdmin(admin.ModelAdmin):
 
 class SitesAdmin(admin.ModelAdmin):
     list_display = (
-    'site_id', 'allowed_domain_link', 'slot_name', 'num_content', 'provider_name', 'template_name', 'has_hero_image', 'interface_image', 'author')
+    'site_id', 'type', 'allowed_domain_link', 'slot_name', 'num_content', 'provider_name', 'template_name', 'has_hero_image', 'interface_image', 'author')
 
     def num_content(self, obj):
         return obj.content_set.count()  # Подсчитываем количество объектов Content, связанных с текущим экземпляром Sites
@@ -95,6 +95,10 @@ class ClickAdmin(admin.ModelAdmin):
 
     ref_site.short_description = 'Site'
     click_count.short_description = 'Clicks from domain'
+
+
+class CasinoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'logo', 'logo_svg')
 
 
 class AffAdmin(admin.ModelAdmin):
@@ -166,7 +170,7 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(Sites, SitesAdmin)
 admin.site.register(Content, ContentAdmin)
 admin.site.register(Bonus, BonusAdmin)
-admin.site.register(Casino)
+admin.site.register(Casino, CasinoAdmin)
 admin.site.register(Redirect, RedirectAdmin)
 admin.site.register(Click, ClickAdmin)
 admin.site.register(Aff, AffAdmin)

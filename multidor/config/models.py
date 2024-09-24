@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
-
+from django.core.validators import FileExtensionValidator
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -15,6 +15,13 @@ class Author(models.Model):
         return self.name
 
 class Sites(models.Model):
+
+    TYPE_CHOICES = [
+        ('slot', 'Slot'),
+        ('casino', 'Casino'),
+    ]
+
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='slot')
     name = models.CharField(max_length=200, default='')
     slot_name = models.CharField(max_length=200, default='')
     demo = models.TextField(blank=True, default='')
@@ -39,12 +46,14 @@ class Sites(models.Model):
     primary_color = models.CharField(max_length=10, default='darksalmon', blank=True)
     secondary_color = models.CharField(max_length=10, default='#48c78e', blank=True)
     author = models.ForeignKey(Author, on_delete=models.PROTECT, default=None, null=True)
+    casino = models.ForeignKey('Casino', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.allowed_domain
 
 class Casino(models.Model):
     logo = models.ImageField(upload_to='img/', default='cas_logo.jpg')
+    logo_svg = models.FileField(upload_to='img/', default='logo.svg', validators=[FileExtensionValidator(['svg'])])
     name = models.CharField(max_length=100)
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, default=1)
 
@@ -110,6 +119,7 @@ class Content(models.Model):
 
 class Image(models.Model):
     title = models.CharField(max_length=255)
+    type = models.CharField(max_length=20, blank=True)
     description = models.CharField(max_length=500)
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
     image = models.ImageField(blank=True, upload_to='img/', default='')
