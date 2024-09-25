@@ -55,6 +55,7 @@ class Casino(models.Model):
     logo = models.ImageField(upload_to='img/', default='cas_logo.jpg')
     logo_svg = models.FileField(upload_to='img/', default='logo.svg', validators=[FileExtensionValidator(['svg'])])
     name = models.CharField(max_length=100)
+    display_name = models.CharField(max_length=100, blank=True)
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
@@ -103,7 +104,7 @@ class Content(models.Model):
     category = models.CharField(max_length=100)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    keywords = models.CharField(max_length=255)
+    keywords = models.CharField(max_length=1000)
     slug = models.CharField(max_length=255, default='')
     is_main = models.BooleanField()
     is_popular = models.BooleanField(default=True)
@@ -118,9 +119,9 @@ class Content(models.Model):
         super().save(*args, **kwargs)
 
 class Image(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True)
     type = models.CharField(max_length=20, blank=True)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, blank=True)
     site = models.ForeignKey('Sites', on_delete=models.CASCADE)
     image = models.ImageField(blank=True, upload_to='img/', default='')
     in_gallery = models.BooleanField(default=True)

@@ -1,10 +1,15 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Sites, Casino, Bonus, Content
+from .models import Sites, Casino, Bonus, Content, Image
 
 class SitesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sites
+        fields = '__all__'
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
         fields = '__all__'
 
 class CasinoSerializer(serializers.ModelSerializer):

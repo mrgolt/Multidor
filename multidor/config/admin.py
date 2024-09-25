@@ -98,7 +98,7 @@ class ClickAdmin(admin.ModelAdmin):
 
 
 class CasinoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'logo', 'logo_svg')
+    list_display = ('id', 'name', 'display_name', 'logo', 'logo_svg')
 
 
 class AffAdmin(admin.ModelAdmin):
@@ -116,7 +116,7 @@ class SymbolAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'website', 'is_active', 'sorting_order', 'image')
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('site', 'title', 'description', 'image', 'in_gallery')
+    list_display = ('site', 'type', 'title', 'description', 'image', 'in_gallery')
 
     actions = ['duplicate']
     def duplicate(self, request, queryset):

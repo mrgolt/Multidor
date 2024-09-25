@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import SitesSerializer, CasinoSerializer, BonusSerializer, ContentSerializer
+from .serializers import SitesSerializer, CasinoSerializer, BonusSerializer, ContentSerializer, ImageSerializer
 import random
 from django.shortcuts import HttpResponse
 from django.db.models import Count, Sum
@@ -22,6 +22,7 @@ def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
     parts = domain.split('.')
 
+    # Если поддомен, ссылаемся на домен 2 уровня
     if len(parts) > 2 and domain != '127.0.0.1:8000':
         domain = '.'.join(parts[-2:])
 
@@ -97,16 +98,14 @@ def custom_serve(request, slug=None):
         symbols = Symbol.objects.filter(is_active=True, website=site).order_by('sorting_order')
         images = Image.objects.filter(site=site)
 
-
         # Фильтрация контента на основе переданного slug
         if slug:
             content = Content.objects.filter(site=site, slug=slug)
-
+        # Если нет такого контента на этом сайте, берем с другого, нужно для технических страниц
         if not content:
             content = Content.objects.filter(slug=slug)
 
         comments = Comment.objects.filter(page=content[0], created_at__lte=timezone.now()).order_by('-created_at')
-
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
         gambling_resources = GamblingResource.objects.filter(is_active=True)
@@ -119,19 +118,19 @@ def custom_serve(request, slug=None):
     #template_path = os.path.join(domain, 'main.html')
     template_path = os.path.join('sweetbonanza.best', site.template_name)
 
-    context = {'site': site,
-               'bonuses': bonuses,
-               'symbols': symbols,
-               'content': content,
-               'images': images,
-               'inner_pages': inner_pages,
-               'random_classes': random_classes,
-               'faqs': faqs,
-               'accepted_answer': accepted_answer,
-               'gambling_resources': gambling_resources,
-               'comments': comments,
-
-               }
+    context = {
+       'site': site,
+       'bonuses': bonuses,
+       'symbols': symbols,
+       'content': content,
+       'images': images,
+       'inner_pages': inner_pages,
+       'random_classes': random_classes,
+       'faqs': faqs,
+       'accepted_answer': accepted_answer,
+       'gambling_resources': gambling_resources,
+       'comments': comments,
+    }
 
     return render(request, template_path, context)
 
@@ -394,6 +393,92 @@ def create_content(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def create_image(request):
+    serializer = ImageSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_casinos(request):
+    # Получаем все объекты Casino из базы данных
+    casinos = Casino.objects.all()
+
+    # Сериализуем данные
+    serializer = CasinoSerializer(casinos, many=True)
+
+    # Возвращаем сериализованные данные в ответе
+    return Response(serializer.data)
+@api_view(['GET'])
+def get_images(request):
+    # Получаем параметры запроса
+    site_id = request.query_params.get('site', None)
+    image_type = request.query_params.get('type', None)
+
+    # Получаем все объекты Image из базы данных
+    images = Image.objects.all()
+
+    # Применяем фильтрацию, если параметры указаны
+    if site_id is not None:
+        images = images.filter(site=site_id)  # Фильтруем по ID сайта
+    if image_type is not None:
+        images = images.filter(type=image_type)  # Фильтруем по типу изображения
+
+    # Сериализуем данные
+    serializer = ImageSerializer(images, many=True)
+
+    # Возвращаем сериализованные данные в ответе
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_contents(request):
+    # Получаем параметры запроса
+    site_id = request.query_params.get('site', None)
+    slug = request.query_params.get('slug', None)
+
+    # Получаем все объекты Image из базы данных
+    items = Content.objects.all()
+
+    # Применяем фильтрацию, если параметры указаны
+    if site_id is not None:
+        items = items.filter(site=site_id)  # Фильтруем по ID сайта
+    if slug is not None:
+        items = items.filter(slug=slug)  # Фильтруем по типу изображения
+
+    # Сериализуем данные
+    serializer = ContentSerializer(items, many=True)
+
+    # Возвращаем сериализованные данные в ответе
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_casino_by_name(request, name):
+    # Ищем казино по имени
+    casinos = Casino.objects.filter(
+        name__icontains=name)  # Используем icontains для нечувствительного к регистру поиска
+
+    # Сериализуем данные
+    serializer = CasinoSerializer(casinos, many=True)
+
+    # Возвращаем сериализованные данные в ответе
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_site_by_name(request, name):
+    # Ищем казино по имени
+    sites = Sites.objects.filter(
+        allowed_domain__icontains=name)  # Используем icontains для нечувствительного к регистру поиска
+
+    # Сериализуем данные
+    serializer = SitesSerializer(sites, many=True)
+
+    # Возвращаем сериализованные данные в ответе
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
