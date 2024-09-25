@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
 import requests
 import time
+import hashlib
 
 
 def custom_serve(request, slug=None):
@@ -27,7 +28,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'sugar-rush.best'
+        domain = '7khq.top'
 
     classes = [
         'has-game-preview',
@@ -98,6 +99,9 @@ def custom_serve(request, slug=None):
         symbols = Symbol.objects.filter(is_active=True, website=site).order_by('sorting_order')
         images = Image.objects.filter(site=site)
 
+        if site.type == 'casino':
+            bonuses = Bonus.objects.filter(casino=site.casino).order_by('sorting_order')
+
         # Фильтрация контента на основе переданного slug
         if slug:
             content = Content.objects.filter(site=site, slug=slug)
@@ -130,6 +134,7 @@ def custom_serve(request, slug=None):
        'accepted_answer': accepted_answer,
        'gambling_resources': gambling_resources,
        'comments': comments,
+        'domain_hash': compute_hash(domain),
     }
 
     return render(request, template_path, context)
@@ -541,3 +546,15 @@ def update_site_field(request, site_id):
     site.save()
 
     return Response({'message': f'Field {field_name} updated successfully'}, status=status.HTTP_200_OK)
+
+def compute_hash(domain_name):
+    # Создаем объект хэширования
+    hash_object = hashlib.md5()
+
+    # Обновляем объект хэширования с доменным именем
+    hash_object.update(domain_name.encode('utf-8'))
+
+    # Получаем хэш в шестнадцатеричном формате
+    hash_hex = hash_object.hexdigest()
+
+    return hash_hex

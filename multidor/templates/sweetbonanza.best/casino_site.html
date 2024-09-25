@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ content.first.title }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta content="{{ content.first.description }}" name="description">
+    <meta name="keywords" content="{{ content.first.keywords }}">
+    {% if content.first.is_main %}
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/"/>
+    {% else %}
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>
+    {% endif %}
+    <meta property="og:locale" content="ru_RU"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ content.first.title }}"/>
+    <meta property="og:description" content="{{ content.first.description }}"/>
+    {% if content.first.is_main %}
+        <meta property="og:url" content="https://{{ site.allowed_domain }}/"/>
+    {% else %}
+        <meta property="og:url" content="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>
+    {% endif %}
+    <meta property="og:site_name" content="{{ content.first.title }}"/>
+    <meta property="og:image" content="https://{{ site.allowed_domain }}/media/img/slots_{{ domain_hash }}.webp"/>
+    <meta property="og:image:width" content="1000"/>
+    <meta property="og:image:height" content="625"/>
+    <meta property="og:image:secure_url"
+          content="https://{{ site.allowed_domain }}/media/img/slots_{{ domain_hash }}.webp"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ content.first.title }}"/>
+    <meta name="twitter:description" content="{{ content.first.description }}"/>
+    <meta name="twitter:image" content="https://{{ site.allowed_domain }}/media/img/slots_{{ domain_hash }}.webp"/>
+
+    {% if not site.casino.custom_css %}
+        <style>
+            body {
+                background-color: #1F1A1B;
+                color: #fff;
+            }
+
+            h2 {
+                margin-bottom: 20px;
+                margin-top: 35px;
+            }
+
+            img {
+                width: 100%;
+                border-radius: 15px;
+                overflow: hidden;
+                margin: 0px;
+            }
+
+            .image {
+                margin-bottom: 15px;
+            }
+
+            table {
+                width: 100%;
+                margin-bottom: 15px;
+                border-collapse: collapse;
+                border-radius: 15px;
+                overflow: hidden;
+                background-color: #761126;
+            }
+
+            th, td {
+                border: 0px solid #fff;
+                padding: 10px;
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #1F1A1B;
+                color: #fff;
+            }
+
+            tr:nth-child(even) {
+                background-color: #1F1A1B;
+            }
+
+            .navbar-brand,
+            .navbar-nav .nav-link {
+                color: #fff;
+            }
+
+            .container {
+                background-color: #110D0E;
+                color: #fff;
+                border-radius: 15px;
+                overflow: hidden;
+            }
+
+            .navbar {
+                background-color: #110D0E;
+                color: #fff;
+            }
+
+            a {
+                color: #fff;
+            }
+
+            a:hover {
+                color: #d9a2a2;
+                text-decoration: none;
+            }
+
+            .btn-success {
+                background-color: #C5223C;
+                color: #fff;
+                transition: background-color 0.5s;
+                background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0));
+            }
+
+            .btn-success:hover {
+                background-color: #BD081E;
+                color: #fff;
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+            }
+
+            .btn-warning {
+                background-color: #F4F4F4;
+                color: #000;
+                transition: background-color 0.5s;
+                background-image: linear-gradient(to top left, rgba(255, 50, 50, 0.3), rgba(0, 0, 0, 0));
+            }
+
+            .btn-warning:hover {
+                background-color: #e9c2c2;
+                color: #000;
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+            }
+
+            .menu-item a, #contents {
+                font-weight: bold;
+                text-transform: uppercase;
+                font-size: 18px;
+            }
+
+            .hero-image {
+                transition: transform 0.5s;
+                min-height: 300px;
+                object-fit: cover;
+                margin: 0px;
+            }
+
+            .hero-image:hover {
+                transform: scale(1.03);
+            }
+
+            .logo-image {
+                transition: transform 0.2s;
+                max-height: 50px;
+            }
+
+            .logo-image:hover {
+                transform: scale(1.07) translateY(-2px);
+            }
+
+        </style>
+    {% else %}
+        {{ site.casino.custom_css|safe }}
+    {% endif %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand d-flex flex-row" href="/">
+            <img src="{{ site.casino.logo_svg.url }}" alt="{{ site.casino.display_name }}" class="logo-image"/>
+        </a>
+        <ul class="navbar-nav ml-auto d-none d-md-flex flex-row">
+            <li class="nav-item">
+                <a class="btn btn-warning btn-lg rounded-pill border-0 px-5 mr-2 my-1"
+                   href="/go/{{ site.casino.name }}/" role="button">Регистрация</a>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-success btn-lg rounded-pill border-0 px-5  my-1" href="/go/{{ site.casino.name }}/"
+                   role="button">Войти</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-bottom d-md-none">
+    <div class="container">
+
+        <a class="navbar-brand d-flex flex-row" href="/">
+            <img src="{{ site.casino.logo_svg.url }}" alt="{{ site.casino.display_name }}" class="logo-image"/>
+        </a>
+
+        <ul class="navbar-nav ml-auto flex-row">
+            <li class="nav-item">
+                <a class="btn btn-warning btn-sm rounded-pill border-0 px-3 py-2 mr-1 my-1"
+                   href="/go/{{ site.casino.name }}/" role="button">Регистрация</a>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-success btn-sm rounded-pill border-0 px-3 py-2 my-1"
+                   href="/go/{{ site.casino.name }}/" role="button">Войти</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+<div class="container mt-3 p-0 ">
+    <a href="/">
+        <img src="/media/img/hero_1_{{ domain_hash }}.png" alt="{{ site.casino.display_name }}"
+             class="img-fluid hero-image">
+    </a>
+</div>
+
+{% for bonus in bonuses %}
+    <div class="container text-center p-4 mt-3">
+        <div class="row">
+            <div class="col-md-3 align-items-center d-none d-md-flex">
+                <a href="/">
+                    <img src="{{ site.casino.logo_svg.url }}" class="logo-image" alt="{{ site.casino.display_name }}"/>
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h3>{{ bonus.name|safe }}</h3>
+                <a class="btn btn-success btn-lg mt-2 rounded-pill border-0"
+                   target="_blank"
+                   href="/go/{{ bonus.redirect.name }}/" style="width: 100%;">Получить бонус</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container mt-3 p-4">
+    {{ content.first.text|safe }}
+</div>
+
+<div class="container mt-3 p-0 rounded-3">
+    <a href="/go/{{ site.casino.name }}/">
+        <img src="/media/img/hero_2_{{ domain_hash }}.png" alt="{{ site.casino.display_name }}"
+             class="img-fluid hero-image">
+    </a>
+</div>
+
+<div class="container mt-3 jumbotron py-3">
+    {% for page in inner_pages %}
+        <a class="btn btn-success btn-sm mt-1 border-0 rounded-pill px-4"
+           href="/page/{{ page.slug }}/">{{ page.title }}</a>
+    {% endfor %}
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

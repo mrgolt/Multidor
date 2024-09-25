@@ -57,6 +57,7 @@ class Casino(models.Model):
     name = models.CharField(max_length=100)
     display_name = models.CharField(max_length=100, blank=True)
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, default=1)
+    custom_css = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
