@@ -163,11 +163,16 @@
     {% else %}
         {{ site.casino.custom_css|safe }}
     {% endif %}
+        <style>
+            .logo-container{
+                border-radius: 0px !important;
+            }
+        </style>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
+    <div class="container logo-container">
         <a class="navbar-brand d-flex flex-row" href="/">
             <img src="{{ site.casino.logo_svg.url }}" alt="{{ site.casino.display_name }}" class="logo-image"/>
         </a>
