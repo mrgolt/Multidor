@@ -45,3 +45,4 @@ services:
 
 networks:
   shared-network:
+    name: nginx
