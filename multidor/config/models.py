@@ -46,7 +46,7 @@ class Sites(models.Model):
     primary_color = models.CharField(max_length=10, default='darksalmon', blank=True)
     secondary_color = models.CharField(max_length=10, default='#48c78e', blank=True)
     author = models.ForeignKey(Author, on_delete=models.PROTECT, default=None, null=True)
-    casino = models.ForeignKey('Casino', on_delete=models.CASCADE, null=True)
+    casino = models.ForeignKey('Casino', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.allowed_domain
@@ -104,11 +104,13 @@ class Content(models.Model):
     text = models.TextField()
     category = models.CharField(max_length=100)
     title = models.CharField(max_length=255)
+    demo = models.TextField(blank=True)
     description = models.TextField()
     keywords = models.CharField(max_length=1000)
     slug = models.CharField(max_length=255, default='')
     is_main = models.BooleanField()
     is_popular = models.BooleanField(default=True)
+    is_version_page = models.BooleanField(default=False)
 
 
     def __str__(self):

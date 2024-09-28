@@ -28,7 +28,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = '7khq.top'
+        domain = 'sugar-rush.best'
 
     classes = [
         'has-game-preview',
@@ -112,6 +112,7 @@ def custom_serve(request, slug=None):
         comments = Comment.objects.filter(page=content[0], created_at__lte=timezone.now()).order_by('-created_at')
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)
+        version_pages = Content.objects.filter(is_version_page=True, site=site)
         gambling_resources = GamblingResource.objects.filter(is_active=True)
         faqs = FAQ.objects.filter(content=content.first())
         accepted_answer = FAQ.objects.filter(content=content.first(), is_accepted=True).first()
@@ -129,6 +130,7 @@ def custom_serve(request, slug=None):
        'content': content,
        'images': images,
        'inner_pages': inner_pages,
+       'version_pages': version_pages,
        'random_classes': random_classes,
        'faqs': faqs,
        'accepted_answer': accepted_answer,

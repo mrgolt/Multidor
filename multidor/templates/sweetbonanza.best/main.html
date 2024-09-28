@@ -8,27 +8,30 @@
     {% if content.first.is_main %}
         <title>{{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% else %}
-        <title>{{ site.slot_name|upper }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
+        <title>{{ site.slot_name|upper }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот
+            от {{ site.provider_name }}</title>
     {% endif %}
     <link rel="stylesheet" href="/static/bulma.min.css">
     <script src="/static/jquery-3.6.4.min.js"></script>
     <link rel="icon" type="image/x-icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
 
-    <meta content="{{ content.first.title }}. Попробуйте свою удачу в {{ site.slot_name }} от {{ site.provider_name }} прямо сейчас! Большие выигрыши и захватывающий геймплей ждут вас. Бонус по нашему промокоду {{ bonuses.first.name|striptags }}"
+    <meta content="{{ content.first.title }}. Попробуйте свою удачу в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} от {{ site.provider_name }} прямо сейчас! Большие выигрыши и захватывающий геймплей ждут вас. Бонус по нашему промокоду {{ bonuses.first.name|striptags }}"
           name="description">
     <meta name="keywords"
           content="{{ site.slot_name|lower }}, {{ site.provider_name|lower }}, онлайн казино, игровые автоматы, азартные игры, слоты, бонусы казино, бесплатные вращения, джекпот, регистрация в казино, лучшие казино, отзывы о казино, стратегии игр, слоты онлайн, демо игры, лицензированные казино, казино на деньги, безопасные казино, мобильное казино, играть в казино">
 
     {% if content.first.is_main %}
-        <link rel="canonical" href="https://{{ site.allowed_domain }}/" />
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/"/>
     {% else %}
-        <link rel="canonical" href="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/" />
+        <link rel="canonical" href="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>
     {% endif %}
 
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="{{ site.slot_name|upper }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
-    <meta property="og:description" content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
+    <meta property="og:title"
+          content="{{ site.slot_name|upper }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
+    <meta property="og:description"
+          content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
 
     {% if content.first.is_main %}
         <meta property="og:url" content="https://{{ site.allowed_domain }}/"/>
@@ -37,82 +40,82 @@
     {% endif %}
 
 
-    <meta property="og:site_name" content="Играть в игровой слот {{ site.slot_name }} демо и на реальные деньги"/>
-    <meta property="og:image" content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
+    <meta property="og:site_name" content="Играть в игровой слот {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} демо и на реальные деньги"/>
+    <meta property="og:image"
+          content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
     <meta property="og:image:width" content="1000"/>
     <meta property="og:image:height" content="625"/>
-    <meta property="og:image:secure_url" content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
+    <meta property="og:image:secure_url"
+          content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
 
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
-    <meta name="twitter:description" content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
-    <meta name="twitter:image" content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
+    <meta name="twitter:title"
+          content="{{ site.slot_name }} - {{ bonuses.first.name|striptags }} - {{ content.first.title }}"/>
+    <meta name="twitter:description"
+          content="{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}."/>
+    <meta name="twitter:image"
+          content="https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"/>
 
     {% if not site.custom_css %}
-    <style>
-        .has-background-dark, .navbar-item {
-            background-color: {{ site.background_color_primary }} !important;
-        }
+        <style>
+            .has-background-dark, .navbar-item {
+                background-color: {{ site.background_color_primary }} !important;
+            }
 
-        h2, h1 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
+            h2, h1 {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #fff;
+            }
 
-        strong {
-            color: #fff;
-        }
+            strong {
+                color: #fff;
+            }
 
-        .symbols-table tr, .symbols-table td{
-            padding-bottom: 0px;
-            padding-top: 0px;
-            align-items: center;
-        }
+            .symbols-table tr, .symbols-table td {
+                padding-bottom: 0px;
+                padding-top: 0px;
+                align-items: center;
+            }
 
-        .is-primary, .is-primary:hover {
-            background-color: {{ site.primary_color }} !important;
-            border: 0px;
-            color: #fff;
-        }
+            .is-primary, .is-primary:hover {
+                background-color: {{ site.primary_color }} !important;
+                border: 0px;
+                color: #fff;
+            }
 
-        .is-secondary, .is-secondary:hover{
-            background-color: {{ site.secondary_color }} !important;
-            border: 0px;
-            color: #fff;
-        }
+            .is-secondary, .is-secondary:hover {
+                background-color: {{ site.secondary_color }} !important;
+                border: 0px;
+                color: #fff;
+            }
 
-        .has-text-light {
-            color: antiquewhite !important;
-        }
+            .has-text-light {
+                color: antiquewhite !important;
+            }
 
-        .has-background-grey {
-            background-color: {{ site.background_color_secondary }} !important;
-        }
+            .has-background-grey {
+                background-color: {{ site.background_color_secondary }} !important;
+            }
 
-        .box {
-            #border: 2px darksalmon solid;
-            #border-radius: 20px;
-            #padding: 20px;
-        }
+            .box {
+                #border: 2px darksalmon solid;
+                #border-radius: 20px;
+                #padding: 20px;
+            }
 
-        .content {
-            overflow-x: auto !important;
-        }
-    </style>
+            .content {
+                overflow-x: auto !important;
+            }
+        </style>
     {% else %}
         {{ site.custom_css|safe }}
     {% endif %}
-
-
     <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
-
-
 </head>
 <body class="has-navbar-fixed-top">
 
 {{ site.counters|safe }}
-
 
 <div class="container">
     <nav class="navbar is-black is-spaced has-background-dark has-text-light is-fixed-top" role="navigation"
@@ -120,14 +123,14 @@
         <div class="navbar-brand">
             <a class="navbar-item" href="/">
                 <figure class="image">
-                    <img class="image" src="{% if site.logo %}{{ site.logo.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}">
+                    <img class="image" src="{% if site.logo %}{{ site.logo.url }}{% endif %}" alt="{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}"
+                         title="{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}">
                 </figure>
             </a>
             <a class="navbar-item" href="/">
-                <h2 class="title is-3 has-text-light is-size-7-mobile">{{ site.slot_name }}
+                <h2 class="title is-3 has-text-light is-size-7-mobile">{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}
                 </h2>
             </a>
-
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
                data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -135,42 +138,51 @@
                 <span aria-hidden="true"></span>
             </a>
         </div>
-
         <div id="navbarBasic"
              class="navbar-menu has-background-dark">
             <div class="navbar-start">
-
-
             </div>
-
             <div class="navbar-end has-background-dark">
-
-
+                {% if version_pages %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link has-text-light">
+                            Версии слота
+                        </a>
+                        <div class="navbar-dropdown has-background-dark">
+                            {% for version in version_pages %}
+                                <a class="navbar-item has-text-light" href="/page/{{ version.slug }}">
+                                    {{ version.title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="navbar-item has-background-dark">
                     <div class="buttons has-background-dark">
                         <a class="button is-primary is-large wheretoplay" href="#wheretoplay">
                             Где играть?
                         </a>
-                        <a class="button is-secondary is-large playdemo" alt="Играть Демо в {{ site.slot_name }}">
+                        <a class="button is-secondary is-large playdemo" alt="Играть Демо в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}">
                             <strong>Играть демо</strong>
                         </a>
-
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-    <nav class="navbar is-fixed-bottom has-background-dark is-hidden-desktop" >
+    <nav class="navbar is-fixed-bottom has-background-dark is-hidden-desktop">
         <div class="m-auto navbar-item has-background-dark">
-                    <div class="buttons is-centered has-background-dark">
-                        <a class="button is-secondary playdemo" alt="Играть Демо в {{ site.slot_name }}">
-                            Играть демо
-                        </a>
-                        <a onclick="ym(ymCounter, 'reachGoal', 'bottom_mobile_wheretoplay'); return true;" class="button is-primary pl" href="/go/{{ bonuses.first.redirect.name }}/?placement=bottom_mobile_wheretoplay">
-                            <strong>Где играть?</strong>
-                        </a>
-                    </div>
-                </div>
+            <div class="buttons is-centered has-background-dark">
+                <a class="button is-secondary playdemo" alt="Играть Демо в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}">
+                    Играть демо
+                </a>
+                <a onclick="ym(ymCounter, 'reachGoal', 'bottom_mobile_wheretoplay'); return true;"
+                   class="button is-primary pl"
+                   href="/go/{{ bonuses.first.redirect.name }}/?placement=bottom_mobile_wheretoplay">
+                    <strong>Где играть?</strong>
+                </a>
+            </div>
+        </div>
     </nav>
 </div>
 
@@ -180,7 +192,8 @@
         <div class="box has-background-dark">
             <div class="columns is-vcentered">
                 <div class="column is-half">
-                    <h1 class="title is-1 has-text-light has-text-weight-bold" {% if content.first.is_main %}style="font-size: 4.2rem;"{% endif %}>{{ content.first.title }}</h1>
+                    <h1 class="title is-1 has-text-light has-text-weight-bold"
+                        {% if content.first.is_main %}style="font-size: 4.2rem;"{% endif %}>{{ content.first.title }}</h1>
                     <span class="title is-3 has-text-light">{{ bonuses.first.name|safe }} по нашему промокоду.</span>
                     <div class="buttons mt-4">
                         <a class="button is-secondary is-large promo-code-button">
@@ -193,58 +206,56 @@
                 </div>
                 <div class="column">
                     <figure class="image">
-                        <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}" alt="{{ site.slot_name }}" title="{{ site.slot_name }}"
+                        <img src="{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}"
+                             alt="{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}" title="{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}"
                              class="image{% if site.hero_image_is_rounded %} is-rounded{% endif %}">
                     </figure>
                 </div>
             </div>
         </div>
         <div class="box has-background-dark p-3" id="wheretoplay">
-            <h2 class="title is-4 has-text-light has-background-dark">Где играть в {{ site.slot_name }}?</h2>
-
-
-
-
-        {% for bonus in bonuses %}
-            <div class="columns box as-text-light has-background-grey m-2">
-                <div class="column is-two-fifths">
-                    <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
-
-                </div>
-                <div class="column">
-                    <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
-                    <span class="buttons">
+            <h2 class="title is-4 has-text-light has-background-dark">Где играть в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}?</h2>
+            {% for bonus in bonuses %}
+                <div class="columns box as-text-light has-background-grey m-2">
+                    <div class="column is-two-fifths">
+                        <img width="300" src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}">
+                    </div>
+                    <div class="column">
+                        <p class="title has-text-light has-text-centered is-4">{{ bonus.name|safe }}</p>
+                        <span class="buttons">
 
                         <a class="button is-secondary  promo-code-button is-fullwidth">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonus.promo_code }}</span>
                         </a>
                             <a class="button is-primary is-fullwidth pl"
-                               href="/go/{{ bonus.redirect.name }}/?placement=bonus_button" onclick="ym(ymCounter, 'reachGoal', 'bonus_button'); return true;">Играть</a>
+                               href="/go/{{ bonus.redirect.name }}/?placement=bonus_button"
+                               onclick="ym(ymCounter, 'reachGoal', 'bonus_button'); return true;">Играть</a>
                         </span>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
-
-
-
 
         {% if site.promo_image %}
             <div class="box has-background-dark has-text-light p-2">
-                <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду</h2>
+                <h2 class="title is-4 has-text-light has-background-dark">Максимальный выигрыш в
+                    слот {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} по нашему промокоду</h2>
                 <div class="box has-background-grey has-text-light has-text-centered m-1 p-3">
-                    <img loading="lazy" src="{{ site.promo_image.url }}" title="Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду" alt="Максимальный выигрыш в слот {{ site.slot_name }} по нашему промокоду" loading="lazy">
+                    <img loading="lazy" src="{{ site.promo_image.url }}"
+                         title="Максимальный выигрыш в слот {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} по нашему промокоду"
+                         alt="Максимальный выигрыш в слот {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} по нашему промокоду" loading="lazy">
                 </div>
             </div>
         {% endif %}
 
-        {% if site.demo %}
+        {% if site.demo or content.first.demo %}
             <div class="box has-background-dark has-text-light m-0 p-2"
                  id="playdemo">
-                <h2 class="title is-4 has-text-light has-background-dark">Играть демо в {{ site.slot_name }}</h2>
+                <h2 class="title is-4 has-text-light has-background-dark">
+                    Играть демо в {% if content.first.demo %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}
+                </h2>
                 <div class="box has-background-grey has-text-light ">
-
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                         <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image.url }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
                              id="iframeContainer">
@@ -255,46 +266,45 @@
                                     </span>
                                 <span>Играть демо</span>
                             </button>
-                        <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
+                            <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
                                class="loadIframeBtn"></a>
                         </div>
-
                     </div>
                     <div class="has-text-centered">
-                        <a class="button is-primary mt-3 pl" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_new_window" onclick="ym(ymCounter, 'reachGoal', 'demo_new_window'); return true;">Открыть в новом окне</a>
-                        <a class="button is-primary mt-3 ms-3 pl" target="_blank" href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_bonus_button" onclick="ym(ymCounter, 'reachGoal', 'demo_bonus_button'); return true;">Бонус 100 FS</a>
+                        <a class="button is-primary mt-3 pl" target="_blank"
+                           href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_new_window"
+                           onclick="ym(ymCounter, 'reachGoal', 'demo_new_window'); return true;">Открыть в новом
+                            окне</a>
+                        <a class="button is-primary mt-3 ms-3 pl" target="_blank"
+                           href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_bonus_button"
+                           onclick="ym(ymCounter, 'reachGoal', 'demo_bonus_button'); return true;">Бонус 100 FS</a>
                     </div>
-
-
-
-
                 </div>
-
-
-
             </div>
         {% endif %}
 
         {% if symbols %}
             <div class="box has-background-dark has-text-light m-1 p-4">
                 <h2 class="title is-4 has-text-light has-background-dark">Символы и коэффициенты
-                    в {{ site.slot_name }} </h2>
-
+                    в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} </h2>
                 <div class="box has-background-grey has-text-light p-1">
-
                     <div class="table-container">
-                      <table class="table has-background-grey p-1 symbols-table">
-                          <tr>
-                            {% for symbol in symbols %}
-                                <td class="p-1">
+                        <table class="table has-background-grey p-1 symbols-table">
+                            <tr>
+                                {% for symbol in symbols %}
+                                    <td class="p-1">
                                     <span class="box has-background-dark has-text-light symbol-block has-text-centered is-size-7">
-                                        <img loading="lazy" src="{{ symbol.image.url }}" title="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}" alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}" style="min-width: 150px !important;">
+                                        <img loading="lazy" src="{{ symbol.image.url }}" title="Символ
+                                                {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}"
+                                             alt="Символ
+                                                     {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}"
+                                             style="min-width: 150px !important;">
                                         <p class="is-size-7">{{ symbol.info|safe }}</p>
                                     </span>
-                                </td>
-                            {% endfor %}
-                          </tr>
-                      </table>
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        </table>
                     </div>
 
                 </div>
@@ -324,56 +334,57 @@
             {% endif %}
 
             {% if site.author %}
-                        <hr>
+                <hr>
                 <p>Материал проверен экспертом сайта <b>{{ site.allowed_domain|upper }}</b>:</p>
-                        <div class="box">
-                            <div class="columns">
-                                <div class="column is-one-fifth">
+                <div class="box">
+                    <div class="columns">
+                        <div class="column is-one-fifth">
 
-                                    <figure class="image is-96x96 m-auto">
-                                        <img class="is-rounded"
-                                                src="{{ site.author.photo.url }}"
-                                                alt="{{ site.author.position }} {{ site.allowed_domain|upper }}"
-                                        />
-                                    </figure>
-                                </div>
-                                <div class="column is-one-quarter">
-                                    <p class="title is-5">{{ site.author.name }}</p>
-                                    <p class="subtitle is-6">{{ site.author.position }} {{ site.allowed_domain|upper }}</p>
-                                </div>
-                                <div class="column">
-                                    <p class="subtitle is-6">{{ site.author.short_bio }}</p>
-                                </div>
-                            </div>
+                            <figure class="image is-96x96 m-auto">
+                                <img class="is-rounded"
+                                     src="{{ site.author.photo.url }}"
+                                     alt="{{ site.author.position }} {{ site.allowed_domain|upper }}"
+                                />
+                            </figure>
                         </div>
+                        <div class="column is-one-quarter">
+                            <p class="title is-5">{{ site.author.name }}</p>
+                            <p class="subtitle is-6">{{ site.author.position }} {{ site.allowed_domain|upper }}</p>
+                        </div>
+                        <div class="column">
+                            <p class="subtitle is-6">{{ site.author.short_bio }}</p>
+                        </div>
+                    </div>
+                </div>
 
 
 
-                    {% endif %}
+            {% endif %}
 
 
         </div>
 
-    {% if site.provider_description %}
-    <div class="box has-background-dark has-text-light m-1">
-            <h2 class="title is-4 has-text-light has-background-dark">О провадере {{ site.provider_name }}</h2>
-    <p>{{ site.provider_description }}</p>
+        {% if site.provider_description %}
+            <div class="box has-background-dark has-text-light m-1">
+                <h2 class="title is-4 has-text-light has-background-dark">О провадере {{ site.provider_name }}</h2>
+                <p>{{ site.provider_description }}</p>
 
 
-        </div>
-    {% endif %}
+            </div>
+        {% endif %}
 
         {% if images %}
             <div class="box has-background-dark has-text-light m-1 p-4">
                 <h2 class="title is-4 has-text-light has-background-dark">Игровой интерфейс
-                     {{ site.slot_name }} </h2>
+                    {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} </h2>
 
                 <div class="box has-background-grey has-text-light">
                     <div class="columns is-multiline">
                         {% for image in images %}
                             <div class="column is-6">
                                 <span class="box has-background-dark has-text-light symbol-block has-text-centered">
-                                    <img loading="lazy" src="{{ image.image.url }}" alt="{{ image.title }}" title="{{ image.title }}">
+                                    <img loading="lazy" src="{{ image.image.url }}" alt="{{ image.title }}"
+                                         title="{{ image.title }}">
                                     <h3>{{ image.description|safe }}</h3>
                                 </span>
                             </div>
@@ -404,63 +415,62 @@
                         </div>
                     </div>
                 {% endfor %}
-            <h3 class="title is-4 has-text-light has-background-dark">Оставить комментарий</h3>
+                <h3 class="title is-4 has-text-light has-background-dark">Оставить комментарий</h3>
                 <form id="comment-form">
                     <div class="field is-horizontal">
-                      <div class="field-label is-normal ">
-                        <label class="label has-text-light">От кого</label>
-                      </div>
-                      <div class="field-body">
-                        <div class="field">
-                          <p class="control is-expanded has-icons-left">
-                            <input class="input" type="text" placeholder="Имя">
-                            <span class="icon is-small is-left">
+                        <div class="field-label is-normal ">
+                            <label class="label has-text-light">От кого</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left">
+                                    <input class="input" type="text" placeholder="Имя">
+                                    <span class="icon is-small is-left">
                               <i class="fas fa-user"></i>
                             </span>
-                          </p>
-                        </div>
-                        <div class="field">
-                          <p class="control is-expanded has-icons-left has-icons-right">
-                            <input class="input is-success" type="email" placeholder="Email" value="Email">
-                            <span class="icon is-small is-left">
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control is-expanded has-icons-left has-icons-right">
+                                    <input class="input is-success" type="email" placeholder="Email" value="Email">
+                                    <span class="icon is-small is-left">
                               <i class="fas fa-envelope"></i>
                             </span>
-                            <span class="icon is-small is-right">
+                                    <span class="icon is-small is-right">
                               <i class="fas fa-check"></i>
                             </span>
-                          </p>
+                                </p>
+                            </div>
                         </div>
-                      </div>
                     </div>
 
 
-
                     <div class="field is-horizontal">
-                      <div class="field-label is-normal">
-                        <label class="label has-text-light">Текст комментария</label>
-                      </div>
-                      <div class="field-body">
-                        <div class="field">
-                          <div class="control">
-                            <textarea class="textarea" placeholder="Текст комментария"></textarea>
-                          </div>
+                        <div class="field-label is-normal">
+                            <label class="label has-text-light">Текст комментария</label>
                         </div>
-                      </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <textarea class="textarea" placeholder="Текст комментария"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="field is-horizontal">
-                      <div class="field-label">
-                        <!-- Left empty for spacing -->
-                      </div>
-                      <div class="field-body">
-                        <div class="field">
-                          <div class="control">
-                            <button class="button is-primary">
-                              Отправить
-                            </button>
-                          </div>
+                        <div class="field-label">
+                            <!-- Left empty for spacing -->
                         </div>
-                      </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary">
+                                        Отправить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -475,46 +485,63 @@
                     <a class="button is-secondary is-small"
                        href="/page/{{ page.slug }}/">{{ page.title }}</a>
                 {% endfor %}
-            {% if site.tlg_link %}
-                <a class="button is-secondary is-small"
-                   href="{{ site.tlg_link }}/?placement=tg_button" onclick="ym(ymCounter, 'reachGoal', 'tg_button'); return true;">Telegram
-                    канал {{ site.slot_name }}</a>
-            {% endif %}
+                {% if site.tlg_link %}
+                    <a class="button is-secondary is-small"
+                       href="{{ site.tlg_link }}/?placement=tg_button"
+                       onclick="ym(ymCounter, 'reachGoal', 'tg_button'); return true;">Telegram
+                        канал {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</a>
+                {% endif %}
             </div>
         </div>
 
 
-    <footer>
-        <div class="box  has-text-centered has-background-dark has-text-light m-1">
-<div class="is-size-7 has-text-centered">
+        <footer>
+            <div class="box  has-text-centered has-background-dark has-text-light m-1">
+                <div class="is-size-7 has-text-centered">
                     <h3 class="title is-4 has-text-light has-background-dark">
                         {{ site.allowed_domain|upper }}
                     </h3>
-                    Сайт использует IP адреса, сookie и данные геолокации пользователей сайта. Условия использования содержатся в <a href="/page/privacy-policy/">Политике конфиденциальности</a> и <a href="/page/terms/">Правилах сайта</a><br />
-                    <span class="is-size-3">18+</span><br />
-                    Данный портал предназначен для ознакомления только для лиц, достигших возраста 18 лет. Мы не рекламируем услуги онлайн-казино. Сайт {{ site.allowed_domain|upper }} носит исключительно информационный характер и не пропагандирует азартные игры среди несовершеннолетних граждан.<br />
-                    Администрация сайта {{ site.allowed_domain|upper }} не несет никакой ответственности за ознакомление с материалами лицами, не достигшими восемнадцатилетнего возраста. Любой контент, представленный на страницах сайта {{ site.allowed_domain|upper }}, является исключительно информационным.
+                    Сайт использует IP адреса, сookie и данные геолокации пользователей сайта. Условия использования
+                    содержатся в <a href="/page/privacy-policy/">Политике конфиденциальности</a> и <a
+                        href="/page/terms/">Правилах сайта</a><br/>
+                    <span class="is-size-3">18+</span><br/>
+                    Данный портал предназначен для ознакомления только для лиц, достигших возраста 18 лет. Мы не
+                    рекламируем услуги онлайн-казино. Сайт {{ site.allowed_domain|upper }} носит исключительно
+                    информационный характер и не пропагандирует азартные игры среди несовершеннолетних граждан.<br/>
+                    Администрация сайта {{ site.allowed_domain|upper }} не несет никакой ответственности за ознакомление
+                    с материалами лицами, не достигшими восемнадцатилетнего возраста. Любой контент, представленный на
+                    страницах сайта {{ site.allowed_domain|upper }}, является исключительно информационным.
 
 
-                <p>Полное или частичное копирование материалов сайта {{ site.allowed_domain|upper }} возможно только с письменного разрешения редакции. По вопросам сотрудничества обращайтесь через <a href="/page/feedback/"> форму обратной связи</a> или по электронной почте <a href="mailto:info@{{ site.allowed_domain }}">info@{{ site.allowed_domain }}</a>.</p>
+                    <p>Полное или частичное копирование материалов сайта {{ site.allowed_domain|upper }} возможно только
+                        с письменного разрешения редакции. По вопросам сотрудничества обращайтесь через <a
+                                href="/page/feedback/"> форму обратной связи</a> или по электронной почте <a
+                                href="mailto:info@{{ site.allowed_domain }}">info@{{ site.allowed_domain }}</a>.</p>
 
-                <p>Любой контент, размещаемый на страницах сайта {{ site.allowed_domain|upper }}, регулярно обновляется и поддерживается в актуальном
-                    состоянии. Пользуйтесь только проверенными источниками информации.</p>
-                <p>Сайт {{ site.allowed_domain|upper }} носит исключительно информационный характер и не принимает денежных платежей со стороны
-                    пользователей.</p>
-                <p>Азартные игры должны расцениваться как развлечение, а не как способ заработка. Чрезмерное увлечение может
-                    привести к стремительному развитию <a href="/page/ludomania/">игровой зависимости</a>, играйте <a href="/page/otvetstvennaya-igra/">ответственно</a>. </p>
+                    <p>Любой контент, размещаемый на страницах сайта {{ site.allowed_domain|upper }}, регулярно
+                        обновляется и поддерживается в актуальном
+                        состоянии. Пользуйтесь только проверенными источниками информации.</p>
+                    <p>Сайт {{ site.allowed_domain|upper }} носит исключительно информационный характер и не принимает
+                        денежных платежей со стороны
+                        пользователей.</p>
+                    <p>Азартные игры должны расцениваться как развлечение, а не как способ заработка. Чрезмерное
+                        увлечение может
+                        привести к стремительному развитию <a href="/page/ludomania/">игровой зависимости</a>, играйте
+                        <a href="/page/otvetstvennaya-igra/">ответственно</a>. </p>
+                </div>
+                <div class="is-size-7 has-text-centered">
+                    {% for res in gambling_resources %}
+                        <a href="{{ res.url }}?" target="_blank" rel="nofollow"><img src="{{ res.logo.url }}"
+                                                                                     alt="{{ res.name }}"
+                                                                                     title="{{ res.name }}"
+                                                                                     width="100"/></a>
+                    {% endfor %}
+                </div>
+
             </div>
-            <div class="is-size-7 has-text-centered">
-                {% for res in gambling_resources %}
-                    <a href="{{ res.url }}?" target="_blank" rel="nofollow"><img src="{{ res.logo.url }}" alt="{{ res.name }}" title="{{ res.name }}" width="100"/></a>
-                {% endfor %}
-            </div>
-
-        </div>
 
 
-    </footer>
+        </footer>
 
     </div>
 </section>
@@ -546,6 +573,9 @@
  }
  }
 }
+
+
+
     </script>
 {% endif %}
 
@@ -563,14 +593,17 @@
  }{% if not forloop.last %}{% endif %}
 {% endfor %}]
 }
+
+
+
     </script>
 {% endif %}
 
-    <script type="application/ld+json">
+<script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "VideoGame",
-            "name": "{{ site.slot_name }}",
+            "name": "{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}",
             "image": "https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}",
             "description": "{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}.",
             "applicationCategory": "Game",
@@ -581,9 +614,12 @@
                 "name": "{{ site.allowed_domain|upper }}"
             }
         }
-    </script>
 
-    <script type="application/ld+json">
+
+
+</script>
+
+<script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
@@ -598,7 +634,10 @@
             },
             "brand": "{{ site.allowed_domain|upper }}"
         }
-    </script>
+
+
+
+</script>
 
 <script type="text/javascript">
     document.querySelectorAll('.promo-code-button').forEach(function (promoButton) {
@@ -632,32 +671,32 @@
 </script>
 
 <script type="text/javascript">
-        $(document).ready(function () {
-            $(".loadIframeBtn").on("click", function () {
-                // Создаем элемент iframe
-                var iframe = $("<iframe>");
+    $(document).ready(function () {
+        $(".loadIframeBtn").on("click", function () {
+            // Создаем элемент iframe
+            var iframe = $("<iframe>");
 
-                // Устанавливаем атрибуты iframe (src, width, height и т.д.)
-                iframe.attr({
-                    src: "{{ site.demo|safe }}", // ваш URL для iframe
-                    width: "100%",
-                    height: "100%",
-                    frameborder: "0",
-                    allowfullscreen: true
-                });
-
-                // Вставляем iframe в контейнер
-                $("#iframeContainer").html(iframe);
-
-                setTimeout(function() {
-                    var popup = document.getElementById("popup");
-                    popup.classList.add("is-active");
-                }, 20000);
-
+            // Устанавливаем атрибуты iframe (src, width, height и т.д.)
+            iframe.attr({
+                src: "{% if content.first.demo %}{{ content.first.demo|safe }}{% else %}{{ site.demo|safe }}{% endif %}", // ваш URL для iframe
+                width: "100%",
+                height: "100%",
+                frameborder: "0",
+                allowfullscreen: true
             });
-        });
 
-    </script>
+            // Вставляем iframe в контейнер
+            $("#iframeContainer").html(iframe);
+
+            setTimeout(function () {
+                var popup = document.getElementById("popup");
+                popup.classList.add("is-active");
+            }, 20000);
+
+        });
+    });
+
+</script>
 
 <script>
     $(document).ready(function () {
@@ -696,8 +735,6 @@
 
 
 </script>
-
-
 
 
 </body>
