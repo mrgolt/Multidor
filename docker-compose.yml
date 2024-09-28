@@ -1,6 +1,7 @@
 services:
 
   multidor:
+    container_name: multidor
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,6 +14,7 @@ services:
     restart: always
 
   pragmatic:
+    container_name: pragmatic
     build:
       context: ./pragmat
       dockerfile: Dockerfile
