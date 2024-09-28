@@ -163,11 +163,18 @@
     {% else %}
         {{ site.casino.custom_css|safe }}
     {% endif %}
-        <style>
-            .logo-container{
-                border-radius: 0px !important;
-            }
-        </style>
+    <style>
+        .logo-container {
+            border-radius: 0px !important;
+        }
+
+        .logo-image-bottom {
+            max-width: 100px;
+        }
+        .logo-image {
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -193,7 +200,8 @@
     <div class="container">
 
         <a class="navbar-brand d-flex flex-row" href="/">
-            <img src="{{ site.casino.logo_svg.url }}" alt="{{ site.casino.display_name }}" class="logo-image logo-image-bottom"/>
+            <img src="{{ site.casino.logo_svg.url }}" alt="{{ site.casino.display_name }}"
+                 class="logo-image logo-image-bottom"/>
         </a>
 
         <ul class="navbar-nav ml-auto flex-row">
