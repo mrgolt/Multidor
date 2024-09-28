@@ -12,6 +12,8 @@ services:
       - ./multidor/db.sqlite3:/app/multidor/db.sqlite3
       - ./multidor/media:/app/multidor/media
     restart: always
+    networks:
+      - shared-network
 
   pragmatic:
     container_name: pragmatic
@@ -22,6 +24,8 @@ services:
     ports:
       - 8888
     restart: always
+    networks:
+      - shared-network
 
   nginx:
     image: nginx:latest
@@ -41,4 +45,3 @@ services:
 
 networks:
   shared-network:
-    driver: bridge
