@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if content.first.is_main %}
-        <title>{{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
+        <title>{{ content.first.title|upper }} - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% else %}
         <title>{{ site.slot_name|upper }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот
             от {{ site.provider_name }}</title>
@@ -128,7 +128,7 @@
                 </figure>
             </a>
             <a class="navbar-item" href="/">
-                <h2 class="title is-3 has-text-light is-size-7-mobile">{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}
+                <h2 class="title is-3 has-text-light is-size-7-mobile">{% if content.first.is_version_page %}{{ content.first.title|upper }}{% else %}{{ site.slot_name|upper }}{% endif %}
                 </h2>
             </a>
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
