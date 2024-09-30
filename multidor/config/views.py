@@ -28,7 +28,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'sugar-rush.best'
+        domain = 'vavada-play-24.top'
 
     classes = [
         'has-game-preview',

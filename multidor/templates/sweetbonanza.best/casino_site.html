@@ -186,10 +186,10 @@
         <ul class="navbar-nav ml-auto d-none d-md-flex flex-row">
             <li class="nav-item">
                 <a class="btn btn-warning btn-lg rounded-pill border-0 px-5 mr-2 my-1"
-                   href="/go/{{ site.casino.name }}/" role="button">Регистрация</a>
+                   href="/" role="button">Регистрация</a>
             </li>
             <li class="nav-item active">
-                <a class="btn btn-success btn-lg rounded-pill border-0 px-5  my-1" href="/go/{{ site.casino.name }}/"
+                <a class="btn btn-success btn-lg rounded-pill border-0 px-5  my-1" href="/"
                    role="button">Войти</a>
             </li>
         </ul>
@@ -207,11 +207,11 @@
         <ul class="navbar-nav ml-auto flex-row">
             <li class="nav-item">
                 <a class="btn btn-warning btn-sm rounded-pill border-0 px-3 py-2 mr-1 my-1"
-                   href="/go/{{ site.casino.name }}/" role="button">Регистрация</a>
+                   href="/" role="button">Регистрация</a>
             </li>
             <li class="nav-item active">
                 <a class="btn btn-success btn-sm rounded-pill border-0 px-3 py-2 my-1"
-                   href="/go/{{ site.casino.name }}/" role="button">Войти</a>
+                   href="/" role="button">Войти</a>
             </li>
 
         </ul>
@@ -249,7 +249,7 @@
 </div>
 
 <div class="container mt-3 p-0 rounded-3">
-    <a href="/go/{{ site.casino.name }}/">
+    <a href="/">
         <img src="/media/img/hero_2_{{ domain_hash }}.webp" alt="{{ site.casino.display_name }}"
              class="img-fluid hero-image">
     </a>
@@ -264,5 +264,40 @@
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": "{{ site.casino.display_name }}",
+            "image": "https://{{ site.allowed_domain }}/media/img/interface_{{ domain_hash }}.webp",
+            "description": "{{ content.first.title }}. {{ bonuses.first.name|striptags }}.",
+            "applicationCategory": "Game",
+            "applicationSubcategory": "Slot Machine",
+            "operatingSystem": "Multi-platform",
+            "author": {
+                "@type": "Organization",
+                "name": "{{ site.allowed_domain|upper }}"
+            }
+        }
+</script>
+
+<script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://{{ site.allowed_domain }}/#organization",
+            "name": "{{ site.casino.display_name }}",
+            "url": "https://{{ site.allowed_domain }}/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://{{ site.allowed_domain }}/media/img/interface_{{ domain_hash }}.webp",
+                "width": "360",
+                "height": "360"
+            },
+            "brand": "{{ site.allowed_domain|upper }}"
+        }
+</script>
+
 </body>
 </html>
