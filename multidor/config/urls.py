@@ -2,6 +2,18 @@ from django.urls import path, re_path
 from .views import *
 from django.views.generic.base import TemplateView
 
+class RobotsView(TemplateView):
+    template_name = "robots.txt"
+    content_type = "text/plain"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Получаем домен из запроса
+        request = self.request
+        domain = request.get_host()  # Получаем домен
+        context['sitemap_url'] = f'https://{domain}/sitemap.xml'
+        return context
+
 urlpatterns = [
 
     path('api/create-site/', create_site, name='create_site'),
@@ -25,6 +37,6 @@ urlpatterns = [
     path('sitemap.xml', sitemap_generator, name='sitemap_generator'),
     path('all-stats/', all_stats, name='all_stats'),
     path('', custom_serve),
-    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
+    path("robots.txt", RobotsView.as_view()),
     #path('<path:path>', custom_serve),
 ]
