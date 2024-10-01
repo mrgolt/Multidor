@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-79zfvoi+5k$&w!kf3hw%6hbauy^8k5imh&!jw4et6%+%d_h+fm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["pragmatic-play.cloud", "test.pragmatic-play.cloud", "127.0.0.1"]
+ALLOWED_HOSTS = ["pragmatic-play.cloud", "*.pragmatic-play.cloud", "127.0.0.1"]
 
 
 # Application definition
@@ -59,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pragmatic.middleware.CustomRefererMiddleware',
 ]
 
 ROOT_URLCONF = 'pragmatic.urls'

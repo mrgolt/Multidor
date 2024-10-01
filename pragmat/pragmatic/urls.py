@@ -25,13 +25,14 @@ from django.conf.urls.static import static
 router = DefaultRouter()
 router.register(r'slots', SlotViewSet)
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('slots/', include('slots.urls')),
     path('page/<slug:slug>/', page_detail, name='page_detail'),
     path('api/', include(router.urls)),
+    path('play/<slug:slug>/', views.redirect_view, name='redirect_view'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

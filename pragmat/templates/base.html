@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <title>
         {% if page.title %}{{ page.title }} - {% endif %}
-        {% if slot.name %}Слот {{ slot.name }} - {% endif %}
+        {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
         {% if slots %}Все слоты - {% endif %}
-        Pragmatic Play - самый популярный провайдер слотов. Играйте на нашем сайте в любой слот прямо сейчас!
+        Pragmatic Play - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!
     </title>
 
     <!-- SEO Meta Tags -->
@@ -132,6 +132,22 @@
                 -webkit-transform: rotate(360deg);
                 transform: rotate(360deg);
             }
+        }
+
+        .content {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        .gradient-block{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #160F1D, rgba(22, 15, 29, 0));
+            z-index: 1;
         }
     </style>
 
@@ -259,10 +275,10 @@
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
-                    <a href="/"
+                    <a href="/play/kometa/"
                        class="btn btn-primary w-100" target="_blank" rel="noopener">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
-                        &nbsp;Получить бонус
+                        &nbsp;Получить бонус 100 FS
                     </a>
                 </div>
             </div>
@@ -275,10 +291,10 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="/"
+            <a href="/play/kometa/"
                class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>
-                &nbsp;Получить бонус
+                &nbsp;Получить бонус 100 FS
             </a>
         </div>
     </header>
@@ -373,5 +389,32 @@
 
 <!-- Main Theme Script -->
 <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+<script>
+document.getElementById('showText').addEventListener('click', function() {
+    // Get the content div
+    var contentDiv = document.querySelector('.content');
+    var gradientBlock = document.querySelector('.gradient-block');
+
+    // Check the current height of the content div
+    if (contentDiv.style.height === '350px' || contentDiv.style.height === '') {
+        // Change height to show all text
+        contentDiv.style.height = 'auto'; // Set to auto to show all content
+        gradientBlock.style.display = 'none'; // Hide the gradient block
+        this.textContent = 'Скрыть текст'; // Change button text
+        this.querySelector('#showMoreArrow').classList.remove('bx-down-arrow-alt'); // Remove down arrow
+        this.querySelector('#showMoreArrow').classList.add('bx-up-arrow-alt'); // Add up arrow
+    } else {
+        // Reset height to original
+        contentDiv.style.height = '350px'; // Reset to original height
+        gradientBlock.style.display = 'block'; // Show the gradient block again
+        this.textContent = 'Читать полностью'; // Change button text back
+        this.querySelector('#showMoreArrow').classList.remove('bx-up-arrow-alt'); // Remove up arrow
+        this.querySelector('#showMoreArrow').classList.add('bx-down-arrow-alt'); // Add down arrow
+    }
+});
+
+</script>
+
 </body>
 </html>

@@ -15,6 +15,8 @@ def slot_list(request):
 
     }
 
+    slots = Slot.objects.all().order_by('-sorting_order')
+
     if slot_name:
 
         if slot_name in keywords_mapping:
@@ -23,13 +25,13 @@ def slot_list(request):
             for keyword in keywords:
                 q_objects |= Q(description__icontains=keyword)
 
-            slots = Slot.objects.filter(q_objects)
+            slots = slots.filter(q_objects)
         else:
-            slots = Slot.objects.filter(
+            slots = slots.filter(
                 Q(name__icontains=slot_name) | Q(folk_name__icontains=slot_name) | Q(description__icontains=slot_name))
 
-    else:
-        slots = Slot.objects.all()
+
+
 
     # Параметры пагинации
     slots_per_page = 18

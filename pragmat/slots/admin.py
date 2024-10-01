@@ -5,7 +5,7 @@ from .models import *
 
 
 class SlotAdmin(admin.ModelAdmin):
-    list_display = ('name', 'folk_name', 'sorting_order', 'users_choice', 'is_new', 'is_popular')
+    list_display = ('id', 'name', 'folk_name', 'sorting_order', 'users_choice', 'is_new', 'is_popular')
     search_fields = ['name']
 
 
