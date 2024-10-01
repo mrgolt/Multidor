@@ -37,6 +37,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SECURE_REFERRER_POLICY = 'origin'
+
 # Application definition
 
 INSTALLED_APPS = [
