@@ -45,8 +45,9 @@ class Sites(models.Model):
     background_color_secondary = models.CharField(max_length=10, default='#33263a', blank=True)
     primary_color = models.CharField(max_length=10, default='darksalmon', blank=True)
     secondary_color = models.CharField(max_length=10, default='#48c78e', blank=True)
-    author = models.ForeignKey(Author, on_delete=models.PROTECT, default=None, null=True)
+    author = models.ForeignKey(Author, on_delete=models.PROTECT, default=None, null=True, blank=True)
     casino = models.ForeignKey('Casino', on_delete=models.CASCADE, null=True, blank=True)
+    slot_rtp = models.CharField(max_length=10, default='98.96', null=True, blank=True)
 
     def __str__(self):
         return self.allowed_domain

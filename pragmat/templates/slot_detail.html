@@ -38,26 +38,20 @@
     <!-- Story -->
     <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
         <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto" style="max-width: 46.625rem;">
-
             <h1 class="h1 mb-4">
                       <span class="text-primary">
                           {{ slot.name }}{% if slot.folk_name %} ({{ slot.folk_name }}){% endif %}
                       </span>
             </h1>
-
             <div class="content">
                 {{ slot.description|safe }}
                 <div class="gradient-block"></div>
             </div>
-
             <button class="btn btn-outline-primary btn-lg w-100 mt-3" id="showText">
                 Читать полностью
                 <i class="bx bx-down-arrow-alt fs-xl ms-2" id="showMoreArrow"></i>
             </button>
-
         </div>
-
-
     </section>
 
     {% if reviews %}
