@@ -195,7 +195,7 @@
             <a href="/" class="navbar-brand pe-3">
                 <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}" width="147"
                      alt="{{ site.slot_name }}">
-                <span class="d-none d-md-block px-2">{{ site.slot_name }}</span>
+                <span class="d-none d-md-block px-3">{{ site.slot_name }}</span>
 
             </a>
             <div id="navbarNav" class="offcanvas offcanvas-end">
@@ -205,36 +205,19 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Версии игры</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Меню</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column">
                                         <ul class="list-unstyled mb-3">
-                                            <li><a href="about-v1.html" class="dropdown-item py-1">Sweet Bonanza
-                                                Xmas</a></li>
-                                            <li><a href="about-v2.html" class="dropdown-item py-1">Sweet Bonanza
-                                                Megaways</a></li>
+                                            {% for page in inner_pages %}
+                                                <li><a href="/page/{{ page.slug }}/" class="dropdown-item py-1">{{ page.title }}</a></li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Язык</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="account-details.html" class="dropdown-item">Русский</a></li>
-                                <li><a href="account-security.html" class="dropdown-item">Английский</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Страна</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="account-details.html" class="dropdown-item">Россия</a></li>
-                                <li><a href="account-security.html" class="dropdown-item">Казахстан</a></li>
-                                <li><a href="account-signup.html" class="dropdown-item">Кения</a></li>
-                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -276,10 +259,13 @@
                     <div class="text-md-start text-center">
                         <h1 class="display-2 mb-lg-4 mb-3">{{ site.slot_name }}</h1>
                         <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Официальный
-                            сайт самого популярного игрового слота от {{ site.provider_name }}. Играй демо и на реальные деньги
+                            сайт популярного игрового слота от {{ site.provider_name }}. <br />Играй демо и на реальные деньги
                             прямо сейчас!</p>
-                        <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }} <br /> Промокод: {{ bonuses.first.promo_code }}</b></h2>
-                        <a href="#" class="btn btn-lg btn-info me-2 mb-2">Скопировать промокод</a>
+                        <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</h2>
+                        <button class="btn btn-lg btn-info me-2 mb-2">
+                            <span class="promo-label">Промокод</span>:&nbsp;<span
+                                class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
+                        </button>
                         <a href="#play-game" class="btn btn-lg btn-primary mb-2" data-scroll>Играть сейчас</a>
                     </div>
                     <ul class="list-unstyled row row-cols-1 gy-sm-2 gy-1 gx-sm-4 gx-2 mt-lg-5 mt-4 mx-md-0 mx-auto pt-lg-0 pt-md-2 mb-md-5 mb-4 pb-xl-4 pb-lg-3 pb-md-2 pb-sm-0 pb-2 text-nowrap"
