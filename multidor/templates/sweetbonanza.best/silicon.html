@@ -169,7 +169,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, #160F1D, rgba(22, 15, 29, 0));
+            background: linear-gradient(to top, #581C5A, rgba(22, 15, 29, 0));
             z-index: 1;
         }
     </style>
@@ -195,10 +195,10 @@
             <a href="/" class="navbar-brand pe-3">
                 <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}" width="147"
                      alt="{{ site.slot_name }}">
-                <span class="d-none d-md-block">{{ site.slot_name }}</span>
+                <span class="d-none d-md-block px-2">{{ site.slot_name }}</span>
 
             </a>
-            <div id="navbarNav" class="offcanvas offcanvas-end d-none">
+            <div id="navbarNav" class="offcanvas offcanvas-end">
                 <div class="offcanvas-header border-bottom">
                     <h5 class="offcanvas-title">Меню</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
@@ -1149,6 +1149,37 @@ document.getElementById('showText').addEventListener('click', function() {
         this.querySelector('#showMoreArrow').classList.add('bx-down-arrow-alt'); // Add down arrow
     }
 });
+
+</script>
+
+<script type="text/javascript">
+    document.querySelectorAll('.promo-code-button').forEach(function (promoButton) {
+
+        promoButton.addEventListener('click', function () {
+            // Копируем текст
+            const textToCopy = promoButton.querySelector('.promo-code-text-button').textContent;
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const promoLabel = promoButton.querySelector('.promo-label');
+            promoLabel.textContent = "Скопирован";
+            setTimeout(function () {
+                promoLabel.textContent = "Промокод";
+            }, 2000);
+        });
+
+        promoButton.addEventListener('mouseenter', function () {
+            promoButton.querySelector('.promo-label').textContent = "Копировать";
+        });
+
+        promoButton.addEventListener('mouseleave', function () {
+            promoButton.querySelector('.promo-label').textContent = "Промокод";
+        });
+    });
 
 </script>
 
