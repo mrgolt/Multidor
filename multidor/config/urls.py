@@ -38,5 +38,6 @@ urlpatterns = [
     path('all-stats/', all_stats, name='all_stats'),
     path('', custom_serve),
     path("robots.txt", RobotsView.as_view()),
+    path('<str:indexnow_key>.txt', index_now, name='index_now'),
     #path('<path:path>', custom_serve),
 ]

@@ -560,3 +560,6 @@ def compute_hash(domain_name):
     hash_hex = hash_object.hexdigest()
 
     return hash_hex
+
+def index_now(request, indexnow_key):
+    return HttpResponse(indexnow_key)
