@@ -38,9 +38,9 @@ def slot_list(request):
     paginator = Paginator(slots, slots_per_page)  # Создаём объект Paginator
     page_obj = paginator.get_page(page_number)  # Получаем текущую страницу
 
-    popular_slots = Slot.objects.filter(is_popular=True)[:10]
-    new_slots = Slot.objects.filter(is_new=True)[:10]
-    users_choice_slots = Slot.objects.filter(users_choice=True)[:10]
+    popular_slots = Slot.objects.filter(is_popular=True).order_by('-id')[:10]
+    new_slots = Slot.objects.filter(is_new=True).order_by('-id')[:10]
+    users_choice_slots = Slot.objects.filter(users_choice=True).order_by('-id')[:10]
 
     context = {
         'slots': page_obj,  # Передаём объект страницы в контекст
@@ -56,9 +56,9 @@ def slot_list(request):
 def slot_detail(request, slug):
     slot = get_object_or_404(Slot, slug=slug)
     reviews = Review.objects.filter(slot=slot)[:10]
-    popular_slots = Slot.objects.filter(is_popular=True)[:10]
-    new_slots = Slot.objects.filter(is_new=True)[:10]
-    users_choice_slots = Slot.objects.filter(users_choice=True)[:10]
+    popular_slots = Slot.objects.filter(is_popular=True).order_by('-id')[:10]
+    new_slots = Slot.objects.filter(is_new=True).order_by('-id')[:10]
+    users_choice_slots = Slot.objects.filter(users_choice=True).order_by('-id')[:10]
 
     return render(request, 'slot_detail.html', {'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
 
