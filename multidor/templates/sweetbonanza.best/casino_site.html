@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ content.first.title }}</title>
+
+    {% if content.first.is_main %}
+        <title>{{ content.first.title }} - Рабочее зеркало {{ site.casino.display_name }}, игровые автоматы, личный кабинет {{ site.casino.display_name }}</title>
+    {% else %}
+        <title>{{ content.first.title }} - Официальный сайт {{ site.casino.display_name }} - Рабочее зеркало {{ site.casino.display_name }}, игровые автоматы, личный кабинет {{ site.casino.display_name }}</title>
+    {% endif %}
+
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% if site.casino.favicon %}<link rel="shortcut icon" type="image/png" href="{{ site.casino.favicon.url }}">{% endif %}
     <meta content="{{ content.first.description }}" name="description">
     <meta name="keywords" content="{{ content.first.keywords }}">
     {% if content.first.is_main %}
