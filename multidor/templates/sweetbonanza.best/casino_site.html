@@ -187,16 +187,16 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container logo-container">
-        <a class="navbar-brand d-flex flex-row" href="/">
+        <a class="navbar-brand d-flex flex-row" href="/go/{{ bonuses.first.redirect.name }}/">
             <img src="{{ site.casino.logo_svg.url }}" alt="{{ site.casino.display_name }}" class="logo-image"/>
         </a>
         <ul class="navbar-nav ml-auto d-none d-md-flex flex-row">
             <li class="nav-item">
                 <a class="btn btn-warning btn-lg rounded-pill border-0 px-5 mr-2 my-1"
-                   href="/" role="button">Регистрация</a>
+                   href="/go/{{ bonuses.first.redirect.name }}/" role="button">Регистрация</a>
             </li>
             <li class="nav-item active">
-                <a class="btn btn-success btn-lg rounded-pill border-0 px-5  my-1" href="/"
+                <a class="btn btn-success btn-lg rounded-pill border-0 px-5  my-1" href="/go/{{ bonuses.first.redirect.name }}/"
                    role="button">Войти</a>
             </li>
         </ul>
@@ -214,11 +214,11 @@
         <ul class="navbar-nav ml-auto flex-row">
             <li class="nav-item">
                 <a class="btn btn-warning btn-sm rounded-pill border-0 px-3 py-2 mr-1 my-1"
-                   href="/" role="button">Регистрация</a>
+                   href="/go/{{ bonuses.first.redirect.name }}/" role="button">Регистрация</a>
             </li>
             <li class="nav-item active">
                 <a class="btn btn-success btn-sm rounded-pill border-0 px-3 py-2 my-1"
-                   href="/" role="button">Войти</a>
+                   href="/go/{{ bonuses.first.redirect.name }}/" role="button">Войти</a>
             </li>
 
         </ul>
@@ -227,7 +227,7 @@
 </nav>
 
 <div class="container mt-3 p-0 ">
-    <a href="/">
+    <a href="/go/{{ bonuses.first.redirect.name }}/">
         <img src="/media/img/hero_1_{{ domain_hash }}.webp" alt="{{ site.casino.display_name }}"
              class="img-fluid hero-image">
     </a>
@@ -256,7 +256,7 @@
 </div>
 
 <div class="container mt-3 p-0 rounded-3">
-    <a href="/">
+    <a href="/go/{{ bonuses.first.redirect.name }}/">
         <img src="/media/img/hero_2_{{ domain_hash }}.webp" alt="{{ site.casino.display_name }}"
              class="img-fluid hero-image">
     </a>
