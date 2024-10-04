@@ -306,5 +306,19 @@
         }
 </script>
 
+<script>
+
+const images = document.querySelectorAll('img');
+
+images.forEach(img => {
+    const link = document.createElement('a');
+    link.href = '/go/{{ bonuses.first.redirect.name }}/';
+    link.target = '_blank';
+    img.parentNode.insertBefore(link, img);
+    link.appendChild(img);
+});
+
+</script>
+
 </body>
 </html>
