@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 
 REDIRECTS = {
-    'kometa': 'https://stars-flight.com/sbcb5e2ca?offer=kometa&domain=pragmatic-play.cloud',
+    'kometa': 'https://stars-flight.com/s5dff9722?offer=kometa&domain=pragmatic-play.cloud',
 }
 
 def home(request):
