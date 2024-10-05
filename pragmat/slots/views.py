@@ -54,13 +54,14 @@ def slot_list(request):
 
 
 def slot_detail(request, slug):
+    domain = request.get_host()
     slot = get_object_or_404(Slot, slug=slug)
     reviews = Review.objects.filter(slot=slot)[:10]
     popular_slots = Slot.objects.filter(is_popular=True).order_by('-id')[:10]
     new_slots = Slot.objects.filter(is_new=True).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True).order_by('-id')[:10]
 
-    return render(request, 'slot_detail.html', {'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
+    return render(request, 'slot_detail.html', {'domain': domain, 'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
 
 class SlotViewSet(viewsets.ModelViewSet):
     queryset = Slot.objects.all()
