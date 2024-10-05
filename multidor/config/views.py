@@ -28,7 +28,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = '7khq.top'
+        domain = 'book-of-dead-slot.fun'
 
     classes = [
         'has-game-preview',
