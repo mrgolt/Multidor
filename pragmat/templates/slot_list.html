@@ -53,7 +53,10 @@
                 <div class="position-relative">
                     <a href="{% url 'slot_detail' slug=slot.slug %}" class="d-block position-absolute w-100 h-100 top-0 start-0"
                        aria-label="{{ slot.name }}"></a>
-                    {% if slot.users_choice %}<span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">Выбор игроков</span>{% endif %}
+                <div class="position-absolute top-0 start-0 zindex-2 mt-3 ms-3">
+                    {% if slot.users_choice %}<span class="badge bg-primary">Выбор игроков</span>{% endif %}
+{#                    {% if slot.is_new %}<span class="badge bg-success ">Новинка</span>{% endif %}#}
+                </div>
 
                     <img src="{{ slot.logo.url }}" class="card-img-top"
                          alt="{{ slot.name }}">
