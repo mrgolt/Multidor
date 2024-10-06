@@ -5,12 +5,21 @@ from django.http import HttpResponse
 from .models import Site, Offer
 
 def get_site(request):
-    domain = request.META['HTTP_HOST']
+    # Получаем хост из запроса
+    domain_parts = request.META['HTTP_HOST'].split('.')
 
-    if domain == '127.0.0.1:8000':
-        domain = 'pragmatic-play.cloud'
+    # Проверяем, что домен содержит как минимум два элемента (например, 'pragmatic-play.cloud')
+    if len(domain_parts) >= 2:
+        # Берем последние два элемента (например, ['pragmatic-play', 'cloud'])
+        second_level_domain = '.'.join(domain_parts[-2:])
+    else:
+        # Если домен некорректный, возвращаем его как есть (на всякий случай)
+        second_level_domain = request.META['HTTP_HOST']
 
-    site = get_object_or_404(Site, domain=domain)
+    if second_level_domain == '127.0.0.1:8000':
+        second_level_domain = 'pragmatic-play.cloud'
+
+    site = get_object_or_404(Site, domain=second_level_domain)
 
     return site
 
