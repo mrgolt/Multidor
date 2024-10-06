@@ -9,7 +9,7 @@ def get_site(request):
     domain = request.META['HTTP_HOST']
 
     if domain == '127.0.0.1:8000':
-        domain = 'pragmatic-play.cloud'
+        domain = 'hacksawgames.online'
     else:
         domain = '.'.join(domain.split('.')[-2:])
 
@@ -25,9 +25,9 @@ def home(request):
 
     first_offer = site.offers.first()
 
-    popular_slots = Slot.objects.filter(is_popular=True).order_by('-id')[:10]
-    new_slots = Slot.objects.filter(is_new=True).order_by('-id')[:10]
-    users_choice_slots = Slot.objects.filter(users_choice=True).order_by('-id')[:10]
+    popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider).order_by('-id')[:12]
+    new_slots = Slot.objects.filter(is_new=True, provider=site.provider).order_by('-id')[:12]
+    users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:12]
     reviews = Review.objects.all()[:10]
 
     return render(request, template, {
@@ -36,6 +36,7 @@ def home(request):
         'reviews': reviews,
         'users_choice_slots': users_choice_slots,
         'offer': first_offer,
+        'site': site,
     })
 
 

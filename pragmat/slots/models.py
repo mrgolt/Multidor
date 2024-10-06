@@ -2,6 +2,11 @@ from django.db import models
 from autoslug import AutoSlugField
 from pragmatic.models import Provider, Site
 
+class SlotType(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Slot(models.Model):
     name = models.CharField(max_length=100)
@@ -18,6 +23,7 @@ class Slot(models.Model):
     is_new = models.BooleanField(default=False)
     is_popular = models.BooleanField(default=False)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default=1)
+    slot_type = models.ForeignKey(SlotType, on_delete=models.SET_NULL, null=True, default=1)
 
     def __str__(self):
         return self.name

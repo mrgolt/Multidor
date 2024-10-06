@@ -5,6 +5,8 @@ from rest_framework import viewsets
 from django.core.paginator import Paginator
 from django.db.models import Q
 from pragmatic.views import get_site
+from rest_framework.response import Response
+from rest_framework import status
 
 def slot_list(request):
 
@@ -49,7 +51,8 @@ def slot_list(request):
         'popular_slots': popular_slots,
         'new_slots': new_slots,
         'users_choice_slots': users_choice_slots,
-        'slot_name': slot_name
+        'slot_name': slot_name,
+        'site': site,
     }
 
     return render(request, site.slot_list_template, context)
@@ -65,16 +68,25 @@ def slot_detail(request, slug):
     new_slots = Slot.objects.filter(is_new=True, provider=site.provider).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:10]
 
-    return render(request, site.slot_detail_template, {'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
+    return render(request, site.slot_detail_template, {'site': site, 'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
 
 class SlotViewSet(viewsets.ModelViewSet):
     queryset = Slot.objects.all()
     serializer_class = SlotSerializer
 
-def page_detail(request, slug):
-    page = get_object_or_404(Page, slug=slug)
-    popular_slots = Slot.objects.filter(is_popular=True)[:10]
-    new_slots = Slot.objects.filter(is_new=True)[:10]
-    users_choice_slots = Slot.objects.filter(users_choice=True)[:10]
+    def dispatch(self, request, *args, **kwargs):
+        api_key = request.query_params.post('api_key')  # Получаем api_key из параметров запроса
+        if api_key != 'aB3dE5fG7hJ8kL9mN0pQ1rS2tU3vW4xYz':
+            return Response({'detail': 'Invalid API key'}, status=status.HTTP_403_FORBIDDEN)
+        return super().dispatch(request, *args, **kwargs)
 
-    return render(request, 'page_detail.html', {'page': page, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
+def page_detail(request, slug):
+
+    site = get_site(request)
+
+    page = get_object_or_404(Page, slug=slug)
+    popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider)[:10]
+    new_slots = Slot.objects.filter(is_new=True, provider=site.provider)[:10]
+    users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider)[:10]
+
+    return render(request, site.page_detail_template, {'site': site, 'page': page, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})

@@ -1,0 +1,229 @@
+{% extends 'hacksaw-base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Story -->
+<section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
+    <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
+        <h2 class="h1 mb-4">Слоты <span class="text-primary">{{ site.provider.name }}</span></h2>
+        <p class="mb-4">Выберите любимый слот и играйте в демо или на реальные деньги в казино.</p>
+    </div>
+</section>
+
+<!-- Page title + Filters -->
+<section class="container mb-1 pt-md-1 pt-lg-2 pt-xl-2">
+    <div class="d-lg-flex align-items-center justify-content-between py-2 mt-lg-2">
+        {% if slot_name %}
+            <h2 class="me-3">Поиск по запросу: {{ slot_name }}</h2>
+            {% else %}
+        <h2 class="me-3">Выберите слот</h2>
+        {% endif %}
+        <div class="d-md-flex mb-3">
+            <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">
+                <option value="all">Категория</option>
+                <option value="popular">Популярные</option>
+                <option value="new">Новые</option>
+            </select>
+            <div class="position-relative" style="min-width: 300px;">
+                <form action="{% url 'slot_list' %}" method="get">
+                    <input type="text" class="form-control pe-5" placeholder="Поиск" name="slot_name">
+                    <i class="bx bx-search text-nav fs-lg position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Slots -->
+    <section class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
+
+
+      <!-- Slots grid -->
+      <div class="masonry-grid row g-md-4 g-2 mb-2">
+
+          {% for slot in slots %}
+        <!-- Item -->
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+              <div class="position-relative zindex-2">
+                <h3 class="h5 text-light mb-2">{{ slot.name }}</h3>
+				<span class="fs-xs text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+              </div>
+            </div>
+            <div class="card-img">
+              <img
+                src="{{ slot.logo.url }}"
+                class="rounded-3 w-100 h-100" alt="{{ slot.name }}">
+            </div>
+          </a>
+        </div>
+          {% endfor %}
+
+
+      </div>
+
+    <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center py-4">
+                {% if slots.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ slots.previous_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}" class="page-link"
+                           aria-label="Previous page">
+                            <i class="bx bx-chevron-left mx-n1"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if slots.number > 3 %}
+                    <li class="page-item">
+                        <a href="?page=1{% if slot_name %}&slot_name={{ slot_name }}{% endif %}"
+                           class="page-link">1</a>
+                    </li>
+                    <li class="page-item">
+                        &hellip;
+                    </li>
+                {% endif %}
+
+                {% for num in slots.paginator.page_range %}
+                    {% if num >= slots.number|add:"-1" and num <= slots.number|add:"1" %}
+                        <li class="page-item {% if num == slots.number %}active{% endif %}">
+                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}" class="page-link">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if slots.number < slots.paginator.num_pages|add:"-2" %}
+                    <li class="page-item">
+                        &hellip;
+                    </li>
+                    <li class="page-item">
+                        <a href="?page={{ slots.paginator.num_pages }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}"
+                           class="page-link">{{ slots.paginator.num_pages }}</a>
+                    </li>
+                {% endif %}
+
+                {% if slots.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ slots.next_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}"
+                           class="page-link" aria-label="Next page">
+                            <i class="bx bx-chevron-right mx-n1"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </section>
+
+
+<!-- Brands (Carousel) -->
+<section class="container mt-2 mb-lg-1 mb-xl-3 pt-3 pt-lg-5 pb-5">
+    <h2 class="text-center pb-md-2">Лицензированные и сертифицированные Игры</h2>
+    <div class="swiper mx-n2" data-swiper-options='{
+    "slidesPerView": 2,
+    "pagination": {
+      "el": ".swiper-pagination",
+      "clickable": true
+    },
+    "breakpoints": {
+      "500": {
+        "slidesPerView": 3,
+        "spaceBetween": 8
+      },
+      "650": {
+        "slidesPerView": 4,
+        "spaceBetween": 8
+      },
+      "900": {
+        "slidesPerView": 6,
+        "spaceBetween": 8
+      },
+      "1100": {
+        "slidesPerView": 8,
+        "spaceBetween": 8
+      }
+    }
+  }'>
+        <div class="swiper-wrapper">
+
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/mgalogo@2x.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/gamblingcomission-2-x.png' %}"
+                         class="d-block mx-auto my-auto" alt="Brand" style="max-height: 50px !important;">
+                </a>
+            </div>
+
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/03onin@2x.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/898183569-c-5-b-1407-ade-8-abb-907534-b-02-www-pragmaticplay.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/bahamas.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/HMGib@2x.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/Gaminglabs.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+            <!-- Item -->
+            <div class="swiper-slide py-3 h-auto">
+                <a class="card card-body px-2 mx-2 h-100">
+                    <img src="{% static 'assets/img/licences/IMG_8233123.png' %}"
+                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
+                </a>
+            </div>
+
+
+        </div>
+
+        <!-- Pagination (bullets) -->
+        <div class="swiper-pagination position-relative pt-2 mt-4"></div>
+    </div>
+</section>
+
+
+{% endblock %}
