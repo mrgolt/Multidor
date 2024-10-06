@@ -19,7 +19,7 @@ def get_site(request):
     if second_level_domain == '127.0.0.1:8000':
         second_level_domain = 'pragmatic-play.cloud'
 
-    site = get_object_or_404(Site, domain=second_level_domain)
+    site = get_object_or_404(Site, domain='pragmatic-play.cloud')
 
     return site
 
