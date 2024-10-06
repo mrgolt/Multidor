@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'slots',
     'rest_framework',
+    'pragmatic',
 ]
 
 MIDDLEWARE = [

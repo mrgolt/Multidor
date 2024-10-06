@@ -1,9 +1,10 @@
 from django.db import models
 from autoslug import AutoSlugField
+from pragmatic.models import Provider, Site
 
 
 class Slot(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     folk_name = models.CharField(max_length=100, blank=True, default='')
     game_symbol = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='slot_logos/')
@@ -16,6 +17,7 @@ class Slot(models.Model):
     sorting_order = models.FloatField(blank=True)
     is_new = models.BooleanField(default=False)
     is_popular = models.BooleanField(default=False)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
@@ -44,3 +46,12 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+class SlotDescription(models.Model):
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
+    snippet = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.site} - {self.slot}"

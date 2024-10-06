@@ -1,24 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from slots.models import *
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from .models import Site, Offer
 
-REDIRECTS = {
-    'kometa': 'https://stars-flight.com/s5dff9722?offer=kometa&domain=pragmatic-play.cloud',
-}
+def get_site(request):
+    domain = request.META['HTTP_HOST']
+
+    if domain == '127.0.0.1:8000':
+        domain = 'pragmatic-play.cloud'
+
+    site = get_object_or_404(Site, domain=domain)
+
+    return site
 
 def home(request):
+
+    site = get_site(request)
+
+    template = site.home_template or 'home.html'
+
+    first_offer = site.offers.first()
+
     popular_slots = Slot.objects.filter(is_popular=True).order_by('-id')[:10]
     new_slots = Slot.objects.filter(is_new=True).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True).order_by('-id')[:10]
     reviews = Review.objects.all()[:10]
 
-    return render(request, 'home.html', {'popular_slots': popular_slots, 'new_slots': new_slots, 'reviews': reviews, 'users_choice_slots': users_choice_slots})
+    return render(request, template, {
+        'popular_slots': popular_slots,
+        'new_slots': new_slots,
+        'reviews': reviews,
+        'users_choice_slots': users_choice_slots,
+        'offer': first_offer,
+    })
 
 
 def redirect_view(request, slug):
     # Получаем URL для редиректа по slug
-    redirect_url = REDIRECTS.get(slug)
+
+    site = get_site(request)
+
+    offers = site.offers.filter(redirect_name=slug)
+    redirect_url = offers[0].redirect_url
 
     if redirect_url:
         return redirect(redirect_url)  # Выполняем редирект
