@@ -6,20 +6,14 @@ from .models import Site, Offer
 
 def get_site(request):
     # Получаем хост из запроса
-    domain_parts = request.META['HTTP_HOST'].split('.')
+    domain = request.META['HTTP_HOST']
 
-    # Проверяем, что домен содержит как минимум два элемента (например, 'pragmatic-play.cloud')
-    if len(domain_parts) >= 2:
-        # Берем последние два элемента (например, ['pragmatic-play', 'cloud'])
-        second_level_domain = '.'.join(domain_parts[-2:])
+    if domain == '127.0.0.1:8000':
+        domain = 'pragmatic-play.cloud'
     else:
-        # Если домен некорректный, возвращаем его как есть (на всякий случай)
-        second_level_domain = request.META['HTTP_HOST']
+        domain = '.'.join(domain.split('.')[-2:])
 
-    if second_level_domain == '127.0.0.1:8000':
-        second_level_domain = 'pragmatic-play.cloud'
-
-    site = get_object_or_404(Site, domain='pragmatic-play.cloud')
+    site = get_object_or_404(Site, domain=domain)
 
     return site
 
