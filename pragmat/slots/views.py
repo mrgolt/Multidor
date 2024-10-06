@@ -7,6 +7,7 @@ from django.db.models import Q
 from pragmatic.views import get_site
 from rest_framework.response import Response
 from rest_framework import status
+import requests
 
 def slot_list(request):
 
@@ -72,6 +73,22 @@ def slot_detail(request, slug):
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider).order_by('-id')[:10]
     new_slots = Slot.objects.filter(is_new=True, provider=site.provider).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:10]
+
+    if slot.provider.id == 2:
+        user_agents = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15',
+        ]
+
+        headers = {'User-Agent': user_agents[0]}
+
+        response = requests.get(f"https://static-live.hacksawgaming.com/{slot.game_symbol}/version.json", headers=headers)
+
+        if response.status_code == 200:
+            data = response.json()
+            version = data.get("version")
+            slot.version = version
+            slot.save()
 
     return render(request, site.slot_detail_template, {'site': site, 'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
 

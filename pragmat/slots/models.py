@@ -10,6 +10,7 @@ class SlotType(models.Model):
 
 class Slot(models.Model):
     name = models.CharField(max_length=100)
+    version = models.CharField(max_length=100, default='1.0.0')
     folk_name = models.CharField(max_length=100, blank=True, default='')
     game_symbol = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='slot_logos/')
