@@ -7,8 +7,8 @@
 <!-- Story -->
 <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
-        <h2 class="h1 mb-4">Слоты <span class="text-primary">{{ site.provider.name }}</span></h2>
-        <p class="mb-4">Выберите любимый слот и играйте в демо или на реальные деньги в казино.</p>
+        <h2 class="h1 mb-4">{% if slot_type %}{{ slot_type }}{% else %}Игры{% endif %} <span class="text-primary">{{ site.provider.name|upper }}</span></h2>
+        <p class="mb-4">Играйте демо или на реальные деньги в казино.</p>
     </div>
 </section>
 
@@ -18,7 +18,7 @@
         {% if slot_name %}
             <h2 class="me-3">Поиск по запросу: {{ slot_name }}</h2>
             {% else %}
-        <h2 class="me-3">Выберите слот</h2>
+        <h2 class="me-3">Выберите игру</h2>
         {% endif %}
         <div class="d-md-flex mb-3">
             <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">
@@ -50,8 +50,8 @@
             <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
               <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
               <div class="position-relative zindex-2">
-                <h3 class="h5 text-light mb-2">{{ slot.name }}</h3>
-				<span class="fs-xs text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
               </div>
             </div>
             <div class="card-img">

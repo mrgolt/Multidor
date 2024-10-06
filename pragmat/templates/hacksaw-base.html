@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <title>
         {% if page.title %}{{ page.title }} - {% endif %}
-        {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
+        {% if slot.name %}Игра {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
-        {% if slots %}Все слоты - {% endif %}
+        {% if slots %}{% if slot_type %}{{ slot_type }}{% else %}Все игры{% endif %} - {% endif %}
         {{ site.provider.name }} - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!
     </title>
 
@@ -159,6 +159,12 @@
         #logo-dark:hover .cls-1, #logo-light:hover .cls-1  {
             fill: #4aaf6c;
         }
+
+        #navbarNav {
+            text-transform: uppercase;
+        }
+
+
     </style>
 
     <!-- Page loading scripts -->
@@ -227,59 +233,59 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>
-                        </li>
+{#                        <li class="nav-item">#}
+{#                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>#}
+{#                        </li>#}
+
+{#                        <li class="nav-item dropdown">#}
+{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Популярные</a>#}
+{#                            <div class="dropdown-menu">#}
+{#                                <div class="d-lg-flex pt-lg-3">#}
+{#                                    <div class="mega-dropdown-column me-5">#}
+{#                                        <h6 class="px-3 mb-2">Выбор игроков</h6>#}
+{#                                        <ul class="list-unstyled mb-3">#}
+{#                                            {% for slot in users_choice_slots %}#}
+{#                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>#}
+{#                                            {% endfor %}#}
+{##}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                    <div class="mega-dropdown-column me-5">#}
+{#                                        <h6 class="px-3 mb-2">Популярные</h6>#}
+{#                                        <ul class="list-unstyled mb-3">#}
+{#                                            {% for slot in popular_slots %}#}
+{#                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>#}
+{#                                            {% endfor %}#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
+{#                        <li class="nav-item dropdown">#}
+{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Новые</a>#}
+{#                            <div class="dropdown-menu">#}
+{#                                <div class="d-lg-flex pt-lg-3">#}
+{#                                    <div class="mega-dropdown-column me-5">#}
+{#                                        <ul class="list-unstyled mb-3">#}
+{#                                            {% for slot in new_slots %}#}
+{#                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>#}
+{#                                            {% endfor %}#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Популярные</a>
-                            <div class="dropdown-menu">
-                                <div class="d-lg-flex pt-lg-3">
-                                    <div class="mega-dropdown-column me-5">
-                                        <h6 class="px-3 mb-2">Выбор игроков</h6>
-                                        <ul class="list-unstyled mb-3">
-                                            {% for slot in users_choice_slots %}
-                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
-                                            {% endfor %}
-
-                                        </ul>
-                                    </div>
-                                    <div class="mega-dropdown-column me-5">
-                                        <h6 class="px-3 mb-2">Популярные</h6>
-                                        <ul class="list-unstyled mb-3">
-                                            {% for slot in popular_slots %}
-                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Новые</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Игры</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-3">
-                                            {% for slot in new_slots %}
-                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Категории</a>
-                            <div class="dropdown-menu">
-                                <div class="d-lg-flex pt-lg-3">
-                                    <div class="mega-dropdown-column me-5">
-                                        <ul class="list-unstyled mb-3">
-                                            <li><a href="/slots/?slot_name=Собаки" class="dropdown-item py-1">Собаки</a></li>
-                                            <li><a href="/slots/?slot_name=Рыбалка" class="dropdown-item py-1">Рыбалка</a></li>
-                                            <li><a href="/slots/?slot_name=Дикий запад" class="dropdown-item py-1">Дикий запад</a></li>
-                                            <li><a href="/slots/?slot_name=Сладости и Фрукты" class="dropdown-item py-1">Сладости и Фрукты</a></li>
-                                            <li><a href="/slots/?slot_name=Megaways" class="dropdown-item py-1">Megaways</a></li>
+                                            <li><a href="/slots/" class="dropdown-item py-1">Все</a></li>
+                                            <li><a href="/slots/?slot_type=1" class="dropdown-item py-1">Слоты</a></li>
+                                            <li><a href="/slots/?slot_type=2" class="dropdown-item py-1">Игры с мгновенным выигрышем</a></li>
+                                            <li><a href="/slots/?slot_type=3" class="dropdown-item py-1">Скретч-карты</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -289,7 +295,7 @@
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
-                    <a href="/play/{{ offer.redirect_name }}/"
+                    <a href="/play/{{ site.offers.first.redirect_name }}/"
                        onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"
                        class="btn btn-primary w-100" target="_blank" rel="noopener">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
@@ -306,7 +312,7 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="/play/{{ offer.redirect_name }}/"
+            <a href="/play/{{ site.offers.first.redirect_name }}/"
                onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"
                class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>

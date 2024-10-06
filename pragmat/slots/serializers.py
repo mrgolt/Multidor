@@ -6,5 +6,5 @@ class SlotSerializer(serializers.ModelSerializer):
         model = Slot
         fields = [
             'id', 'name', 'game_symbol', 'logo', 'description', 'snippet', 'slug',
-            'rtp', 'rating', 'users_choice', 'sorting_order', 'is_new', 'is_popular'
+            'rtp', 'rating', 'users_choice', 'sorting_order', 'is_new', 'is_popular', 'provider', 'slot_type'
         ]

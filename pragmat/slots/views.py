@@ -14,6 +14,9 @@ def slot_list(request):
 
     slot_name = request.GET.get('slot_name')
     page_number = request.GET.get('page', 1)  # Получаем номер страницы из параметров запроса
+    slot_type = request.GET.get('slot_type')
+
+    slot_type = SlotType.objects.filter(id=slot_type).first()
 
     keywords_mapping = {
         'Сладости и Фрукты': ['sugar', 'sweet', 'фрукт', 'сладк'],
@@ -35,7 +38,8 @@ def slot_list(request):
             slots = slots.filter(
                 Q(name__icontains=slot_name) | Q(folk_name__icontains=slot_name) | Q(description__icontains=slot_name))
 
-
+    if slot_type:
+        slots = slots.filter(slot_type=slot_type)
 
     # Параметры пагинации
     slots_per_page = 18
@@ -53,6 +57,7 @@ def slot_list(request):
         'users_choice_slots': users_choice_slots,
         'slot_name': slot_name,
         'site': site,
+        'slot_type': slot_type,
     }
 
     return render(request, site.slot_list_template, context)
@@ -75,7 +80,7 @@ class SlotViewSet(viewsets.ModelViewSet):
     serializer_class = SlotSerializer
 
     def dispatch(self, request, *args, **kwargs):
-        api_key = request.query_params.post('api_key')  # Получаем api_key из параметров запроса
+        api_key = request.POST.get('api_key')  # Получаем api_key из параметров запроса
         if api_key != 'aB3dE5fG7hJ8kL9mN0pQ1rS2tU3vW4xYz':
             return Response({'detail': 'Invalid API key'}, status=status.HTTP_403_FORBIDDEN)
         return super().dispatch(request, *args, **kwargs)
