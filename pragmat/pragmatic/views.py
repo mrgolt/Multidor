@@ -66,3 +66,6 @@ def robots_txt(request):
     response = HttpResponse("\n".join(lines), content_type="text/plain")
     response['Content-Disposition'] = 'inline; filename="robots.txt"'
     return response
+
+def index_now(request, indexnow_key):
+    return HttpResponse(indexnow_key)
