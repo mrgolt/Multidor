@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
 from django.core.validators import FileExtensionValidator
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from .utils import send_index_now_request
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -220,3 +223,13 @@ class Comment(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now=False)
     page = models.ForeignKey('Content', on_delete=models.CASCADE)
+
+@receiver(post_save, sender=Content)
+def index_object(sender, instance, **kwargs):
+    if instance.is_main == False:
+        url = f'https://{instance.site.allowed_domain}/page/{instance.slug}/'
+    else:
+        url = f'https://{instance.site.allowed_domain}/'
+    #print(url)
+    resp = send_index_now_request(url)
+    #print(resp)
