@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'slots',
     'rest_framework',
     'pragmatic',
+    'django_user_agents',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pragmatic.middleware.CustomRefererMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'pragmatic.urls'

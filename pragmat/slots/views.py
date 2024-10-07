@@ -74,6 +74,8 @@ def slot_detail(request, slug):
     new_slots = Slot.objects.filter(is_new=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
 
+    is_mobile = request.user_agent.is_mobile
+
     if slot.provider.id == 2:
         user_agents = [
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
@@ -90,7 +92,15 @@ def slot_detail(request, slug):
             slot.version = version
             slot.save()
 
-    return render(request, site.slot_detail_template, {'site': site, 'slot': slot, 'reviews': reviews, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
+    return render(request, site.slot_detail_template, {
+        'site': site,
+        'slot': slot,
+        'reviews': reviews,
+        'popular_slots': popular_slots,
+        'new_slots': new_slots,
+        'users_choice_slots': users_choice_slots,
+        'is_mobile': is_mobile,
+    })
 
 class SlotViewSet(viewsets.ModelViewSet):
     queryset = Slot.objects.all()

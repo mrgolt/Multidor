@@ -14,12 +14,12 @@
             <h2 class="text-primary">Демо игра в {{ slot.name }}{% if slot.folk_name %} ({{ slot.folk_name }}){% endif %}</h2>
             <div class="row">
 
-                <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
+                <div style="position: relative; width: 100%; padding-bottom: {% if is_mobile %}1{% endif %}62.5%;">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
                          class="shadow-primary rounded-4 overflow-hidden">
                         <iframe id="iframe" allowfullscreen="true" tabindex="0" frameborder="0" scrolling="no"
                                 width="100%" height="100%"
-                                src="https://static-live.hacksawgaming.com/{{ slot.game_symbol }}/{{ slot.version }}/index.html?language=ru&channel=desktop&gameid={{ slot.game_symbol }}&mode=2&token=123131&lobbyurl=https%3A%2F%2Fwww.hacksawgaming.com&currency=RUB&partner=demo&env=https://rgs-demo.hacksawgaming.com/api&realmoneyenv=https://rgs-demo.hacksawgaming.com/api"
+                                src="https://static-live.hacksawgaming.com/{{ slot.game_symbol }}/{{ slot.version }}/index.html?language=ru&channel={% if is_mobile %}mobile{% else %}desktop{% endif %}&gameid={{ slot.game_symbol }}&mode=2&token=123131&lobbyurl=https%3A%2F%2Fwww.hacksawgaming.com&currency=RUB&partner=demo&env=https://rgs-demo.hacksawgaming.com/api&realmoneyenv=https://rgs-demo.hacksawgaming.com/api"
                                 style="border:none;"></iframe>
                     </div>
                 </div>
