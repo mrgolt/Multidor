@@ -8,12 +8,20 @@ from django.db.models import Max
 
 
 class BonusAdmin(admin.ModelAdmin):
-    list_display = ('name', 'casino', 'promo_code', 'referral_link', 'website', 'sorting_order',
-                    'is_active')  # Перечислите поля, которые вы хотите отображать в списке бонусов
+    list_display = ('name', 'casino_name', 'promo_code', 'referral_link', 'website', 'sorting_order', 'is_active')
+    actions = ['duplicate_bonus']
 
     def casino_name(self, obj):
         # Получаем название казино для данного бонуса
-        return obj.casino.name if obj.casino else "-"  # Предположим, что поле в модели Bonus для казино называется "casino", а у казино есть поле "name"
+        return obj.casino.name if obj.casino else "-"
+
+    def duplicate_bonus(self, request, queryset):
+        # Дублирование объектов бонуса
+        for bonus in queryset:
+            bonus.pk = None  # Устанавливаем pk в None для создания нового объекта
+            bonus.save()
+
+    duplicate_bonus.short_description = "Дублировать выбранные бонусы"
 
 
 class ContentAdmin(admin.ModelAdmin):
