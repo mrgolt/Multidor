@@ -50,7 +50,7 @@ def redirect_view(request, slug):
     site = get_site(request)
 
     offers = site.offers.filter(redirect_name=slug)
-    redirect_url = offers[0].redirect_url
+    redirect_url = offers[0].redirect_url + '?offer=' + offers[0].redirect_name + '&domain=' + site.domain
 
     if redirect_url:
         return redirect(redirect_url)  # Выполняем редирект

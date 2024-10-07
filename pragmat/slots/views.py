@@ -70,9 +70,9 @@ def slot_detail(request, slug):
 
     slot = get_object_or_404(Slot, slug=slug, provider=site.provider)
     reviews = Review.objects.filter(slot=slot)[:10]
-    popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider).order_by('-id')[:10]
-    new_slots = Slot.objects.filter(is_new=True, provider=site.provider).order_by('-id')[:10]
-    users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:10]
+    popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
+    new_slots = Slot.objects.filter(is_new=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
+    users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
 
     if slot.provider.id == 2:
         user_agents = [
