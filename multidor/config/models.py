@@ -232,4 +232,4 @@ def index_object(sender, instance, **kwargs):
         url = f'https://{instance.site.allowed_domain}/'
     #print(url)
     resp = send_index_now_request(url)
-    #print(resp)
+    print(resp)
