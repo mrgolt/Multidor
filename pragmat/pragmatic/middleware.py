@@ -35,6 +35,8 @@ class CustomRefererMiddleware:
 
             if len(current_host.split('.')) > 2:
                 return HttpResponsePermanentRedirect("https://" + root + path)
+            else:
+                return self.get_response(request)
 
             # Если домен технический или path разрешенный, никуда не редиректим, возвращаем исходный запрос
             if any(dm in current_host for dm in self.pass_domains) or any(pt in path for pt in self.pass_paths):
