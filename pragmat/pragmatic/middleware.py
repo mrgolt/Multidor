@@ -30,15 +30,18 @@ class CustomRefererMiddleware:
 
             logger.warning(current_host)
 
-            # делаем домен на уровень меньше
-            root = '.'.join(current_host.split('.')[1:])
+            # делаем домен второго уровня
+            root = '.'.join(current_host.split('.')[-2:])
+
+            if len(current_host.split('.')) > 2:
+                return HttpResponsePermanentRedirect("https://" + root + path)
 
             # Если домен технический или path разрешенный, никуда не редиректим, возвращаем исходный запрос
             if any(dm in current_host for dm in self.pass_domains) or any(pt in path for pt in self.pass_paths):
                 logger.debug("Если домен технический или path разрешенный")
                 return self.get_response(request)
 
-            # Если это бот Я или Г, а домен 3 или больше уровня, отправляем на домен уровнем меньше
+            # Если это бот Я или Г, а домен 3 или больше уровня, отправляем на домен второго уровня
             if len(current_host.split('.')) > 2 and any(ua in user_agent for ua in self.useragents):
                 logger.debug("если бот - если юа & sub")
                 return HttpResponsePermanentRedirect("https://" + root + path)
