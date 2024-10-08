@@ -106,7 +106,7 @@ class ClickAdmin(admin.ModelAdmin):
 
 
 class CasinoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'display_name', 'logo', 'logo_svg')
+    list_display = ('id', 'name', 'display_name', 'logo', 'logo_svg', 'favicon')
 
 
 class AffAdmin(admin.ModelAdmin):
