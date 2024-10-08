@@ -148,6 +148,7 @@ def redirect_view(request, redirect_id):
     domain = request.META.get('HTTP_HOST', '')
     yaid = request.GET.get('yaid')
     ymcounter = request.GET.get('ymcounter')
+    placement = request.GET.get('placement')
 
     parts = domain.split('.')
 
@@ -180,6 +181,8 @@ def redirect_view(request, redirect_id):
         url += '&yaid=' + yaid
     if ymcounter:
         url += '&ymcounter=' + ymcounter
+    if placement:
+        url += '&placement=' + placement
 
     # Перенаправляем на целевой URL
     # return redirect(redirect_obj.target_url + '?click_id=' + str(click.id))
