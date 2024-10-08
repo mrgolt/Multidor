@@ -164,24 +164,6 @@
         })();
     </script>
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-       m[i].l=1*new Date();
-       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-       ym(97614878, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-       });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/97614878" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-
 
 </head>
 
@@ -276,7 +258,6 @@
                 </div>
                 <div class="offcanvas-header border-top">
                     <a href="/play/{{ offer.redirect_name }}/"
-                       onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"
                        class="btn btn-primary w-100" target="_blank" rel="noopener">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
                         &nbsp;Получить бонус 100 FS
@@ -293,7 +274,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a href="/play/{{ offer.redirect_name }}/"
-               onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"
                class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>
                 &nbsp;Получить бонус 100 FS
