@@ -8,6 +8,8 @@ from pragmatic.views import get_site
 from rest_framework.response import Response
 from rest_framework import status
 import requests
+from django.utils import timezone
+from datetime import timedelta
 
 def slot_list(request):
 
@@ -76,21 +78,25 @@ def slot_detail(request, slug):
 
     is_mobile = request.user_agent.is_mobile
 
+    # Проверяем, если провайдер Hacksaw
     if slot.provider.id == 2:
-        user_agents = [
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15',
-        ]
+        # Проверяем, прошло ли больше 3 дней с момента последнего обновления
+        if timezone.now() - slot.updated_at > timedelta(days=3):
+            user_agents = [
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.1 Safari/605.1.15',
+            ]
 
-        headers = {'User-Agent': user_agents[0]}
+            headers = {'User-Agent': user_agents[0]}
 
-        response = requests.get(f"https://static-live.hacksawgaming.com/{slot.game_symbol}/version.json", headers=headers)
+            response = requests.get(f"https://static-live.hacksawgaming.com/{slot.game_symbol}/version.json",
+                                    headers=headers)
 
-        if response.status_code == 200:
-            data = response.json()
-            version = data.get("version")
-            slot.version = version
-            slot.save()
+            if response.status_code == 200:
+                data = response.json()
+                version = data.get("version")
+                slot.version = version
+                slot.save()
 
     return render(request, site.slot_detail_template, {
         'site': site,
