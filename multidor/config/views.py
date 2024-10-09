@@ -109,6 +109,9 @@ def custom_serve(request, slug=None):
         if not content:
             content = Content.objects.filter(slug=slug)
 
+        if content.interface_image:
+            site.interface_image = content.interface_image
+
         comments = Comment.objects.filter(page=content[0], created_at__lte=timezone.now()).order_by('-created_at')
 
         inner_pages = Content.objects.filter(is_main=False, site=site, is_popular=True)

@@ -116,6 +116,7 @@ class Content(models.Model):
     is_main = models.BooleanField()
     is_popular = models.BooleanField(default=True)
     is_version_page = models.BooleanField(default=False)
+    interface_image = models.ImageField(blank=True, upload_to='interface-img/', default='')
 
 
     def __str__(self):
