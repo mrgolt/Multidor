@@ -9,7 +9,7 @@ def get_site(request):
     domain = request.META['HTTP_HOST']
 
     if domain == '127.0.0.1:8000':
-        domain = 'hacksawgames.online'
+        domain = 'pragmatic-play.cloud'
     else:
         domain = '.'.join(domain.split('.')[-2:])
 
