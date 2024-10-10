@@ -5,13 +5,14 @@ from django.http import HttpResponse
 from .models import Site, Offer
 from django.utils import timezone
 from datetime import timedelta
+import requests
 
 def get_site(request):
     # Получаем хост из запроса
     domain = request.META['HTTP_HOST']
 
     if domain == '127.0.0.1:8000':
-        domain = 'hacksawgames.online'
+        domain = 'pragmatic-play.cloud'
     else:
         domain = '.'.join(domain.split('.')[-2:])
 
@@ -82,5 +83,8 @@ def sitemap_generator(request):
     site = get_site(request)
 
     slots = Slot.objects.filter(provider=site.provider)
+
+    # for slot in slots:
+    #     print(requests.get(f'https://yandex.com/indexnow?key={slot.slug[0]}iyg786g8srfiIJHIuhiuhf7&url=https://{site.domain}/slots/{slot.slug}/').json())
 
     return render(request, 'sitemap.xml', {'domain': site.domain, 'yesterday': yesterday, 'slots': slots })
