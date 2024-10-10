@@ -3,6 +3,8 @@ from slots.models import *
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Site, Offer
+from django.utils import timezone
+from datetime import timedelta
 
 def get_site(request):
     # Получаем хост из запроса
@@ -58,10 +60,13 @@ def redirect_view(request, slug):
         return redirect('default_view')  # Редирект на страницу по умолчанию, если slug не найден
 
 def robots_txt(request):
+
+    site = get_site(request)
     # Содержимое файла robots.txt
     lines = [
         "User-agent: *",
         "Disallow: /play/",
+        f"sitemap: https://{site.domain}/sitemap.xml",
     ]
     response = HttpResponse("\n".join(lines), content_type="text/plain")
     response['Content-Disposition'] = 'inline; filename="robots.txt"'
@@ -69,3 +74,13 @@ def robots_txt(request):
 
 def index_now(request, indexnow_key):
     return HttpResponse(indexnow_key)
+
+def sitemap_generator(request):
+
+    yesterday = (timezone.now().date() - timedelta(days=1)).strftime('%Y-%m-%d')
+
+    site = get_site(request)
+
+    slots = Slot.objects.filter(provider=site.provider)
+
+    return render(request, 'sitemap.xml', {'domain': site.domain, 'yesterday': yesterday, 'slots': slots })

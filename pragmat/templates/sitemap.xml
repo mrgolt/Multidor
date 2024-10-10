@@ -6,9 +6,15 @@
             <changefreq>daily</changefreq>
             <priority>1.0</priority>
         </url>
-        {% for page in inner_pages %}
         <url>
-            <loc>https://{{ domain }}/page/{{ page.slug }}/</loc>
+            <loc>https://{{ domain }}/slots/</loc>
+            <lastmod>{{ yesterday }}</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>1.0</priority>
+        </url>
+        {% for slot in slots %}
+        <url>
+            <loc>https://{{ domain }}/slots/{{ slot.slug }}/</loc>
             <lastmod>{{ yesterday }}</lastmod>
             <changefreq>daily</changefreq>
             <priority>0.9</priority>

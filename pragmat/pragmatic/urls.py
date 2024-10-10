@@ -33,6 +33,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('play/<slug:slug>/', views.redirect_view, name='redirect_view'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('sitemap.xml', views.sitemap_generator, name='sitemap_generator'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

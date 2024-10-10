@@ -17,6 +17,7 @@ from django.utils import timezone
 import requests
 import time
 import hashlib
+from datetime import timedelta
 
 
 def custom_serve(request, slug=None):
@@ -192,6 +193,8 @@ def redirect_view(request, redirect_id):
     return redirect(url)
 
 def sitemap_generator(request):
+    yesterday = (timezone.now().date() - timedelta(days=1)).strftime('%Y-%m-%d')
+
     domain = request.META.get('HTTP_HOST', '')
     parts = domain.split('.')
 
@@ -209,7 +212,7 @@ def sitemap_generator(request):
 
     template_path = os.path.join('sweetbonanza.best', 'sitemap.xml')
 
-    return render(request, template_path, {'domain': domain, 'inner_pages': inner_pages})
+    return render(request, template_path, {'domain': domain, 'inner_pages': inner_pages, 'yesterday': yesterday})
 
 
 def postbackcats_reg(request):
