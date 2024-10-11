@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from rest_framework.routers import DefaultRouter
-from slots.views import SlotViewSet, page_detail
+from slots.views import SlotViewSet, SlotDescriptionsViewSet, page_detail
 from django.conf import settings
 from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register(r'slots', SlotViewSet)
+router.register(r'slotdescriptions', SlotDescriptionsViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

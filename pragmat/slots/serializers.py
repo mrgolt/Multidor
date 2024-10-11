@@ -1,10 +1,15 @@
 from rest_framework import serializers
-from .models import Slot
+from .models import Slot, SlotDescription
 
 class SlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
         fields = [
-            'id', 'name', 'game_symbol', 'logo', 'description', 'snippet', 'slug',
-            'rtp', 'rating', 'users_choice', 'sorting_order', 'is_new', 'is_popular', 'provider', 'slot_type'
+            'id', 'name', 'provider'
         ]
+
+class SlotDescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SlotDescription
+        fields = ['id', 'site', 'slot', 'description', 'snippet']  # Укажите поля, которые хотите включить в сериализатор
+

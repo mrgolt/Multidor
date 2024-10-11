@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
-from .serializers import SlotSerializer
+from .serializers import SlotSerializer, SlotDescriptionSerializer
 from rest_framework import viewsets
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -78,6 +78,12 @@ def slot_detail(request, slug):
 
     is_mobile = request.user_agent.is_mobile
 
+    slot_description = SlotDescription.objects.filter(site=site, slot=slot).first()
+
+    if slot_description:
+        slot.description = slot_description.description
+        slot.snippet = slot_description.snippet
+
     # Проверяем, если провайдер Hacksaw
     if slot.provider.id == 2:
         # Проверяем, прошло ли больше 3 дней с момента последнего обновления
@@ -111,6 +117,22 @@ def slot_detail(request, slug):
 class SlotViewSet(viewsets.ModelViewSet):
     queryset = Slot.objects.all()
     serializer_class = SlotSerializer
+
+    def get_queryset(self):
+        provider_id = self.request.query_params.get('provider_id', None)
+        if provider_id is not None:
+            return self.queryset.filter(provider_id=provider_id)
+        return self.queryset
+
+    def dispatch(self, request, *args, **kwargs):
+        api_key = request.GET.get('api_key') or request.POST.get('api_key')
+        if api_key != 'aB3dE5fG7hJ8kL9mN0pQ1rS2tU3vW4xYz':
+            return Response({'detail': 'Invalid API key'}, status=status.HTTP_403_FORBIDDEN)
+        return super().dispatch(request, *args, **kwargs)
+
+class SlotDescriptionsViewSet(viewsets.ModelViewSet):
+    queryset = SlotDescription.objects.all()
+    serializer_class = SlotDescriptionSerializer
 
     def dispatch(self, request, *args, **kwargs):
         api_key = request.POST.get('api_key')  # Получаем api_key из параметров запроса
