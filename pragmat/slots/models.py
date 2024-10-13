@@ -63,3 +63,11 @@ class SlotDescription(models.Model):
 
     def __str__(self):
         return f"{self.site} - {self.slot}"
+
+class Theme(models.Model):
+    title = models.CharField(max_length=100, unique=True)
+    russian_title = models.CharField(max_length=100, unique=True)
+    slug = AutoSlugField(populate_from='title', unique=True, editable=True)
+
+    def __str__(self):
+        return self.title
