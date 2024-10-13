@@ -40,7 +40,7 @@
     <link rel="manifest" href="{% static 'assets/favicon/site.webmanifest' %}">
     <link rel="mask-icon" href="{% static 'assets/favicon/safari-pinned-tab.svg" color="#6366f1' %}">
     <link rel="shortcut icon" href="{% static 'assets/favicon/hacksaw_favicon.ico' %}">
-    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-TileColor" content="#202745">
     <meta name="msapplication-config" content="{% static 'assets/favicon/browserconfig.xml' %}">
 
 
@@ -157,16 +157,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, #0b0f19, rgba(22, 15, 29, 0));
+            background: linear-gradient(to top, #202745, rgba(22, 15, 29, 0));
             z-index: 1;
-        }
-
-        #logo-dark:hover .cls-1, #logo-light:hover .cls-1  {
-            fill: #4aaf6c;
         }
 
         #navbarNav {
             text-transform: uppercase;
+        }
+        .btn-primary{
+            color: #000 !important;
+            font-size: 18px;
+        }
+        .btn{
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+        .btn:hover{
+            color: #000 !important;
         }
 
 
