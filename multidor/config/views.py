@@ -18,6 +18,8 @@ import requests
 import time
 import hashlib
 from datetime import timedelta
+from django.http import HttpResponseBadRequest
+import re
 
 
 def custom_serve(request, slug=None):
@@ -572,3 +574,24 @@ def compute_hash(domain_name):
 
 def index_now(request, indexnow_key):
     return HttpResponse(indexnow_key)
+
+def yandex_webmaster_approve(request, code):
+
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if 'yandex' not in user_agent.lower():
+        return HttpResponseBadRequest("Error")
+
+    if not re.match("^[a-zA-Z0-9]+$", code):
+        return HttpResponseBadRequest("Error")
+
+    content = f"""
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            </head>
+            <body>Verification: {code}</body>
+        </html>
+    """
+    response = HttpResponse(content, content_type="text/plain")
+    response['Content-Disposition'] = f'inline; filename="yandex_{code}.html"'
+    return response
