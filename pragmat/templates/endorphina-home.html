@@ -3,64 +3,115 @@
 
 {% block content %}
 
-            <!-- Video + Title split section -->
-      <section class="container-fluid position-relative px-0">
-        <div class="row g-0">
-          <div class="col-xl-7 col-lg-6 pe-lg-5">
-            <div class="d-flex h-100 pe-xl-4">
-              <video class="w-100" autoplay muted loop style="object-fit: cover;">
-                <source src="static/assets/video/hero.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-          <div class="col-xl-5 col-lg-6 position-relative py-5">
-            <img src="static/assets/img/landing/conference/hero-bg.png" class="position-absolute top-50 translate-middle-y ms-lg-n4" width="866" alt="Background shapes">
-            <div class="position-relative zindex-5 text-center text-lg-start px-3 px-lg-0 py-xl-4 py-xxl-5 mt-lg-3 mx-auto mx-lg-0" style="max-width: 530px;">
-              <h2 class="h3 text-primary">Премиальный провайдер игр</h2>
-              <h1 class="display-1 pb-lg-3 mb-3">{{ site.provider.name|upper }}</h1>
-              <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start py-4 py-lg-5">
-                  <a href="/slots/" class="btn btn-outline-primary btn-lg mb-3 me-sm-3 me-xl-4">
-                  Играть демо
-                </a>
-                <a href="/play/{{ site.offers.first.redirect_name }}/?placement=hero_screen" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">Бездепозитный бонус 100 FS</a>
+            <!-- Hero slider + BG parallax -->
+      <section class="jarallax bg-dark py-xxl-5" data-jarallax data-speed="0.4" data-bs-theme="dark">
+        <span class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-dark-translucent"></span>
+        <div class="jarallax-img" style="background-image: url(/static/assets/img/banner-endorphina.png);"></div>
+        <div class="position-relative text-center zindex-5 overflow-hidden pt-4 py-md-5">
 
-              </div>
-              <div class="d-flex align-items-center justify-content-center justify-content-lg-start text-start pb-2 pt-lg-2 pb-xl-0 pt-xl-5 mt-xxl-5">
-                <div class="d-flex me-3">
-                  <div class="d-flex align-items-center justify-content-center bg-light rounded-circle" style="width: 52px; height: 52px;">
-                    <img src="static/assets/img/avatar/08.jpg" class="rounded-circle" width="48" alt="Avatar">
+          <!-- Slider controls (Prev / next) -->
+          <button type="button" id="hero-prev" class="btn btn-prev btn-icon btn-xl bg-transparent shadow-none position-absolute top-50 start-0 translate-middle-y d-none d-md-inline-flex ms-n3 ms-lg-2" aria-label="Previous">
+            <i class="bx bx-chevron-left fs-1"></i>
+          </button>
+          <button type="button" id="hero-next" class="btn btn-next btn-icon btn-xl bg-transparent shadow-none position-absolute top-50 end-0 translate-middle-y d-none d-md-inline-flex me-n3 me-lg-2" aria-label="Next">
+            <i class="bx bx-chevron-right fs-1"></i>
+          </button>
+
+          <!-- Slider -->
+          <div class="container text-center py-xl-5">
+            <div class="row justify-content-center pt-lg-5">
+              <div class="col-xl-8 col-lg-9 col-md-10 col-11">
+                <div class="swiper pt-5 pb-4 py-md-5" data-swiper-options='{
+                  "effect": "fade",
+                  "speed": 500,
+                  "autoplay": {
+                    "delay": 5500,
+                    "disableOnInteraction": false
+                  },
+                  "pagination": {
+                    "el": ".swiper-pagination",
+                    "clickable": true
+                  },
+                  "navigation": {
+                    "prevEl": "#hero-prev",
+                    "nextEl": "#hero-next"
+                  }
+                }'>
+                  <div class="swiper-wrapper">
+
+                    <!-- Item -->
+                    <div class="swiper-slide">
+                      <h2 class="display-1 from-start mb-lg-4">Откройте мир премиум-слотов с Endorphina</h2>
+                      <div class="from-end">
+                        <p class="fs-xl text-light opacity-70 pb-2 mb-lg-5">Инновационные игры для онлайн-казино, сочетающие захватывающий геймплей и впечатляющий дизайн</p>
+                      </div>
+                      <div class="scale-up delay-2">
+                        <a href="/slots/" class="btn btn-primary shadow-primary btn-lg">Играть демо</a>
+                      </div>
+
+                    </div>
+
+                    <!-- Item -->
+                    <div class="swiper-slide">
+                      <h2 class="display-2 from-start mb-lg-4">Лучшие предложения от партнеров</h2>
+                      <div class="from-end">
+                        <p class="fs-xl text-light opacity-70 pb-2 mb-lg-5">Играйте в наши игры на проверенных площадках с непревзойденной репутацией. Откройте для себя захватывающий мир развлечений, где каждый спин приближает вас к настоящим победам. Надежность, безопасность и удовольствие гарантированы!</p>
+                      </div>
+                      <div class="scale-up delay-2">
+                        <a href="/play/{{ site.offers.first.redirect_name }}/?placement=hero_screen" class="btn btn-primary shadow-primary btn-lg">Бездепозитный бонус 100 FS</a>
+                      </div>
+                    </div>
+
+                    <!-- Item -->
+                    <div class="swiper-slide">
+                      <h2 class="display-2 from-start mb-lg-4">Игры, которые захватывают с первого спина</h2>
+                      <div class="from-end">
+                        <p class="fs-xl text-light opacity-70 pb-2 mb-lg-5">Endorphina — лидер в разработке захватывающих игр для казино с уникальными механиками и высококачественной графикой</p>
+                      </div>
+                      <div class="scale-up delay-2">
+                        <a href="/slots/" class="btn btn-primary shadow-primary btn-lg">Перейти к слотам</a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3" style="width: 52px; height: 52px;">
-                    <img src="static/assets/img/avatar/40.jpg" class="rounded-circle" width="48" alt="Avatar">
-                  </div>
-                  <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3" style="width: 52px; height: 52px;">
-                    <img src="static/assets/img/avatar/09.jpg" class="rounded-circle" width="48" alt="Avatar">
-                  </div>
+
+                  <!-- Pagination (bullets) -->
+                  <div class="swiper-pagination position-relative d-md-none pt-2 mt-5"></div>
                 </div>
-                <span class="fs-sm"><span class="text-primary fw-semibold">20М+</span> игроков выбирают нас</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="position-absolute d-none d-lg-block bottom-0 start-0 w-100 zindex-5 pb-xxl-5">
-          <div class="container pb-4 mb-3 mb-xxl-0">
-            <a href="#popularslots" class="d-table text-light opacity-80 text-decoration-none w-auto py-4" data-scroll data-scroll-offset="70">
-              <span class="d-flex align-items-center">
-                Перейти к слотам
-                <i class="bx bx-down-arrow-circle fs-3 ms-2"></i>
-              </span>
-            </a>
+        <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between position-relative zindex-5 pb-5">
+          <div class="d-flex mb-4 mb-sm-0">
+{#            <a href="#" class="btn btn-icon btn-secondary btn-linkedin rounded-circle me-2" aria-label="LinkedIn">#}
+{#              <i class="bx bxl-linkedin"></i>#}
+{#            </a>#}
+{#            <a href="#" class="btn btn-icon btn-secondary btn-facebook rounded-circle me-2" aria-label="Facebook">#}
+{#              <i class="bx bxl-facebook"></i>#}
+{#            </a>#}
+{#            <a href="#" class="btn btn-icon btn-secondary btn-twitter rounded-circle me-2" aria-label="Twitter">#}
+{#              <i class="bx bxl-twitter"></i>#}
+{#            </a>#}
+{#            <a href="#" class="btn btn-icon btn-secondary btn-youtube rounded-circle me-2" aria-label="YouTube">#}
+{#              <i class="bx bxl-youtube"></i>#}
+{#            </a>#}
           </div>
+          <a href="/slots/" class="nav-link px-0">
+            Перейти к слотам
+            <i class="bx bx-right-arrow-circle fs-4 ms-2"></i>
+          </a>
         </div>
       </section>
+
 
 
     <!-- Story -->
     <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
         <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
-            <h2 class="h1 mb-4">Premium Gambling c <span class="text-primary">{{ site.provider.name|upper }}</span>
+            <h2 class="h1 mb-4">Премиум-слоты от <span class="text-primary">{{ site.provider.name|upper }}</span>
             </h2>
-            <p class="mb-4 fs-4"><span class="text-primary">{{ site.provider.name|upper }}</span> является первоклассным поставщиком слотов, скретч-карт и игр с мгновенным выигрышем для индустрии онлайн-гемблинга.</p>
+            <p class="mb-4 fs-4"><span class="text-primary">{{ site.provider.name|upper }}</span> — это элитный поставщик игр для тех, кто ценит совершенство. Мы создаем премиальные слоты, чтобы принести вам незабываемые эмоции и гарантированный успех в мире онлайн-гемблинга. Выбирайте лучшее — выбирайте {{ site.provider.name|upper }}!
+  </p>
 
         </div>
 
@@ -68,7 +119,48 @@
     </section>
 
 
+      <!-- New slots -->
+    <section id="popularslots" class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
+      <!-- Page title + Filters -->
+      <div class="d-lg-flex align-items-center justify-content-between pt-4 pb-0 pb-md-2 mt-lg-2">
+        <h1 class="me-3">Новые слоты</h1>
+        <div class="d-md-flex mb-3">
+          <div class="pt-md-3 pt-2 text-center">
+            <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все слоты</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Slots grid -->
+      <div class="masonry-grid row g-md-4 g-2 mb-2">
+
+          {% for slot in new_slots %}
+        <!-- Item -->
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+              <div class="position-relative zindex-2">
+                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+              </div>
+            </div>
+            <div class="card-img">
+              <img
+                src="{{ slot.logo.url }}"
+                class="rounded-3 w-100 h-100" alt="{{ slot.name }}">
+            </div>
+          </a>
+        </div>
+          {% endfor %}
+
+
+      </div>
+
+      <div class="pt-md-3 pt-2 text-center">
+        <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все слоты</a>
+      </div>
+    </section>
 
       <!-- Popular slots -->
     <section id="popularslots" class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
@@ -77,7 +169,7 @@
         <h1 class="me-3">Популярные слоты</h1>
         <div class="d-md-flex mb-3">
           <div class="pt-md-3 pt-2 text-center">
-            <a href="{% url 'slot_list' %}?slot_type=1" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все слоты</a>
+            <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все слоты</a>
           </div>
         </div>
       </div>
@@ -109,95 +201,11 @@
       </div>
 
       <div class="pt-md-3 pt-2 text-center">
-        <a href="{% url 'slot_list' %}?slot_type=1" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все слоты</a>
+        <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все слоты</a>
       </div>
     </section>
 
-          <!-- Instant Games -->
-    <section class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
-      <!-- Page title + Filters -->
-      <div class="d-lg-flex align-items-center justify-content-between pt-4 pb-0 pb-md-2 mt-lg-2">
-        <h1 class="me-3">Игры с мгновенным выигрышем</h1>
-        <div class="d-md-flex mb-3">
-          <div class="pt-md-3 pt-2 text-center">
-            <a href="{% url 'slot_list' %}?slot_type=2" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все игры</a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Slots grid -->
-      <div class="masonry-grid row g-md-4 g-2 mb-2">
-
-          {% for slot in instant_win_games %}
-        <!-- Item -->
-        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
-          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
-            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
-              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
-              <div class="position-relative zindex-2">
-                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
-				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
-              </div>
-            </div>
-            <div class="card-img">
-              <img
-                src="{{ slot.logo.url }}"
-                class="rounded-3 w-100 h-100" alt="{{ slot.name }}">
-            </div>
-          </a>
-        </div>
-          {% endfor %}
-
-
-      </div>
-
-      <div class="pt-md-3 pt-2 text-center">
-        <a href="{% url 'slot_list' %}?slot_type=2" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все игры</a>
-      </div>
-    </section>
-
-    <!-- Scratch Cards -->
-    <section class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
-      <!-- Page title + Filters -->
-      <div class="d-lg-flex align-items-center justify-content-between pt-4 pb-0 pb-md-2 mt-lg-2">
-        <h1 class="me-3">Игры со скретч-картами</h1>
-        <div class="d-md-flex mb-3">
-          <div class="pt-md-3 pt-2 text-center">
-            <a href="{% url 'slot_list' %}?slot_type=3" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все игры</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slots grid -->
-      <div class="masonry-grid row g-md-4 g-2 mb-2">
-
-          {% for slot in scratch_cards %}
-        <!-- Item -->
-        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
-          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
-            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
-              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
-              <div class="position-relative zindex-2">
-                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
-				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
-              </div>
-            </div>
-            <div class="card-img">
-              <img
-                src="{{ slot.logo.url }}"
-                class="rounded-3 w-100 h-100" alt="{{ slot.name }}">
-            </div>
-          </a>
-        </div>
-          {% endfor %}
-
-
-      </div>
-
-      <div class="pt-md-3 pt-2 text-center">
-        <a href="{% url 'slot_list' %}?slot_type=3" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все игры</a>
-      </div>
-    </section>
 
 
     <!-- Brands (Carousel) -->

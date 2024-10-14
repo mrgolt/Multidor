@@ -51,7 +51,7 @@ class Slot(models.Model):
     slot_type = models.ForeignKey(SlotType, on_delete=models.SET_NULL, null=True, default=1)
     updated_at = models.DateTimeField(auto_now=True)
     theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True)
-    paylines = models.ForeignKey(Paylines, on_delete=models.SET_NULL, null=True)
+    paylines = models.ForeignKey(Paylines, on_delete=models.SET_NULL, null=True, blank=True)
     features = models.ManyToManyField(Feature, blank=True)
 
     def __str__(self):
