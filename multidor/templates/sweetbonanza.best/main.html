@@ -116,7 +116,7 @@
 </head>
 <body class="has-navbar-fixed-top">
 
-{{ site.counters|safe }}
+{#{{ site.counters|safe }}#}
 
 <div class="container">
     <nav class="navbar is-black is-spaced has-background-dark has-text-light is-fixed-top" role="navigation"
@@ -177,7 +177,8 @@
                 <a class="button is-secondary playdemo" alt="Играть Демо в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}">
                     Играть демо
                 </a>
-                <a onclick="ym(ymCounter, 'reachGoal', 'bottom_mobile_wheretoplay'); return true;"
+                <a
+{#                   onclick="ym(ymCounter, 'reachGoal', 'bottom_mobile_wheretoplay'); return true;"#}
                    class="button is-primary pl"
                    href="/go/{{ bonuses.first.redirect.name }}/?placement=bottom_mobile_wheretoplay">
                     <strong>Где играть?</strong>
@@ -231,7 +232,8 @@
                         </a>
                             <a class="button is-primary is-fullwidth pl"
                                href="/go/{{ bonus.redirect.name }}/?placement=bonus_button"
-                               onclick="ym(ymCounter, 'reachGoal', 'bonus_button'); return true;">Играть</a>
+{#                               onclick="ym(ymCounter, 'reachGoal', 'bonus_button'); return true;"#}
+                            >Играть</a>
                         </span>
                     </div>
                 </div>
@@ -274,11 +276,13 @@
                     <div class="has-text-centered">
                         <a class="button is-primary mt-3 pl" target="_blank"
                            href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_new_window"
-                           onclick="ym(ymCounter, 'reachGoal', 'demo_new_window'); return true;">Открыть в новом
+{#                           onclick="ym(ymCounter, 'reachGoal', 'demo_new_window'); return true;"#}
+                        >Открыть в новом
                             окне</a>
                         <a class="button is-primary mt-3 ms-3 pl" target="_blank"
                            href="/go/{{ bonuses.first.redirect.name }}/?placement=demo_bonus_button"
-                           onclick="ym(ymCounter, 'reachGoal', 'demo_bonus_button'); return true;">Бонус 100 FS</a>
+{#                           onclick="ym(ymCounter, 'reachGoal', 'demo_bonus_button'); return true;"#}
+                        >Бонус 100 FS</a>
                     </div>
                 </div>
             </div>
@@ -489,7 +493,8 @@
                 {% if site.tlg_link %}
                     <a class="button is-secondary is-small"
                        href="{{ site.tlg_link }}/?placement=tg_button"
-                       onclick="ym(ymCounter, 'reachGoal', 'tg_button'); return true;">Telegram
+{#                       onclick="ym(ymCounter, 'reachGoal', 'tg_button'); return true;"#}
+                    >Telegram
                         канал {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</a>
                 {% endif %}
             </div>
