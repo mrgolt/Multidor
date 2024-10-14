@@ -36,6 +36,7 @@ urlpatterns = [
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('sitemap.xml', views.sitemap_generator, name='sitemap_generator'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
+    path('yandex_<str:code>.html', views.yandex_webmaster_approve, name='yandex_webmaster_approve'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

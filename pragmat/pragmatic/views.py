@@ -6,6 +6,8 @@ from .models import Site, Offer
 from django.utils import timezone
 from datetime import timedelta
 import requests
+from django.http import HttpResponseBadRequest
+import re
 
 def get_site(request):
     # Получаем хост из запроса
@@ -88,3 +90,24 @@ def sitemap_generator(request):
     #     print(requests.get(f'https://yandex.com/indexnow?key={slot.slug[0]}iyg786g8srfiIJHIuhiuhf7&url=https://{site.domain}/slots/{slot.slug}/').json())
 
     return render(request, 'sitemap.xml', {'domain': site.domain, 'yesterday': yesterday, 'slots': slots })
+
+def yandex_webmaster_approve(request, code):
+
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    if 'yandex' not in user_agent.lower():
+        return HttpResponseBadRequest("Error")
+
+    if not re.match("^[a-zA-Z0-9]+$", code):
+        return HttpResponseBadRequest("Error")
+
+    content = f"""
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            </head>
+            <body>Verification: {code}</body>
+        </html>
+    """
+    response = HttpResponse(content, content_type="text/plain")
+    response['Content-Disposition'] = f'inline; filename="yandex_{code}.html"'
+    return response
