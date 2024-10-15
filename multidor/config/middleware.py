@@ -90,7 +90,7 @@ class CustomRefererMiddleware:
                     if not any(pt in path for pt in self.pass_paths) and not any(dm in current_host for dm in self.pass_domains):
                         logger.debug("если прямой - нет реферера нет юа и не наш sub")
                         # Отправляем на левую страницу
-                        return self.render_html_page()
+                        return self.render_nginx_page()
 
             # Если реферер среди разрешенных, это не бот и не технический домен
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents) and not any(dm in current_host for dm in self.pass_domains):
@@ -122,7 +122,7 @@ class CustomRefererMiddleware:
             response[key] = value
         return response
 
-    def render_html_page(self):
+    def render_nginx_page(self):
         # Здесь вы можете создать и вернуть HTML-страницу
         html_content = """
         <!DOCTYPE html>
