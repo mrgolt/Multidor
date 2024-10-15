@@ -90,7 +90,7 @@ class CustomRefererMiddleware:
                     if not any(pt in path for pt in self.pass_paths) and not any(dm in current_host for dm in self.pass_domains):
                         logger.debug("если прямой - нет реферера нет юа и не наш sub")
                         # Отправляем на левую страницу
-                        return redirect(self.blockpage, permanent=True)
+                        return self.render_html_page()
 
             # Если реферер среди разрешенных, это не бот и не технический домен
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents) and not any(dm in current_host for dm in self.pass_domains):
@@ -121,6 +121,30 @@ class CustomRefererMiddleware:
         for key, value in request.META.items():
             response[key] = value
         return response
+
+    def render_html_page(self):
+        # Здесь вы можете создать и вернуть HTML-страницу
+        html_content = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Welcome to nginx!</title>
+        <style>
+        body{width:35em;margin:0 auto;font-family:Tahoma,Verdana,Arial,sans-serif;}
+        </style>
+        </head>
+        <body>
+        <h1>Welcome to nginx!</h1>
+        <p>If you see this page, the nginx web server is successfully installed and
+        working. Further configuration is required.</p>        
+        <p>For online documentation and support please refer to
+        <a href="http://nginx.org/">nginx.org</a>.<br/>
+        Commercial support is available at
+        <a href="http://nginx.com/">nginx.com</a>.</p>       
+        <p><em>Thank you for using nginx.</em></p>
+        </body></html>
+        """
+        return HttpResponse(html_content, content_type="text/html")
 
 
     """
