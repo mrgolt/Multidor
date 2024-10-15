@@ -16,8 +16,11 @@ def slot_list(request):
     site = get_site(request)
 
     slot_name = request.GET.get('slot_name')
-    page_number = request.GET.get('page', 1)  # Получаем номер страницы из параметров запроса
+    page_number = request.GET.get('page', 1)
     slot_type = request.GET.get('slot_type')
+    theme = request.GET.get('theme')
+    feature = request.GET.get('feature')
+    payline = request.GET.get('payline')
 
     slot_type = SlotType.objects.filter(id=slot_type).first()
 
@@ -43,6 +46,14 @@ def slot_list(request):
 
     if slot_type:
         slots = slots.filter(slot_type=slot_type)
+    if theme:
+        slots = slots.filter(theme=theme)
+    if feature:
+        feature_object = Feature.objects.get(id=feature)
+        if feature_object:
+            slots = slots.filter(features=feature_object)
+    if payline:
+        slots = slots.filter(paylines=payline)
 
     # Параметры пагинации
     slots_per_page = 18
@@ -61,6 +72,9 @@ def slot_list(request):
         'slot_name': slot_name,
         'site': site,
         'slot_type': slot_type,
+        'theme': theme,
+        'feature': feature,
+        'payline': payline,
     }
 
     return render(request, site.slot_list_template, context)

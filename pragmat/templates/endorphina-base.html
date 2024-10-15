@@ -238,66 +238,70 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-{#                        <li class="nav-item">#}
-{#                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>#}
-{#                        </li>#}
+                        <li class="nav-item">
+                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>
+                        </li>
 
-{#                        <li class="nav-item dropdown">#}
-{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Популярные</a>#}
-{#                            <div class="dropdown-menu">#}
-{#                                <div class="d-lg-flex pt-lg-3">#}
-{#                                    <div class="mega-dropdown-column me-5">#}
-{#                                        <h6 class="px-3 mb-2">Выбор игроков</h6>#}
-{#                                        <ul class="list-unstyled mb-3">#}
-{#                                            {% for slot in users_choice_slots %}#}
-{#                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>#}
-{#                                            {% endfor %}#}
-{##}
-{#                                        </ul>#}
-{#                                    </div>#}
-{#                                    <div class="mega-dropdown-column me-5">#}
-{#                                        <h6 class="px-3 mb-2">Популярные</h6>#}
-{#                                        <ul class="list-unstyled mb-3">#}
-{#                                            {% for slot in popular_slots %}#}
-{#                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>#}
-{#                                            {% endfor %}#}
-{#                                        </ul>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </li>#}
-{#                        <li class="nav-item dropdown">#}
-{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Новые</a>#}
-{#                            <div class="dropdown-menu">#}
-{#                                <div class="d-lg-flex pt-lg-3">#}
-{#                                    <div class="mega-dropdown-column me-5">#}
-{#                                        <ul class="list-unstyled mb-3">#}
-{#                                            {% for slot in new_slots %}#}
-{#                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>#}
-{#                                            {% endfor %}#}
-{#                                        </ul>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </li>#}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Линий выплат</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-lg-3">
+                                            {% for payline in paylines|slice:":15" %}
+                                            <li><a href="{% url 'slot_list' %}?payline={{ payline.id }}" class="dropdown-item py-1">{{ payline.russian_title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                     <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for payline in paylines|slice:"15:" %}
+                                            <li><a href="{% url 'slot_list' %}?payline={{ payline.id }}" class="dropdown-item py-1">{{ payline.russian_title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
-{#                        <li class="nav-item dropdown d-lg-none">#}
-{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Игры</a>#}
-{#                            <div class="dropdown-menu">#}
-{#                                <div class="d-lg-flex pt-lg-3">#}
-{#                                    <div class="mega-dropdown-column me-5">#}
-{#                                        <ul class="list-unstyled mb-3">#}
-{#                                            <li><a href="/slots/" class="dropdown-item py-1">Все</a></li>#}
-{#                                            <li><a href="/slots/?slot_type=1" class="dropdown-item py-1">Слоты</a></li>#}
-{#                                            <li><a href="/slots/?slot_type=2" class="dropdown-item py-1">Игры с мгновенным выигрышем</a></li>#}
-{#                                            <li><a href="/slots/?slot_type=3" class="dropdown-item py-1">Скретч-карты</a></li>#}
-{#                                        </ul>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </li>#}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Тематика</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-lg-3">
+                                            {% for theme in themes|slice:":18" %}
+                                            <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.russian_title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                     <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for theme in themes|slice:"18:" %}
+                                            <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.russian_title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
-                        <li class="nav-item"><a href="/slots/" class="nav-link">Все слоты</a></li>
+                     <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Характеристики</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for feature in features %}
+                                            <li><a href="{% url 'slot_list' %}?feature={{ feature.id }}" class="dropdown-item py-1">{{ feature.russian_title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+
 
                     </ul>
                 </div>
