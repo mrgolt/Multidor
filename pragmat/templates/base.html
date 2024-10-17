@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="ru" data-bs-theme="dark">
 <head>
@@ -7,15 +8,15 @@
         {% if page.title %}{{ page.title }} - {% endif %}
         {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
-        {% if slots %}Все слоты - {% endif %}
-        Pragmatic Play - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!
+        {% if slots %}{% trans 'Все слоты' %} - {% endif %}
+        {{ site.provider.name }} - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!
     </title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% if page.title %}{{ page.title }} - {% endif %}
         {% if slot.name %}Слот {{ slot.name }} - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
-        {% if slots %}Все слоты - {% endif %}
+        {% if slots %}{% trans 'Все слоты' %} - {% endif %}
         Pragmatic Play - самый популярный провайдер слотов. Все слоты провайдера на одном сайте! Играйте в любой слот прямо сейчас!">
     <meta name="keywords"
       content="онлайн казино, игровые автоматы, азартные игры, слоты, рулетка, блэкджек, покер, бонусы казино, бесплатные вращения, джекпот, регистрация в казино, лучшие казино, отзывы о казино, стратегии игр, слоты онлайн, демо игры, лицензированные казино, казино на деньги, безопасные казино, мобильное казино, казино с живыми дилерами, pragmatic play{% if slot.name %}, {{ slot.name }}{% endif %}{% if slot.folk_name %}, слот {{ slot.folk_name }}{% endif %}">
@@ -216,15 +217,15 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>
+                            <a href="{% url 'slot_list' %}" class="nav-link">{% trans 'Все слоты' %}</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Популярные</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Популярные' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
-                                        <h6 class="px-3 mb-2">Выбор игроков</h6>
+                                        <h6 class="px-3 mb-2">{% trans 'Выбор игроков' %}</h6>
                                         <ul class="list-unstyled mb-3">
                                             {% for slot in users_choice_slots %}
                                             <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
@@ -233,7 +234,7 @@
                                         </ul>
                                     </div>
                                     <div class="mega-dropdown-column me-5">
-                                        <h6 class="px-3 mb-2">Популярные</h6>
+                                        <h6 class="px-3 mb-2">{% trans 'Популярные' %}</h6>
                                         <ul class="list-unstyled mb-3">
                                             {% for slot in popular_slots %}
                                             <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
@@ -244,7 +245,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Новые</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Новые' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
@@ -258,7 +259,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Категории</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Категории' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
@@ -281,14 +282,14 @@
 {#                       onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"#}
                        class="btn btn-primary w-100" target="_blank" rel="noopener">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
-                        &nbsp;Получить бонус 100 FS
+                        &nbsp;{% trans 'Получить бонус' %} 100 FS
                     </a>
                 </div>
             </div>
             <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
                 <input type="checkbox" class="form-check-input" id="theme-mode" checked>
-                <label class="form-check-label d-none d-sm-block" for="theme-mode">Светло</label>
-                <label class="form-check-label d-none d-sm-block" for="theme-mode">Темно</label>
+                <label class="form-check-label d-none d-sm-block" for="theme-mode">{% trans 'Светло' %}</label>
+                <label class="form-check-label d-none d-sm-block" for="theme-mode">{% trans 'Темно' %}</label>
             </div>
             <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -298,7 +299,7 @@
 {#               onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"#}
                class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>
-                &nbsp;Получить бонус 100 FS
+                &nbsp;{% trans 'Получить бонус' %} 100 FS
             </a>
         </div>
     </header>
@@ -317,9 +318,9 @@
         <div class="row pb-5">
             <div class="col-lg-4 col-md-6">
                 <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
-                    <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="Pragmatic Play"
+                    <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="{{ site.provider.name }}"
                          class="d-dark-mode-block d-none">
-                    <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="Pragmatic Play"
+                    <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="{{ site.provider.name }}"
                          class="d-dark-mode-none">
                 </div>
                 <p class="fs-sm pb-lg-3 mb-4">Веб-ресурс не является официальным сайтом Pragmatic Play. Сайт носит

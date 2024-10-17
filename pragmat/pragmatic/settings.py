@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pragmatic.middleware.CustomRefererMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'pragmatic.urls'

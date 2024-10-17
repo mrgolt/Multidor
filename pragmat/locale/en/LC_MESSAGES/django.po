@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-17 18:53+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, fuzzy
+
+msgid "Добро пожаловать!"
+msgstr "Welcome!"
+
+msgid "Играй в любимые слоты в демо-режиме и на реальные деньги!"
+msgstr "Play your favorite slots in demo mode and for real money!"
+
+msgid "Все слоты"
+msgstr "All slots"
+
+msgid "Получить бонус"
+msgstr "Get a bonus"
+
+msgid "Слот"
+msgstr "Slot"
+
+msgid "Популярные"
+msgstr "Popular"
+
+msgid "Новые"
+msgstr "New"
+
+msgid "Категории"
+msgstr "Categories"
+
+msgid "Светло"
+msgstr "Light"
+
+msgid "Темно"
+msgstr "Dark"
+
+msgid "Выбор игроков"
+msgstr "Player's Choice"
+
+msgid "Найти слот"
+msgstr "Find a slot"
+
+msgid "игроков уже с нами"
+msgstr "players are already with us"
+
+msgid "Поиск"
+msgstr "Search"
+
+#: .\pragmatic\urls.py:35
+msgid "slots/"
+msgstr "slots/"
+
+#: .\pragmatic\urls.py:36
+msgid "page/<slug:slug>/"
+msgstr "page/<slug:slug>/"

@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-17 18:53+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, fuzzy
+
+msgid "Добро пожаловать!"
+msgstr "¡Bienvenido!"
+
+msgid "Играй в любимые слоты в демо-режиме и на реальные деньги!"
+msgstr "¡Juega a tus tragaperras favoritas en modo de demostración y por dinero real!"
+
+msgid "Все слоты"
+msgstr "Todas las tragaperras"
+
+msgid "Получить бонус"
+msgstr "Obtener un bono"
+
+msgid "Слот"
+msgstr "Tragaperras"
+
+msgid "Популярные"
+msgstr "Populares"
+
+msgid "Новые"
+msgstr "Nuevas"
+
+msgid "Категории"
+msgstr "Categorías"
+
+msgid "Светло"
+msgstr "Claro"
+
+msgid "Темно"
+msgstr "Oscuro"
+
+msgid "Выбор игроков"
+msgstr "Elección de los jugadores"
+
+msgid "Найти слот"
+msgstr "Encontrar una tragaperras"
+
+msgid "игроков уже с нами"
+msgstr "jugadores ya están con nosotros"
+
+msgid "Поиск"
+msgstr "Buscar"
+
+#: .\pragmatic\urls.py:35
+msgid "slots/"
+msgstr "slots/"
+
+#: .\pragmatic\urls.py:36
+msgid "page/<slug:slug>/"
+msgstr "page/<slug:slug>/"

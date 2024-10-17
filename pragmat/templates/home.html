@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
 
 
@@ -14,25 +14,25 @@
         <div class="container position-relative zindex-2 py-lg-4">
             <div class="row">
                 <div class="col-lg-5 d-flex flex-column pt-lg-4 pt-xl-5">
-                    <h5 class="my-2">Добро пожаловать!</h5>
+                    <h5 class="my-2">{% trans 'Добро пожаловать!' %}</h5>
                     <h1 class="display-1 mb-4"><span class="text-primary">Pragmatic Play</span></h1>
-                    <p class="fs-lg mb-5">Играй в любимые слоты в демо-режиме и на реальные деньги!</p>
+                    <p class="fs-lg mb-5">{% trans 'Играй в любимые слоты в демо-режиме и на реальные деньги!' %}</p>
 
                     <!-- Desktop form -->
                     <form class="d-none d-sm-flex mb-5" action="{% url 'slot_list' %}" method="get">
                         <div class="input-group d-block d-sm-flex input-group-lg me-3">
 
-                                <input type="text" class="form-control w-50" placeholder="Найти слот..." name="slot_name">
+                                <input type="text" class="form-control w-50" placeholder="{% trans 'Найти слот' %}..." name="slot_name">
 
                         </div>
-                        <button type="submit" class="btn btn-icon btn-primary btn-lg" aria-label="Поиск">
+                        <button type="submit" class="btn btn-icon btn-primary btn-lg" aria-label="{% trans 'Поиск' %}">
                             <i class="bx bx-search"></i>
                         </button>
                     </form>
 
                     <!-- Mobile form -->
                     <form class="d-sm-none mb-5" action="{% url 'slot_list' %}" method="get">
-                        <input type="text" class="form-control form-control-lg mb-2" placeholder="Найти слот..." name="slot_name">
+                        <input type="text" class="form-control form-control-lg mb-2" placeholder="{% trans 'Найти слот' %}..." name="slot_name">
                         <button type="submit" class="btn btn-icon btn-primary btn-lg w-100 d-sm-none"
                                 aria-label="Поиск">
                             <i class="bx bx-search"></i>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <span class="fs-sm"><span
-                                class="text-primary fw-semibold">10М+</span> игроков уже с нами</span>
+                                class="text-primary fw-semibold">10М+</span> {% trans 'игроков уже с нами' %}</span>
                     </div>
                 </div>
                 <div class="col-lg-7">
