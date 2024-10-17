@@ -31,7 +31,7 @@ router.register(r'slotdescriptions', SlotDescriptionsViewSet)
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path(_(''), views.home, name='home'),
     path(_('slots/'), include('slots.urls')),
     path(_('page/<slug:slug>/'), page_detail, name='page_detail'),
     path('api/', include(router.urls)),

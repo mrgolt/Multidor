@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#: .\pragmatic\urls.py:34
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-17 18:53+0300\n"
+"POT-Creation-Date: 2024-10-17 21:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#, fuzzy
-
-msgid "Добро пожаловать!"
-msgstr "Welcome!"
-
-msgid "Играй в любимые слоты в демо-режиме и на реальные деньги!"
-msgstr "Play your favorite slots in demo mode and for real money!"
-
-msgid "Все слоты"
-msgstr "All slots"
-
-msgid "Получить бонус"
-msgstr "Get a bonus"
-
-msgid "Слот"
-msgstr "Slot"
-
-msgid "Популярные"
-msgstr "Popular"
-
-msgid "Новые"
-msgstr "New"
-
-msgid "Категории"
-msgstr "Categories"
-
-msgid "Светло"
-msgstr "Light"
-
-msgid "Темно"
-msgstr "Dark"
-
-msgid "Выбор игроков"
-msgstr "Player's Choice"
-
-msgid "Найти слот"
-msgstr "Find a slot"
-
-msgid "игроков уже с нами"
-msgstr "players are already with us"
-
-msgid "Поиск"
-msgstr "Search"
-
 #: .\pragmatic\urls.py:35
 msgid "slots/"
 msgstr "slots/"
@@ -68,3 +25,98 @@ msgstr "slots/"
 #: .\pragmatic\urls.py:36
 msgid "page/<slug:slug>/"
 msgstr "page/<slug:slug>/"
+
+#: .\templates\base.html:11 .\templates\base.html:19 .\templates\base.html:220
+#: .\templates\home.html:266 .\templates\slot_detail.html:150
+msgid "Все слоты"
+msgstr "All slots"
+
+#: .\templates\base.html:224 .\templates\base.html:237
+msgid "Популярные"
+msgstr "Popular"
+
+#: .\templates\base.html:228 .\templates\home.html:230
+#: .\templates\home.html:330 .\templates\slot_detail.html:116
+msgid "Выбор игроков"
+msgstr "Player's Choice"
+
+#: .\templates\base.html:248
+msgid "Новые"
+msgstr "New"
+
+#: .\templates\base.html:262
+msgid "Категории"
+msgstr "Categories"
+
+#: .\templates\base.html:285 .\templates\base.html:302
+msgid "Получить бонус"
+msgstr "Get a bonus"
+
+#: .\templates\base.html:291
+msgid "Светло"
+msgstr "Light"
+
+#: .\templates\base.html:292
+msgid "Темно"
+msgstr "Dark"
+
+#: .\templates\base.html:327
+msgid ""
+"\n"
+"                        Веб-ресурс не является официальным сайтом Pragmatic "
+"Play. Сайт носит\n"
+"                        исключительно информационный характер и не принимает "
+"денежных платежей со стороны пользователей. Все\n"
+"                        права на бренд, торговую марку и игры, размещенные "
+"на данном ресурсе, принадлежат компании Pragmatic\n"
+"                        Play.\n"
+"                    "
+msgstr ""
+
+#: .\templates\home.html:17
+msgid "Добро пожаловать!"
+msgstr "Welcome!"
+
+#: .\templates\home.html:19
+msgid "Играй в любимые слоты в демо-режиме и на реальные деньги!"
+msgstr "Play your favorite slots in demo mode and for real money!"
+
+#: .\templates\home.html:25 .\templates\home.html:35
+msgid "Найти слот"
+msgstr "Find a slot"
+
+#: .\templates\home.html:28
+msgid "Поиск"
+msgstr "Search"
+
+#: .\templates\home.html:60
+msgid "игроков уже с нами"
+msgstr "players are already with us"
+
+#: .\templates\home.html:177 .\templates\slot_detail.html:65
+msgid "Популярные слоты"
+msgstr "Popular Slots"
+
+#: .\templates\home.html:243 .\templates\home.html:341
+#: .\templates\slot_detail.html:127
+msgid "Играть сейчас"
+msgstr "Play Now"
+
+#: .\templates\home.html:281
+msgid "Новые слоты"
+msgstr "New Slots"
+
+#: .\templates\home.html:516
+msgid "Часто задаваемые вопросы"
+msgstr "FAQ"
+
+#: .\templates\slot_detail.html:14
+msgid "Демо игра в"
+msgstr "Play Demo"
+
+#: .\templates\slot_detail.html:51
+msgid "Читать полностью"
+msgstr "Read more"
+
+#~ msgid "Слот"
+#~ msgstr "Slot"
