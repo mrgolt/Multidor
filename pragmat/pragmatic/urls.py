@@ -22,21 +22,26 @@ from slots.views import SlotViewSet, SlotDescriptionsViewSet, page_detail
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
+
 router = DefaultRouter()
 router.register(r'slots', SlotViewSet)
 router.register(r'slotdescriptions', SlotDescriptionsViewSet)
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('slots/', include('slots.urls')),
-    path('page/<slug:slug>/', page_detail, name='page_detail'),
+    path(_('slots/'), include('slots.urls')),
+    path(_('page/<slug:slug>/'), page_detail, name='page_detail'),
     path('api/', include(router.urls)),
     path('play/<slug:slug>/', views.redirect_view, name='redirect_view'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('sitemap.xml', views.sitemap_generator, name='sitemap_generator'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
     path('yandex_<str:code>.html', views.yandex_webmaster_approve, name='yandex_webmaster_approve'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    prefix_default_language=False,
+)
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
