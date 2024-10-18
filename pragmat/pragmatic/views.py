@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from slots.models import *
+from slots.models import Slot
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Site, Offer
@@ -9,22 +9,9 @@ import requests
 from django.http import HttpResponseBadRequest
 import re
 
-def get_site(request):
-    # Получаем хост из запроса
-    domain = request.META['HTTP_HOST']
-
-    if domain == '127.0.0.1:8000':
-        domain = 'pragmatic-play.cloud'
-    else:
-        domain = '.'.join(domain.split('.')[-2:])
-
-    site = get_object_or_404(Site, domain=domain)
-
-    return site
-
 def home(request):
 
-    site = get_site(request)
+    site = request.site
 
     template = site.home_template or 'home.html'
 
@@ -35,12 +22,10 @@ def home(request):
     scratch_cards = Slot.objects.filter(provider=site.provider, slot_type=3).order_by('-id')[:12]
     new_slots = Slot.objects.filter(is_new=True, provider=site.provider).order_by('-id')[:12]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:12]
-    reviews = Review.objects.all()[:10]
 
     return render(request, template, {
         'popular_slots': popular_slots,
         'new_slots': new_slots,
-        'reviews': reviews,
         'users_choice_slots': users_choice_slots,
         'instant_win_games': instant_win_games,
         'scratch_cards': scratch_cards,
@@ -50,9 +35,8 @@ def home(request):
 
 
 def redirect_view(request, slug):
-    # Получаем URL для редиректа по slug
 
-    site = get_site(request)
+    site = request.site
 
     offers = site.offers.filter(redirect_name=slug)
     redirect_url = offers[0].redirect_url + '?placement=' + request.GET.get('placement') + '&offer=' + offers[0].redirect_name + '&domain=' + site.domain
@@ -64,8 +48,8 @@ def redirect_view(request, slug):
 
 def robots_txt(request):
 
-    site = get_site(request)
-    # Содержимое файла robots.txt
+    site = request.site
+
     lines = [
         "User-agent: *",
         "Disallow: /play/",
@@ -82,7 +66,7 @@ def sitemap_generator(request):
 
     yesterday = (timezone.now().date() - timedelta(days=1)).strftime('%Y-%m-%d')
 
-    site = get_site(request)
+    site = request.site
 
     slots = Slot.objects.filter(provider=site.provider)
 

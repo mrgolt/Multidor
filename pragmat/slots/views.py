@@ -4,7 +4,6 @@ from .serializers import SlotSerializer, SlotDescriptionSerializer
 from rest_framework import viewsets
 from django.core.paginator import Paginator
 from django.db.models import Q
-from pragmatic.views import get_site
 from rest_framework.response import Response
 from rest_framework import status
 import requests
@@ -13,7 +12,7 @@ from datetime import timedelta
 
 def slot_list(request):
 
-    site = get_site(request)
+    site = request.site
 
     slot_name = request.GET.get('slot_name')
     page_number = request.GET.get('page', 1)
@@ -82,7 +81,7 @@ def slot_list(request):
 
 def slot_detail(request, slug):
 
-    site = get_site(request)
+    site = request.site
 
     slot = get_object_or_404(Slot, slug=slug, provider=site.provider)
     reviews = Review.objects.filter(slot=slot)[:10]
@@ -156,7 +155,7 @@ class SlotDescriptionsViewSet(viewsets.ModelViewSet):
 
 def page_detail(request, slug):
 
-    site = get_site(request)
+    site = request.site
 
     page = get_object_or_404(Page, slug=slug)
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider)[:10]

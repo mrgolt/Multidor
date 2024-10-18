@@ -258,17 +258,31 @@
                                 </div>
                             </div>
                         </li>
+{#                        <li class="nav-item dropdown">#}
+{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Категории' %}</a>#}
+{#                            <div class="dropdown-menu">#}
+{#                                <div class="d-lg-flex pt-lg-3">#}
+{#                                    <div class="mega-dropdown-column me-5">#}
+{#                                        <ul class="list-unstyled mb-3">#}
+{#                                            <li><a href="/slots/?slot_name=Собаки" class="dropdown-item py-1">Собаки</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Рыбалка" class="dropdown-item py-1">Рыбалка</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Дикий запад" class="dropdown-item py-1">Дикий запад</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Сладости и Фрукты" class="dropdown-item py-1">Сладости и Фрукты</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Megaways" class="dropdown-item py-1">Megaways</a></li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Категории' %}</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Тематика</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
-                                        <ul class="list-unstyled mb-3">
-                                            <li><a href="/slots/?slot_name=Собаки" class="dropdown-item py-1">Собаки</a></li>
-                                            <li><a href="/slots/?slot_name=Рыбалка" class="dropdown-item py-1">Рыбалка</a></li>
-                                            <li><a href="/slots/?slot_name=Дикий запад" class="dropdown-item py-1">Дикий запад</a></li>
-                                            <li><a href="/slots/?slot_name=Сладости и Фрукты" class="dropdown-item py-1">Сладости и Фрукты</a></li>
-                                            <li><a href="/slots/?slot_name=Megaways" class="dropdown-item py-1">Megaways</a></li>
+                                        <ul class="list-unstyled mb-lg-3">
+                                            {% for theme in themes %}
+                                            <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.russian_title }}</a></li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>

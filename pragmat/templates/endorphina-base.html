@@ -248,14 +248,14 @@
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-lg-3">
-                                            {% for payline in paylines|slice:":15" %}
+                                            {% for payline in paylines|slice:":12" %}
                                             <li><a href="{% url 'slot_list' %}?payline={{ payline.id }}" class="dropdown-item py-1">{{ payline.russian_title }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
                                      <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-3">
-                                            {% for payline in paylines|slice:"15:" %}
+                                            {% for payline in paylines|slice:"12:" %}
                                             <li><a href="{% url 'slot_list' %}?payline={{ payline.id }}" class="dropdown-item py-1">{{ payline.russian_title }}</a></li>
                                             {% endfor %}
                                         </ul>
@@ -270,14 +270,14 @@
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-lg-3">
-                                            {% for theme in themes|slice:":18" %}
+                                            {% for theme in themes|slice:":10" %}
                                             <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.russian_title }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
                                      <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-3">
-                                            {% for theme in themes|slice:"18:" %}
+                                            {% for theme in themes|slice:"10:" %}
                                             <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.russian_title }}</a></li>
                                             {% endfor %}
                                         </ul>

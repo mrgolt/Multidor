@@ -4,6 +4,8 @@ from django.http import Http404
 import logging
 from django.shortcuts import redirect
 from urllib.parse import urlparse
+from django.shortcuts import get_object_or_404
+from .models import Site
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -107,3 +109,22 @@ class CustomRefererMiddleware:
             301 => sub.domain
     
     """
+
+
+
+class SiteMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        domain = request.META.get('HTTP_HOST', '')
+
+        if domain == '127.0.0.1:8000':
+            domain = 'pragmatic-play.cloud'
+        else:
+            domain = '.'.join(domain.split('.')[-2:])
+
+        request.site = get_object_or_404(Site, domain=domain)
+
+        response = self.get_response(request)
+        return response

@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'pragmatic.middleware.CustomRefererMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'pragmatic.middleware.SiteMiddleware',
 ]
 
 ROOT_URLCONF = 'pragmatic.urls'
