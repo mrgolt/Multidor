@@ -11,7 +11,7 @@ class SlotType(models.Model):
 
 class Theme(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    russian_title = models.CharField(max_length=100, unique=True)
+    title_ru = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from='title', unique=True, editable=True)
 
     def __str__(self):
@@ -19,7 +19,7 @@ class Theme(models.Model):
 
 class Feature(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    russian_title = models.CharField(max_length=100, unique=True)
+    title_ru = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from='title', unique=True, editable=True)
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Feature(models.Model):
 
 class Paylines(models.Model):
     title = models.CharField(max_length=100, unique=True)
-    russian_title = models.CharField(max_length=100, unique=True)
+    title_ru = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from='title', unique=True, editable=True)
 
     def __str__(self):
