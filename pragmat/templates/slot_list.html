@@ -7,7 +7,7 @@
 <!-- Story -->
 <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
-        <h2 class="h1 mb-4">{% trans 'Слоты' %} <span class="text-primary">Pragmatic Play</span></h2>
+        <h2 class="h1 mb-4">{% trans 'Слоты' %} <span class="text-primary">Pragmatic Play</span>{% if theme %} <br />в категории <span class="text-primary">{{ theme }}</span>{% endif %}</h2>
         <p class="mb-4">Выберите любимый слот и играйте в демо или на реальные деньги в казино.</p>
 <a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">Бездепозитный бонус 100 FS</a>
 
@@ -92,7 +92,7 @@
             <ul class="pagination justify-content-center py-4">
                 {% if slots.has_previous %}
                     <li class="page-item">
-                        <a href="?page={{ slots.previous_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}" class="page-link"
+                        <a href="?page={{ slots.previous_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}" class="page-link"
                            aria-label="Previous page">
                             <i class="bx bx-chevron-left mx-n1"></i>
                         </a>
@@ -101,7 +101,7 @@
 
                 {% if slots.number > 3 %}
                     <li class="page-item">
-                        <a href="?page=1{% if slot_name %}&slot_name={{ slot_name }}{% endif %}"
+                        <a href="?page=1{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}"
                            class="page-link">1</a>
                     </li>
                     <li class="page-item">
@@ -112,7 +112,7 @@
                 {% for num in slots.paginator.page_range %}
                     {% if num >= slots.number|add:"-1" and num <= slots.number|add:"1" %}
                         <li class="page-item {% if num == slots.number %}active{% endif %}">
-                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}" class="page-link">{{ num }}</a>
+                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}" class="page-link">{{ num }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -122,14 +122,14 @@
                         &hellip;
                     </li>
                     <li class="page-item">
-                        <a href="?page={{ slots.paginator.num_pages }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}"
+                        <a href="?page={{ slots.paginator.num_pages }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}"
                            class="page-link">{{ slots.paginator.num_pages }}</a>
                     </li>
                 {% endif %}
 
                 {% if slots.has_next %}
                     <li class="page-item">
-                        <a href="?page={{ slots.next_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}"
+                        <a href="?page={{ slots.next_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}"
                            class="page-link" aria-label="Next page">
                             <i class="bx bx-chevron-right mx-n1"></i>
                         </a>

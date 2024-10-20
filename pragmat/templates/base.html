@@ -8,8 +8,8 @@
         {% if page.title %}{{ page.title }} - {% endif %}
         {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
-        {% if slots %}{% trans 'Все слоты' %} - {% endif %}
-        {{ site.provider.name }} - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!
+        {% if slots %}{% trans 'Все слоты' %} {% if theme %} в категории {{ theme }}{% endif %} - {% endif %}
+        {{ site.provider.name }} - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!{% if slots.number %} - Страница {{ slots.number }}{% endif %}
     </title>
 
     <!-- SEO Meta Tags -->

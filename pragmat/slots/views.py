@@ -17,11 +17,16 @@ def slot_list(request):
     slot_name = request.GET.get('slot_name')
     page_number = request.GET.get('page', 1)
     slot_type = request.GET.get('slot_type')
-    theme = request.GET.get('theme')
+    theme_id = request.GET.get('theme')
     feature = request.GET.get('feature')
     payline = request.GET.get('payline')
 
     slot_type = SlotType.objects.filter(id=slot_type).first()
+
+    theme = None
+
+    if theme_id:
+        theme = get_object_or_404(Theme, id=theme_id)
 
     keywords_mapping = {
         'Сладости и Фрукты': ['sugar', 'sweet', 'фрукт', 'сладк'],
