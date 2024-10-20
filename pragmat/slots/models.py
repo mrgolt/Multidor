@@ -4,6 +4,7 @@ from pragmatic.models import Provider, Site
 
 class SlotType(models.Model):
     name = models.CharField(max_length=100)
+    plural = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return self.name
