@@ -281,7 +281,7 @@
                                     <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-lg-3">
                                             {% for theme in themes %}
-                                            <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.russian_title }}</a></li>
+                                            <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.title_ru }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
