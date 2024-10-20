@@ -203,7 +203,7 @@
     <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
     <header class="header navbar navbar-expand-lg bg-light navbar-sticky">
         <div class="container px-3">
-            <a href="/" class="navbar-brand pe-3">
+            <a href="{% url 'home' %}" class="navbar-brand pe-3">
                 <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="Pragmatic Play"
                      class="d-dark-mode-block d-none">
                 <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="Pragmatic Play"
@@ -275,7 +275,7 @@
 {#                            </div>#}
 {#                        </li>#}
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Тематика</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Тематика' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
@@ -352,21 +352,21 @@
                     <div class="col-lg-4">
                         <h6 class="mb-2">
                             <a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
-                               data-bs-toggle="collapse">Меню</a>
+                               data-bs-toggle="collapse">{% trans 'Меню' %}</a>
                         </h6>
                         <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column pb-lg-1 mb-lg-3">
-                                <li class="nav-item"><a href="/" class="nav-link d-inline-block px-0 pt-1 pb-2">Главная</a>
+                                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Главная' %}</a>
                                 </li>
-                                <li class="nav-item"><a href="/page/feedback/" class="nav-link d-inline-block px-0 pt-1 pb-2">Обратная связь</a></li>
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='feedback' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Обратная связь' %}</a></li>
 
 
 
                             </ul>
                             <ul class="nav flex-column mb-2 mb-lg-0">
-                                <li class="nav-item"><a href="/page/terms/" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='terms' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms
                                     &amp; Conditions</a></li>
-                                <li class="nav-item"><a href="/page/privacy/" class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='privacy' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy
                                     Policy</a></li>
                             </ul>
                         </div>
@@ -374,20 +374,20 @@
                     <div class="col-xl-4 col-lg-3">
                         <h6 class="mb-2">
                             <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
-                               data-bs-toggle="collapse">Полезные ссылки</a>
+                               data-bs-toggle="collapse">{% trans 'Полезные ссылки' %}</a>
                         </h6>
                         <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column mb-2 mb-lg-0">
-                                <li class="nav-item"><a href="/page/ludomania/"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Об игровой зависимости</a></li>
-                                <li class="nav-item"><a href="/page/otvetstvennaya-igra/"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Ответственная игра</a></li>
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='ludomania' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Об игровой зависимости' %}</a></li>
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='otvetstvennaya-igra' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Ответственная игра' %}</a></li>
 
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
-                        <h6 class="mb-2">Напишите нам</h6>
+                        <h6 class="mb-2">{% trans 'Напишите нам' %}</h6>
                         <a href="mailto:play@pragmatic-play.cloud" class="fw-medium">play@pragmatic-play.cloud</a>
                     </div>
                 </div>

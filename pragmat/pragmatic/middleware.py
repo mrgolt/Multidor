@@ -120,7 +120,7 @@ class SiteMiddleware:
         domain = request.META.get('HTTP_HOST', '')
 
         if domain == '127.0.0.1:8000':
-            domain = 'hacksawgames.online'
+            domain = 'pragmatic-play.cloud'
         else:
             domain = '.'.join(domain.split('.')[-2:])
 
