@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 16:00+0300\n"
+"POT-Creation-Date: 2024-10-20 16:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,10 @@ msgstr "Player's Choice"
 msgid "Новые"
 msgstr "New"
 
+#: .\templates\base.html:278 .\templates\endorphina-base.html:269
+msgid "Тематика"
+msgstr "Themes"
+
 #: .\templates\base.html:299 .\templates\base.html:316
 #: .\templates\endorphina-base.html:314 .\templates\endorphina-base.html:331
 #: .\templates\hacksaw-base.html:313 .\templates\hacksaw-base.html:330
@@ -73,45 +77,41 @@ msgid ""
 "                    "
 msgstr ""
 
+#: .\templates\base.html:355 .\templates\hacksaw-base.html:236
+msgid "Меню"
+msgstr "Menu"
+
+#: .\templates\base.html:359 .\templates\endorphina-base.html:375
+msgid "Главная"
+msgstr "Main"
+
+#: .\templates\base.html:361 .\templates\endorphina-base.html:377
+msgid "Обратная связь"
+msgstr "Feedback"
+
+#: .\templates\base.html:377 .\templates\endorphina-base.html:393
+msgid "Полезные ссылки"
+msgstr "Useful links"
+
+#: .\templates\base.html:382 .\templates\endorphina-base.html:398
+msgid "Об игровой зависимости"
+msgstr "Gambling addiction"
+
+#: .\templates\base.html:384 .\templates\endorphina-base.html:400
+msgid "Ответственная игра"
+msgstr "Responsible play"
+
+#: .\templates\base.html:390 .\templates\endorphina-base.html:406
+msgid "Напишите нам"
+msgstr "Write to us"
+
 #: .\templates\endorphina-base.html:247
 msgid "Линий выплат"
 msgstr "Paylines"
 
-#: .\templates\endorphina-base.html:269
-msgid "Тематика"
-msgstr "Themes"
-
 #: .\templates\endorphina-base.html:291
 msgid "Характеристики"
 msgstr "Features"
-
-#: .\templates\endorphina-base.html:375
-msgid "Главная"
-msgstr "Main"
-
-#: .\templates\endorphina-base.html:377
-msgid "Обратная связь"
-msgstr "Feedback"
-
-#: .\templates\endorphina-base.html:393
-msgid "Полезные ссылки"
-msgstr "Useful links"
-
-#: .\templates\endorphina-base.html:398
-msgid "Об игровой зависимости"
-msgstr "Gambling addiction"
-
-#: .\templates\endorphina-base.html:400
-msgid "Ответственная игра"
-msgstr "Responsible play"
-
-#: .\templates\endorphina-base.html:406
-msgid "Напишите нам"
-msgstr "Write to us"
-
-#: .\templates\hacksaw-base.html:236
-msgid "Меню"
-msgstr "Menu"
 
 #: .\templates\hacksaw-base.html:300 .\templates\hacksaw-home.html:123
 #: .\templates\hacksaw-home.html:155 .\templates\hacksaw-home.html:166
@@ -119,9 +119,9 @@ msgstr "Menu"
 msgid "Все игры"
 msgstr "All games"
 
-#: .\templates\hacksaw-base.html:302
+#: .\templates\hacksaw-base.html:302 .\templates\slot_list.html:10
 msgid "Слоты"
-msgstr "Slots"
+msgstr "Slots by"
 
 #: .\templates\hacksaw-base.html:303 .\templates\hacksaw-home.html:120
 msgid "Игры с мгновенным выигрышем"
@@ -200,6 +200,18 @@ msgstr "Play Demo"
 #: .\templates\slot_detail.html:51
 msgid "Читать полностью"
 msgstr "Read more"
+
+#: .\templates\slot_list.html:25
+msgid "Поиск по запросу"
+msgstr "Search results"
+
+#: .\templates\slot_list.html:27
+msgid "Выберите слот"
+msgstr "Choose a slot"
+
+#: .\templates\slot_list.html:146
+msgid "Лицензированные и сертифицированные игры"
+msgstr "Licensed and certified"
 
 #~ msgid "Слот"
 #~ msgstr "Slot"

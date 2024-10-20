@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
 
 
 <!-- Story -->
 <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
-        <h2 class="h1 mb-4">Слоты <span class="text-primary">Pragmatic Play</span></h2>
+        <h2 class="h1 mb-4">{% trans 'Слоты' %} <span class="text-primary">Pragmatic Play</span></h2>
         <p class="mb-4">Выберите любимый слот и играйте в демо или на реальные деньги в казино.</p>
 <a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">Бездепозитный бонус 100 FS</a>
 
@@ -22,23 +22,23 @@
 <section class="container mb-1 pt-md-1 pt-lg-2 pt-xl-2">
     <div class="d-lg-flex align-items-center justify-content-between py-2 mt-lg-2">
         {% if slot_name %}
-            <h2 class="me-3">Поиск по запросу: {{ slot_name }}</h2>
-            {% else %}
-        <h2 class="me-3">Выберите слот</h2>
+            <h2 class="me-3">{% trans 'Поиск по запросу' %}: {{ slot_name }}</h2>
+        {% else %}
+            <h2 class="me-3">{% trans 'Выберите слот' %}</h2>
         {% endif %}
-        <div class="d-md-flex mb-3">
-            <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">
-                <option value="all">Категория</option>
-                <option value="popular">Популярные</option>
-                <option value="new">Новые</option>
-            </select>
-            <div class="position-relative" style="min-width: 300px;">
-                <form action="{% url 'slot_list' %}" method="get">
-                    <input type="text" class="form-control pe-5" placeholder="Поиск" name="slot_name">
-                    <i class="bx bx-search text-nav fs-lg position-absolute top-50 end-0 translate-middle-y me-3"></i>
-                </form>
-            </div>
-        </div>
+{#        <div class="d-md-flex mb-3">#}
+{#            <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">#}
+{#                <option value="all">Категория</option>#}
+{#                <option value="popular">Популярные</option>#}
+{#                <option value="new">Новые</option>#}
+{#            </select>#}
+{#            <div class="position-relative" style="min-width: 300px;">#}
+{#                <form action="{% url 'slot_list' %}" method="get">#}
+{#                    <input type="text" class="form-control pe-5" placeholder="Поиск" name="slot_name">#}
+{#                    <i class="bx bx-search text-nav fs-lg position-absolute top-50 end-0 translate-middle-y me-3"></i>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 </section>
 
@@ -143,7 +143,7 @@
 
 <!-- Brands (Carousel) -->
 <section class="container mt-2 mb-lg-1 mb-xl-3 pt-3 pt-lg-5 pb-5">
-    <h2 class="text-center pb-md-2">Лицензированные и сертифицированные Игры</h2>
+    <h2 class="text-center pb-md-2">{% trans 'Лицензированные и сертифицированные игры' %}</h2>
     <div class="swiper mx-n2" data-swiper-options='{
     "slidesPerView": 2,
     "pagination": {

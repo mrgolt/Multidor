@@ -1,6 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from pragmatic.models import Provider, Site, Language
+from django.utils.translation import get_language
 
 class SlotType(models.Model):
     name = models.CharField(max_length=100)
@@ -10,28 +11,48 @@ class SlotType(models.Model):
         return self.name
 
 class Theme(models.Model):
-    title_en = models.CharField(max_length=100, unique=True)
-    title_ru = models.CharField(max_length=100, unique=True)
-    slug = AutoSlugField(populate_from='title', unique=True, editable=True)
+    title_en = models.CharField(max_length=100, unique=True, blank=True)
+    title_ru = models.CharField(max_length=100, unique=True, blank=True)
+    title_de = models.CharField(max_length=100, blank=True)
+    title_pt = models.CharField(max_length=100, blank=True)
+    title_es = models.CharField(max_length=100, blank=True)
+    slug = AutoSlugField(populate_from='title_en', unique=True, editable=True)
 
     def __str__(self):
-        return self.title
+        return self.title_ru
+
+    def title(self):
+        lang = get_language()
+        titles = {
+            'ru': self.title_ru,
+            'en': self.title_en,
+            'de': self.title_de,
+            'pt': self.title_pt,
+            'es': self.title_es,
+        }
+        return titles.get(lang, self.title_en)
 
 class Feature(models.Model):
-    title_en = models.CharField(max_length=100, unique=True)
-    title_ru = models.CharField(max_length=100, unique=True)
-    slug = AutoSlugField(populate_from='title', unique=True, editable=True)
+    title_en = models.CharField(max_length=100, unique=True, blank=True)
+    title_ru = models.CharField(max_length=100, unique=True, blank=True)
+    title_de = models.CharField(max_length=100, blank=True)
+    title_pt = models.CharField(max_length=100, blank=True)
+    title_es = models.CharField(max_length=100, blank=True)
+    slug = AutoSlugField(populate_from='title_en', unique=True, editable=True)
 
     def __str__(self):
-        return self.title
+        return self.title_ru
 
 class Paylines(models.Model):
-    title_en = models.CharField(max_length=100, unique=True)
-    title_ru = models.CharField(max_length=100, unique=True)
-    slug = AutoSlugField(populate_from='title', unique=True, editable=True)
+    title_en = models.CharField(max_length=100, unique=True, blank=True)
+    title_ru = models.CharField(max_length=100, unique=True, blank=True)
+    title_de = models.CharField(max_length=100, blank=True)
+    title_pt = models.CharField(max_length=100, blank=True)
+    title_es = models.CharField(max_length=100, blank=True)
+    slug = AutoSlugField(populate_from='title_en', unique=True, editable=True)
 
     def __str__(self):
-        return self.title
+        return self.title_ru
 
 class Slot(models.Model):
     name = models.CharField(max_length=100)
