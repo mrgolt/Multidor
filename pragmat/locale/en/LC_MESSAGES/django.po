@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 14:24+0300\n"
+"POT-Creation-Date: 2024-10-20 16:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,8 +27,9 @@ msgid "page/<slug:slug>/"
 msgstr "page/<slug:slug>/"
 
 #: .\templates\base.html:11 .\templates\base.html:19 .\templates\base.html:220
-#: .\templates\hacksaw-home.html:80 .\templates\hacksaw-home.html:112
-#: .\templates\home.html:266 .\templates\slot_detail.html:150
+#: .\templates\endorphina-base.html:243 .\templates\hacksaw-home.html:80
+#: .\templates\hacksaw-home.html:112 .\templates\home.html:266
+#: .\templates\slot_detail.html:150
 msgid "Все слоты"
 msgstr "All slots"
 
@@ -46,14 +47,16 @@ msgid "Новые"
 msgstr "New"
 
 #: .\templates\base.html:299 .\templates\base.html:316
+#: .\templates\endorphina-base.html:314 .\templates\endorphina-base.html:331
+#: .\templates\hacksaw-base.html:313 .\templates\hacksaw-base.html:330
 msgid "Получить бонус"
 msgstr "Get a bonus"
 
-#: .\templates\base.html:305
+#: .\templates\base.html:305 .\templates\hacksaw-base.html:319
 msgid "Светло"
 msgstr "Light"
 
-#: .\templates\base.html:306
+#: .\templates\base.html:306 .\templates\hacksaw-base.html:320
 msgid "Темно"
 msgstr "Dark"
 
@@ -69,6 +72,42 @@ msgid ""
 "                        Play.\n"
 "                    "
 msgstr ""
+
+#: .\templates\endorphina-base.html:247
+msgid "Линий выплат"
+msgstr "Paylines"
+
+#: .\templates\endorphina-base.html:269
+msgid "Тематика"
+msgstr "Themes"
+
+#: .\templates\endorphina-base.html:291
+msgid "Характеристики"
+msgstr "Features"
+
+#: .\templates\endorphina-base.html:375
+msgid "Главная"
+msgstr "Main"
+
+#: .\templates\endorphina-base.html:377
+msgid "Обратная связь"
+msgstr "Feedback"
+
+#: .\templates\endorphina-base.html:393
+msgid "Полезные ссылки"
+msgstr "Useful links"
+
+#: .\templates\endorphina-base.html:398
+msgid "Об игровой зависимости"
+msgstr "Gambling addiction"
+
+#: .\templates\endorphina-base.html:400
+msgid "Ответственная игра"
+msgstr "Responsible play"
+
+#: .\templates\endorphina-base.html:406
+msgid "Напишите нам"
+msgstr "Write to us"
 
 #: .\templates\hacksaw-base.html:236
 msgid "Меню"
@@ -118,7 +157,6 @@ msgid "Популярные слоты"
 msgstr "Popular Slots"
 
 #: .\templates\hacksaw-home.html:163
-#| msgid "Скретч-карты"
 msgid "Игры со скретч-картами"
 msgstr "Scratchcards"
 

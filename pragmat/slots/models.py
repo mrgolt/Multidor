@@ -1,6 +1,6 @@
 from django.db import models
 from autoslug import AutoSlugField
-from pragmatic.models import Provider, Site
+from pragmatic.models import Provider, Site, Language
 
 class SlotType(models.Model):
     name = models.CharField(max_length=100)
@@ -88,8 +88,9 @@ class SlotDescription(models.Model):
     slot = models.ForeignKey(Slot, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     snippet = models.TextField(blank=True)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, default=2)
 
     def __str__(self):
-        return f"{self.site} - {self.slot}"
+        return f"{self.site} - {self.slot}  - {self.language}"
 
 

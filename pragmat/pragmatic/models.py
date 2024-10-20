@@ -26,3 +26,10 @@ class Site(models.Model):
 
     def __str__(self):
         return self.domain
+
+class Language(models.Model):
+    code = models.CharField(max_length=2, unique=True)  # Код языка (например, 'ru', 'en')
+    name = models.CharField(max_length=30)              # Название языка (например, 'Русский', 'English')
+
+    def __str__(self):
+        return self.name

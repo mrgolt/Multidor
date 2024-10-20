@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="ru" data-bs-theme="dark">
 <head>
@@ -13,7 +14,7 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% if page.title %}{{ page.title }} - {% endif %}
-        {% if slot.name %}Игра {{ slot.name }} - {% endif %}
+        {% if slot.name %}Слот {{ slot.name }} - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
         {% if slots %}{% if slot_type %}{{ slot_type }}{% else %}Все игры{% endif %} - {% endif %}
         {{ site.provider.name }} - провайдер премиальных слотов. Все слоты провайдера на одном сайте! Играйте в любой слот прямо сейчас!">
@@ -239,11 +240,11 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="{% url 'slot_list' %}" class="nav-link">Все слоты</a>
+                            <a href="{% url 'slot_list' %}" class="nav-link">{% trans 'Все слоты' %}</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Линий выплат</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Линий выплат' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
@@ -265,7 +266,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Тематика</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Тематика' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
@@ -287,7 +288,7 @@
                         </li>
 
                      <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Характеристики</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Характеристики' %}</a>
                             <div class="dropdown-menu">
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
@@ -310,7 +311,7 @@
 {#                       onclick="ym(98566880, 'reachGoal', 'header_bonus_button'); return true;"#}
                        class="btn btn-primary w-100" target="_blank" rel="noopener">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
-                        &nbsp;Получить бонус 100 FS
+                        &nbsp;{% trans 'Получить бонус' %} 100 FS
                     </a>
                 </div>
             </div>
@@ -327,7 +328,7 @@
 {#               onclick="ym(98566880, 'reachGoal', 'header_bonus_button'); return true;"#}
                class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>
-                &nbsp;Получить бонус 100 FS
+                &nbsp;{% trans 'Получить бонус' %} 100 FS
             </a>
         </div>
     </header>
@@ -371,9 +372,9 @@
                         </h6>
                         <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column pb-lg-1 mb-lg-3">
-                                <li class="nav-item"><a href="/" class="nav-link d-inline-block px-0 pt-1 pb-2">Главная</a>
+                                <li class="nav-item"><a href="/" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Главная' %}</a>
                                 </li>
-                                <li class="nav-item"><a href="/page/feedback/" class="nav-link d-inline-block px-0 pt-1 pb-2">Обратная связь</a></li>
+                                <li class="nav-item"><a href="/page/feedback/" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Обратная связь' %}</a></li>
 
 
 
@@ -389,20 +390,20 @@
                     <div class="col-xl-4 col-lg-3">
                         <h6 class="mb-2">
                             <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
-                               data-bs-toggle="collapse">Полезные ссылки</a>
+                               data-bs-toggle="collapse">{% trans 'Полезные ссылки' %}</a>
                         </h6>
                         <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column mb-2 mb-lg-0">
                                 <li class="nav-item"><a href="/page/ludomania/"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Об игровой зависимости</a></li>
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Об игровой зависимости' %}</a></li>
                                 <li class="nav-item"><a href="/page/otvetstvennaya-igra/"
-                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">Ответственная игра</a></li>
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Ответственная игра' %}</a></li>
 
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
-                        <h6 class="mb-2">Напишите нам</h6>
+                        <h6 class="mb-2">{% trans 'Напишите нам' %}</h6>
                         <a href="mailto:play@{{ site.domain }}" class="fw-medium">play@{{ site.domain }}</a>
                     </div>
                 </div>

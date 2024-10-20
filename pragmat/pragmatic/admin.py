@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Provider, Site, Offer
-
+from .models import Provider, Site, Offer, Language
 
 
 class SiteAdmin(admin.ModelAdmin):
@@ -16,3 +15,4 @@ class OfferAdmin(admin.ModelAdmin):
 admin.site.register(Provider)
 admin.site.register(Site, SiteAdmin)
 admin.site.register(Offer, OfferAdmin)
+admin.site.register(Language)
