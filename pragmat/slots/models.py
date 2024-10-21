@@ -61,6 +61,7 @@ class Slot(models.Model):
     game_symbol = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='slot_logos/')
     description = models.TextField(blank=True)
+    context = models.TextField(blank=True)
     snippet = models.TextField(blank=True)
     slug = AutoSlugField(populate_from='name', unique=True, null=True, blank=True)
     rtp = models.FloatField()
