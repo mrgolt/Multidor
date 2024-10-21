@@ -53,7 +53,7 @@
               <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
               <div class="position-relative zindex-2">
                 <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
-				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+{#				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>#}
               </div>
             </div>
             <div class="card-img">
@@ -123,109 +123,109 @@
 
 
 <!-- Brands (Carousel) -->
-<section class="container mt-2 mb-lg-1 mb-xl-3 pt-3 pt-lg-5 pb-5">
-    <h2 class="text-center pb-md-2">Лицензированные и сертифицированные Игры</h2>
-    <div class="swiper mx-n2" data-swiper-options='{
-    "slidesPerView": 2,
-    "pagination": {
-      "el": ".swiper-pagination",
-      "clickable": true
-    },
-    "breakpoints": {
-      "500": {
-        "slidesPerView": 3,
-        "spaceBetween": 8
-      },
-      "650": {
-        "slidesPerView": 4,
-        "spaceBetween": 8
-      },
-      "900": {
-        "slidesPerView": 6,
-        "spaceBetween": 8
-      },
-      "1100": {
-        "slidesPerView": 8,
-        "spaceBetween": 8
-      }
-    }
-  }'>
-        <div class="swiper-wrapper">
-
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/mgalogo@2x.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/gamblingcomission-2-x.png' %}"
-                         class="d-block mx-auto my-auto" alt="Brand" style="max-height: 50px !important;">
-                </a>
-            </div>
-
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/03onin@2x.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/898183569-c-5-b-1407-ade-8-abb-907534-b-02-www-pragmaticplay.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/bahamas.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/HMGib@2x.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/Gaminglabs.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-            <!-- Item -->
-            <div class="swiper-slide py-3 h-auto">
-                <a class="card card-body px-2 mx-2 h-100">
-                    <img src="{% static 'assets/img/licences/IMG_8233123.png' %}"
-                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">
-                </a>
-            </div>
-
-
-        </div>
-
-        <!-- Pagination (bullets) -->
-        <div class="swiper-pagination position-relative pt-2 mt-4"></div>
-    </div>
-</section>
+{#<section class="container mt-2 mb-lg-1 mb-xl-3 pt-3 pt-lg-5 pb-5">#}
+{#    <h2 class="text-center pb-md-2">Лицензированные и сертифицированные слоты</h2>#}
+{#    <div class="swiper mx-n2" data-swiper-options='{#}
+{#    "slidesPerView": 2,#}
+{#    "pagination": {#}
+{#      "el": ".swiper-pagination",#}
+{#      "clickable": true#}
+{#    },#}
+{#    "breakpoints": {#}
+{#      "500": {#}
+{#        "slidesPerView": 3,#}
+{#        "spaceBetween": 8#}
+{#      },#}
+{#      "650": {#}
+{#        "slidesPerView": 4,#}
+{#        "spaceBetween": 8#}
+{#      },#}
+{#      "900": {#}
+{#        "slidesPerView": 6,#}
+{#        "spaceBetween": 8#}
+{#      },#}
+{#      "1100": {#}
+{#        "slidesPerView": 8,#}
+{#        "spaceBetween": 8#}
+{#      }#}
+{#    }#}
+{#  }'>#}
+{#        <div class="swiper-wrapper">#}
+{##}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/mgalogo@2x.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/gamblingcomission-2-x.png' %}"#}
+{#                         class="d-block mx-auto my-auto" alt="Brand" style="max-height: 50px !important;">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/03onin@2x.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/898183569-c-5-b-1407-ade-8-abb-907534-b-02-www-pragmaticplay.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/bahamas.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/HMGib@2x.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/Gaminglabs.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            <!-- Item -->#}
+{#            <div class="swiper-slide py-3 h-auto">#}
+{#                <a class="card card-body px-2 mx-2 h-100">#}
+{#                    <img src="{% static 'assets/img/licences/IMG_8233123.png' %}"#}
+{#                         class="d-block mx-auto my-auto" style="max-height: 50px !important;" alt="Brand">#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        <!-- Pagination (bullets) -->#}
+{#        <div class="swiper-pagination position-relative pt-2 mt-4"></div>#}
+{#    </div>#}
+{#</section>#}
 
 
 {% endblock %}
