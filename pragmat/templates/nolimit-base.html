@@ -152,6 +152,12 @@
             background: linear-gradient(to top, #160F1D, rgba(22, 15, 29, 0));
             z-index: 1;
         }
+        .btn-primary{
+            color: #000 !important;
+        }
+        .btn:hover{
+            color: #000 !important;
+        }
     </style>
 
     <!-- Page loading scripts -->
@@ -292,7 +298,7 @@
                 <div class="offcanvas-header border-top">
                     <a href="/play/{{ site.offers.first.redirect_name }}/?placement=menu"
 {#                       onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"#}
-                       class="btn btn-light w-100" target="_blank" rel="noopener">
+                       class="btn btn-primary w-100" target="_blank" rel="noopener">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
                         &nbsp;{% trans 'Получить бонус' %} 100 FS
                     </a>
@@ -309,7 +315,7 @@
             </button>
             <a href="/play/{{ site.offers.first.redirect_name }}/?placement=menu"
 {#               onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"#}
-               class="btn btn-light btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+               class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>
                 &nbsp;{% trans 'Получить бонус' %} 100 FS
             </a>
