@@ -17,6 +17,7 @@ def home(request):
 
     first_offer = site.offers.first()
 
+    home_page_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:48]
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider, slot_type=1).order_by('-id')[:12]
     instant_win_games = Slot.objects.filter(provider=site.provider, slot_type=2).order_by('-id')[:12]
     scratch_cards = Slot.objects.filter(provider=site.provider, slot_type=3).order_by('-id')[:12]
@@ -24,6 +25,7 @@ def home(request):
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:12]
 
     return render(request, template, {
+        'home_page_slots': home_page_slots,
         'popular_slots': popular_slots,
         'new_slots': new_slots,
         'users_choice_slots': users_choice_slots,
