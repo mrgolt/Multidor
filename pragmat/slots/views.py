@@ -33,7 +33,7 @@ def slot_list(request):
         'Дикий запад': ['cowboys', 'ковбои', 'wild west', 'дикий запад'],
     }
 
-    slots = Slot.objects.filter(provider=site.provider).order_by('-sorting_order')
+    slots = Slot.objects.filter(provider=site.provider).order_by('-id')
 
     if slot_name:
 
@@ -65,7 +65,7 @@ def slot_list(request):
     page_obj = paginator.get_page(page_number)  # Получаем текущую страницу
 
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider).order_by('-id')[:10]
-    new_slots = Slot.objects.filter(is_new=True, provider=site.provider).order_by('-id')[:10]
+    new_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:10]
 
     context = {
@@ -91,7 +91,7 @@ def slot_detail(request, slug):
     slot = get_object_or_404(Slot, slug=slug, provider=site.provider)
     reviews = Review.objects.filter(slot=slot)[:10]
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
-    new_slots = Slot.objects.filter(is_new=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
+    new_slots = Slot.objects.filter(provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
 
     is_mobile = request.user_agent.is_mobile
@@ -164,7 +164,7 @@ def page_detail(request, slug):
 
     page = get_object_or_404(Page, slug=slug)
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider)[:10]
-    new_slots = Slot.objects.filter(is_new=True, provider=site.provider)[:10]
+    new_slots = Slot.objects.filter(provider=site.provider)[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider)[:10]
 
     return render(request, site.page_detail_template, {'site': site, 'page': page, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
