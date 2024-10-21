@@ -9,13 +9,16 @@ class SlotAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = ('provider', )
 
-
+class SlotDescriptionAdmin(admin.ModelAdmin):
+    list_display = ('id', 'slot', 'site')
+    search_fields = ['slot', 'site']
+    list_filter = ('site', )
 
 admin.site.register(Slot, SlotAdmin)
 admin.site.register(Image)
 admin.site.register(Review)
 admin.site.register(Page)
-admin.site.register(SlotDescription)
+admin.site.register(SlotDescription, SlotDescriptionAdmin)
 admin.site.register(SlotType)
 admin.site.register(Theme)
 admin.site.register(Feature)
