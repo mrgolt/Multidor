@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from urllib.parse import urlparse
 from django.shortcuts import get_object_or_404
 from .models import Site
+from django.utils.deprecation import MiddlewareMixin
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -127,4 +128,17 @@ class SiteMiddleware:
         request.site = get_object_or_404(Site, domain=domain)
 
         response = self.get_response(request)
+        return response
+
+
+class ContentSecurityPolicyMiddleware(MiddlewareMixin):
+    def process_response(self, request, response):
+        # Укажите ваши домены, которые вы хотите разрешить
+        allowed_domains = [
+            "https://endorphina.site",  # Замените на ваш первый домен
+            "http://127.0.0.1:8000",  # Замените на ваш первый домен
+        ]
+        # Объединяем домены в строку, разделяя пробелами
+        domains_string = ' '.join(allowed_domains)
+        response['Content-Security-Policy'] = f"frame-ancestors {domains_string};"
         return response
