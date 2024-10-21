@@ -120,7 +120,7 @@ class SiteMiddleware:
         domain = request.META.get('HTTP_HOST', '')
 
         if domain == '127.0.0.1:8000':
-            domain = 'pragmatic-play.cloud'
+            domain = 'endorphina.site'
         else:
             domain = '.'.join(domain.split('.')[-2:])
 

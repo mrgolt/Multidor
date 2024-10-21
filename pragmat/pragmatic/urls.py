@@ -40,6 +40,7 @@ urlpatterns = i18n_patterns(
     path('sitemap.xml', views.sitemap_generator, name='sitemap_generator'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
     path('yandex_<str:code>.html', views.yandex_webmaster_approve, name='yandex_webmaster_approve'),
+    path('endorphina-demo/<str:game_symbol>/', views.endorphina_demo, name='endorphina_demo'),
     prefix_default_language=False,
 )
 

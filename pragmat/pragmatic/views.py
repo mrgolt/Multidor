@@ -95,3 +95,8 @@ def yandex_webmaster_approve(request, code):
     response = HttpResponse(content, content_type="text/plain")
     response['Content-Disposition'] = f'inline; filename="yandex_{code}.html"'
     return response
+
+
+def endorphina_demo(request, game_symbol):
+    response = requests.get(f'https://endorphina.com/games/{game_symbol}/play')
+    return HttpResponse(response.content)
