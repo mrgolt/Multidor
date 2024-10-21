@@ -16,9 +16,9 @@ class SlotSerializer(serializers.ModelSerializer):
         paylines_title = validated_data.pop('paylines', None)
 
         # Найти объекты Theme, Feature и Paylines по переданным строкам
-        theme_instance = Theme.objects.filter(title=theme_title).first()
-        paylines_instance = Paylines.objects.filter(title=paylines_title).first()
-        feature_instances = Feature.objects.filter(title__in=features_list)
+        theme_instance = Theme.objects.filter(title_ru=theme_title).first()
+        paylines_instance = Paylines.objects.filter(title_ru=paylines_title).first()
+        feature_instances = Feature.objects.filter(title_ru__in=features_list)
 
         # Создать объект Slot
         slot = Slot.objects.create(
