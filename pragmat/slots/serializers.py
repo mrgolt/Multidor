@@ -9,6 +9,7 @@ class SlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
         fields = '__all__'
+        #fields = ['id', 'provider', 'slot_type', 'theme', 'features', 'paylines']
 
     def create(self, validated_data):
         theme_title = validated_data.pop('theme', None)
