@@ -37,6 +37,7 @@ urlpatterns = i18n_patterns(
     path('api/', include(router.urls)),
     path('play/<slug:slug>/', views.redirect_view, name='redirect_view'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('promo/', views.promo_page, name='promo_page'),
     path('sitemap.xml', views.sitemap_generator, name='sitemap_generator'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
     path('yandex_<str:code>.html', views.yandex_webmaster_approve, name='yandex_webmaster_approve'),

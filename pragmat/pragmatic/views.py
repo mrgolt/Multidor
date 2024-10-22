@@ -35,6 +35,20 @@ def home(request):
         'site': site,
     })
 
+def promo_page(request):
+
+    site = request.site
+
+    template = site.home_template or 'home.html'
+
+    home_page_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:48]
+
+    return render(request, template, {
+        'home_page_slots': home_page_slots,
+        'is_promo': True,
+        'site': site,
+    })
+
 
 def redirect_view(request, slug):
 
