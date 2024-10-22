@@ -2,8 +2,8 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square150x150logo src="assets/img/favicon/endorphina-mstile-150x150.png"/>
-            <TileColor>#FFBB08</TileColor>
+            <square150x150logo src="/static/assets/favicon/endorphina-mstile-150x150.png"/>
+            <TileColor>#fff</TileColor>
         </tile>
     </msapplication>
 </browserconfig>
