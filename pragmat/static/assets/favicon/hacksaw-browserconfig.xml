@@ -2,7 +2,7 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square150x150logo src="assets/img/favicon/hacksaw-mstile-150x150.png"/>
+            <square150x150logo src="/static/assets/img/favicon/hacksaw-mstile-150x150.png"/>
             <TileColor>#4AAF6C</TileColor>
         </tile>
     </msapplication>

@@ -3,12 +3,12 @@
     "short_name": "Hacksaw Gaming",
     "icons": [
         {
-            "src": "/hacksaw-android-icon-192x192.png",
+            "src": "/static/assets/favicon/hacksaw-android-icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/hacksaw-android-icon-512x512.png",
+            "src": "/static/assets/favicon/hacksaw-android-icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }

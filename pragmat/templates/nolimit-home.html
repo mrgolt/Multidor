@@ -97,56 +97,10 @@
 
       </div>
 
-    <!-- Pagination -->
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center py-4">
-                {% if slots.has_previous %}
-                    <li class="page-item">
-                        <a href="?page={{ slots.previous_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}" class="page-link"
-                           aria-label="Previous page">
-                            <i class="bx bx-chevron-left mx-n1"></i>
-                        </a>
-                    </li>
-                {% endif %}
-
-                {% if slots.number > 3 %}
-                    <li class="page-item">
-                        <a href="?page=1{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}"
-                           class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                        &hellip;
-                    </li>
-                {% endif %}
-
-                {% for num in slots.paginator.page_range %}
-                    {% if num >= slots.number|add:"-1" and num <= slots.number|add:"1" %}
-                        <li class="page-item {% if num == slots.number %}active{% endif %}">
-                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}" class="page-link">{{ num }}</a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-
-                {% if slots.number < slots.paginator.num_pages|add:"-2" %}
-                    <li class="page-item">
-                        &hellip;
-                    </li>
-                    <li class="page-item">
-                        <a href="?page={{ slots.paginator.num_pages }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}"
-                           class="page-link">{{ slots.paginator.num_pages }}</a>
-                    </li>
-                {% endif %}
-
-                {% if slots.has_next %}
-                    <li class="page-item">
-                        <a href="?page={{ slots.next_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}"
-                           class="page-link" aria-label="Next page">
-                            <i class="bx bx-chevron-right mx-n1"></i>
-                        </a>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
+ <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
+                    {% trans "Все слоты" %}
+                    <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
+                </a>
 
     </section>
 

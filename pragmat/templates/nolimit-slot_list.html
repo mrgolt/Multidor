@@ -9,7 +9,7 @@
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
         <h2 class="h1 mb-4">{% if slot_type %}{% trans slot_type.plural %}{% else %}Игры{% endif %} <span class="text-primary">{{ site.provider.name|upper }}</span></h2>
         <p class="mb-4">Играйте демо в рублях или на реальные деньги у проверенных партнеров!</p>
-        <a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">Бездепозитный бонус 100 FS</a>
+        <a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-secondary btn-lg mb-3">Бездепозитный бонус 100 FS</a>
 
     </div>
 </section>
@@ -93,7 +93,7 @@
                 {% for num in slots.paginator.page_range %}
                     {% if num >= slots.number|add:"-1" and num <= slots.number|add:"1" %}
                         <li class="page-item {% if num == slots.number %}active{% endif %}">
-                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}" class="page-link">{{ num }}</a>
+                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}" class="page-link {% if num == slots.number %}shadow-secondary{% endif %}">{{ num }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
