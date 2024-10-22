@@ -23,11 +23,11 @@
         <h2 class="me-3">Выберите игру</h2>
         {% endif %}
         <div class="d-md-flex mb-3">
-            <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">
-                <option value="all">Категория</option>
-                <option value="popular">Популярные</option>
-                <option value="new">Новые</option>
-            </select>
+{#            <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">#}
+{#                <option value="all">Категория</option>#}
+{#                <option value="popular">Популярные</option>#}
+{#                <option value="new">Новые</option>#}
+{#            </select>#}
             <div class="position-relative" style="min-width: 300px;">
                 <form action="{% url 'slot_list' %}" method="get">
                     <input type="text" class="form-control pe-5" placeholder="Поиск" name="slot_name">
