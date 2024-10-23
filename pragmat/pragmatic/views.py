@@ -129,3 +129,6 @@ def yandex_webmaster_approve(request, code):
 def endorphina_demo(request, game_symbol):
     response = requests.get(f'https://endorphina.com/games/{game_symbol}/play')
     return HttpResponse(response.content)
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
