@@ -448,25 +448,52 @@
     }
 </style>
     <script>
-    document.getElementById('promo').addEventListener('click', function (){
-        window.location.href = '/';
-    })
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-        link.href = '/bonuses/'
-    })
 
     function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
 
-const clickId = getQueryParam('clickid');
+    const targetUrl = getQueryParam('target_url');
+    const clickId = getQueryParam('click_id');
+    const secondId = getQueryParam('second_id');
 
-if (clickId) {
+    document.getElementById('promo').addEventListener('click', function (){
+        window.location.href = targetUrl;
+    })
+
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.href = targetUrl
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=rejected', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = link.href;
+                }
+            })
+        });
+    })
+
     const oneMonthInSeconds = 30 * 24 * 60 * 60;
-    document.cookie = `clickid=${clickId}; path=/; max-age=${oneMonthInSeconds}`;
-}
+
+    if (clickId) {
+        document.cookie = `click_id=${clickId}; path=/; max-age=${oneMonthInSeconds}`;
+    }
+    if (secondId) {
+        document.cookie = `second_id=${secondId}; path=/; max-age=${oneMonthInSeconds}`;
+    }
+    if (targetUrl) {
+        document.cookie = `target_url=${targetUrl}; path=/; max-age=${oneMonthInSeconds}`;
+    }
 
     </script>
 {% endif %}
@@ -474,19 +501,30 @@ if (clickId) {
 <script>
 
     function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-const existingClickId = getCookie('clickid');
-if (existingClickId) {
-    const links = document.querySelectorAll('a[href*="/play/"]');
-    links.forEach(link => {
-        const url = new URL(link.href);
-        url.searchParams.set('clickid', existingClickId);
-        link.href = url.toString();
-    });
-}
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    if (getCookie('click_id') || getCookie('second_id') || getCookie('target_url')) {
+        const links = document.querySelectorAll('a[href*="/play/"]');
+        links.forEach(link => {
+            const url = new URL(link.href);
+
+            // Устанавливаем параметры в URL
+            if (targetUrl) {
+                url.searchParams.set('target_url', targetUrl);
+            }
+            if (clickId) {
+                url.searchParams.set('click_id', clickId);
+            }
+            if (secondId) {
+                url.searchParams.set('second_id', secondId);
+            }
+
+            link.href = url.toString();
+        });
+    }
 </script>
 
 
