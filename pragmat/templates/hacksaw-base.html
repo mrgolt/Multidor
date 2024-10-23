@@ -385,7 +385,7 @@
                                 <li class="nav-item"><a href="{% url 'home' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Главная</a>
                                 </li>
                                 <li class="nav-item"><a href="/page/feedback/" class="nav-link d-inline-block px-0 pt-1 pb-2">Обратная связь</a></li>
-                                <li class="nav-item"><button class="nav-link" id="install-button" style="display: none;">{% trans 'Установить приложение' %}</button></li>
+                                <li class="nav-item"><a href="#" class="nav-link d-inline-block px-0 pt-1 pb-2" id="install-button" >{% trans 'Установить приложение' %}</a></li>
 
 
 
@@ -556,7 +556,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
     deferredPrompt = e;
     const installButton = document.getElementById('install-button');
     installButton.style.display = 'block';
-    installButton.addEventListener('click', () => {
+    installButton.addEventListener('click', (e) => {
+        e.preventDefault();
         installButton.style.display = 'none';
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
