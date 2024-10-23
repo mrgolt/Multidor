@@ -42,11 +42,21 @@ def promo_page(request):
     template = site.home_template or 'home.html'
 
     home_page_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:48]
+    popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider, slot_type=1).order_by('-id')[:12]
+    instant_win_games = Slot.objects.filter(provider=site.provider, slot_type=2).order_by('-id')[:12]
+    scratch_cards = Slot.objects.filter(provider=site.provider, slot_type=3).order_by('-id')[:12]
+    new_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:12]
+    users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:12]
 
     return render(request, template, {
         'home_page_slots': home_page_slots,
         'is_promo': True,
         'site': site,
+        'users_choice_slots': users_choice_slots,
+        'instant_win_games': instant_win_games,
+        'scratch_cards': scratch_cards,
+        'popular_slots': popular_slots,
+        'new_slots': new_slots,
     })
 
 
