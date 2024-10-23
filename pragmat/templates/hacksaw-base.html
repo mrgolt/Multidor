@@ -313,6 +313,7 @@
                         <li class="nav-item"><a href="{% url 'slot_list' %}?slot_type=2" class="nav-link">{% trans 'Игры с мгновенным выигрышем' %}</a></li>
                         <li class="nav-item"><a href="{% url 'slot_list' %}?slot_type=3" class="nav-link">{% trans 'Скретч-карты' %}</a></li>
 
+
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
@@ -384,6 +385,7 @@
                                 <li class="nav-item"><a href="{% url 'home' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Главная</a>
                                 </li>
                                 <li class="nav-item"><a href="/page/feedback/" class="nav-link d-inline-block px-0 pt-1 pb-2">Обратная связь</a></li>
+                                <li class="nav-item"><button class="nav-link" id="install-button" style="display: none;">{% trans 'Установить приложение' %}</button></li>
 
 
 
@@ -533,6 +535,36 @@
     }
 </script>
 
+<script>
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/assets/js/service-worker.js')
+            .then((registration) => {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('Service Worker registration failed:', error);
+            });
+    });
+}
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const installButton = document.getElementById('install-button');
+    installButton.style.display = 'block';
+    installButton.addEventListener('click', () => {
+        installButton.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            deferredPrompt = null;
+        });
+    });
+});
+</script>
 
 </body>
 </html>
