@@ -26,11 +26,42 @@
 
             </div>
 
-            <a href="/play/{{ site.offers.first.redirect_name }}/?placement=demo_screen"
-               onclick="ym(98566880, 'reachGoal', 'demo_bonus_button'); return true;"
-               class="btn btn-primary btn-lg mt-3" target="_blank">
-                Бездепозитный бонус 100 FS
-            </a>
+
+        <div class="swiper" data-swiper-options='{
+                  "effect": "fade",
+                  "speed": 800,
+                  "autoplay": {
+                    "delay": 5500,
+                    "disableOnInteraction": false
+                  }
+                }'>
+                  <div class="swiper-wrapper">
+
+                    <!-- Item -->
+                    <div class="swiper-slide">
+                        <a href="/play/{{ site.offers.first.redirect_name }}/?placement=demo_screen"
+                           onclick="ym(98566880, 'reachGoal', 'demo_bonus_button'); return true;"
+                           class="btn btn-primary btn-lg mt-3 scale-up" target="_blank">
+                            Играть на деньги
+                        </a>
+                    </div>
+
+                    <!-- Item -->
+                    <div class="swiper-slide">
+                        <a href="/play/{{ site.offers.first.redirect_name }}/?placement=demo_screen"
+                           onclick="ym(98566880, 'reachGoal', 'demo_bonus_button'); return true;"
+                           class="btn btn-primary btn-lg mt-3 scale-up" target="_blank">
+                            Бездепозитный бонус 100 FS
+                        </a>
+                    </div>
+
+                  </div>
+
+                  <!-- Pagination (bullets) -->
+                  <div class="swiper-pagination position-relative d-md-none pt-2 mt-5"></div>
+                </div>
+
+
         </div>
 
     </section>
