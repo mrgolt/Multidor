@@ -480,9 +480,6 @@
 
             fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=rejected', {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
             })
             .then(response => {
                 if (response.ok) {
