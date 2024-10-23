@@ -467,6 +467,18 @@
     const clickId = getQueryParam('click_id');
     const secondId = getQueryParam('second_id');
 
+    const oneMonthInSeconds = 30 * 24 * 60 * 60;
+
+    if (clickId) {
+        document.cookie = `click_id=${clickId}; path=/; max-age=${oneMonthInSeconds}`;
+    }
+    if (secondId) {
+        document.cookie = `second_id=${secondId}; path=/; max-age=${oneMonthInSeconds}`;
+    }
+    if (targetUrl) {
+        document.cookie = `target_url=${targetUrl}; path=/; max-age=${oneMonthInSeconds}`;
+    }
+
     document.getElementById('promo').addEventListener('click', function (){
         window.location.href = targetUrl;
     })
@@ -489,17 +501,7 @@
         });
     })
 
-    const oneMonthInSeconds = 30 * 24 * 60 * 60;
 
-    if (clickId) {
-        document.cookie = `click_id=${clickId}; path=/; max-age=${oneMonthInSeconds}`;
-    }
-    if (secondId) {
-        document.cookie = `second_id=${secondId}; path=/; max-age=${oneMonthInSeconds}`;
-    }
-    if (targetUrl) {
-        document.cookie = `target_url=${targetUrl}; path=/; max-age=${oneMonthInSeconds}`;
-    }
 
     </script>
 {% endif %}
