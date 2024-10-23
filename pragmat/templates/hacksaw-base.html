@@ -516,12 +516,12 @@
             const url = new URL(link.href);
 
             // Устанавливаем параметры в URL
-            if (targetUrl) {
-                url.searchParams.set('target_url', targetUrl);
-            }
-            if (clickId) {
-                url.searchParams.set('click_id', clickId);
-            }
+            {#if (targetUrl) {#}
+            {#    url.searchParams.set('target_url', targetUrl);#}
+            {#}#}
+            {#if (clickId) {#}
+            {#    url.searchParams.set('click_id', clickId);#}
+            {#}#}
             if (secondId) {
                 url.searchParams.set('second_id', secondId);
             }
