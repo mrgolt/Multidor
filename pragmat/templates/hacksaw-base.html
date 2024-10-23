@@ -506,7 +506,11 @@
         if (parts.length === 2) return parts.pop().split(';').shift();
     }
 
-    if (getCookie('click_id') || getCookie('second_id') || getCookie('target_url')) {
+    const clickId = getCookie('click_id');
+    const secondId = getCookie('second_id');
+    const targetUrl = getCookie('target_url');
+
+    if (clickId || secondId || targetUrl) {
         const links = document.querySelectorAll('a[href*="/play/"]');
         links.forEach(link => {
             const url = new URL(link.href);
