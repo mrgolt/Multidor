@@ -2,6 +2,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from pragmatic.models import Provider, Site, Language
 from django.utils.translation import get_language
+from django.core.exceptions import ValidationError
 
 class SlotType(models.Model):
     name = models.CharField(max_length=100)
@@ -115,4 +116,41 @@ class SlotDescription(models.Model):
     def __str__(self):
         return f"{self.site} - {self.slot}  - {self.language}"
 
+class ProviderSetting(models.Model):
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)  # Провайдер, к которому относятся настройки
+    name = models.CharField(max_length=255, unique=True)  # Название настройки
+    value_ru = models.TextField()  # Значение настройки
+    value_en = models.TextField()  # Значение настройки
+    value_es = models.TextField()  # Значение настройки
+    value_de = models.TextField()  # Значение настройки
+    value_pt = models.TextField()  # Значение настройки
+
+    def value(self):
+        lang = get_language()
+        values = {
+            'ru': self.value_ru,
+            'en': self.value_en,
+            'de': self.value_de,
+            'pt': self.value_pt,
+            'es': self.value_es,
+        }
+        return values.get(lang, self.value_en)
+
+    def __str__(self):
+        return f"{self.provider} - {self.name}"
+
+    class Meta:
+        unique_together = ('provider', 'name')  # Уникальная пара: сайт и название настройки
+
+    def clean(self):
+        """ Ensure no duplicate settings with the same name for the same site """
+        if ProviderSetting.objects.filter(provider=self.provider, name=self.name).exclude(id=self.id).exists():
+            raise ValidationError(f"Setting with name {self.name} already exists for this site.")
+
+
+def get_provider_setting(provider, name):
+    try:
+        return ProviderSetting.objects.get(provider=provider, name=name).value
+    except ProviderSetting.DoesNotExist:
+        return None
 

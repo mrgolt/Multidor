@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
 
 class Provider(models.Model):
     name = models.CharField(max_length=100)
@@ -33,3 +33,26 @@ class Language(models.Model):
 
     def __str__(self):
         return self.name
+
+class SiteSetting(models.Model):
+    site = models.ForeignKey('Site', on_delete=models.CASCADE)  # Сайт, к которому относятся настройки
+    name = models.CharField(max_length=255, unique=True)  # Название настройки
+    value = models.TextField()  # Значение настройки
+
+    def __str__(self):
+        return f"{self.site} - {self.name}"
+
+    class Meta:
+        unique_together = ('site', 'name')  # Уникальная пара: сайт и название настройки
+
+    def clean(self):
+        """ Ensure no duplicate settings with the same name for the same site """
+        if SiteSetting.objects.filter(site=self.site, name=self.name).exclude(id=self.id).exists():
+            raise ValidationError(f"Setting with name {self.name} already exists for this site.")
+
+
+def get_site_setting(site, name):
+    try:
+        return SiteSetting.objects.get(site=site, name=name).value
+    except SiteSetting.DoesNotExist:
+        return None

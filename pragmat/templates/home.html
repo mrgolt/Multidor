@@ -92,14 +92,9 @@
     <!-- Story -->
     <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
         <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
-            <h2 class="h1 mb-4"><span class="text-primary">{{ site.provider.name }}</span> меняет подход к азартным играм c 2015
+            <h2 class="h1 mb-4">{{ home_page_subtitle|safe }}
             </h2>
-            <p class="mb-4">«{{ site.provider.name }}» — ведущий разработчик игр, представляющий самые успешные мировые бренды в
-                индустрии iGaming.</p>
-
-            <p class="mb-4"></p>Профессиональная команда {{ site.provider.name }}, движимая настойчивостью в создании
-            захватывающих впечатлений и ответственной игры, постоянно предоставляет лучшие в своем классе услуги по
-            всему миру, стремясь создавать игры, которые игроки будут любить снова и снова.</p>
+            {{ home_page_info|safe }}
 
         </div>
 
@@ -131,7 +126,7 @@
                         <img src="{% static 'assets/img/landing/digital-agency/icons/team.svg' %}" width="48"
                              alt="Bulb icon" class="d-block mb-4 mx-auto">
                         <h4 class="mb-2 pb-1">Доверие игроков</h4>
-                        <p class="mx-auto" style="max-width: 336px;">{{ site.provider.name }} сертифицирован и лицензирован
+                        <p class="mx-auto" style="max-width: 336px;">Pragmatic Play сертифицирован и лицензирован
                             в более чем 40 странах</p>
                     </div>
                 </div>
@@ -142,7 +137,7 @@
                         <img src="{% static 'assets/img/landing/digital-agency/icons/award.svg' %}" width="48"
                              alt="Award icon" class="d-block mb-4 mx-auto">
                         <h4 class="mb-2 pb-1">Заслуженный успех</h4>
-                        <p class="mx-auto" style="max-width: 336px;">{{ site.provider.name }} получил множество международных
+                        <p class="mx-auto" style="max-width: 336px;">Pragmatic Play получил множество международных
                             наград</p>
                     </div>
                 </div>
@@ -153,7 +148,7 @@
                         <img src="{% static 'assets/img/landing/digital-agency/icons/idea.svg' %}" width="48"
                              alt="Team icon" class="d-block mb-4 mx-auto">
                         <h4 class="mb-2 pb-1">Доступность</h4>
-                        <p class="mx-auto" style="max-width: 336px;">{{ site.provider.name }} доступны на мобильных
+                        <p class="mx-auto" style="max-width: 336px;">Слоты Pragmatic Play доступны на мобильных
                             устройствах, компьютерах, на 33 языках и во всех валютах.</p>
                     </div>
                 </div>
@@ -374,7 +369,7 @@
     <!-- Brands (Carousel) -->
     <section class="container mt-2 mb-lg-2 mb-xl-4 pt-3 pt-lg-5 pb-5">
         <h2 class="text-center pb-md-2">
-            Награды {{ site.provider.name }}
+            {% trans 'Награды Pragmatic Play' %}
         </h2>
         <div class="swiper mx-n2" data-swiper-options='{
           "slidesPerView": 2,

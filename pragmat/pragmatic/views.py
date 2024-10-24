@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from slots.models import Slot
+from slots.models import Slot, SlotDescription
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Site, Offer
@@ -8,6 +8,9 @@ from datetime import timedelta
 import requests
 from django.http import HttpResponseBadRequest
 import re
+from django.utils.translation import get_language
+
+current_language = get_language()
 
 def home(request):
 
@@ -23,6 +26,13 @@ def home(request):
     scratch_cards = Slot.objects.filter(provider=site.provider, slot_type=3).order_by('-id')[:12]
     new_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:12]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:12]
+
+    home_page_slots = update_slots_with_descriptions(site, home_page_slots)
+    popular_slots = update_slots_with_descriptions(site, popular_slots)
+    new_slots = update_slots_with_descriptions(site, new_slots)
+    users_choice_slots = update_slots_with_descriptions(site, users_choice_slots)
+    instant_win_games = update_slots_with_descriptions(site, instant_win_games)
+    scratch_cards = update_slots_with_descriptions(site, scratch_cards)
 
     return render(request, template, {
         'home_page_slots': home_page_slots,
@@ -132,3 +142,16 @@ def endorphina_demo(request, game_symbol):
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
+
+def update_slots_with_descriptions(site, slots):
+    for slot in slots:
+        # Ищем объект SlotDescription для текущего слота и языка
+        description_obj = SlotDescription.objects.filter(
+            site=site, slot=slot, language__code=current_language
+        ).first()
+
+        # Обновляем слот с описанием и сниппетом, если они есть
+        slot.description = description_obj.description if description_obj else ''
+        slot.snippet = description_obj.snippet if description_obj else ''
+
+    return slots

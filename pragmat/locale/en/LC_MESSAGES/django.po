@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-20 16:45+0300\n"
+"POT-Creation-Date: 2024-10-24 15:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,8 @@ msgstr "page/<slug:slug>/"
 #: .\templates\base.html:11 .\templates\base.html:19 .\templates\base.html:220
 #: .\templates\endorphina-base.html:243 .\templates\hacksaw-home.html:80
 #: .\templates\hacksaw-home.html:112 .\templates\home.html:266
+#: .\templates\nolimit-base.html:11 .\templates\nolimit-base.html:19
+#: .\templates\nolimit-base.html:246 .\templates\nolimit-home.html:101
 #: .\templates\slot_detail.html:150
 msgid "Все слоты"
 msgstr "All slots"
@@ -42,7 +44,7 @@ msgstr "Popular"
 msgid "Выбор игроков"
 msgstr "Player's Choice"
 
-#: .\templates\base.html:248
+#: .\templates\base.html:248 .\templates\nolimit-base.html:274
 msgid "Новые"
 msgstr "New"
 
@@ -52,15 +54,17 @@ msgstr "Themes"
 
 #: .\templates\base.html:299 .\templates\base.html:316
 #: .\templates\endorphina-base.html:314 .\templates\endorphina-base.html:331
-#: .\templates\hacksaw-base.html:313 .\templates\hacksaw-base.html:330
+#: .\templates\nolimit-base.html:325 .\templates\nolimit-base.html:342
 msgid "Получить бонус"
 msgstr "Get a bonus"
 
-#: .\templates\base.html:305 .\templates\hacksaw-base.html:319
+#: .\templates\base.html:305 .\templates\hacksaw-base.html:331
+#: .\templates\nolimit-base.html:331
 msgid "Светло"
 msgstr "Light"
 
-#: .\templates\base.html:306 .\templates\hacksaw-base.html:320
+#: .\templates\base.html:306 .\templates\hacksaw-base.html:332
+#: .\templates\nolimit-base.html:332
 msgid "Темно"
 msgstr "Dark"
 
@@ -77,31 +81,38 @@ msgid ""
 "                    "
 msgstr ""
 
-#: .\templates\base.html:355 .\templates\hacksaw-base.html:236
+#: .\templates\base.html:355 .\templates\hacksaw-base.html:247
+#: .\templates\nolimit-base.html:379
 msgid "Меню"
 msgstr "Menu"
 
 #: .\templates\base.html:359 .\templates\endorphina-base.html:375
+#: .\templates\nolimit-base.html:383
 msgid "Главная"
 msgstr "Main"
 
 #: .\templates\base.html:361 .\templates\endorphina-base.html:377
+#: .\templates\nolimit-base.html:385
 msgid "Обратная связь"
 msgstr "Feedback"
 
 #: .\templates\base.html:377 .\templates\endorphina-base.html:393
+#: .\templates\nolimit-base.html:401
 msgid "Полезные ссылки"
 msgstr "Useful links"
 
 #: .\templates\base.html:382 .\templates\endorphina-base.html:398
+#: .\templates\nolimit-base.html:406
 msgid "Об игровой зависимости"
 msgstr "Gambling addiction"
 
 #: .\templates\base.html:384 .\templates\endorphina-base.html:400
+#: .\templates\nolimit-base.html:408
 msgid "Ответственная игра"
 msgstr "Responsible play"
 
 #: .\templates\base.html:390 .\templates\endorphina-base.html:406
+#: .\templates\nolimit-base.html:414
 msgid "Напишите нам"
 msgstr "Write to us"
 
@@ -113,41 +124,53 @@ msgstr "Paylines"
 msgid "Характеристики"
 msgstr "Features"
 
-#: .\templates\hacksaw-base.html:300 .\templates\hacksaw-home.html:123
+#: .\templates\hacksaw-base.html:311 .\templates\hacksaw-home.html:123
 #: .\templates\hacksaw-home.html:155 .\templates\hacksaw-home.html:166
 #: .\templates\hacksaw-home.html:198
 msgid "Все игры"
 msgstr "All games"
 
-#: .\templates\hacksaw-base.html:302 .\templates\slot_list.html:10
+#: .\templates\hacksaw-base.html:313 .\templates\slot_list.html:10
 msgid "Слоты"
-msgstr "Slots by"
+msgstr "Slots"
 
-#: .\templates\hacksaw-base.html:303 .\templates\hacksaw-home.html:120
+#: .\templates\hacksaw-base.html:314 .\templates\hacksaw-home.html:120
 msgid "Игры с мгновенным выигрышем"
 msgstr "Instant Win Games"
 
-#: .\templates\hacksaw-base.html:304
+#: .\templates\hacksaw-base.html:315
 msgid "Скретч-карты"
 msgstr "Scratchcards"
+
+#: .\templates\hacksaw-base.html:325 .\templates\hacksaw-base.html:342
+#, fuzzy
+#| msgid "Получить бонус"
+msgid "Получить бонус 100 FS"
+msgstr "Get a bonus"
+
+#: .\templates\hacksaw-base.html:389
+msgid "Установить приложение"
+msgstr ""
 
 #: .\templates\hacksaw-home.html:19
 msgid "Премиальный провайдер игр"
 msgstr "Premium Game Provider"
 
-#: .\templates\hacksaw-home.html:23
+#: .\templates\hacksaw-home.html:23 .\templates\nolimit-home.html:23
 msgid "Играть демо"
 msgstr "Play Demo"
 
 #: .\templates\hacksaw-home.html:25
-msgid "Бездепозитный бонус"
+#, fuzzy
+#| msgid "Бездепозитный бонус"
+msgid "Бездепозитный бонус 100 FS"
 msgstr "Get a bonus"
 
 #: .\templates\hacksaw-home.html:40
 msgid "игроков выбирают нас"
 msgstr "players are already with us"
 
-#: .\templates\hacksaw-home.html:49
+#: .\templates\hacksaw-home.html:49 .\templates\nolimit-home.html:49
 msgid "Перейти к слотам"
 msgstr "Go to Slots"
 
@@ -192,6 +215,18 @@ msgstr "Play Now"
 #: .\templates\home.html:281
 msgid "Новые слоты"
 msgstr "New Slots"
+
+#: .\templates\home.html:377
+msgid "Награды Pragmatic Play"
+msgstr "Pragmatic Play Awards"
+
+#: .\templates\nolimit-home.html:19
+msgid "Нестандартный подход к гемблингу"
+msgstr ""
+
+#: .\templates\nolimit-home.html:25
+msgid "Бездепозитный бонус"
+msgstr "Get a bonus"
 
 #: .\templates\slot_detail.html:14
 msgid "Демо игра в"

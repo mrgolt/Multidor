@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-
-
-
 class SlotAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'version', 'folk_name', 'sorting_order', 'users_choice', 'is_new', 'is_popular', 'provider', 'slot_type', 'theme', 'updated_at')
     search_fields = ['name']
@@ -14,6 +11,11 @@ class SlotDescriptionAdmin(admin.ModelAdmin):
     search_fields = ['slot', 'site']
     list_filter = ('site', )
 
+class ProviderSettingAdmin(admin.ModelAdmin):
+    list_display = ('provider', 'name', 'value')
+    search_fields = ('name', 'value')
+
+admin.site.register(ProviderSetting, ProviderSettingAdmin)
 admin.site.register(Slot, SlotAdmin)
 admin.site.register(Image)
 admin.site.register(Review)
