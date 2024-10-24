@@ -8,8 +8,8 @@
 <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
         <h2 class="h1 mb-4">{% trans 'Слоты' %} <span class="text-primary">Pragmatic Play</span>{% if theme %} <br />в категории <span class="text-primary">{{ theme }}</span>{% endif %}</h2>
-        <p class="mb-4">Выберите любимый слот и играйте в демо или на реальные деньги в казино.</p>
-<a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">Бездепозитный бонус 100 FS</a>
+        <p class="mb-4">{{ slots_list_info }}</p>
+<a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">{% trans 'Бездепозитный бонус' %} 100 FS</a>
 
 
     </div>
@@ -67,8 +67,7 @@
                         <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
                     </h3>
                     <p class="fs-sm mb-2">{{ slot.snippet }}</p>
-                    <a href="{% url 'slot_detail' slug=slot.slug %}" class="btn btn-primary mt-2 stretched-link">Играть
-                        сейчас</a>
+                    <a href="{% url 'slot_detail' slug=slot.slug %}" class="btn btn-primary mt-2 stretched-link">{% trans 'Играть сейчас' %}</a>
                 </div>
                 <div class="card-footer d-flex fs-sm text-muted py-3">
                     <div class="d-flex me-4">

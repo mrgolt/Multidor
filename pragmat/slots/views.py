@@ -9,6 +9,7 @@ from rest_framework import status
 import requests
 from django.utils import timezone
 from datetime import timedelta
+from pragmatic.views import update_slots_with_descriptions
 
 def slot_list(request):
 
@@ -68,6 +69,9 @@ def slot_list(request):
     new_slots = Slot.objects.filter(provider=site.provider).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider).order_by('-id')[:10]
 
+    popular_slots = update_slots_with_descriptions(site, popular_slots)
+    page_obj = update_slots_with_descriptions(site, page_obj)
+
     context = {
         'slots': page_obj,  # Передаём объект страницы в контекст
         'popular_slots': popular_slots,
@@ -93,6 +97,8 @@ def slot_detail(request, slug):
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
     new_slots = Slot.objects.filter(provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
+
+    popular_slots = update_slots_with_descriptions(site, popular_slots)
 
     is_mobile = request.user_agent.is_mobile
 
