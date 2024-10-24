@@ -151,7 +151,7 @@ def update_slots_with_descriptions(site, slots):
         ).first()
 
         # Обновляем слот с описанием и сниппетом, если они есть
-        slot.description = description_obj.description if description_obj else ''
-        slot.snippet = description_obj.snippet if description_obj else ''
+        slot.description = description_obj.description if description_obj else slot.description
+        slot.snippet = description_obj.snippet if description_obj else slot.snippet
 
     return slots
