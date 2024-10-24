@@ -38,5 +38,6 @@ class SlotSerializer(serializers.ModelSerializer):
 class SlotDescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = SlotDescription
-        fields = ['id', 'site', 'slot', 'description', 'snippet']  # Укажите поля, которые хотите включить в сериализатор
+        fields = '__all__'
+        # fields = ['id', 'site', 'slot', 'description', 'snippet', 'language']  # Укажите поля, которые хотите включить в сериализатор
 

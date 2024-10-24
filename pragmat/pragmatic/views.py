@@ -10,8 +10,6 @@ from django.http import HttpResponseBadRequest
 import re
 from django.utils.translation import get_language
 
-current_language = get_language()
-
 def home(request):
 
     site = request.site
@@ -144,6 +142,7 @@ def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
 
 def update_slots_with_descriptions(site, slots):
+    current_language = get_language()
     for slot in slots:
         # Ищем объект SlotDescription для текущего слота и языка
         description_obj = SlotDescription.objects.filter(

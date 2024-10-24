@@ -10,6 +10,7 @@ import requests
 from django.utils import timezone
 from datetime import timedelta
 from pragmatic.views import update_slots_with_descriptions
+from django.utils.translation import get_language
 
 def slot_list(request):
 
@@ -92,6 +93,8 @@ def slot_detail(request, slug):
 
     site = request.site
 
+    current_language = get_language()
+
     slot = get_object_or_404(Slot, slug=slug, provider=site.provider)
     reviews = Review.objects.filter(slot=slot)[:10]
     popular_slots = Slot.objects.filter(is_popular=True, provider=site.provider, slot_type=slot.slot_type).order_by('-id')[:10]
@@ -102,7 +105,9 @@ def slot_detail(request, slug):
 
     is_mobile = request.user_agent.is_mobile
 
-    slot_description = SlotDescription.objects.filter(site=site, slot=slot).first()
+    slot_description = SlotDescription.objects.filter(
+            site=site, slot=slot, language__code=current_language
+        ).first()
 
     if slot_description:
         slot.description = slot_description.description

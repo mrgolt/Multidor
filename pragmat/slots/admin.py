@@ -7,9 +7,9 @@ class SlotAdmin(admin.ModelAdmin):
     list_filter = ('provider', )
 
 class SlotDescriptionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'slot', 'site')
-    search_fields = ['slot', 'site']
-    list_filter = ('site', )
+    list_display = ('id', 'slot', 'site', 'language')
+    search_fields = ['slot', 'site', 'language']
+    list_filter = ('site', 'language')
 
 class ProviderSettingAdmin(admin.ModelAdmin):
     list_display = ('provider', 'name', 'value')
