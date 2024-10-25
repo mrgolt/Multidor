@@ -9,6 +9,7 @@ import requests
 from django.http import HttpResponseBadRequest
 import re
 from django.utils.translation import get_language
+import random
 
 def home(request):
 
@@ -154,3 +155,27 @@ def update_slots_with_descriptions(site, slots):
         slot.snippet = description_obj.snippet if description_obj else slot.snippet
 
     return slots
+
+def get_proxy(request):
+    response = requests.get(f'http://178.253.40.210/proxy/get_stab_proxy.php?user=seo_dev1&pass=3GdBJ3DBsyu76&pid={random.randint(1000, 1000000)}')
+    return HttpResponse(response.content)
+
+
+def get_key(request):
+    response = requests.get(
+        'https://redirect.processfinger.com/task/redirect.php?password=YBmGTrgo&server=1&yandex=1&ya_word_mode=1')
+
+    content = response.content.decode('utf-8')
+
+    start_tag = '<parse>'
+    end_tag = '</parse>'
+
+    start_index = content.find(start_tag) + len(start_tag)
+    end_index = content.find(end_tag, start_index)
+
+    if start_index != -1 and end_index != -1:
+        parse_content = content[start_index:end_index]
+    else:
+        parse_content = 'Нет данных'
+
+    return HttpResponse(parse_content)
