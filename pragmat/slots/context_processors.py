@@ -1,4 +1,5 @@
 from .models import Theme, Feature, Paylines, get_provider_setting
+from pragmatic.models import Language
 from django.db.models import Count
 
 def site_context(request):
@@ -14,6 +15,8 @@ def site_context(request):
 
     # Получение всех доступных Paylines
     paylines = Paylines.objects.all()
+
+    languages = Language.objects.all()
 
     # Получение информации из настройки провайдера
     footer_info = get_provider_setting(current_site.provider, 'footer_info')
@@ -38,4 +41,5 @@ def site_context(request):
         'feature_2': feature_2,
         'feature_3': feature_3,
         'keywords': keywords,
+        'languages': languages,
     }

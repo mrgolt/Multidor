@@ -39,6 +39,7 @@ urlpatterns = i18n_patterns(
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('promo/', views.promo_page, name='promo_page'),
     path('sitemap.xml', views.sitemap_generator, name='sitemap_generator'),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('get_proxy/', views.get_proxy, name='get_proxy'),
     path('get_key/', views.get_key, name='get_key'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
