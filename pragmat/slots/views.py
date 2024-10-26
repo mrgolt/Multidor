@@ -141,6 +141,7 @@ def slot_detail(request, slug):
         'new_slots': new_slots,
         'users_choice_slots': users_choice_slots,
         'is_mobile': is_mobile,
+        'current_language': current_language,
     })
 
 class SlotViewSet(viewsets.ModelViewSet):
