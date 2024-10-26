@@ -56,3 +56,12 @@ def get_site_setting(site, name):
         return SiteSetting.objects.get(site=site, name=name).value
     except SiteSetting.DoesNotExist:
         return None
+
+class FAQ(models.Model):
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    question = models.TextField()
+    answer = models.TextField()
+    language = models.ForeignKey('Language', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.question

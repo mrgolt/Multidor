@@ -8,14 +8,14 @@ document.getElementById('showText').addEventListener('click', function() {
         // Change height to show all text
         contentDiv.style.height = 'auto'; // Set to auto to show all content
         gradientBlock.classList.remove('d-dark-mode-block'); // Hide the gradient block
-        this.textContent = 'Скрыть текст'; // Change button text
+        this.textContent = hideTextLabel; // Change button text
         this.querySelector('#showMoreArrow').classList.remove('bx-down-arrow-alt'); // Remove down arrow
         this.querySelector('#showMoreArrow').classList.add('bx-up-arrow-alt'); // Add up arrow
     } else {
         // Reset height to original
         contentDiv.style.height = '350px'; // Reset to original height
         gradientBlock.classList.add('d-dark-mode-block'); // Show the gradient block again
-        this.textContent = 'Читать полностью'; // Change button text back
+        this.textContent = readMoreLabel; // Change button text back
         this.querySelector('#showMoreArrow').classList.remove('bx-up-arrow-alt'); // Remove up arrow
         this.querySelector('#showMoreArrow').classList.add('bx-down-arrow-alt'); // Add down arrow
     }

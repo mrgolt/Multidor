@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-24 21:32+0300\n"
+"POT-Creation-Date: 2024-10-26 13:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,82 +26,126 @@ msgstr "slots/"
 msgid "page/<slug:slug>/"
 msgstr "page/<slug:slug>/"
 
-#: .\templates\base.html:11 .\templates\base.html:19 .\templates\base.html:220
+#: .\templates\base.html:10 .\templates\base.html:19
+msgid "Слот"
+msgstr "Slot"
+
+#: .\templates\base.html:10
+msgid "Демо-игра и игра на реальные деньги"
+msgstr "Demo game and real money play"
+
+#: .\templates\base.html:11 .\templates\base.html:20
+msgid "Поиск по запросу:"
+msgstr "Search results for:"
+
+#: .\templates\base.html:12 .\templates\base.html:21 .\templates\base.html:222
 #: .\templates\endorphina-base.html:243 .\templates\hacksaw-home.html:80
-#: .\templates\hacksaw-home.html:112 .\templates\home.html:261
+#: .\templates\hacksaw-home.html:112 .\templates\home.html:255
 #: .\templates\nolimit-base.html:11 .\templates\nolimit-base.html:19
 #: .\templates\nolimit-base.html:246 .\templates\nolimit-home.html:101
 #: .\templates\slot_detail.html:150
 msgid "Все слоты"
 msgstr "All slots"
 
-#: .\templates\base.html:224 .\templates\base.html:237
+#: .\templates\base.html:12 .\templates\base.html:21
+msgid "в категории"
+msgstr "in category"
+
+#: .\templates\base.html:13 .\templates\base.html:22
+msgid "самый популярный провайдер слотов"
+msgstr "the most popular slot provider"
+
+#: .\templates\base.html:13
+msgid "Играйте демо на нашем сайте в любой слот прямо сейчас!"
+msgstr "Play demo on our site in any slot right now!"
+
+#: .\templates\base.html:13 .\templates\base.html:22
+msgid "Страница"
+msgstr "Page"
+
+#: .\templates\base.html:22
+msgid "Все слоты провайдера на одном сайте!"
+msgstr "All slots of the provider on one site!"
+
+#: .\templates\base.html:22
+msgid "Играйте в любой слот прямо сейчас!"
+msgstr "Play any slot right now!"
+
+#: .\templates\base.html:226 .\templates\base.html:239
 msgid "Популярные"
 msgstr "Popular"
 
-#: .\templates\base.html:228 .\templates\home.html:225
-#: .\templates\home.html:325 .\templates\slot_detail.html:116
+#: .\templates\base.html:230 .\templates\home.html:219
+#: .\templates\home.html:319 .\templates\slot_detail.html:116
 msgid "Выбор игроков"
 msgstr "Player's Choice"
 
-#: .\templates\base.html:248 .\templates\nolimit-base.html:274
+#: .\templates\base.html:250 .\templates\nolimit-base.html:274
 msgid "Новые"
 msgstr "New"
 
-#: .\templates\base.html:278 .\templates\endorphina-base.html:269
+#: .\templates\base.html:280 .\templates\endorphina-base.html:269
 msgid "Тематика"
 msgstr "Themes"
 
-#: .\templates\base.html:299 .\templates\base.html:316
+#: .\templates\base.html:301 .\templates\base.html:318
 #: .\templates\endorphina-base.html:314 .\templates\endorphina-base.html:331
 #: .\templates\nolimit-base.html:325 .\templates\nolimit-base.html:342
 msgid "Получить бонус"
 msgstr "Get a bonus"
 
-#: .\templates\base.html:305 .\templates\hacksaw-base.html:331
+#: .\templates\base.html:307 .\templates\hacksaw-base.html:331
 #: .\templates\nolimit-base.html:331
 msgid "Светло"
 msgstr "Light"
 
-#: .\templates\base.html:306 .\templates\hacksaw-base.html:332
+#: .\templates\base.html:308 .\templates\hacksaw-base.html:332
 #: .\templates\nolimit-base.html:332
 msgid "Темно"
 msgstr "Dark"
 
-#: .\templates\base.html:350 .\templates\hacksaw-base.html:247
+#: .\templates\base.html:352 .\templates\hacksaw-base.html:247
 #: .\templates\nolimit-base.html:379
 msgid "Меню"
 msgstr "Menu"
 
-#: .\templates\base.html:354 .\templates\endorphina-base.html:375
+#: .\templates\base.html:356 .\templates\endorphina-base.html:375
 #: .\templates\nolimit-base.html:383
 msgid "Главная"
 msgstr "Main"
 
-#: .\templates\base.html:356 .\templates\endorphina-base.html:377
+#: .\templates\base.html:358 .\templates\endorphina-base.html:377
 #: .\templates\nolimit-base.html:385
 msgid "Обратная связь"
 msgstr "Feedback"
 
-#: .\templates\base.html:372 .\templates\endorphina-base.html:393
+#: .\templates\base.html:374 .\templates\endorphina-base.html:393
 #: .\templates\nolimit-base.html:401
 msgid "Полезные ссылки"
 msgstr "Useful links"
 
-#: .\templates\base.html:377 .\templates\endorphina-base.html:398
+#: .\templates\base.html:379 .\templates\endorphina-base.html:398
 #: .\templates\nolimit-base.html:406
 msgid "Об игровой зависимости"
 msgstr "Gambling addiction"
 
-#: .\templates\base.html:379 .\templates\endorphina-base.html:400
+#: .\templates\base.html:381 .\templates\endorphina-base.html:400
 #: .\templates\nolimit-base.html:408
 msgid "Ответственная игра"
 msgstr "Responsible play"
 
-#: .\templates\base.html:387 .\templates\endorphina-base.html:406
+#: .\templates\base.html:389 .\templates\endorphina-base.html:406
 #: .\templates\nolimit-base.html:414
 msgid "Напишите нам"
 msgstr "Write to us"
+
+#: .\templates\base.html:416
+msgid "Скрыть текст"
+msgstr "Hide text"
+
+#: .\templates\base.html:417 .\templates\slot_detail.html:51
+msgid "Читать полностью"
+msgstr "Read more"
 
 #: .\templates\endorphina-base.html:247
 msgid "Линий выплат"
@@ -161,7 +205,7 @@ msgstr "players are already with us"
 msgid "Перейти к слотам"
 msgstr "Go to Slots"
 
-#: .\templates\hacksaw-home.html:77 .\templates\home.html:172
+#: .\templates\hacksaw-home.html:77 .\templates\home.html:166
 #: .\templates\slot_detail.html:65
 msgid "Популярные слоты"
 msgstr "Popular Slots"
@@ -170,7 +214,7 @@ msgstr "Popular Slots"
 msgid "Игры со скретч-картами"
 msgstr "Scratchcards"
 
-#: .\templates\hacksaw-home.html:343 .\templates\home.html:511
+#: .\templates\hacksaw-home.html:343 .\templates\home.html:505
 msgid "Часто задаваемые вопросы"
 msgstr "FAQ"
 
@@ -194,16 +238,16 @@ msgstr "Search"
 msgid "игроков уже с нами"
 msgstr "players are already with us"
 
-#: .\templates\home.html:238 .\templates\home.html:336
+#: .\templates\home.html:232 .\templates\home.html:330
 #: .\templates\slot_detail.html:127 .\templates\slot_list.html:70
 msgid "Играть сейчас"
 msgstr "Play Now"
 
-#: .\templates\home.html:276
+#: .\templates\home.html:270
 msgid "Новые слоты"
 msgstr "New Slots"
 
-#: .\templates\home.html:372
+#: .\templates\home.html:366
 msgid "Награды Pragmatic Play"
 msgstr "Pragmatic Play Awards"
 
@@ -211,7 +255,8 @@ msgstr "Pragmatic Play Awards"
 msgid "Нестандартный подход к гемблингу"
 msgstr ""
 
-#: .\templates\nolimit-home.html:25 .\templates\slot_list.html:12
+#: .\templates\nolimit-home.html:25 .\templates\slot_detail.html:32
+#: .\templates\slot_list.html:12
 msgid "Бездепозитный бонус"
 msgstr "Get a bonus"
 
@@ -227,10 +272,6 @@ msgstr "en"
 msgid "RUB"
 msgstr "USD"
 
-#: .\templates\slot_detail.html:51
-msgid "Читать полностью"
-msgstr "Read more"
-
 #: .\templates\slot_list.html:25
 msgid "Поиск по запросу"
 msgstr "Search results"
@@ -243,8 +284,25 @@ msgstr "Choose a slot"
 msgid "Лицензированные и сертифицированные игры"
 msgstr "Licensed and certified"
 
-#~ msgid "Слот"
-#~ msgstr "Slot"
+#, fuzzy
+#~| msgid "самый популярный провайдер слотов"
+#~ msgid "самый популярный провайдер слотов."
+#~ msgstr "the most popular slot provider"
 
 #~ msgid "Категории"
 #~ msgstr "Categories"
+
+#~ msgid "Вашe имя"
+#~ msgstr "Your name"
+
+#~ msgid "Ваш E-mail"
+#~ msgstr "Your E-mail"
+
+#~ msgid "Тема сообщения"
+#~ msgstr "Subject"
+
+#~ msgid "Ваш вопрос"
+#~ msgstr "Your question"
+
+#~ msgid "Отправить"
+#~ msgstr "Send"

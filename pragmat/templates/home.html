@@ -125,9 +125,7 @@
                     <div class="text-center">
                         <img src="{% static 'assets/img/landing/digital-agency/icons/team.svg' %}" width="48"
                              alt="Bulb icon" class="d-block mb-4 mx-auto">
-                        <h4 class="mb-2 pb-1">Доверие игроков</h4>
-                        <p class="mx-auto" style="max-width: 336px;">Pragmatic Play сертифицирован и лицензирован
-                            в более чем 40 странах</p>
+                        {{ feature_1|safe }}
                     </div>
                 </div>
 
@@ -136,9 +134,7 @@
                     <div class="text-center">
                         <img src="{% static 'assets/img/landing/digital-agency/icons/award.svg' %}" width="48"
                              alt="Award icon" class="d-block mb-4 mx-auto">
-                        <h4 class="mb-2 pb-1">Заслуженный успех</h4>
-                        <p class="mx-auto" style="max-width: 336px;">Pragmatic Play получил множество международных
-                            наград</p>
+                        {{ feature_2|safe }}
                     </div>
                 </div>
 
@@ -147,9 +143,7 @@
                     <div class="text-center">
                         <img src="{% static 'assets/img/landing/digital-agency/icons/idea.svg' %}" width="48"
                              alt="Team icon" class="d-block mb-4 mx-auto">
-                        <h4 class="mb-2 pb-1">Доступность</h4>
-                        <p class="mx-auto" style="max-width: 336px;">Слоты Pragmatic Play доступны на мобильных
-                            устройствах, компьютерах, на 33 языках и во всех валютах.</p>
+                        {{ feature_3|safe }}
                     </div>
                 </div>
 
@@ -490,7 +484,7 @@
         </div>
     </section>
 
-
+{% if faqs %}
     <!-- FAQ (Accordion) -->
     <section class="container pt-1 pt-lg-3">
         <div class="position-relative bg-secondary rounded-3 overflow-hidden px-3 px-sm-4 px-md-0 py-5">
@@ -511,94 +505,29 @@
                     <h2 class="h1 text-center mt-n2 mt-lg-0 mb-4 mb-lg-5">{% trans "Часто задаваемые вопросы" %}</h2>
                     <div class="accordion" id="faq">
 
+                        {% for faq in faqs %}
                         <!-- Item -->
                         <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
                             <h3 class="accordion-header">
-                                <button class="accordion-button shadow-none rounded-3" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#q-1" aria-expanded="true"
-                                        aria-controls="q-1">Что такое Pragmatic Play?
+                                <button class="accordion-button shadow-none rounded-3 {% if forloop.counter > 1 %}collapsed{% endif %}" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#q-{{ forloop.counter }}" aria-expanded="true"
+                                        aria-controls="q-1">{{ faq.question }}
                                 </button>
                             </h3>
-                            <div class="accordion-collapse collapse show" id="q-1" data-bs-parent="#faq">
+                            <div class="accordion-collapse collapse {% if forloop.counter == 1 %}show{% endif %}" id="q-{{ forloop.counter }}" data-bs-parent="#faq">
                                 <div class="accordion-body fs-sm pt-0">
-                                    <p>Pragmatic Play - ведущий поставщик игрового контента для онлайн-казино,
-                                        предлагающий широкий спектр продуктов, включая слоты, игры с живыми дилерами,
-                                        бинго и многое другое. Компания известна своими инновационными решениями и
-                                        высококачественными играми.</p>
+                                    <p>{{ faq.answer }}</p>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
 
-                        <!-- Item -->
-                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#q-2" aria-expanded="false"
-                                        aria-controls="q-2">Где лицензирована компания Pragmatic Play?
-                                </button>
-                            </h3>
-                            <div class="accordion-collapse collapse" id="q-2" data-bs-parent="#faq">
-                                <div class="accordion-body fs-sm pt-0">
-                                    <p>Pragmatic Play имеет лицензии на деятельность в различных юрисдикциях, включая
-                                        Великобританию, Мальту и Кюрасао.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#q-3" aria-expanded="false"
-                                        aria-controls="q-3">Где я могу играть в игры Pragmatic Play?
-                                </button>
-                            </h3>
-                            <div class="accordion-collapse collapse" id="q-3" data-bs-parent="#faq">
-                                <div class="accordion-body fs-sm pt-0">
-                                    <p>Игры Pragmatic Play доступны в широком спектре онлайн-казино. Вы можете найти
-                                        список казино на сайте Pragmatic Play. Вы можете поиграть в демо слотов на
-                                        нашем сайте. </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#q-4" aria-expanded="false"
-                                        aria-controls="q-4">Являются ли игры Pragmatic Play безопасными?
-                                </button>
-                            </h3>
-                            <div class="accordion-collapse collapse" id="q-4" data-bs-parent="#faq">
-                                <div class="accordion-body fs-sm pt-0">
-                                    <p>Да, игры Pragmatic Play безопасны. Они регулярно тестируются независимыми
-                                        лабораториями, чтобы гарантировать честность и справедливость.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="accordion-item border-0 rounded-3 shadow-sm mb-3">
-                            <h3 class="accordion-header">
-                                <button class="accordion-button shadow-none rounded-3 collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#q-5" aria-expanded="false"
-                                        aria-controls="q-5">Как Pragmatic Play обеспечивает честность своих игр?
-                                </button>
-                            </h3>
-                            <div class="accordion-collapse collapse" id="q-5" data-bs-parent="#faq">
-                                <div class="accordion-body fs-sm pt-0">
-                                    <p>Pragmatic Play использует сертифицированный генератор случайных чисел (ГСЧ) для
-                                        обеспечения честности своих игр. Игры также регулярно тестируются независимыми
-                                        лабораториями.</p>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    {% endif %}
 
 {% endblock %}

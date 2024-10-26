@@ -20,6 +20,10 @@ def site_context(request):
     home_page_subtitle = get_provider_setting(current_site.provider, 'home_page_subtitle')
     home_page_info = get_provider_setting(current_site.provider, 'home_page_info')
     slots_list_info = get_provider_setting(current_site.provider, 'slots_list_info')
+    feature_1 = get_provider_setting(current_site.provider, 'feature_1')
+    feature_2 = get_provider_setting(current_site.provider, 'feature_2')
+    feature_3 = get_provider_setting(current_site.provider, 'feature_3')
+    keywords = get_provider_setting(current_site.provider, 'keywords')
 
     # Возвращаем объединенный словарь контекста
     return {
@@ -30,4 +34,8 @@ def site_context(request):
         'home_page_subtitle': home_page_subtitle,
         'home_page_info': home_page_info,
         'slots_list_info': slots_list_info,
+        'feature_1': feature_1,
+        'feature_2': feature_2,
+        'feature_3': feature_3,
+        'keywords': keywords,
     }

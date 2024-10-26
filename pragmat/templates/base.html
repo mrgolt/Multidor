@@ -4,22 +4,24 @@
 <html lang="ru" data-bs-theme="dark">
 <head>
     <meta charset="utf-8">
+
     <title>
         {% if page.title %}{{ page.title }} - {% endif %}
-        {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
-        {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
-        {% if slots %}{% trans 'Все слоты' %} {% if theme %} в категории {{ theme }}{% endif %} - {% endif %}
-        {{ site.provider.name }} - самый популярный провайдер слотов. Играйте демо на нашем сайте в любой слот прямо сейчас!{% if slots.number %} - Страница {{ slots.number }}{% endif %}
+        {% if slot.name %}{% trans 'Слот' %} {{ slot.name }} - {% trans 'Демо-игра и игра на реальные деньги' %} - {% endif %}
+        {% if slot_name %}{% trans 'Поиск по запросу:' %} {{ slot_name }} - {% endif %}
+        {% if slots %}{% trans 'Все слоты' %} {% if theme %}{% trans 'в категории' %} {{ theme }}{% endif %} - {% endif %}
+        {{ site.provider.name }} - {% trans 'самый популярный провайдер слотов' %}. {% trans 'Играйте демо на нашем сайте в любой слот прямо сейчас!' %}{% if slots.number %} - {% trans 'Страница' %} {{ slots.number }}{% endif %}
     </title>
+
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% if page.title %}{{ page.title }} - {% endif %}
-        {% if slot.name %}Слот {{ slot.name }} - {% endif %}
-        {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
-        {% if slots %}{% trans 'Все слоты' %} {% if theme %} в категории {{ theme }}{% endif %} - {% endif %}
-        Pragmatic Play - самый популярный провайдер слотов. Все слоты провайдера на одном сайте! Играйте в любой слот прямо сейчас!{% if slots.number %} - Страница {{ slots.number }}{% endif %}">
+        {% if slot.name %}{% trans 'Слот' %} {{ slot.name }} - {% endif %}
+        {% if slot_name %}{% trans 'Поиск по запросу:' %} {{ slot_name }} - {% endif %}
+        {% if slots %}{% trans 'Все слоты' %} {% if theme %}{% trans 'в категории' %} {{ theme }}{% endif %} - {% endif %}
+        Pragmatic Play - {% trans 'самый популярный провайдер слотов' %}. {% trans 'Все слоты провайдера на одном сайте!' %} {% trans 'Играйте в любой слот прямо сейчас!' %}{% if slots.number %} - {% trans 'Страница' %} {{ slots.number }}{% endif %}">
     <meta name="keywords"
-      content="онлайн казино, игровые автоматы, азартные игры, слоты, рулетка, блэкджек, покер, бонусы казино, бесплатные вращения, джекпот, регистрация в казино, лучшие казино, отзывы о казино, стратегии игр, слоты онлайн, демо игры, лицензированные казино, казино на деньги, безопасные казино, мобильное казино, казино с живыми дилерами, pragmatic play{% if slot.name %}, {{ slot.name }}{% endif %}{% if slot.folk_name %}, слот {{ slot.folk_name }}{% endif %}">
+      content="{{ keywords }}">
 
     <meta name="author" content="Pragmatic Play">
     <meta name="theme-color" content="#ff872a">
@@ -373,9 +375,9 @@
                         </h6>
                         <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
                             <ul class="nav flex-column mb-2 mb-lg-0">
-                                <li class="nav-item"><a href="{% url 'page_detail' slug='ludomania' %}"
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='gambling-addiction' %}"
                                                         class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Об игровой зависимости' %}</a></li>
-                                <li class="nav-item"><a href="{% url 'page_detail' slug='otvetstvennaya-igra' %}"
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='responsible-gambling' %}"
                                                         class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Ответственная игра' %}</a></li>
                                 <li class="nav-item"><a href="/en/"
                                                         class="nav-link d-inline-block px-0 pt-1 pb-2">English</a></li>
@@ -409,6 +411,11 @@
 
 <!-- Main Theme Script -->
 <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+<script type="text/javascript">
+    var hideTextLabel = "{% trans 'Скрыть текст' %}";
+    var readMoreLabel = "{% trans 'Читать полностью' %}";
+</script>
 
 <script src="{% static 'assets/js/read-more.js' %}"></script>
 

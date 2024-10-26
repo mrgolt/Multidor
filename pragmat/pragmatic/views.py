@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from slots.models import Slot, SlotDescription
 from django.shortcuts import redirect
 from django.http import HttpResponse
-from .models import Site, Offer
+from .models import Site, Offer, FAQ
 from django.utils import timezone
 from datetime import timedelta
 import requests
@@ -14,6 +14,7 @@ import random
 def home(request):
 
     site = request.site
+    current_language = get_language()
 
     template = site.home_template or 'home.html'
 
@@ -33,6 +34,8 @@ def home(request):
     instant_win_games = update_slots_with_descriptions(site, instant_win_games)
     scratch_cards = update_slots_with_descriptions(site, scratch_cards)
 
+    faqs = FAQ.objects.filter(provider=site.provider, language__code=current_language)
+
     return render(request, template, {
         'home_page_slots': home_page_slots,
         'popular_slots': popular_slots,
@@ -42,6 +45,7 @@ def home(request):
         'scratch_cards': scratch_cards,
         'offer': first_offer,
         'site': site,
+        'faqs': faqs,
     })
 
 def promo_page(request):
