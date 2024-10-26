@@ -31,7 +31,12 @@ class Theme(models.Model):
             'pt': self.title_pt,
             'es': self.title_es,
         }
-        return titles.get(lang, self.title_en)
+        title_value = titles.get(lang, None)
+
+        if not title_value:
+            return self.title_en
+
+        return title_value
 
 class Feature(models.Model):
     title_en = models.CharField(max_length=100, unique=True, blank=True)
