@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-26 13:41+0300\n"
+"POT-Creation-Date: 2024-10-26 13:57+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,11 @@ msgstr "All slots of the provider on one site!"
 msgid "Играйте в любой слот прямо сейчас!"
 msgstr "Play any slot right now!"
 
+#: .\templates\base.html:216 .\templates\base.html:352
+#: .\templates\hacksaw-base.html:247 .\templates\nolimit-base.html:379
+msgid "Меню"
+msgstr "Menu"
+
 #: .\templates\base.html:226 .\templates\base.html:239
 msgid "Популярные"
 msgstr "Popular"
@@ -103,11 +108,6 @@ msgstr "Light"
 #: .\templates\nolimit-base.html:332
 msgid "Темно"
 msgstr "Dark"
-
-#: .\templates\base.html:352 .\templates\hacksaw-base.html:247
-#: .\templates\nolimit-base.html:379
-msgid "Меню"
-msgstr "Menu"
 
 #: .\templates\base.html:356 .\templates\endorphina-base.html:375
 #: .\templates\nolimit-base.html:383
@@ -181,7 +181,7 @@ msgstr "Get a bonus"
 
 #: .\templates\hacksaw-base.html:389
 msgid "Установить приложение"
-msgstr ""
+msgstr "Install App"
 
 #: .\templates\hacksaw-home.html:19
 msgid "Премиальный провайдер игр"
