@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="ru" data-bs-theme="dark">
 <head>
@@ -290,6 +292,21 @@
                                 </div>
                             </div>
                         </li>
+                    <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ LANGUAGE_CODE|upper }}</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-lg-3">
+                                            <li><a href="{{ request.path|remove:'/en,/es' }}" class="dropdown-item py-1">Русский</a></li>
+                                            <li><a href="/en{{ request.path|remove:'/en,/es' }}" class="dropdown-item py-1">English</a></li>
+                                            <li><a href="/es{{ request.path|remove:'/en,/es' }}" class="dropdown-item py-1">Español</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
 
                     </ul>
                 </div>
