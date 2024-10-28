@@ -99,6 +99,8 @@ def robots_txt(request):
         f"sitemap: https://{site.domain}/sitemap.xml",
         f"sitemap: https://{site.domain}/es/sitemap.xml",
         f"sitemap: https://{site.domain}/en/sitemap.xml",
+        f"sitemap: https://{site.domain}/pt/sitemap.xml",
+        f"sitemap: https://{site.domain}/de/sitemap.xml",
     ]
     response = HttpResponse("\n".join(lines), content_type="text/plain")
     response['Content-Disposition'] = 'inline; filename="robots.txt"'
