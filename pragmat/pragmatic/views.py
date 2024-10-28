@@ -95,7 +95,10 @@ def robots_txt(request):
     lines = [
         "User-agent: *",
         "Disallow: /play/",
+        "Disallow: /static/assets/js/",
         f"sitemap: https://{site.domain}/sitemap.xml",
+        f"sitemap: https://{site.domain}/es/sitemap.xml",
+        f"sitemap: https://{site.domain}/en/sitemap.xml",
     ]
     response = HttpResponse("\n".join(lines), content_type="text/plain")
     response['Content-Disposition'] = 'inline; filename="robots.txt"'
@@ -106,6 +109,12 @@ def index_now(request, indexnow_key):
 
 def sitemap_generator(request):
 
+    current_language = get_language()
+    if current_language == 'ru':
+        lang_src = ''
+    else:
+        lang_src = current_language + '/'
+
     yesterday = (timezone.now().date() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     site = request.site
@@ -115,7 +124,7 @@ def sitemap_generator(request):
     # for slot in slots:
     #     print(requests.get(f'https://yandex.com/indexnow?key={slot.slug[0]}iyg786g8srfiIJHIuhiuhf7&url=https://{site.domain}/slots/{slot.slug}/').json())
 
-    return render(request, 'sitemap.xml', {'domain': site.domain, 'yesterday': yesterday, 'slots': slots })
+    return render(request, 'sitemap.xml', {'domain': site.domain, 'yesterday': yesterday, 'slots': slots, 'lang_src': lang_src })
 
 def yandex_webmaster_approve(request, code):
 

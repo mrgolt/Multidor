@@ -20,3 +20,18 @@ document.getElementById('showText').addEventListener('click', function() {
         this.querySelector('#showMoreArrow').classList.add('bx-down-arrow-alt'); // Add down arrow
     }
 });
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+const existingClickId = getCookie('clickid');
+if (existingClickId) {
+    const links = document.querySelectorAll('a[href*="/play/"]');
+    links.forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('clickid', existingClickId);
+        link.href = url.toString();
+    });
+}
