@@ -1,26 +1,3 @@
-document.getElementById('showText').addEventListener('click', function () {
-  // Get the content div
-  var contentDiv = document.querySelector('.content');
-  var gradientBlock = document.querySelector('.gradient-block');
-
-  // Check the current height of the content div
-  if (contentDiv.style.height === '350px' || contentDiv.style.height === '') {
-    // Change height to show all text
-    contentDiv.style.height = 'auto'; // Set to auto to show all content
-    gradientBlock.classList.remove('d-dark-mode-block'); // Hide the gradient block
-    this.textContent = hideTextLabel; // Change button text
-    this.querySelector('#showMoreArrow').classList.remove('bx-down-arrow-alt'); // Remove down arrow
-    this.querySelector('#showMoreArrow').classList.add('bx-up-arrow-alt'); // Add up arrow
-  } else {
-    // Reset height to original
-    contentDiv.style.height = '350px'; // Reset to original height
-    gradientBlock.classList.add('d-dark-mode-block'); // Show the gradient block again
-    this.textContent = readMoreLabel; // Change button text back
-    this.querySelector('#showMoreArrow').classList.remove('bx-up-arrow-alt'); // Remove up arrow
-    this.querySelector('#showMoreArrow').classList.add('bx-down-arrow-alt'); // Add down arrow
-  }
-});
-
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -37,13 +14,56 @@ if (existingClickId) {
   });
 }
 
+// Проверка существования формы
+const feedbackForm = document.getElementById('feedbackForm');
+if (feedbackForm) {
+  feedbackForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const responseOutput = document.getElementById('response-output');
+    if (responseOutput) {
+      responseOutput.classList.remove('d-none');
+    }
+  });
+}
 
-document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+// Проверка существования кнопки
+const showTextButton = document.getElementById('showText');
+if (showTextButton) {
+  showTextButton.addEventListener('click', function () {
+    // Get the content div
+    var contentDiv = document.querySelector('.content');
+    var gradientBlock = document.querySelector('.gradient-block');
 
-event.preventDefault();
-const responseOutput = document.getElementById('response-output');
-responseOutput.classList.remove('d-none');
-
-});
+    // Проверка существования элементов
+    if (contentDiv && gradientBlock) {
+      // Check the current height of the content div
+      if (contentDiv.style.height === '350px' || contentDiv.style.height === '') {
+        // Change height to show all text
+        contentDiv.style.height = 'auto'; // Set to auto to show all content
+        gradientBlock.classList.remove('d-dark-mode-block'); // Hide the gradient block
+        this.textContent = hideTextLabel; // Change button text
+        var showMoreArrow = this.querySelector('#showMoreArrow');
+        if (showMoreArrow) {
+          showMoreArrow.classList.remove('bx-down-arrow-alt'); // Remove down arrow
+          showMoreArrow.classList.add('bx-up-arrow-alt'); // Add up arrow
+        }
+      } else {
+        // Reset height to original
+        contentDiv.style.height = '350px'; // Reset to original height
+        gradientBlock.classList.add('d-dark-mode-block'); // Show the gradient block again
+        this.textContent = readMoreLabel; // Change button text back
+        var showMoreArrow = this.querySelector('#showMoreArrow');
+        if (showMoreArrow) {
+          showMoreArrow.classList.remove('bx-up-arrow-alt'); // Remove up arrow
+          showMoreArrow.classList.add('bx-down-arrow-alt'); // Add down arrow
+        }
+      }
+    } else {
+      console.warn('Content div or gradient block not found.');
+    }
+  });
+} else {
+  console.warn('Button with id "showText" not found.');
+}
 
 
