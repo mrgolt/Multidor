@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-29 17:26+0300\n"
+"POT-Creation-Date: 2024-10-29 18:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Portuguese <LL@li.org>\n"
@@ -161,6 +161,17 @@ msgstr "Linhas de pagamento"
 msgid "Характеристики"
 msgstr "Características"
 
+#: .\templates\endorphina-slot_detail.html:224
+#: .\templates\nolimit-slot_detail.html:224 .\templates\slot_detail.html:65
+msgid "Похожие слоты"
+msgstr "Caça-níqueis similares"
+
+#: .\templates\endorphina-slot_detail.html:278 .\templates\hacksaw-home.html:77
+#: .\templates\home.html:166 .\templates\nolimit-slot_detail.html:278
+#: .\templates\slot_detail.html:165
+msgid "Популярные слоты"
+msgstr "Slots populares"
+
 #: .\templates\hacksaw-base.html:311 .\templates\hacksaw-home.html:123
 #: .\templates\hacksaw-home.html:155 .\templates\hacksaw-home.html:166
 #: .\templates\hacksaw-home.html:198
@@ -211,11 +222,6 @@ msgstr "jogadores já estão conosco"
 msgid "Перейти к слотам"
 msgstr "Ir para os slots"
 
-#: .\templates\hacksaw-home.html:77 .\templates\home.html:166
-#: .\templates\slot_detail.html:165
-msgid "Популярные слоты"
-msgstr "Slots populares"
-
 #: .\templates\hacksaw-home.html:163
 msgid "Игры со скретч-картами"
 msgstr "Cartões Raspadinhas"
@@ -223,6 +229,16 @@ msgstr "Cartões Raspadinhas"
 #: .\templates\hacksaw-home.html:343 .\templates\home.html:505
 msgid "Часто задаваемые вопросы"
 msgstr "Perguntas Frequentes"
+
+#: .\templates\hacksaw-slot_detail.html:255
+msgid "Похожие игры"
+msgstr "Jogos Semelhantes"
+
+#: .\templates\hacksaw-slot_detail.html:309
+#, fuzzy
+#| msgid "Популярные слоты"
+msgid "Популярные игры"
+msgstr "Slots populares"
 
 #: .\templates\home.html:17
 msgid "Добро пожаловать!"
@@ -278,10 +294,6 @@ msgstr "pt"
 #: .\templates\slot_detail.html:22
 msgid "RUB"
 msgstr "BRL"
-
-#: .\templates\slot_detail.html:65
-msgid "Похожие слоты"
-msgstr "Caça-níqueis similares"
 
 #: .\templates\slot_list.html:10
 msgid "Слоты от"

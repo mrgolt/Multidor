@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-29 17:34+0300\n"
+"POT-Creation-Date: 2024-10-29 18:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,6 +161,17 @@ msgstr "Gewinnlinien"
 msgid "Характеристики"
 msgstr "Merkmale"
 
+#: .\templates\endorphina-slot_detail.html:224
+#: .\templates\nolimit-slot_detail.html:224 .\templates\slot_detail.html:65
+msgid "Похожие слоты"
+msgstr "Ähnliche Slots"
+
+#: .\templates\endorphina-slot_detail.html:278 .\templates\hacksaw-home.html:77
+#: .\templates\home.html:166 .\templates\nolimit-slot_detail.html:278
+#: .\templates\slot_detail.html:165
+msgid "Популярные слоты"
+msgstr "Beliebte Slots"
+
 #: .\templates\hacksaw-base.html:311 .\templates\hacksaw-home.html:123
 #: .\templates\hacksaw-home.html:155 .\templates\hacksaw-home.html:166
 #: .\templates\hacksaw-home.html:198
@@ -211,11 +222,6 @@ msgstr "Spieler sind bereits bei uns"
 msgid "Перейти к слотам"
 msgstr "Zu Slots gehen"
 
-#: .\templates\hacksaw-home.html:77 .\templates\home.html:166
-#: .\templates\slot_detail.html:165
-msgid "Популярные слоты"
-msgstr "Beliebte Slots"
-
 #: .\templates\hacksaw-home.html:163
 msgid "Игры со скретч-картами"
 msgstr "Rubbellose"
@@ -223,6 +229,16 @@ msgstr "Rubbellose"
 #: .\templates\hacksaw-home.html:343 .\templates\home.html:505
 msgid "Часто задаваемые вопросы"
 msgstr "Häufig gestellte Fragen"
+
+#: .\templates\hacksaw-slot_detail.html:255
+msgid "Похожие игры"
+msgstr "Ähnliche Spiele"
+
+#: .\templates\hacksaw-slot_detail.html:309
+#, fuzzy
+#| msgid "Популярные слоты"
+msgid "Популярные игры"
+msgstr "Beliebte Slots"
 
 #: .\templates\home.html:17
 msgid "Добро пожаловать!"
@@ -278,10 +294,6 @@ msgstr "de"
 #: .\templates\slot_detail.html:22
 msgid "RUB"
 msgstr "EUR"
-
-#: .\templates\slot_detail.html:65
-msgid "Похожие слоты"
-msgstr "Ähnliche Slots"
 
 #: .\templates\slot_list.html:10
 msgid "Слоты от"

@@ -1,6 +1,6 @@
 {% extends 'hacksaw-base.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
 
     <!-- Hero section with layer parallax gfx -->
@@ -252,7 +252,7 @@
 
 <!-- Similar slots -->
     <section class="container position-relative zindex-3 mt-5 mb-5">
-
+    <h2>{% trans 'Похожие игры' %}</h2>
       <div class="swiper" data-swiper-options='{
           "slidesPerView": 1,
           "spaceBetween": 24,
@@ -306,7 +306,7 @@
 
     <!-- Popular slots -->
     <section class="container position-relative zindex-3 mt-5 mb-5">
-
+    <h2>{% trans 'Популярные игры' %}</h2>
       <div class="swiper" data-swiper-options='{
           "slidesPerView": 1,
           "spaceBetween": 24,
