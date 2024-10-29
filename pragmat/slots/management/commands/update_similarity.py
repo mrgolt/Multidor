@@ -4,27 +4,34 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from slots.models import Slot
 import numpy as np
+from collections import defaultdict
 
 
 class Command(BaseCommand):
     help = 'Обновление косинусного сходства для похожих слотов'
 
     def handle(self, *args, **kwargs):
-        slots = Slot.objects.all()
-        texts = [f"{slot.name} {slot.description}" for slot in slots]
+        # Группируем слоты по провайдеру
+        provider_slots = defaultdict(list)
+        for slot in Slot.objects.all():
+            provider_slots[slot.provider].append(slot)
 
-        # Векторизация текста
-        vectorizer = TfidfVectorizer()
-        tfidf_matrix = vectorizer.fit_transform(texts)
+        # Обновляем похожие слоты для каждого провайдера
+        for provider, slots in provider_slots.items():
+            texts = [f"{slot.name} {slot.description}" for slot in slots]
 
-        # Вычисление косинусного сходства
-        cosine_similarities = cosine_similarity(tfidf_matrix)
+            # Векторизация текста
+            vectorizer = TfidfVectorizer()
+            tfidf_matrix = vectorizer.fit_transform(texts)
 
-        # Обновление похожих слотов
-        for idx, slot in enumerate(slots):
-            similar_indices = cosine_similarities[idx].argsort()[-11:-1][::-1]  # 5 самых похожих
-            similar_slots_ids = [slots[int(i)].id for i in similar_indices]  # Преобразуем i в int
-            slot.similar_slots = similar_slots_ids
-            slot.save()
+            # Вычисление косинусного сходства
+            cosine_similarities = cosine_similarity(tfidf_matrix)
+
+            # Обновление похожих слотов
+            for idx, slot in enumerate(slots):
+                similar_indices = cosine_similarities[idx].argsort()[-11:-1][::-1]
+                similar_slots_ids = [slots[i].id for i in similar_indices]
+                slot.similar_slots = similar_slots_ids
+                slot.save()
 
         self.stdout.write(self.style.SUCCESS('Сходства обновлены успешно'))

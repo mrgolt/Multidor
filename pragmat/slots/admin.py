@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 
 class SlotAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'version', 'folk_name', 'sorting_order', 'users_choice', 'is_new', 'is_popular', 'provider', 'slot_type', 'theme', 'updated_at')
+    list_display = ('id', 'name', 'version', 'folk_name', 'sorting_order', 'users_choice', 'is_new', 'is_popular', 'provider', 'slot_type', 'theme', 'updated_at', 'similar_slots')
     search_fields = ['name']
     list_filter = ('provider', )
 

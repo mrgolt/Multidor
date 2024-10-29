@@ -11,6 +11,7 @@ from django.utils import timezone
 from datetime import timedelta
 from pragmatic.views import update_slots_with_descriptions
 from django.utils.translation import get_language
+from django.db.models import Case, When
 
 def slot_list(request):
 
@@ -103,7 +104,15 @@ def slot_detail(request, slug):
 
     popular_slots = update_slots_with_descriptions(site, popular_slots)
 
-    similar_slots = Slot.objects.filter(id__in=slot.similar_slots, provider=site.provider) if slot.similar_slots else []
+    if slot.similar_slots:
+        similar_slots = Slot.objects.filter(id__in=slot.similar_slots, provider=site.provider).annotate(
+            order=Case(
+                *[When(id=slot_id, then=idx) for idx, slot_id in enumerate(slot.similar_slots)],
+                default=len(slot.similar_slots)  # Если не найдено, ставим в конец
+            )
+        ).order_by('order')
+    else:
+        similar_slots = []
 
     is_mobile = request.user_agent.is_mobile
 
