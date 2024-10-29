@@ -103,6 +103,8 @@ def slot_detail(request, slug):
 
     popular_slots = update_slots_with_descriptions(site, popular_slots)
 
+    similar_slots = Slot.objects.filter(id__in=slot.similar_slots, provider=site.provider) if slot.similar_slots else []
+
     is_mobile = request.user_agent.is_mobile
 
     slot_description = SlotDescription.objects.filter(
@@ -142,6 +144,7 @@ def slot_detail(request, slug):
         'users_choice_slots': users_choice_slots,
         'is_mobile': is_mobile,
         'current_language': current_language,
+        'similar_slots': similar_slots,
     })
 
 class SlotViewSet(viewsets.ModelViewSet):
