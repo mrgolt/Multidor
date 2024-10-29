@@ -219,9 +219,61 @@
         </section>
     {% endif %}
 
+ <!-- Similar slots -->
+    <section class="container position-relative zindex-3 mt-5 mb-5">
+
+      <div class="swiper" data-swiper-options='{
+          "slidesPerView": 1,
+          "spaceBetween": 24,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "breakpoints": {
+            "560": {
+              "slidesPerView": 2
+            },
+            "960": {
+              "slidesPerView": 4
+            }
+          }
+        }'>
+        <div class="swiper-wrapper">
+
+                        {% for slot in similar_slots %}
+                            <!-- Item -->
+                              <div class="swiper-slide">
+                                <a href="{% url 'slot_detail' slug=slot.slug %}" class="card-portfolio position-relative d-block rounded-3 overflow-hidden">
+                                  <span class="position-absolute top-0 start-0 w-100 h-100 zindex-1"
+                                        style="background: linear-gradient(180deg, rgba(17, 24, 39, 0.00) 35.56%, #111827 95.3%);"></span>
+                                  <div class="position-absolute bottom-0 w-100 zindex-2 p-4">
+                                    <div class="px-md-3">
+                                      <h3 class="h4 text-white mb-0">{{ slot.name }}</h3>
+                                      <div class="card-portfolio-meta d-flex align-items-center justify-content-between">
+                                        <span class="text-white fs-xs text-truncate opacity-70 pe-3">{{ slot.snippet }}...</span>
+                                        <i class="bx bx-right-arrow-circle fs-3 text-primary"></i>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-img">
+                                    <img class="w-100 h-100"
+                                      src="{{ slot.logo.url }}"
+                                      alt="{{ slot.name }}">
+                                  </div>
+                                </a>
+                              </div>
+
+                        {% endfor %}
 
 
-    <!-- Similar slots -->
+                    </div>
+
+                    <!-- Pagination (bullets) -->
+        <div class="swiper-pagination position-relative bottom-0 pt-2 pt-md-3 mt-4"></div>
+      </div>
+    </section>
+
+    <!-- Popular slots -->
     <section class="container position-relative zindex-3 mt-5 mb-5">
 
       <div class="swiper" data-swiper-options='{
