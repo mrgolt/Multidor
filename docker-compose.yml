@@ -23,6 +23,8 @@ services:
     command: gunicorn -w 2 -b 0.0.0.0:8888 pragmatic.wsgi:application
     ports:
       - 8888
+    volumes:
+      - ./pragmat/staticfiles:/app/pragmat/staticfiles
     restart: always
     networks:
       - shared-network
