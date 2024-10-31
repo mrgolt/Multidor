@@ -19,6 +19,7 @@ class Site(models.Model):
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
     counters = models.TextField()
     offers = models.ManyToManyField(Offer, blank=True)
+    redirect_subdomain = models.CharField(max_length=30, default='www')
     base_template = models.CharField(max_length=50, default='base.html')
     home_template = models.CharField(max_length=50, default='home.html')
     page_detail_template = models.CharField(max_length=50, default='page_detail.html')
