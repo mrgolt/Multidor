@@ -17,6 +17,7 @@ class Offer(models.Model):
 class Site(models.Model):
     domain = models.CharField(max_length=255)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    counters = models.TextField()
     offers = models.ManyToManyField(Offer, blank=True)
     base_template = models.CharField(max_length=50, default='base.html')
     home_template = models.CharField(max_length=50, default='home.html')
