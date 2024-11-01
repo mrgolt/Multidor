@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 
 class Provider(models.Model):
     name = models.CharField(max_length=100)
@@ -10,6 +11,10 @@ class Provider(models.Model):
 class Offer(models.Model):
     redirect_name = models.CharField(max_length=255)
     redirect_url = models.CharField(max_length=255)
+    logo_dark_mode = models.FileField(upload_to='logos/', null=True,
+                               validators=[FileExtensionValidator(['ico', 'png', 'svg', 'webp'])])
+    logo_light_mode = models.FileField(upload_to='logos/', null=True,
+                                      validators=[FileExtensionValidator(['ico', 'png', 'svg', 'webp'])])
 
     def __str__(self):
         return self.redirect_name
