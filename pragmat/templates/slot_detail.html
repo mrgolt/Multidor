@@ -4,7 +4,7 @@
 {% block content %}
 
     <!-- Hero section with layer parallax gfx -->
-    <section class="position-relative py-5">
+    <section class="position-relative py-3 py-lg-4">
 
         <!-- Gradient BG -->
         <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-primary opacity-10"></div>
@@ -33,11 +33,11 @@
 {#            </a>#}
 
 
-        <h2 class="h3 text-center pt-lg-4 pt-3">
+        <h2 class="h3 text-center pt-4">
             {% trans 'Бездепозитный бонус' %} 100 FS
         </h2>
         <div class="swiper mx-n2" data-swiper-options='{
-          "slidesPerView": 2,
+          "slidesPerView": 3,
           "pagination": {
             "el": ".swiper-pagination",
             "clickable": true
@@ -64,7 +64,7 @@
             <div class="swiper-wrapper justify-content-center d-flex">
                 {% for offer in site.offers.all %}
                 <!-- Item -->
-                <div class="swiper-slide pb-4 pt-0 h-auto">
+                <div class="swiper-slide pb-4 pt-1 h-auto">
                     <a target="_blank" class="card card-body px-2 mx-2 h-100 card-hover shadow-primary" href="/play/{{ offer.redirect_name }}/?placement=demo_screen">
                         <img src="{{ offer.logo_light_mode.url }}"
                              class="d-dark-mode-none mx-auto my-auto" style="max-height: 100px !important;" alt="Trust Partner">
