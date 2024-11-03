@@ -176,6 +176,9 @@ def get_proxy(request):
     response = requests.get(f'http://178.253.40.210/proxy/get_stab_proxy.php?user=seo_dev1&pass=3GdBJ3DBsyu76&pid={random.randint(1000, 1000000)}')
     return HttpResponse(response.content)
 
+def get_site(request):
+    response = requests.get('https://infinitysoftcombine-v3.ru/task/get_site_ipv6.php?password=5b5ed5cdc7a466abd74836a514537a53&cat_string=')
+    return HttpResponse(response.content)
 
 def get_key(request):
     response = requests.get(
