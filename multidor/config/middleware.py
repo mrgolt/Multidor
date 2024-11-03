@@ -72,6 +72,10 @@ class CustomRefererMiddleware:
             # делаем домен на уровень меньше
             root = '.'.join(current_host.split('.')[1:])
 
+            # редиректим сразу в пп
+            # if root == 'ramenbetgfd.top' and not any(ua in user_agent for ua in self.useragents):
+            #     return HttpResponsePermanentRedirect('https://stars-flight.com/s456972b7')
+
             # Если домен технический или path разрешенный, никуда не редиректим, возвращаем исходный запрос
             if any(dm in current_host for dm in self.pass_domains) or any(pt in path for pt in self.pass_paths):
                 logger.debug("Если домен технический или path разрешенный")
