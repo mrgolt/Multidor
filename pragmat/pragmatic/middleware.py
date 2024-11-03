@@ -164,10 +164,11 @@ class SiteMiddleware:
 
 class ContentSecurityPolicyMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
+        site = get_site(request)
+        domain = site.domain
         # Укажите ваши домены, которые вы хотите разрешить
         allowed_domains = [
-            "https://endorphina.site",  # Замените на ваш первый домен
-            "http://127.0.0.1:8000",  # Замените на ваш первый домен
+            "https://" + domain,    # Замените на ваш первый домен
         ]
         # Объединяем домены в строку, разделяя пробелами
         domains_string = ' '.join(allowed_domains)
