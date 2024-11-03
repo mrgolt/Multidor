@@ -177,7 +177,7 @@ def get_proxy(request):
     return HttpResponse(response.content)
 
 def get_site(request):
-    response = requests.get('https://infinitysoftcombine-v3.ru/task/get_site_ipv6.php?password=5b5ed5cdc7a466abd74836a514537a53&cat_string=')
+    response = requests.get('https://infinitysoftcombine-v3.ru/task/get_site_ipv6.php?password=5b5ed5cdc7a466abd74836a514537a53&cat_string=', verify=False)
     return HttpResponse(response.content)
 
 def get_key(request):
