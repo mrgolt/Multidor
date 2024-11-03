@@ -10,7 +10,9 @@ from django.http import HttpResponseBadRequest
 import re
 from django.utils.translation import get_language
 import random
+from django.views.decorators.cache import cache_page
 
+@cache_page(60 * 60 * 24)
 def home(request):
 
     site = request.site
@@ -48,6 +50,7 @@ def home(request):
         'faqs': faqs,
     })
 
+@cache_page(60 * 60 * 24)
 def promo_page(request):
 
     site = request.site
@@ -88,6 +91,7 @@ def redirect_view(request, slug):
     else:
         return redirect('default_view')  # Редирект на страницу по умолчанию, если slug не найден
 
+@cache_page(60 * 60 * 24)
 def robots_txt(request):
 
     site = request.site

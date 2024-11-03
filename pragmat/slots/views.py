@@ -12,7 +12,9 @@ from datetime import timedelta
 from pragmatic.views import update_slots_with_descriptions
 from django.utils.translation import get_language
 from django.db.models import Case, When
+from django.views.decorators.cache import cache_page
 
+@cache_page(60 * 60 * 24)
 def slot_list(request):
 
     site = request.site
@@ -89,7 +91,7 @@ def slot_list(request):
 
     return render(request, site.slot_list_template, context)
 
-
+@cache_page(60 * 60 * 24)
 def slot_detail(request, slug):
 
     site = request.site
@@ -182,6 +184,7 @@ class SlotDescriptionsViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'Invalid API key'}, status=status.HTTP_403_FORBIDDEN)
         return super().dispatch(request, *args, **kwargs)
 
+@cache_page(60 * 60 * 24)
 def page_detail(request, slug):
 
     site = request.site
