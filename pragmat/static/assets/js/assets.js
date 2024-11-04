@@ -67,4 +67,18 @@ if (showTextButton) {
 }
 
 
+    document.addEventListener('DOMContentLoaded', function() {
+    // Получаем все элементы с классом 'play-link'
+    const playLinks = document.querySelectorAll('.play-link');
 
+    // Добавляем обработчик события 'click' для каждого элемента
+    playLinks.forEach(function(link) {
+        link.onclick = function() {
+            // Получаем значение атрибута data-href
+            const url = this.getAttribute('data-href');
+            const target = this.getAttribute('data-target');
+            // Открываем URL в новом окне
+            window.open(url, target);
+        };
+    });
+});
