@@ -30,6 +30,7 @@ class Site(models.Model):
     page_detail_template = models.CharField(max_length=50, default='page_detail.html')
     slot_detail_template = models.CharField(max_length=50, default='slot_detail.html')
     slot_list_template = models.CharField(max_length=50, default='slot_list.html')
+    notfound_template = models.CharField(max_length=50, default='404.html')
 
     def __str__(self):
         return self.domain
