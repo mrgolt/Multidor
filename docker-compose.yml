@@ -39,6 +39,8 @@ services:
       - ./multidor/templates:/app/multidor/templates
       - ./multidor/static:/app/multidor/static
       - ./multidor/media:/app/multidor/media
+      - ./pragmat/staticfiles:/app/pragmat/staticfiles
+      - ./pragmat/media:/app/pragmat/media
     depends_on:
       - multidor
     restart: always
