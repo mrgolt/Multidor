@@ -9,7 +9,7 @@
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
         <h2 class="h1 mb-4">{% trans 'Слоты от' %} <span class="text-primary">Pragmatic Play</span>{% if theme %} <br />{% trans 'в категории' %} <span class="text-primary">{{ theme.title }}</span>{% endif %}</h2>
         <p class="mb-4">{{ slots_list_info }}</p>
-<a href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3">{% trans 'Бездепозитный бонус' %} 100 FS</a>
+<span data-href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list" data-target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3 play-link">{% trans 'Бездепозитный бонус' %} 100 FS</span>
 
 
     </div>
