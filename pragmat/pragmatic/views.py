@@ -160,7 +160,7 @@ def endorphina_demo(request, game_symbol):
 
 def custom_404_view(request, exception):
     site = request.site
-    return render(request, '404.html', {'site': site}, status=404)
+    return render(request, site.notfound_template, {'site': site}, status=404)
 
 def update_slots_with_descriptions(site, slots):
     current_language = get_language()
