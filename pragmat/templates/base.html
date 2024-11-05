@@ -281,7 +281,6 @@
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-lg-3">
-
                                             <li><a href="/en{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">English</a></li>
                                             <li><a href="/es{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">Español</a></li>
                                             <li><a href="{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">Русский</a></li>
@@ -292,8 +291,9 @@
                                 </div>
                             </div>
                         </li>
-
-
+                        <li class="nav-item">
+                            <a href="{% url 'slot_list' %}" class="nav-link d-none" id="install-link">{% trans 'Установить приложение' %}</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
@@ -359,9 +359,6 @@
                                 <li class="nav-item"><a href="{% url 'home' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Главная' %}</a>
                                 </li>
                                 <li class="nav-item"><a href="{% url 'page_detail' slug='feedback' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Обратная связь' %}</a></li>
-
-
-
                             </ul>
                             <ul class="nav flex-column mb-2 mb-lg-0">
                                 <li class="nav-item"><a href="{% url 'page_detail' slug='terms' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms
@@ -478,18 +475,7 @@ if (clickId) {
 
     </script>
 {% endif %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const playLinks = document.querySelectorAll('.play-link');
-    playLinks.forEach(function(link) {
-        link.onclick = function() {
-            const url = this.getAttribute('data-href');
-            const target = this.getAttribute('data-target');
-            window.open(url, target);
-        };
-    });
-});
-</script>
+
 
 </body>
 </html>
