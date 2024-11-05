@@ -80,55 +80,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/assets/js/service-worker.js')
-            .then((registration) => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-                console.log('Service Worker registration failed:', error);
-            });
+        navigator.serviceWorker.register('/static/assets/js/service-worker.js');
     });
 }
 
 let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (e) => {
-    console.log('beforeinstallprompt event fired');
-    e.preventDefault(); // Останавливаем стандартное поведение браузера
-    deferredPrompt = e; // Сохраняем событие для последующего использования
-    console.log('Deferred prompt saved');
-
+    e.preventDefault();
+    deferredPrompt = e;
     const installButton = document.getElementById('install-link');
-
     if (installButton) {
-        console.log('Install button found');
-        installButton.style.display = 'block'; // Показываем кнопку
-
+        installButton.style.display = 'block';
         installButton.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log('Install button clicked');
-
-            installButton.style.display = 'none'; // Скрываем кнопку после клика
-            console.log('Install button hidden');
-
-            deferredPrompt.prompt(); // Вызываем диалог установки
-            console.log('Prompt for installation shown');
-
-            deferredPrompt.userChoice.then((choiceResult) => {
-                console.log('User choice result:', choiceResult.outcome);
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null; // Очищаем deferredPrompt
-                console.log('Deferred prompt cleared');
-            }).catch((err) => {
-                console.error('Error during prompt handling:', err);
-            });
+            installButton.style.display = 'none';
+            deferredPrompt.prompt();
         });
-    } else {
-        console.error('Install button not found');
     }
 });
 
