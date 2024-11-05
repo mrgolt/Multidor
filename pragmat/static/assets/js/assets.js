@@ -4,6 +4,30 @@ function getCookie(name) {
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+const secondId = getCookie('second_id');
+
+if (secondId) {
+    const links = document.querySelectorAll('a[href*="/play/"]');
+    links.forEach(link => {
+        const url = new URL(link.href);
+        url.searchParams.set('second_id', secondId);
+        link.href = url.toString();
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            fetch('https://chilling.miami-beach.fun/a1a7400/postback?subid=' + secondId + '&status=dep', {
+                method: 'GET',
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = link.href;
+                }
+            })
+        });
+
+    });
+}
+
 const existingClickId = getCookie('clickid');
 if (existingClickId) {
   const links = document.querySelectorAll('a[href*="/play/"]');
