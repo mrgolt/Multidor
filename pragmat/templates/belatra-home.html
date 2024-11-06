@@ -1,0 +1,108 @@
+{% extends 'belatra-base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+            <!-- Video + Title split section -->
+      <section class="container-fluid position-relative px-0">
+        <div class="row g-0">
+          <div class="col-xl-7 col-lg-6 pe-lg-5">
+            <div class="d-flex h-100 pe-xl-4">
+              <video class="w-100" autoplay muted loop style="object-fit: cover; min-height:200px;" preload="auto">
+                  <source src="{% static 'assets/video/belatra-intro-skeleton.mp4' %}" type="video/webm">
+              </video>
+            </div>
+          </div>
+          <div class="col-xl-5 col-lg-6 position-relative py-5">
+
+            <div class="position-relative zindex-5 text-center text-lg-start px-3 px-lg-0 pt-xl-4 pt-xxl-5 mt-lg-3 mx-auto mx-lg-0" style="max-width: 530px;">
+
+              <h1 class="display-1 pb-lg-3 mb-3">{{ site.provider.name }}</h1>
+                <h2 class="h3 display-7">{% trans 'Ведущий разработчик слотов и игр для казино' %}</h2>
+              <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start pt-4 pt-lg-5">
+                  <a href="/slots/" class="btn btn-outline-primary btn-lg mb-3 me-sm-3 me-xl-4">
+                  {% trans 'Играть демо' %}
+                </a>
+                <a href="/play/{{ site.offers.first.redirect_name }}/?placement=hero_screen" target="_blank" class="btn btn-primary shadow-secondary btn-lg mb-3">{% trans 'Бездепозитный бонус' %} 100 FS</a>
+
+              </div>
+{#              <div class="d-flex align-items-center justify-content-center justify-content-lg-start text-start pb-2 pt-lg-2 pb-xl-0 pt-xl-5 mt-xxl-5">#}
+{#                <div class="d-flex me-3">#}
+{#                  <div class="d-flex align-items-center justify-content-center bg-light rounded-circle" style="width: 52px; height: 52px;">#}
+{#                    <img src="{% static 'assets/img/avatar/08.jpg' %}" class="rounded-circle" width="48" alt="Avatar">#}
+{#                  </div>#}
+{#                  <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3" style="width: 52px; height: 52px;">#}
+{#                    <img src="{% static 'assets/img/avatar/40.jpg' %}" class="rounded-circle" width="48" alt="Avatar">#}
+{#                  </div>#}
+{#                  <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3" style="width: 52px; height: 52px;">#}
+{#                    <img src="{% static 'assets/img/avatar/09.jpg' %}" class="rounded-circle" width="48" alt="Avatar">#}
+{#                  </div>#}
+{#                </div>#}
+{#                <span class="fs-sm"><span class="text-primary fw-semibold">20М+</span> {% trans 'игроков выбирают нас' %}</span>#}
+{#              </div>#}
+            </div>
+          </div>
+        </div>
+        <div class="position-absolute d-none d-lg-block bottom-0 start-0 w-100 zindex-1 pb-xxl-5">
+          <div class="container pb-4 mb-3 mb-xxl-0">
+            <a href="#popularslots" class="d-table text-light opacity-80 text-decoration-none w-auto py-4" data-scroll data-scroll-offset="70">
+              <span class="d-flex align-items-center">
+                {% trans 'Перейти к слотам' %}
+                <i class="bx bx-down-arrow-circle fs-3 ms-2"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+<!-- Slots -->
+    <section class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5" >
+      <!-- Page title + Filters -->
+      <div class="d-lg-flex align-items-center justify-content-between pt-4 pb-0 pb-md-2 mt-lg-2">
+        <h1 class="me-3" id="popularslots">Популярные слоты</h1>
+        <div class="d-md-flex mb-3">
+          <div class="pt-md-3 pt-2 text-center">
+            <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все слоты</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slots grid -->
+      <div class="masonry-grid row g-md-4 g-2 mb-2">
+
+          {% for slot in home_page_slots %}
+        <!-- Item -->
+        <div class="masonry-grid-item col-lg-2 col-md-4 col-sm-6 col-6">
+          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+              <div class="position-relative zindex-2">
+                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+{#				<span class="fs-xs text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>#}
+              </div>
+            </div>
+            <div class="card-img">
+              <img
+                src="{{ slot.logo.url }}"
+                class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
+            </div>
+          </a>
+        </div>
+          {% endfor %}
+
+
+      </div>
+
+ <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
+                    {% trans "Все слоты" %}
+                    <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
+                </a>
+
+    </section>
+
+{% endblock %}

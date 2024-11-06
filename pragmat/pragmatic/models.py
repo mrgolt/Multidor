@@ -22,7 +22,7 @@ class Offer(models.Model):
 class Site(models.Model):
     domain = models.CharField(max_length=255)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
-    counters = models.TextField()
+    counters = models.TextField(blank=True)
     offers = models.ManyToManyField(Offer, blank=True)
     redirect_subdomain = models.CharField(max_length=30, default='www')
     base_template = models.CharField(max_length=50, default='base.html')
