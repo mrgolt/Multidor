@@ -81,7 +81,8 @@ def redirect_view(request, slug):
     site = request.site
 
     offers = site.offers.filter(redirect_name=slug)
-    redirect_url = offers[0].redirect_url + '?placement=' + request.GET.get('placement') + '&offer=' + offers[0].redirect_name + '&domain=' + site.domain
+    redirect_url = (offers[0].redirect_url + '?placement=' + request.GET.get('placement') + '&offer=' + offers[0].redirect_name +
+                     '&domain=' + site.domain + request.GET.get('path', '/'))
 
     if request.GET.get('second_id'):
         redirect_url += '&second_id=' + request.GET.get('second_id')

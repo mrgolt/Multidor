@@ -65,7 +65,7 @@
                 {% for offer in site.offers.all %}
                 <!-- Item -->
                 <div class="swiper-slide pb-4 pt-1 h-auto" style="cursor:pointer">
-                    <span data-target="_blank" class="card card-body px-2 mx-1 h-100 card-hover shadow-primary play-link" data-href="/play/{{ offer.redirect_name }}/?placement=demo_screen">
+                    <span data-target="_blank" class="card card-body px-2 mx-1 h-100 card-hover shadow-primary play-link" data-href="/play/{{ offer.redirect_name }}/?placement=demo_screen&path={{ request.path }}">
                         <img src="{{ offer.logo_light_mode.url }}"
                              class="d-dark-mode-none mx-auto my-auto" style="max-height: 100px !important;" alt="Trust Partner">
                         <img src="{{ offer.logo_dark_mode.url }}"
