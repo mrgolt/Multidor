@@ -169,6 +169,7 @@ class ContentSecurityPolicyMiddleware(MiddlewareMixin):
         # Укажите ваши домены, которые вы хотите разрешить
         allowed_domains = [
             "https://" + domain,    # Замените на ваш первый домен
+            "https://" + site.redirect_subdomain + '.' + domain,    # Замените на ваш первый домен
         ]
         # Объединяем домены в строку, разделяя пробелами
         domains_string = ' '.join(allowed_domains)
