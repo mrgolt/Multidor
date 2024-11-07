@@ -15,6 +15,7 @@ class Offer(models.Model):
                                validators=[FileExtensionValidator(['ico', 'png', 'svg', 'webp'])])
     logo_light_mode = models.FileField(upload_to='logos/', null=True,
                                       validators=[FileExtensionValidator(['ico', 'png', 'svg', 'webp'])])
+    priority = models.IntegerField(default=1)
 
     def __str__(self):
         return self.redirect_name
@@ -34,6 +35,9 @@ class Site(models.Model):
 
     def __str__(self):
         return self.domain
+
+    def sorted_offers(self):
+        return self.offers.all().order_by('-priority')
 
 class Language(models.Model):
     code = models.CharField(max_length=2, unique=True)  # Код языка (например, 'ru', 'en')

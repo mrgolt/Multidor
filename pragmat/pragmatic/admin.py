@@ -7,7 +7,7 @@ class SiteAdmin(admin.ModelAdmin):
     list_filter = ('provider',)
 
 class OfferAdmin(admin.ModelAdmin):
-    list_display = ('id', 'redirect_name', 'redirect_url',)
+    list_display = ('id', 'redirect_name', 'redirect_url', 'priority')
     search_fields = ['redirect_name', 'redirect_url']
 
 class SiteSettingAdmin(admin.ModelAdmin):
