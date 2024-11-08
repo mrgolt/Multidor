@@ -36,8 +36,6 @@ class SlotSerializer(serializers.ModelSerializer):
         # Создание объекта Slot с проверенными данными
         slot = Slot.objects.create(**validated_data)
 
-        # Добавить ManyToMany поле для Features
-        slot.features.set(feature_instances)
         slot.save()
 
         return slot
