@@ -17,7 +17,7 @@ def site_context(request):
         )
 
         game_types = SlotType.objects.annotate(slot_count=Count('slot')).filter(
-            slot_count__gt=1, slot__provider=current_site.provider
+            slot_count__gt=0, slot__provider=current_site.provider
         )
 
         features = Feature.objects.all()

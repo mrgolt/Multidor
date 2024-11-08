@@ -270,7 +270,7 @@
                                     <div class="mega-dropdown-column me-5">
                                         <ul class="list-unstyled mb-3">
                                             {% for type in game_types %}
-                                            <li><a href="{% url 'slot_list' %}?slot_type={{ type.id }}" class="dropdown-item py-1">{{ type.name }}</a></li>
+                                            <li><a href="{% url 'slot_list' %}?slot_type={{ type.id }}" class="dropdown-item py-1">{{ type.plural }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
