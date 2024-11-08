@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Группируем слоты по провайдеру
         provider_slots = defaultdict(list)
-        for slot in Slot.objects.all():
+        for slot in Slot.objects.filter(provider_id=5):
             provider_slots[slot.provider].append(slot)
 
         # Обновляем похожие слоты для каждого провайдера
