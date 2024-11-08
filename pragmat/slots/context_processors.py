@@ -1,5 +1,5 @@
 from django.core.cache import cache
-from .models import Theme, Feature, Paylines, get_provider_setting
+from .models import Theme, Feature, Paylines, SlotType, get_provider_setting
 from pragmatic.models import Language
 from django.db.models import Count
 
@@ -13,6 +13,10 @@ def site_context(request):
     if context is None:
         # Если данные не найдены в кеше, выполняем запросы к базе данных
         themes = Theme.objects.annotate(slot_count=Count('slot')).filter(
+            slot_count__gt=1, slot__provider=current_site.provider
+        )
+
+        game_types = SlotType.objects.annotate(slot_count=Count('slot')).filter(
             slot_count__gt=1, slot__provider=current_site.provider
         )
 
@@ -43,6 +47,7 @@ def site_context(request):
             'feature_3': feature_3,
             'keywords': keywords,
             'languages': languages,
+            'game_types': game_types,
         }
 
         # Сохраняем данные в кеш на 15 минут

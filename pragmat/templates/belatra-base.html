@@ -9,7 +9,7 @@
         {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
         {% if slots %}{% trans 'Все слоты' %} {% if theme %} в категории {{ theme }}{% endif %} - {% endif %}
-        {{ site.provider.name }} - провайдер слотов нового уровня. Играйте демо на нашем сайте!{% if slots.number %} - Страница {{ slots.number }}{% endif %}
+        {{ site.provider.name }} - ведущий разработчик слотов и игр для казино. Играйте демо на нашем сайте!{% if slots.number %} - Страница {{ slots.number }}{% endif %}
     </title>
 
     <!-- SEO Meta Tags -->
@@ -17,12 +17,12 @@
         {% if slot.name %}Слот {{ slot.name }} - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
         {% if slots %}{% trans 'Все слоты' %} {% if theme %} в категории {{ theme }}{% endif %} - {% endif %}
-        {{ site.provider.name }} - провайдер слотов нового уровня. Все слоты провайдера на одном сайте! Играйте в любой слот прямо сейчас!{% if slots.number %} - Страница {{ slots.number }}{% endif %}">
+        {{ site.provider.name }} - ведущий разработчик слотов и игр для казино. Все слоты провайдера на одном сайте! Играйте в любой слот в демо-режиме!{% if slots.number %} - Страница {{ slots.number }}{% endif %}">
     <meta name="keywords"
       content="онлайн казино, игровые автоматы, азартные игры, слоты, рулетка, блэкджек, покер, бонусы казино, бесплатные вращения, джекпот, регистрация в казино, лучшие казино, отзывы о казино, стратегии игр, слоты онлайн, демо игры, лицензированные казино, казино на деньги, безопасные казино, мобильное казино, казино с живыми дилерами, {{ site.provider.name }}{% if slot.name %}, {{ slot.name }}{% endif %}{% if slot.folk_name %}, слот {{ slot.folk_name }}{% endif %}">
 
     <meta name="author" content="{{ site.provider.name }}">
-    <meta name="theme-color" content="#fffc00">
+    <meta name="theme-color" content="#0041ff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
@@ -33,13 +33,13 @@
     <script src="{% static 'assets/js/theme-switcher.js' %}"></script>
 
     <!-- Favicon and Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/nolimit-apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/nolimit-favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon/nolimit-favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'assets/favicon/nolimit.webmanifest' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/belatra/icon-180.db59cb07.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/belatra/icon-32.e736e06d.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon/belatra/icon-16.e2254c67.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicon/belatra/belatra.webmanifest' %}">
 {#    <link rel="mask-icon" href="{% static 'assets/favicon/safari-pinned-tab.svg" color="#6366f1' %}">#}
-    <link rel="shortcut icon" href="{% static 'assets/favicon/nolimit-favicon.ico' %}">
-    <meta name="msapplication-TileColor" content="#fffc00">
+    <link rel="shortcut icon" href="{% static 'assets/favicon/belatra/icon-16.e2254c67.png' %}">
+    <meta name="msapplication-TileColor" content="#0041ff">
     <meta name="msapplication-config" content="{% static 'assets/favicon/nolimit-browserconfig.xml' %}">
 
     <!-- Vendor Styles -->
@@ -243,6 +243,34 @@
                                         <ul class="list-unstyled mb-3">
                                             {% for slot in new_slots %}
                                             <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Популярные' %}</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in popular_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Тип' %}</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for type in game_types %}
+                                            <li><a href="{% url 'slot_list' %}?slot_type={{ type.id }}" class="dropdown-item py-1">{{ type.name }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>

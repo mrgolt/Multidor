@@ -1,0 +1,49 @@
+{
+  "name": "Belatra",
+  "short_name": "Belatra",
+  "display": "standalone",
+  "description": "An award-winning Online Game Slot Provider, we're here to transform your online and offline gaming experience with our exceptional slots. Indulge in fun, fair, and secure gaming with 80+ reeled games. Play on any device, using fiat or crypto.",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/static/assets/favicon/belatra/icon-16.e2254c67.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/static/assets/favicon/belatra/icon-32.e736e06d.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/static/assets/favicon/belatra/icon-96.47522953.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/static/assets/favicon/belatra/icon-180.db59cb07.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "/static/assets/favicon/belatra/icon-192.8136189e.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/assets/favicon/belatra/icon-512.2f40a7a9.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/static/assets/favicon/belatra/maskable_icon.37c18453.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#0041ff",
+  "background_color": "#0041ff",
+  "scope": "/",
+}
+
