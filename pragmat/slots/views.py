@@ -168,11 +168,11 @@ class SlotViewSet(viewsets.ModelViewSet):
             return self.queryset.filter(provider_id=provider_id)
         return self.queryset
 
-    def dispatch(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         api_key = request.GET.get('api_key') or request.POST.get('api_key')
         if api_key != 'aB3dE5fG7hJ8kL9mN0pQ1rS2tU3vW4xYz':
             return Response({'detail': 'Invalid API key'}, status=status.HTTP_403_FORBIDDEN)
-        return super().dispatch(request, *args, **kwargs)
+        return super().list(request, *args, **kwargs)
 
 class SlotDescriptionsViewSet(viewsets.ModelViewSet):
     queryset = SlotDescription.objects.all()

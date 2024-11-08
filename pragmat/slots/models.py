@@ -79,7 +79,7 @@ class Slot(models.Model):
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE, default=1)
     slot_type = models.ForeignKey(SlotType, on_delete=models.SET_NULL, null=True, default=1)
     updated_at = models.DateTimeField(auto_now=True)
-    theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True)
+    theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True, blank=True)
     paylines = models.ForeignKey(Paylines, on_delete=models.SET_NULL, null=True, blank=True)
     features = models.ManyToManyField(Feature, blank=True)
     similar_slots = models.JSONField(default=list, blank=True)
