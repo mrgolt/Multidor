@@ -260,7 +260,7 @@
                         <h1 class="display-2 mb-lg-4 mb-3">{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</h1>
 {#                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги#}
 {#                            прямо сейчас!</p>#}
-                        <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</h2>
+                        <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</b></h2>
                         <button class="btn btn-lg btn-info me-2 mb-2 promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
@@ -305,7 +305,7 @@
 
     <!-- Play Game -->
     <section class="container mt-1 pt-3 pb-1" id="play-game">
-        <h2 class="h1 mt-xl-3 mb-4 pb-3 text-center">Играть в {{ site.slot_name }}</h2>
+        <h2 class="h1 mt-xl-3 mb-4 pb-3 text-center">Играть в {% if content.first.demo %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</h2>
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs flex-nowrap justify-content-sm-center overflow-auto mb-lg-4 mb-3 pb-md-3 pb-2 text-nowrap"
@@ -358,7 +358,7 @@
                     <div class="row justify-content-center text-center pb-4 mb-2">
                         <div class="col-xl-8 pt-2">
                             <h2 class="h1 mb-lg-4 mb-3">Играйте на реальные деньги у наших партнеров</h2>
-                            <p class="text-body fs-lg mb-0">Мы подобрали для Вас лучшие предложения от наших партнеров.
+                            <p class="text-body mb-0">Мы подобрали для Вас лучшие предложения от наших партнеров.
                                 Регистрируйтесь по ссылкам и используйте промокоды, чтобы получить бонусы.</p>
                         </div>
                     </div>
