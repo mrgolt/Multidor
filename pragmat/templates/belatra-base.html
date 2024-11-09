@@ -9,7 +9,7 @@
         {% if slot.name %}Слот {{ slot.name }} - Демо-игра и игра на реальные деньги - {% endif %}
         {% if slot_name %}Поиск по запросу: {{ slot_name }} - {% endif %}
         {% if slots %}{% trans 'Все слоты' %} {% if theme %} в категории {{ theme }}{% endif %} - {% endif %}
-        {{ site.provider.name }} - ведущий разработчик слотов и игр для казино. Играйте демо на нашем сайте!{% if slots.number %} - Страница {{ slots.number }}{% endif %}
+        {{ site.provider.name|upper }} - ведущий разработчик слотов и игр для казино. Играйте демо на нашем сайте!{% if slots.number %} - Страница {{ slots.number }}{% endif %}
     </title>
 
     <!-- SEO Meta Tags -->
@@ -159,8 +159,18 @@
         .btn:hover{
             border-color: transparent !important;
         }
-
-
+        .btn-primary{
+            background-color: #f70f15 !important;
+            border-color: #f70f15 !important;
+        }
+        @keyframes scale {
+            0%, 100% {
+                transform: scale(1); /* Исходный размер */
+            }
+            50% {
+                transform: scale(1.05); /* Увеличение до 120% */
+            }
+        }
 
     </style>
 
@@ -198,7 +208,7 @@
     <header class="header navbar navbar-expand-lg bg-light navbar-sticky zindex-6">
         <div class="container px-3">
             <a href="{% url 'home' %}" class="navbar-brand pe-3">
-                <img src="{% static 'assets/img/belatra_logo_1200.png' %}" width="150" alt="Pragmatic Play">
+                <img src="{% static 'assets/img/belatra_logo_1200.png' %}" width="150" alt="BELATRA">
             </a>
             <div id="navbarNav" class="offcanvas offcanvas-end">
                 <div class="offcanvas-header border-bottom">
@@ -208,7 +218,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a href="{% url 'slot_list' %}" class="nav-link">{% trans 'Все слоты' %}</a>
+                            <a href="{% url 'slot_list' %}" class="nav-link">{% trans 'Все игры' %}</a>
                         </li>
 
 {#                        <li class="nav-item dropdown">#}
@@ -351,7 +361,7 @@
         <div class="row pb-5">
             <div class="col-lg-4 col-md-6">
                 <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
-                    <img src="{% static 'assets/img/belatra_logo_1200.png' %}" width="150" alt="Pragmatic Play">
+                    <img src="{% static 'assets/img/belatra_logo_1200.png' %}" width="150" alt="BELATRA">
                 </div>
                 <p class="fs-sm pb-lg-3 mb-4">
 

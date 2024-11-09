@@ -43,7 +43,6 @@
     }
   ],
   "theme_color": "#0041ff",
-  "background_color": "#0041ff",
-  "scope": "/",
+  "background_color": "#0041ff"
 }
 

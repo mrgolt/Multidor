@@ -18,7 +18,7 @@ def get_site(request: HttpRequest) -> Site:
     domain = request.META.get('HTTP_HOST', '')
 
     if domain == '127.0.0.1:8000':
-        domain = 'belatra.fun'
+        domain = 'nolimit.top'
     else:
         domain = '.'.join(domain.split('.')[-2:])
 
