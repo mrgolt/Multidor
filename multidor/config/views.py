@@ -20,8 +20,9 @@ import hashlib
 from datetime import timedelta
 from django.http import HttpResponseBadRequest
 import re
+from django.views.decorators.cache import cache_page
 
-
+#@cache_page(60 * 60 * 24)
 def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
     parts = domain.split('.')
@@ -31,7 +32,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'book-of-dead-slot.fun'
+        domain = 'sweetbonanza.best'
 
     classes = [
         'has-game-preview',
