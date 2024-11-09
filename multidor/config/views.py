@@ -22,7 +22,7 @@ from django.http import HttpResponseBadRequest
 import re
 from django.views.decorators.cache import cache_page
 
-#@cache_page(60 * 60 * 24)
+@cache_page(60 * 60 * 24)
 def custom_serve(request, slug=None):
     domain = request.META.get('HTTP_HOST', '')
     parts = domain.split('.')
