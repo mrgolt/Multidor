@@ -44,6 +44,7 @@ urlpatterns = i18n_patterns(
     path('get_key/', views.get_key, name='get_key'),
     path('get_site/', views.get_site, name='get_site'),
     path('<str:indexnow_key>.txt', views.index_now, name='index_now'),
+    path('index_now/', views.send_index_now, name='send_index_now'),
     path('yandex_<str:code>.html', views.yandex_webmaster_approve, name='yandex_webmaster_approve'),
     path('endorphina-demo/<str:game_symbol>/', views.endorphina_demo, name='endorphina_demo'),
     prefix_default_language=False,

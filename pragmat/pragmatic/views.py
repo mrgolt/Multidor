@@ -114,6 +114,31 @@ def robots_txt(request):
 def index_now(request, indexnow_key):
     return HttpResponse(indexnow_key)
 
+def send_index_now(request):
+
+    pages = [
+        '/',
+        '/slots/'
+    ]
+
+    slots = Slot.objects.filter(provider=request.site.provider)
+
+    for slot in slots:
+        pages.append(f'/slots/{slot.slug}/')
+
+    content = ''
+
+    for page in pages:
+
+        url = f'https://yandex.com/indexnow?key=NqhEl8m3S1zWSB8inOSdvfHQvPGlkqRG&url=https://{request.site.domain}{page}'
+        response = requests.get(url)
+        print(response.json())
+
+        content += f'https://{request.site.domain}{page}: {response.json()}\n'
+
+    response = HttpResponse(content, content_type="text/plain")
+    return response
+
 def sitemap_generator(request):
 
     current_language = get_language()
