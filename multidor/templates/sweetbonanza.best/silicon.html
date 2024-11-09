@@ -337,16 +337,14 @@
 {#                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="btn btn-secondary">Открыть в новом окне</a>#}
 
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
-                        <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image.url }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
-                             id="iframeContainer" class="rounded-3">
-                            <button class="btn btn-lg btn-primary" class="loadIframeBtn"
-                                    style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                                    <i class="bx bx-play fs-5 lh-1 me-1"></i>&nbsp;Играть демо
-                            </button>
-                            <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
-                               class="loadIframeBtn"></a>
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                             class="shadow-primary rounded-4 overflow-hidden">
+                            <iframe id="iframe" allowfullscreen="true" tabindex="0" frameborder="0" scrolling="no"
+                                    width="100%" height="100%"
+                                    src="{% if content.first.demo %}{{ content.first.demo|safe }}{% else %}{{ site.demo|safe }}{% endif %}"
+                                    style="border:none;"></iframe>
                         </div>
-                    </div>
+                     </div>
 
                     <a href="/go/{{ bonuses.first.redirect.name }}/" class="mt-3 btn btn-lg btn-primary shadow-primary ms-2">Бездепозитный бонус 100 FS</a>
 
