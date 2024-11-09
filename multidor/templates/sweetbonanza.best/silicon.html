@@ -195,12 +195,12 @@
             <a href="/" class="navbar-brand pe-3">
                 <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}" width="147"
                      alt="{{ site.slot_name }}">
-                <span class="d-none d-md-block px-3">{{ site.slot_name }}</span>
+{#                <span class="d-none d-md-block px-3">{{ site.slot_name }}</span>#}
 
             </a>
             <div id="navbarNav" class="offcanvas offcanvas-end">
                 <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">Меню</h5>
+                    <h5 class="offcanvas-title">Версии игры</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -211,7 +211,7 @@
                                 <div class="d-lg-flex pt-lg-3">
                                     <div class="mega-dropdown-column">
                                         <ul class="list-unstyled mb-3">
-                                            {% for page in inner_pages %}
+                                            {% for page in version_pages %}
                                                 <li><a href="/page/{{ page.slug }}/" class="dropdown-item py-1">{{ page.title }}</a></li>
                                             {% endfor %}
                                         </ul>
@@ -258,8 +258,7 @@
                 <div class="col-xl-5 col-md-6 col-sm-10 d-flex flex-column justify-content-between mb-md-5 mb-md-4 mb-3 pb-xl-5 pb-lg-4">
                     <div class="text-md-start text-center">
                         <h1 class="display-2 mb-lg-4 mb-3">{{ site.slot_name }}</h1>
-                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Официальный
-                            сайт популярного игрового слота от {{ site.provider_name }}. <br />Играй демо и на реальные деньги
+                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги
                             прямо сейчас!</p>
                         <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</h2>
                         <button class="btn btn-lg btn-info me-2 mb-2">
@@ -305,7 +304,7 @@
 
 
     <!-- Play Game -->
-    <section class="container mt-5 pt-xl-5 pt-lg-4 pt-md-3 pb-1" id="play-game">
+    <section class="container mt-1 pt-3 pb-1" id="play-game">
         <h2 class="h1 mt-xl-3 mb-4 pb-3 text-center">Играть в {{ site.slot_name }}</h2>
 
         <!-- Nav tabs -->
@@ -330,13 +329,29 @@
 
             <!-- Play Demo -->
             <div class="tab-pane fade show active" id="play-demo" role="tabpanel">
-                <div class="align-items-center pt-3 pt-sm-4 pt-md-0 px-3 px-sm-4 px-lg-0 m-lg-5 m-2 text-center">
+                <div class="align-items-center pt-2 pt-sm-4 pt-md-0 px-1 px-sm-4 px-lg-0 m-lg-5 m-1 text-center">
 
-                    <h3 class="h1 mb-lg-4 mb-3">Демо-игра в {{ site.slot_name }}</h3>
-                    <img src="{% if site.interface_image %}{{ site.interface_image.url }}{% endif %}"
-                         class="d-block my-lg-4 mb-3 mx-auto me-md-0 rounded-4" alt="Image">
-                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="btn btn-secondary">Открыть в новом окне</a>
-                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="btn btn-primary ms-2">Бонус 100 FS</a>
+                    <h3 class="h1 mb-lg-4 mb-3">Демо-игра в {% if content.first.demo %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</h3>
+{#                    <img src="{% if site.interface_image %}{{ site.interface_image.url }}{% endif %}"#}
+{#                         class="d-block my-lg-4 mb-3 mx-auto me-md-0 rounded-4" alt="Image">#}
+{#                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="btn btn-secondary">Открыть в новом окне</a>#}
+
+                    <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
+                        <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image.url }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
+                             id="iframeContainer">
+                            <button class="button is-secondary is-large" class="loadIframeBtn"
+                                    style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    <span class="icon">
+                                        <i class="fa fa-play"></i>
+                                    </span>
+                                <span>Играть демо</span>
+                            </button>
+                            <a style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" target="_blank"
+                               class="loadIframeBtn"></a>
+                        </div>
+                    </div>
+
+                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="btn btn-lg btn-primary shadow-primary ms-2">Бонус 100 FS</a>
 
                 </div>
             </div>
@@ -457,8 +472,8 @@
     {% endif %}
 
     <!-- Story -->
-    <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
-        <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto" style="max-width: 46.625rem;">
+    <section class="container mb-1 pt-md-1 pt-lg-2 pt-xl-5">
+        <div class="mt-2 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto" style="max-width: 46.625rem;">
             <h1 class="h1 mb-4">
                       <span class="text-primary">
                           {{ content.first.title }}
@@ -552,108 +567,108 @@
     {% endif %}
 
 
-    <!-- Industries (Slider) -->
-    <section class="container my-5 pb-lg-5 pb-md-4 pb-3">
-        <div class="row gy-4 mb-xl-3">
-            <div class="col-xl-4 col-lg-5 d-flex flex-column order-2 order-lg-1">
-                <h2 class="h1 mb-md-4 mb-3 py-lg-3 text-lg-start text-center">Industries We Serve</h2>
-
-                <!-- Swiper slider -->
-                <div class="swiper mx-0" data-swiper-options='{
-              "spaceBetween": 30,
-              "loop": true,
-              "tabs": true,
-              "autoHeight": true,
-              "navigation": {
-                "prevEl": "#prev-industry",
-                "nextEl": "#next-industry"
-              }
-            }'>
-                    <div class="swiper-wrapper text-center text-lg-start">
-
-                        <!-- Item -->
-                        <div class="swiper-slide" data-swiper-tab="#industry-1">
-                            <h3 class="h4 mb-4">
-                                <a href="#"
-                                   class="nav-link justify-content-center justify-content-lg-start fw-bold p-0">
-                                    Finance and insurance
-                                    <i class="bx bx-right-arrow-alt text-primary fs-3 fw-normal ms-2 mt-1"></i>
-                                </a>
-                            </h3>
-                            <p>Risus massa fames metus lectus diam maecenas dui. Nibh morbi id purus eget tellus diam,
-                                integer blandit. Ac condimentum a nisl sagittis, interdum. Et viverra maecenas quis cras
-                                sed gravida volutpat, cursus enim. Enim ut nulla netus porta lacus diam. Et enim
-                                ultrices nunc, nunc. In iaculis venenatis at sit.</p>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="swiper-slide" data-swiper-tab="#industry-2">
-                            <h3 class="h4 mb-4">
-                                <a href="#"
-                                   class="nav-link justify-content-center justify-content-lg-start fw-bold p-0">
-                                    Startup and technology
-                                    <i class="bx bx-right-arrow-alt text-primary fs-3 fw-normal ms-2 mt-1"></i>
-                                </a>
-                            </h3>
-                            <p>Nunc, amet et, et at habitant. Eget quis justo, metus at metus sapien. Urna quisque
-                                rutrum pharetra pulvinar vitae quam blandit non. Orci tempor cursus egestas quis orci at
-                                nisi maecenas. Enim in ultrices tortor, nibh quis sollicitudin tellus non maecenas. In
-                                libero ut semper nunc magna tortor.</p>
-                        </div>
-
-                        <!-- Item -->
-                        <div class="swiper-slide" data-swiper-tab="#industry-3">
-                            <h3 class="h4 mb-4">
-                                <a href="#"
-                                   class="nav-link justify-content-center justify-content-lg-start fw-bold p-0">
-                                    E-commerce
-                                    <i class="bx bx-right-arrow-alt text-primary fs-3 fw-normal ms-2 mt-1"></i>
-                                </a>
-                            </h3>
-                            <p>Vivamus nisl sit volutpat laoreet ligula et. Nunc, duis est justo, cras ipsum vulputate
-                                eget tellus augue. Amet, sagittis ut enim nisl commodo, pharetra. Sapien imperdiet
-                                tristique interdum aliquet varius vitae facilisis vel. Erat convallis eget elit eget
-                                iaculis. Morbi id facilisis ligula odio sed amet suspendisse duis aliquet. Justo quam
-                                convallis id sed.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slider controls (Prev / next buttons) -->
-                <div class="d-flex justify-content-center justify-content-lg-start mt-2 mt-lg-auto">
-                    <button type="button" id="prev-industry" class="btn btn-prev btn-icon btn-sm me-2"
-                            aria-label="Previous">
-                        <i class="bx bx-chevron-left"></i>
-                    </button>
-                    <button type="button" id="next-industry" class="btn btn-next btn-icon btn-sm ms-2"
-                            aria-label="Next">
-                        <i class="bx bx-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="col-lg-7 offset-xl-1 order-1 order-lg-2">
-
-                <!-- Swiper tabs (Industry images) -->
-                <div class="swiper-tabs">
-
-                    <!-- Industry 1 -->
-                    <div id="industry-1" class="swiper-tab active">
-                        <img src="assets/img/landing/software-agency-3/industries/01.jpg" class="rounded-3" alt="Image">
-                    </div>
-
-                    <!-- Industry 2 -->
-                    <div id="industry-2" class="swiper-tab">
-                        <img src="assets/img/landing/software-agency-3/industries/02.jpg" class="rounded-3" alt="Image">
-                    </div>
-
-                    <!-- Industry 3 -->
-                    <div id="industry-3" class="swiper-tab">
-                        <img src="assets/img/landing/software-agency-3/industries/03.jpg" class="rounded-3" alt="Image">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+{#    <!-- Industries (Slider) -->#}
+{#    <section class="container my-5 pb-lg-5 pb-md-4 pb-3">#}
+{#        <div class="row gy-4 mb-xl-3">#}
+{#            <div class="col-xl-4 col-lg-5 d-flex flex-column order-2 order-lg-1">#}
+{#                <h2 class="h1 mb-md-4 mb-3 py-lg-3 text-lg-start text-center">Industries We Serve</h2>#}
+{##}
+{#                <!-- Swiper slider -->#}
+{#                <div class="swiper mx-0" data-swiper-options='{#}
+{#              "spaceBetween": 30,#}
+{#              "loop": true,#}
+{#              "tabs": true,#}
+{#              "autoHeight": true,#}
+{#              "navigation": {#}
+{#                "prevEl": "#prev-industry",#}
+{#                "nextEl": "#next-industry"#}
+{#              }#}
+{#            }'>#}
+{#                    <div class="swiper-wrapper text-center text-lg-start">#}
+{##}
+{#                        <!-- Item -->#}
+{#                        <div class="swiper-slide" data-swiper-tab="#industry-1">#}
+{#                            <h3 class="h4 mb-4">#}
+{#                                <a href="#"#}
+{#                                   class="nav-link justify-content-center justify-content-lg-start fw-bold p-0">#}
+{#                                    Finance and insurance#}
+{#                                    <i class="bx bx-right-arrow-alt text-primary fs-3 fw-normal ms-2 mt-1"></i>#}
+{#                                </a>#}
+{#                            </h3>#}
+{#                            <p>Risus massa fames metus lectus diam maecenas dui. Nibh morbi id purus eget tellus diam,#}
+{#                                integer blandit. Ac condimentum a nisl sagittis, interdum. Et viverra maecenas quis cras#}
+{#                                sed gravida volutpat, cursus enim. Enim ut nulla netus porta lacus diam. Et enim#}
+{#                                ultrices nunc, nunc. In iaculis venenatis at sit.</p>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Item -->#}
+{#                        <div class="swiper-slide" data-swiper-tab="#industry-2">#}
+{#                            <h3 class="h4 mb-4">#}
+{#                                <a href="#"#}
+{#                                   class="nav-link justify-content-center justify-content-lg-start fw-bold p-0">#}
+{#                                    Startup and technology#}
+{#                                    <i class="bx bx-right-arrow-alt text-primary fs-3 fw-normal ms-2 mt-1"></i>#}
+{#                                </a>#}
+{#                            </h3>#}
+{#                            <p>Nunc, amet et, et at habitant. Eget quis justo, metus at metus sapien. Urna quisque#}
+{#                                rutrum pharetra pulvinar vitae quam blandit non. Orci tempor cursus egestas quis orci at#}
+{#                                nisi maecenas. Enim in ultrices tortor, nibh quis sollicitudin tellus non maecenas. In#}
+{#                                libero ut semper nunc magna tortor.</p>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Item -->#}
+{#                        <div class="swiper-slide" data-swiper-tab="#industry-3">#}
+{#                            <h3 class="h4 mb-4">#}
+{#                                <a href="#"#}
+{#                                   class="nav-link justify-content-center justify-content-lg-start fw-bold p-0">#}
+{#                                    E-commerce#}
+{#                                    <i class="bx bx-right-arrow-alt text-primary fs-3 fw-normal ms-2 mt-1"></i>#}
+{#                                </a>#}
+{#                            </h3>#}
+{#                            <p>Vivamus nisl sit volutpat laoreet ligula et. Nunc, duis est justo, cras ipsum vulputate#}
+{#                                eget tellus augue. Amet, sagittis ut enim nisl commodo, pharetra. Sapien imperdiet#}
+{#                                tristique interdum aliquet varius vitae facilisis vel. Erat convallis eget elit eget#}
+{#                                iaculis. Morbi id facilisis ligula odio sed amet suspendisse duis aliquet. Justo quam#}
+{#                                convallis id sed.</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                <!-- Slider controls (Prev / next buttons) -->#}
+{#                <div class="d-flex justify-content-center justify-content-lg-start mt-2 mt-lg-auto">#}
+{#                    <button type="button" id="prev-industry" class="btn btn-prev btn-icon btn-sm me-2"#}
+{#                            aria-label="Previous">#}
+{#                        <i class="bx bx-chevron-left"></i>#}
+{#                    </button>#}
+{#                    <button type="button" id="next-industry" class="btn btn-next btn-icon btn-sm ms-2"#}
+{#                            aria-label="Next">#}
+{#                        <i class="bx bx-chevron-right"></i>#}
+{#                    </button>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-lg-7 offset-xl-1 order-1 order-lg-2">#}
+{##}
+{#                <!-- Swiper tabs (Industry images) -->#}
+{#                <div class="swiper-tabs">#}
+{##}
+{#                    <!-- Industry 1 -->#}
+{#                    <div id="industry-1" class="swiper-tab active">#}
+{#                        <img src="assets/img/landing/software-agency-3/industries/01.jpg" class="rounded-3" alt="Image">#}
+{#                    </div>#}
+{##}
+{#                    <!-- Industry 2 -->#}
+{#                    <div id="industry-2" class="swiper-tab">#}
+{#                        <img src="assets/img/landing/software-agency-3/industries/02.jpg" class="rounded-3" alt="Image">#}
+{#                    </div>#}
+{##}
+{#                    <!-- Industry 3 -->#}
+{#                    <div id="industry-3" class="swiper-tab">#}
+{#                        <img src="assets/img/landing/software-agency-3/industries/03.jpg" class="rounded-3" alt="Image">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
 
 
     <!-- Subscription CTA -->
@@ -685,337 +700,339 @@
         </div>
     </section>
 
-    <!-- Integration -->
-    <section class="container my-5 pb-lg-5 pb-md-4 pb-3">
-        <h2 class="h1 mb-lg-4 mb-3 text-center">Наши партнеры</h2>
-        <p class="mb-lg-5 mb-4 pb-lg-0 pb-md-2 mx-auto text-center" style="max-width: 40.75rem;">Наши партнеры в сфере индустрии азартных игр.</p>
+{#    <!-- Integration -->#}
+{#    <section class="container my-5 pb-lg-5 pb-md-4 pb-3">#}
+{#        <h2 class="h1 mb-lg-4 mb-3 text-center">Наши партнеры</h2>#}
+{#        <p class="mb-lg-5 mb-4 pb-lg-0 pb-md-2 mx-auto text-center" style="max-width: 40.75rem;">Наши партнеры в сфере индустрии азартных игр.</p>#}
+{##}
+{#        <!-- Swiper slider -->#}
+{#        <div class="swiper mt-n2 mb-xl-2 mx-n2" data-swiper-options='{#}
+{#          "pagination": {#}
+{#            "el": ".swiper-pagination",#}
+{#            "clickable": true#}
+{#          },#}
+{#          "breakpoints": {#}
+{#            "0": {#}
+{#              "slidesPerView": 2,#}
+{#              "spaceBetween": 4#}
+{#            },#}
+{#            "600": {#}
+{#              "slidesPerView": 3,#}
+{#              "spaceBetween": 16#}
+{#            },#}
+{#            "991": {#}
+{#              "slidesPerView": 4,#}
+{#              "spaceBetween": 24#}
+{#            },#}
+{#            "1200": {#}
+{#              "slidesPerView": 5,#}
+{#              "spaceBetween": 38#}
+{#            }#}
+{#          }#}
+{#        }'>#}
+{#            <div class="swiper-wrapper">#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto py-2">#}
+{#                    <a href="#"#}
+{#                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/01-light.png"#}
+{#                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="153" alt="Brand">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/01-dark.png"#}
+{#                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="153" alt="Brand">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto py-2">#}
+{#                    <a href="#"#}
+{#                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/02-light.png"#}
+{#                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto mb-n2" width="121" alt="Brand">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/02-dark.png"#}
+{#                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto mb-n2" width="121" alt="Brand">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto py-2">#}
+{#                    <a href="#"#}
+{#                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/03-light.png"#}
+{#                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="128" alt="Brand">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/03-dark.png"#}
+{#                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="128" alt="Brand">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto py-2">#}
+{#                    <a href="#"#}
+{#                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/04-light.png"#}
+{#                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="138" alt="Brand">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/04-dark.png"#}
+{#                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="138" alt="Brand">#}
+{#                    </a>#}
+{#                </div>#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto py-2">#}
+{#                    <a href="#"#}
+{#                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/05-light.png"#}
+{#                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="164" alt="Brand">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/integrations/05-dark.png"#}
+{#                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="164" alt="Brand">#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <!-- Pagination (bullets) -->#}
+{#            <div class="swiper-pagination position-static mt-4 pt-lg-3 pt-2"></div>#}
+{#        </div>#}
+{#    </section>#}
+{##}
+{##}
+{#    <!-- Feature section (App) -->#}
+{#    <section class="container mb-5 pb-lg-5 pb-md-4 pb-3">#}
+{#        <div class="row align-items-center mb-xl-5 mb-4">#}
+{##}
+{#            <!-- Text -->#}
+{#            <div class="col-md-6 col-xl-5 text-center text-md-start mb-5 mb-md-0">#}
+{#                <h2 class="h1 pb-2 pb-lg-3">Наша команда</h2>#}
+{#                <p class="pb-2 mb-4 mb-lg-5">Люди, которые работают над проектом</p>#}
+{#                <hr>#}
+{#                <div class="d-flex justify-content-center justify-content-md-between pt-4 pt-lg-5">#}
+{#                    <div class="mx-3 mx-md-0">#}
+{#                        <div class="display-3 text-dark mb-1">95%</div>#}
+{#                        <span>Процент одобрения</span>#}
+{#                    </div>#}
+{#                    <div class="mx-3 mx-md-0">#}
+{#                        <div class="display-3 text-dark mb-1">13 млн</div>#}
+{#                        <span>Довольных игроков</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <!-- Parallax gfx -->#}
+{#            <div class="col-md-6 offset-xl-1">#}
+{#                <div class="parallax ratio ratio-1x1 mx-auto" style="max-width: 550px;">#}
+{#                    <div class="parallax-layer position-absolute zindex-2" data-depth="-0.15">#}
+{#                        <img src="/static/scon/assets/img/landing/saas-4/avatars.png" alt="Avatar">#}
+{#                    </div>#}
+{#                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100"#}
+{#                         data-depth="0.1">#}
+{#                        <div class="rounded-circle bg-primary" style="width: 70%; height: 70%; opacity: .06;"></div>#}
+{#                    </div>#}
+{#                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100"#}
+{#                         data-depth="0.2">#}
+{#                        <div class="rounded-circle bg-primary" style="width: 55%; height: 55%; opacity: .06;"></div>#}
+{#                    </div>#}
+{#                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 zindex-3"#}
+{#                         data-depth="0.4">#}
+{#                        <div class="d-flex justify-content-center align-items-center rounded-circle bg-primary"#}
+{#                             style="width: 93px; height: 93px; box-shadow: 0 .1875rem 1.875rem -.125rem rgba(99,102,241, .95); ">#}
+{#                            <span class="h5 text-light mb-0">400K+</span>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100"#}
+{#                         data-depth="0.3">#}
+{#                        <div class="rounded-circle bg-primary" style="width: 40%; height: 40%; opacity: .06;"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{##}
+{##}
+{#    <!-- Blog -->#}
+{#    <div class="container mb-5 pb-lg-5 pb-md-4 pb-3">#}
+{#        <h2 class="h1 mb-md-4 mb-3 pb-lg-3 pb-2 text-center">Latest From Our Blog</h2>#}
+{##}
+{#        <!-- Swiper slider -->#}
+{#        <div class="swiper mb-lg-5 mb-4 pb-lg-0 pb-md-2" data-swiper-options='{#}
+{#          "pagination": {#}
+{#            "el": ".swiper-pagination",#}
+{#            "clickable": true#}
+{#          },#}
+{#          "breakpoints": {#}
+{#            "0": {#}
+{#              "slidesPerView": 1,#}
+{#              "spaceBetween": 24#}
+{#            },#}
+{#            "768": {#}
+{#              "slidesPerView": 2,#}
+{#              "spaceBetween": 24#}
+{#            }#}
+{#          }#}
+{#        }'>#}
+{#            <div class="swiper-wrapper">#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto">#}
+{#                    <article class="card h-100">#}
+{#                        <div class="card-body">#}
+{#                            <div class="d-flex justify-content-between mb-4">#}
+{#                                <a href="#" class="badge fs-sm bg-secondary text-decoration-none">Sep 10, 2023</a>#}
+{#                            </div>#}
+{#                            <h3 class="h4">#}
+{#                                <a href="#">A Study on Smartwatch Design Qualities and People&apos;s Preferences</a>#}
+{#                            </h3>#}
+{#                            <p class="mb-4">Nulla fringilla arcu justo augue fringilla in nunc volutpat sit. Dui diam,#}
+{#                                faucibus vitae ultricies vitae mollis nunc elementum. Et, habitasse porta neque tempor#}
+{#                                tellus ut. Sagittis odio porttitor erat viverra erat neque, eget nisi, faucibus.#}
+{#                                Habitasse dui dui nibh ipsum sem amet sed fusce ipsum donec amet.</p>#}
+{#                            <div class="d-flex align-items-center justify-content-between">#}
+{#                                <a href="#"#}
+{#                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">#}
+{#                                    <img src="assets/img/avatar/03.jpg" class="rounded-circle me-3" width="48"#}
+{#                                         alt="Avatar">#}
+{#                                    Esther Howard#}
+{#                                </a>#}
+{#                                <div class="d-flex align-items-center text-muted">#}
+{#                                    <div class="d-flex align-items-center me-3">#}
+{#                                        <i class="bx bx-like fs-lg me-1"></i>#}
+{#                                        <span class="fs-sm">8</span>#}
+{#                                    </div>#}
+{#                                    <div class="d-flex align-items-center me-3">#}
+{#                                        <i class="bx bx-comment fs-lg me-1"></i>#}
+{#                                        <span class="fs-sm">7</span>#}
+{#                                    </div>#}
+{#                                    <div class="d-flex align-items-center">#}
+{#                                        <i class="bx bx-share-alt fs-lg me-1"></i>#}
+{#                                        <span class="fs-sm">4</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </article>#}
+{#                </div>#}
+{##}
+{#                <!-- Swiper item -->#}
+{#                <div class="swiper-slide h-auto">#}
+{#                    <article class="card h-100">#}
+{#                        <div class="card-body">#}
+{#                            <div class="d-flex justify-content-between mb-4">#}
+{#                                <a href="#" class="badge fs-sm bg-secondary text-decoration-none">Sep 10, 2023</a>#}
+{#                            </div>#}
+{#                            <h3 class="h4">#}
+{#                                <a href="#">A Study on Smartwatch Design Qualities and People&apos;s Preferences</a>#}
+{#                            </h3>#}
+{#                            <p class="mb-4">Nulla fringilla arcu justo augue fringilla in nunc volutpat sit. Dui diam,#}
+{#                                faucibus vitae ultricies vitae mollis nunc elementum. Et, habitasse porta neque tempor#}
+{#                                tellus ut. Sagittis odio porttitor erat viverra erat neque, eget nisi, faucibus.#}
+{#                                Habitasse dui dui nibh ipsum sem amet sed fusce ipsum donec amet.</p>#}
+{#                            <div class="d-flex align-items-center justify-content-between">#}
+{#                                <a href="#"#}
+{#                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">#}
+{#                                    <img src="assets/img/avatar/09.jpg" class="rounded-circle me-3" width="48"#}
+{#                                         alt="Avatar">#}
+{#                                    Esther Howard#}
+{#                                </a>#}
+{#                                <div class="d-flex align-items-center text-muted">#}
+{#                                    <div class="d-flex align-items-center me-3">#}
+{#                                        <i class="bx bx-like fs-lg me-1"></i>#}
+{#                                        <span class="fs-sm">8</span>#}
+{#                                    </div>#}
+{#                                    <div class="d-flex align-items-center me-3">#}
+{#                                        <i class="bx bx-comment fs-lg me-1"></i>#}
+{#                                        <span class="fs-sm">7</span>#}
+{#                                    </div>#}
+{#                                    <div class="d-flex align-items-center">#}
+{#                                        <i class="bx bx-share-alt fs-lg me-1"></i>#}
+{#                                        <span class="fs-sm">4</span>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </article>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <!-- Pagination (bullets) -->#}
+{#            <div class="swiper-pagination position-static mt-4 pt-lg-3 pt-2"></div>#}
+{#        </div>#}
+{#        <div class="mb-xl-3 text-center">#}
+{#            <a href="#" class="btn btn-lg btn-outline-primary">More blog posts</a>#}
+{#        </div>#}
+{#    </div>#}
 
-        <!-- Swiper slider -->
-        <div class="swiper mt-n2 mb-xl-2 mx-n2" data-swiper-options='{
-          "pagination": {
-            "el": ".swiper-pagination",
-            "clickable": true
-          },
-          "breakpoints": {
-            "0": {
-              "slidesPerView": 2,
-              "spaceBetween": 4
-            },
-            "600": {
-              "slidesPerView": 3,
-              "spaceBetween": 16
-            },
-            "991": {
-              "slidesPerView": 4,
-              "spaceBetween": 24
-            },
-            "1200": {
-              "slidesPerView": 5,
-              "spaceBetween": 38
-            }
-          }
-        }'>
-            <div class="swiper-wrapper">
 
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto py-2">
-                    <a href="#"
-                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/01-light.png"
-                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="153" alt="Brand">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/01-dark.png"
-                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="153" alt="Brand">
-                    </a>
-                </div>
-
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto py-2">
-                    <a href="#"
-                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/02-light.png"
-                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto mb-n2" width="121" alt="Brand">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/02-dark.png"
-                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto mb-n2" width="121" alt="Brand">
-                    </a>
-                </div>
-
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto py-2">
-                    <a href="#"
-                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/03-light.png"
-                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="128" alt="Brand">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/03-dark.png"
-                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="128" alt="Brand">
-                    </a>
-                </div>
-
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto py-2">
-                    <a href="#"
-                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/04-light.png"
-                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="138" alt="Brand">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/04-dark.png"
-                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="138" alt="Brand">
-                    </a>
-                </div>
-
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto py-2">
-                    <a href="#"
-                       class="card card-body card-hover h-100 py-sm-4 py-3 px-3 mx-2 border-0 shadow-sm rounded-pill">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/05-light.png"
-                             class="d-dark-mode-none d-block my-sm-0 my-1 mx-auto" width="164" alt="Brand">
-                        <img src="/static/scon/assets/img/landing/saas-4/integrations/05-dark.png"
-                             class="d-dark-mode-block d-none my-sm-0 my-1 mx-auto" width="164" alt="Brand">
-                    </a>
-                </div>
-            </div>
-
-            <!-- Pagination (bullets) -->
-            <div class="swiper-pagination position-static mt-4 pt-lg-3 pt-2"></div>
-        </div>
-    </section>
+{#    <!-- Price -->#}
+{#    <section class="bg-secondary py-5">#}
+{#        <div class="container mt-lg-5 my-md-4 my-3 py-xl-3">#}
+{#            <h2 class="h1 mb-md-4 mb-3 pb-lg-3 pb-2 text-center">Transparent Pricing for You</h2>#}
+{#            <div class="price-switch-wrapper">#}
+{##}
+{#                <!-- Price switch -->#}
+{#                <div class="form-check form-switch price-switch justify-content-center mb-md-4 mb-3 pb-lg-3 pb-2"#}
+{#                     data-bs-toggle="price">#}
+{#                    <input type="checkbox" class="form-check-input" id="pricing">#}
+{#                    <label class="form-check-label" for="pricing">Monthly</label>#}
+{#                    <label class="form-check-label d-flex align-items-start" for="pricing">Annually</label>#}
+{#                </div>#}
+{##}
+{#                <!-- Price cards -->#}
+{#                <div class="table-responsive-lg pb-4">#}
+{#                    <div class="d-flex align-items-center">#}
+{##}
+{#                        <!-- Pricing plan -->#}
+{#                        <div class="border rounded-3 rounded-end-0 shadow-sm me-n1"#}
+{#                             style="width: 32%; min-width: 16rem;">#}
+{#                            <div class="card bg-light h-100 border-0 border-end rounded-end-0 py-3 py-sm-4 py-lg-5">#}
+{#                                <div class="card-body text-center">#}
+{#                                    <h3 class="mb-2">Team</h3>#}
+{#                                    <div class="fs-lg pb-4 mb-3">Best for small teams</div>#}
+{#                                    <div class="display-5 text-dark mb-1" data-monthly-price>$15</div>#}
+{#                                    <div class="d-none display-5 text-dark mb-1" data-annual-price>$12</div>#}
+{#                                    <div class="text-muted mb-5">per month</div>#}
+{#                                </div>#}
+{#                                <div class="card-footer border-0 text-center pt-0 pb-4">#}
+{#                                    <a href="#" class="btn btn-outline-primary btn-lg">Get started now</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Featurd pricing plan -->#}
+{#                        <div class="bg-primary position-relative rounded-3 shadow-primary shadow-dark-mode-none zindex-2 p-4"#}
+{#                             style="width: 36%; min-width: 18rem;">#}
+{#                            <div class="card bg-transparent border-light py-3 py-sm-4 py-lg-5">#}
+{#                                <div class="card-body text-light text-center">#}
+{#                                    <h3 class="text-light mb-2">Company</h3>#}
+{#                                    <div class="fs-lg opacity-70 pb-4 mb-3">Best for growing teams</div>#}
+{#                                    <div class="display-5 mb-1" data-monthly-price>$25</div>#}
+{#                                    <div class="d-none display-5 mb-1" data-annual-price>$20</div>#}
+{#                                    <div class="opacity-50 mb-5">per month</div>#}
+{#                                </div>#}
+{#                                <div class="card-footer border-0 text-center pt-0 pb-4">#}
+{#                                    <a href="#" class="btn btn-light btn-lg shadow-secondary">Get started now</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                        <!-- Pricing plan -->#}
+{#                        <div class="border rounded-3 rounded-start-0 shadow-sm" style="width: 32%; min-width: 16rem;">#}
+{#                            <div class="card bg-light h-100 border-0 rounded-start-0 py-3 py-sm-4 py-lg-5">#}
+{#                                <div class="card-body text-center">#}
+{#                                    <h3 class="mb-2">Enterprise</h3>#}
+{#                                    <div class="fs-lg pb-4 mb-3">Best for large teams</div>#}
+{#                                    <div class="display-5 text-dark mb-1" data-monthly-price>$50</div>#}
+{#                                    <div class="d-none display-5 text-dark mb-1" data-annual-price>$40</div>#}
+{#                                    <div class="text-muted mb-5">per month</div>#}
+{#                                </div>#}
+{#                                <div class="card-footer border-0 text-center pt-0 pb-4">#}
+{#                                    <a href="#" class="btn btn-outline-primary btn-lg">Get started now</a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
 
 
-    <!-- Feature section (App) -->
-    <section class="container mb-5 pb-lg-5 pb-md-4 pb-3">
-        <div class="row align-items-center mb-xl-5 mb-4">
-
-            <!-- Text -->
-            <div class="col-md-6 col-xl-5 text-center text-md-start mb-5 mb-md-0">
-                <h2 class="h1 pb-2 pb-lg-3">Наша команда</h2>
-                <p class="pb-2 mb-4 mb-lg-5">Люди, которые работают над проектом</p>
-                <hr>
-                <div class="d-flex justify-content-center justify-content-md-between pt-4 pt-lg-5">
-                    <div class="mx-3 mx-md-0">
-                        <div class="display-3 text-dark mb-1">95%</div>
-                        <span>Процент одобрения</span>
-                    </div>
-                    <div class="mx-3 mx-md-0">
-                        <div class="display-3 text-dark mb-1">13 млн</div>
-                        <span>Довольных игроков</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Parallax gfx -->
-            <div class="col-md-6 offset-xl-1">
-                <div class="parallax ratio ratio-1x1 mx-auto" style="max-width: 550px;">
-                    <div class="parallax-layer position-absolute zindex-2" data-depth="-0.15">
-                        <img src="/static/scon/assets/img/landing/saas-4/avatars.png" alt="Avatar">
-                    </div>
-                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100"
-                         data-depth="0.1">
-                        <div class="rounded-circle bg-primary" style="width: 70%; height: 70%; opacity: .06;"></div>
-                    </div>
-                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100"
-                         data-depth="0.2">
-                        <div class="rounded-circle bg-primary" style="width: 55%; height: 55%; opacity: .06;"></div>
-                    </div>
-                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 zindex-3"
-                         data-depth="0.4">
-                        <div class="d-flex justify-content-center align-items-center rounded-circle bg-primary"
-                             style="width: 93px; height: 93px; box-shadow: 0 .1875rem 1.875rem -.125rem rgba(99,102,241, .95); ">
-                            <span class="h5 text-light mb-0">400K+</span>
-                        </div>
-                    </div>
-                    <div class="parallax-layer d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100"
-                         data-depth="0.3">
-                        <div class="rounded-circle bg-primary" style="width: 40%; height: 40%; opacity: .06;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Blog -->
-    <div class="container mb-5 pb-lg-5 pb-md-4 pb-3">
-        <h2 class="h1 mb-md-4 mb-3 pb-lg-3 pb-2 text-center">Latest From Our Blog</h2>
-
-        <!-- Swiper slider -->
-        <div class="swiper mb-lg-5 mb-4 pb-lg-0 pb-md-2" data-swiper-options='{
-          "pagination": {
-            "el": ".swiper-pagination",
-            "clickable": true
-          },
-          "breakpoints": {
-            "0": {
-              "slidesPerView": 1,
-              "spaceBetween": 24
-            },
-            "768": {
-              "slidesPerView": 2,
-              "spaceBetween": 24
-            }
-          }
-        }'>
-            <div class="swiper-wrapper">
-
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto">
-                    <article class="card h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-4">
-                                <a href="#" class="badge fs-sm bg-secondary text-decoration-none">Sep 10, 2023</a>
-                            </div>
-                            <h3 class="h4">
-                                <a href="#">A Study on Smartwatch Design Qualities and People&apos;s Preferences</a>
-                            </h3>
-                            <p class="mb-4">Nulla fringilla arcu justo augue fringilla in nunc volutpat sit. Dui diam,
-                                faucibus vitae ultricies vitae mollis nunc elementum. Et, habitasse porta neque tempor
-                                tellus ut. Sagittis odio porttitor erat viverra erat neque, eget nisi, faucibus.
-                                Habitasse dui dui nibh ipsum sem amet sed fusce ipsum donec amet.</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="assets/img/avatar/03.jpg" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Esther Howard
-                                </a>
-                                <div class="d-flex align-items-center text-muted">
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-like fs-lg me-1"></i>
-                                        <span class="fs-sm">8</span>
-                                    </div>
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-comment fs-lg me-1"></i>
-                                        <span class="fs-sm">7</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-share-alt fs-lg me-1"></i>
-                                        <span class="fs-sm">4</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- Swiper item -->
-                <div class="swiper-slide h-auto">
-                    <article class="card h-100">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-4">
-                                <a href="#" class="badge fs-sm bg-secondary text-decoration-none">Sep 10, 2023</a>
-                            </div>
-                            <h3 class="h4">
-                                <a href="#">A Study on Smartwatch Design Qualities and People&apos;s Preferences</a>
-                            </h3>
-                            <p class="mb-4">Nulla fringilla arcu justo augue fringilla in nunc volutpat sit. Dui diam,
-                                faucibus vitae ultricies vitae mollis nunc elementum. Et, habitasse porta neque tempor
-                                tellus ut. Sagittis odio porttitor erat viverra erat neque, eget nisi, faucibus.
-                                Habitasse dui dui nibh ipsum sem amet sed fusce ipsum donec amet.</p>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <a href="#"
-                                   class="d-flex align-items-center fw-bold text-dark text-decoration-none me-3">
-                                    <img src="assets/img/avatar/09.jpg" class="rounded-circle me-3" width="48"
-                                         alt="Avatar">
-                                    Esther Howard
-                                </a>
-                                <div class="d-flex align-items-center text-muted">
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-like fs-lg me-1"></i>
-                                        <span class="fs-sm">8</span>
-                                    </div>
-                                    <div class="d-flex align-items-center me-3">
-                                        <i class="bx bx-comment fs-lg me-1"></i>
-                                        <span class="fs-sm">7</span>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bx bx-share-alt fs-lg me-1"></i>
-                                        <span class="fs-sm">4</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-            <!-- Pagination (bullets) -->
-            <div class="swiper-pagination position-static mt-4 pt-lg-3 pt-2"></div>
-        </div>
-        <div class="mb-xl-3 text-center">
-            <a href="#" class="btn btn-lg btn-outline-primary">More blog posts</a>
-        </div>
-    </div>
-
-
-    <!-- Price -->
-    <section class="bg-secondary py-5">
-        <div class="container mt-lg-5 my-md-4 my-3 py-xl-3">
-            <h2 class="h1 mb-md-4 mb-3 pb-lg-3 pb-2 text-center">Transparent Pricing for You</h2>
-            <div class="price-switch-wrapper">
-
-                <!-- Price switch -->
-                <div class="form-check form-switch price-switch justify-content-center mb-md-4 mb-3 pb-lg-3 pb-2"
-                     data-bs-toggle="price">
-                    <input type="checkbox" class="form-check-input" id="pricing">
-                    <label class="form-check-label" for="pricing">Monthly</label>
-                    <label class="form-check-label d-flex align-items-start" for="pricing">Annually</label>
-                </div>
-
-                <!-- Price cards -->
-                <div class="table-responsive-lg pb-4">
-                    <div class="d-flex align-items-center">
-
-                        <!-- Pricing plan -->
-                        <div class="border rounded-3 rounded-end-0 shadow-sm me-n1"
-                             style="width: 32%; min-width: 16rem;">
-                            <div class="card bg-light h-100 border-0 border-end rounded-end-0 py-3 py-sm-4 py-lg-5">
-                                <div class="card-body text-center">
-                                    <h3 class="mb-2">Team</h3>
-                                    <div class="fs-lg pb-4 mb-3">Best for small teams</div>
-                                    <div class="display-5 text-dark mb-1" data-monthly-price>$15</div>
-                                    <div class="d-none display-5 text-dark mb-1" data-annual-price>$12</div>
-                                    <div class="text-muted mb-5">per month</div>
-                                </div>
-                                <div class="card-footer border-0 text-center pt-0 pb-4">
-                                    <a href="#" class="btn btn-outline-primary btn-lg">Get started now</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Featurd pricing plan -->
-                        <div class="bg-primary position-relative rounded-3 shadow-primary shadow-dark-mode-none zindex-2 p-4"
-                             style="width: 36%; min-width: 18rem;">
-                            <div class="card bg-transparent border-light py-3 py-sm-4 py-lg-5">
-                                <div class="card-body text-light text-center">
-                                    <h3 class="text-light mb-2">Company</h3>
-                                    <div class="fs-lg opacity-70 pb-4 mb-3">Best for growing teams</div>
-                                    <div class="display-5 mb-1" data-monthly-price>$25</div>
-                                    <div class="d-none display-5 mb-1" data-annual-price>$20</div>
-                                    <div class="opacity-50 mb-5">per month</div>
-                                </div>
-                                <div class="card-footer border-0 text-center pt-0 pb-4">
-                                    <a href="#" class="btn btn-light btn-lg shadow-secondary">Get started now</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pricing plan -->
-                        <div class="border rounded-3 rounded-start-0 shadow-sm" style="width: 32%; min-width: 16rem;">
-                            <div class="card bg-light h-100 border-0 rounded-start-0 py-3 py-sm-4 py-lg-5">
-                                <div class="card-body text-center">
-                                    <h3 class="mb-2">Enterprise</h3>
-                                    <div class="fs-lg pb-4 mb-3">Best for large teams</div>
-                                    <div class="display-5 text-dark mb-1" data-monthly-price>$50</div>
-                                    <div class="d-none display-5 text-dark mb-1" data-annual-price>$40</div>
-                                    <div class="text-muted mb-5">per month</div>
-                                </div>
-                                <div class="card-footer border-0 text-center pt-0 pb-4">
-                                    <a href="#" class="btn btn-outline-primary btn-lg">Get started now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
 
@@ -1111,59 +1128,129 @@
 
 <!-- Main Theme Script -->
 <script src="/static/scon/assets/js/theme.min.js"></script>
+<script src="/static/scon/assets/js/showmore.js"></script>
+<script src="/static/scon/assets/js/promocodecopy.js"></script>
 
-<script>
-document.getElementById('showText').addEventListener('click', function() {
-    // Get the content div
-    var contentDiv = document.querySelector('.content');
-    var gradientBlock = document.querySelector('.gradient-block');
 
-    // Check the current height of the content div
-    if (contentDiv.style.height === '350px' || contentDiv.style.height === '') {
-        // Change height to show all text
-        contentDiv.style.height = 'auto'; // Set to auto to show all content
-        gradientBlock.style.display = 'none'; // Hide the gradient block
-        this.textContent = 'Скрыть текст'; // Change button text
-        this.querySelector('#showMoreArrow').classList.remove('bx-down-arrow-alt'); // Remove down arrow
-        this.querySelector('#showMoreArrow').classList.add('bx-up-arrow-alt'); // Add up arrow
-    } else {
-        // Reset height to original
-        contentDiv.style.height = '350px'; // Reset to original height
-        gradientBlock.style.display = 'block'; // Show the gradient block again
-        this.textContent = 'Читать полностью'; // Change button text back
-        this.querySelector('#showMoreArrow').classList.remove('bx-up-arrow-alt'); // Remove up arrow
-        this.querySelector('#showMoreArrow').classList.add('bx-down-arrow-alt'); // Add down arrow
-    }
-});
+
+{% if accepted_answer %}
+<script type="application/ld+json"> {
+ "@context": "http://schema.org",
+ "@type": "QAPage",
+ "mainEntity": {
+ "@type": "Question",
+ "name": "Gates of Olympus",
+ "text": "{{ accepted_answer.question }}",
+ "answerCount": "1",
+ "dateCreated": "2024-02-02",
+ "author": {
+ "@type": "Person",
+ "name": "Peter Green"
+ },
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "{{ accepted_answer.answer }}",
+ "dateCreated": "2024-02-02",
+ "upvoteCount": "567",
+ "url": "https://{{ site.allowed_domain }}/",
+ "author": {
+ "@type": "Person",
+ "name": "Alex Brown"
+ }
+ }
+ }
+}
+
+
+
+    </script>
+{% endif %}
+
+{% if faqs %}
+    <script type="application/ld+json"> {
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{% for faq in faqs %}{
+ "@type": "Question",
+ "name": "{{ faq.question }}",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "{{ faq.answer }}"
+ }
+ }{% if not forloop.last %}{% endif %}
+{% endfor %}]
+}
+
+
+
+    </script>
+{% endif %}
+
+<script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": "{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}",
+            "image": "https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}",
+            "description": "{{ site.slot_name }}. {{ content.first.title }}. {{ bonuses.first.name|striptags }}.",
+            "applicationCategory": "Game",
+            "applicationSubcategory": "Slot Machine",
+            "operatingSystem": "Multi-platform",
+            "author": {
+                "@type": "Organization",
+                "name": "{{ site.allowed_domain|upper }}"
+            }
+        }
+
+
 
 </script>
 
+<script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://{{ site.allowed_domain }}/#organization",
+            "name": "{{ content.first.title }}",
+            "url": "https://{{ site.allowed_domain }}/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://{{ site.allowed_domain }}{% if site.hero_image %}{{ site.hero_image.url }}{% endif %}",
+                "width": "360",
+                "height": "360"
+            },
+            "brand": "{{ site.allowed_domain|upper }}"
+        }
+
+
+
+</script>
+
+
+
 <script type="text/javascript">
-    document.querySelectorAll('.promo-code-button').forEach(function (promoButton) {
+    $(document).ready(function () {
+        $(".loadIframeBtn").on("click", function () {
+            // Создаем элемент iframe
+            var iframe = $("<iframe>");
 
-        promoButton.addEventListener('click', function () {
-            // Копируем текст
-            const textToCopy = promoButton.querySelector('.promo-code-text-button').textContent;
-            const textarea = document.createElement('textarea');
-            textarea.value = textToCopy;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
+            // Устанавливаем атрибуты iframe (src, width, height и т.д.)
+            iframe.attr({
+                src: "{% if content.first.demo %}{{ content.first.demo|safe }}{% else %}{{ site.demo|safe }}{% endif %}", // ваш URL для iframe
+                width: "100%",
+                height: "100%",
+                frameborder: "0",
+                allowfullscreen: true
+            });
 
-            const promoLabel = promoButton.querySelector('.promo-label');
-            promoLabel.textContent = "Скопирован";
+            // Вставляем iframe в контейнер
+            $("#iframeContainer").html(iframe);
+
             setTimeout(function () {
-                promoLabel.textContent = "Промокод";
-            }, 2000);
-        });
+                var popup = document.getElementById("popup");
+                popup.classList.add("is-active");
+            }, 20000);
 
-        promoButton.addEventListener('mouseenter', function () {
-            promoButton.querySelector('.promo-label').textContent = "Копировать";
-        });
-
-        promoButton.addEventListener('mouseleave', function () {
-            promoButton.querySelector('.promo-label').textContent = "Промокод";
         });
     });
 
