@@ -257,17 +257,17 @@
             <div class="row justify-content-md-start justify-content-center flex-md-nowrap pt-lg-5 pt-4">
                 <div class="col-xl-5 col-md-6 col-sm-10 d-flex flex-column justify-content-between mb-md-5 mb-md-4 mb-3 pb-xl-5 pb-lg-4">
                     <div class="text-md-start text-center">
-                        <h1 class="display-2 mb-lg-4 mb-3">{{ site.slot_name }}</h1>
+                        <h1 class="display-2 mb-lg-4 mb-3">{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</h1>
 {#                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги#}
 {#                            прямо сейчас!</p>#}
                         <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</h2>
-                        <button class="btn btn-lg btn-info me-2 mb-2">
+                        <button class="btn btn-lg btn-info me-2 mb-2 promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
                         </button>
                         <a href="#play-game" class="btn btn-lg btn-primary mb-2" data-scroll>Играть сейчас</a>
                     </div>
-                    <ul class="list-unstyled row row-cols-1 gy-sm-2 gy-1 gx-sm-4 gx-2 mt-lg-5 mt-4 mx-md-0 mx-auto pt-lg-0 pt-md-2 mb-md-5 mb-4 pb-xl-4 pb-lg-3 pb-md-2 pb-sm-0 pb-2 text-nowrap"
+                    <ul class="list-unstyled row row-cols-1 gy-sm-2 gy-1 gx-sm-4 gx-2 mt-lg-5 mt-4 mx-md-0 mx-auto pt-lg-0 pt-md-2 mb-md-5 mb-5 pb-xl-4 pb-lg-3 pb-md-2 pb-sm-0 pb-2 text-nowrap"
                         style="max-width: 23.625rem;">
                         <li class="col d-flex align-items-start">
                             <i class="bx bx-check-circle me-2 fs-5 text-primary"></i>
