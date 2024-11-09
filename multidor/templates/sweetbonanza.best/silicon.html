@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     {% if content.first.is_main %}
-        <title>{{ content.first.title }} - Бонус {{ bonuses.first.name|striptags }} - Слот
+        <title>{{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот
             от {{ site.provider_name }}</title>
     {% else %}
         <title>{{ site.slot_name }} - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот
@@ -258,8 +258,8 @@
                 <div class="col-xl-5 col-md-6 col-sm-10 d-flex flex-column justify-content-between mb-md-5 mb-md-4 mb-3 pb-xl-5 pb-lg-4">
                     <div class="text-md-start text-center">
                         <h1 class="display-2 mb-lg-4 mb-3">{{ site.slot_name }}</h1>
-                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги
-                            прямо сейчас!</p>
+{#                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги#}
+{#                            прямо сейчас!</p>#}
                         <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</h2>
                         <button class="btn btn-lg btn-info me-2 mb-2">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
@@ -287,8 +287,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-12 offset-xl-1 d-none d-md-flex mt-lg-4 mb-4">
-                    <div class="align-self-end ms-xl-0 ms-md-4 p-lg-4 p-sm-3 p-2 rounded-4 overflow-hidden"
+                <div class="col-md-12 offset-xl-1 d-flex mt-lg-4 mb-4">
+                    <div class="d-none d-md-flex align-self-end ms-xl-0 ms-md-4 p-lg-4 p-sm-3 p-2 rounded-4 overflow-hidden"
                          style="background: linear-gradient(153.32deg, rgba(255, 255, 255, .3) -65.62%, rgba(255, 255, 255, .1) 83.28%); box-shadow: 0 .25rem 1.5rem -.0625rem rgba(0, 0, 0, .2); backdrop-filter: blur(25px);">
                         <img src="{% if site.interface_image %}{{ site.interface_image.url }}{% endif %}" width="1122"
                              alt="Layer" class="rounded-4" style="box-shadow: 0 0 7.5rem rgba(0, 0, 0, .1);">
@@ -338,7 +338,7 @@
 
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                         <div style="background-color:{{ site.background_color_primary }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; {% if site.interface_image %}background-image: url('{{ site.interface_image.url }}') ; background-repeat: no-repeat; background-size: cover; {% endif %}"
-                             id="iframeContainer">
+                             id="iframeContainer" class="rounded-3">
                             <button class="btn btn-lg btn-primary" class="loadIframeBtn"
                                     style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                                     <i class="bx bx-play fs-5 lh-1 me-1"></i>&nbsp;Играть демо
@@ -348,7 +348,7 @@
                         </div>
                     </div>
 
-                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="mt-2 btn btn-lg btn-primary shadow-primary ms-2">Бездепозитный бонус 100 FS</a>
+                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="mt-3 btn btn-lg btn-primary shadow-primary ms-2">Бездепозитный бонус 100 FS</a>
 
                 </div>
             </div>
@@ -411,7 +411,7 @@
                 <h2 class="h1 mt-xl-3 pb-3 text-center my-3">Символы и коэффициенты {{ site.slot_name }}</h2>
 
                 <!-- Stats -->
-                <div class="pb-5 pt-0">
+                <div class="pb-0 pt-0">
                     <div class="swiper pb-sm-2 pb-md-4 pb-lg-5 mb-xxl-3 mx-n2" data-swiper-options='{
                   "slidesPerView": 2,
                   "pagination": {
