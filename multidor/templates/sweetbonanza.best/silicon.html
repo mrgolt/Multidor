@@ -1083,7 +1083,7 @@
                         <div class="nav dropdown">
                             <a href="#" class="nav-link dropdown-toggle fs-lg fw-normal px-0 py-1"
                                data-bs-toggle="dropdown">
-                                {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}
+                                {{ content.first.title }}
                             </a>
                             <div class="dropdown-menu my-1">
                                 {% for page in inner_pages %}
