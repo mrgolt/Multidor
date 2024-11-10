@@ -183,23 +183,27 @@
         }
         /* Для вебkit-браузеров (Chrome, Safari) */
         ::-webkit-scrollbar {
-            width: 8px; /* Ширина вертикального скролла */
-            height: 8px; /* Высота горизонтального скролла */
+            width: 5px; /* Ширина вертикального скролла */
+            height: 5px; /* Высота горизонтального скролла */
         }
 
         ::-webkit-scrollbar-thumb {
-            background-color: darkgrey; /* Цвет ползунка */
-            border-radius: 10px; /* Закругление углов ползунка */
+            background-color: #581C5A; /* Цвет ползунка */
+            border-radius: 2px; /* Закругление углов ползунка */
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f1f1; /* Цвет фона скролла */
+            background: #5E2460; /* Цвет фона скролла */
+        }
+
+        ::-webkit-scrollbar-button {
+            display: none; /* Скрыть кнопки (стрелки) */
         }
 
         /* Для Firefox */
         .scrollable {
             scrollbar-width: thin; /* Установка ширины скролла */
-            scrollbar-color: darkgrey #f1f1f1; /* Цвет ползунка и фона */
+            scrollbar-color: #581C5A #581C5A; /* Цвет ползунка и фона */
         }
 
     </style>
