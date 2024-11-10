@@ -200,7 +200,7 @@
             </a>
             <div id="navbarNav" class="offcanvas offcanvas-end">
                 <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">Версии игры</h5>
+                    <h5 class="offcanvas-title">Меню</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -228,11 +228,11 @@
                     </a>
                 </div>
             </div>
-            <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
-                <input type="checkbox" class="form-check-input" id="theme-mode" checked>
-                <label class="form-check-label d-none d-sm-block" for="theme-mode">Светлая</label>
-                <label class="form-check-label d-none d-sm-block" for="theme-mode">Темная</label>
-            </div>
+{#            <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">#}
+{#                <input type="checkbox" class="form-check-input" id="theme-mode" checked>#}
+{#                <label class="form-check-label d-none d-sm-block" for="theme-mode">Светлая</label>#}
+{#                <label class="form-check-label d-none d-sm-block" for="theme-mode">Темная</label>#}
+{#            </div>#}
             <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -261,13 +261,13 @@
 {#                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги#}
 {#                            прямо сейчас!</p>#}
                         <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</b></h2>
-                        <button class="btn btn-lg btn-info me-2 mb-2 promo-code-button">
+                        <button class="btn btn-lg btn-info me-md-2 mb-2 promo-code-button">
                             <span class="promo-label">Промокод</span>:&nbsp;<span
                                 class="promo-code-text-button">{{ bonuses.first.promo_code }}</span>
                         </button>
                         <a href="#play-game" class="btn btn-lg btn-primary mb-2" data-scroll>Играть сейчас</a>
                     </div>
-                    <ul class="list-unstyled row row-cols-1 gy-sm-2 gy-1 gx-sm-4 gx-2 mt-lg-5 mt-4 mx-md-0 mx-auto pt-lg-0 pt-md-2 mb-md-5 mb-5 pb-xl-4 pb-lg-3 pb-md-2 pb-sm-0 pb-2 text-nowrap"
+                    <ul class="ms-5 ms-md-1 list-unstyled row row-cols-1 gy-sm-2 gy-1 gx-sm-4 gx-2 mt-lg-5 mt-4 mx-md-0 mx-auto pt-lg-0 pt-md-2 mb-md-5 mb-5 pb-xl-4 pb-lg-3 pb-md-2 pb-sm-0 pb-2 text-nowrap"
                         style="max-width: 23.625rem;">
                         <li class="col d-flex align-items-start">
                             <i class="bx bx-check-circle me-2 fs-5 text-primary"></i>
@@ -338,7 +338,7 @@
 
                     <div style="position: relative; width: 100%; padding-bottom: 62.5%;">
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                             class="shadow-primary rounded-4 overflow-hidden">
+                             class="shadow-primary rounded-3 overflow-hidden">
                             <iframe id="iframe" allowfullscreen="true" tabindex="0" frameborder="0" scrolling="no"
                                     width="100%" height="100%"
                                     src="{% if content.first.demo %}{{ content.first.demo|safe }}{% else %}{{ site.demo|safe }}{% endif %}"
@@ -346,7 +346,7 @@
                         </div>
                      </div>
 
-                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="mt-3 btn btn-lg btn-primary shadow-primary ms-2">Бездепозитный бонус 100 FS</a>
+                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="mt-3 btn btn-primary shadow-primary ms-2">Бездепозитный бонус 100 FS</a>
 
                 </div>
             </div>
@@ -371,8 +371,8 @@
                         <div class="d-lg-table-row w-sm-50 w-lg-100 pe-sm-3 pe-lg-0 mb-3 mb-lg-0">
                             <div class="d-lg-table-cell align-middle border-bottom py-3 py-lg-4">
                                 <div class="d-flex align-items-center">
-                                    <img src="{% if bonus.casino.logo %}{{ bonus.casino.logo.url }}{% endif %}" width="164"
-                                         alt="{{ bonus.casino.display_name }}">
+                                    <img src="{% if bonus.casino.logo_svg %}{{ bonus.casino.logo_svg.url }}{% endif %}" width="164"
+                                         alt="{{ bonus.casino.display_name }}" class="mx-auto mx-md-0">
 {#                                    <div class="ps-3">#}
 {#                                        <h3 class="h4 mb-0">{{ bonus.casino.display_name }}</h3>#}
 {#                                    </div>#}
@@ -446,7 +446,7 @@
                                              style="filter: drop-shadow(0px 0.8645132780075073px 4.602016925811768px rgba(99, 102, 241, 0.02)) drop-shadow(0px 2.9037201404571533px 10.33138370513916px rgba(99, 102, 241, 0.05)) drop-shadow(0px 13px 27px rgba(99, 102, 241, 0.17));"
                                              alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}">
 
-                                        <p class="mb-0">
+                                        <p class="mb-0 fs-sm">
                                             {{ symbol.info|safe }}
                                         </p>
                                     </div>
@@ -1046,12 +1046,12 @@
                     <div class="col pb-2 pb-sm-0 mb-4 mb-sm-0">
                         <h3 class="h5 pb-1 pb-sm-2 pb-lg-3">Контакты</h3>
                         <ul class="nav flex-column mb-3">
-                            <li>
-                                <a href="tel:4065550120" class="nav-link fs-lg fw-normal px-0 py-1">
-                                    <i class="bx bx-phone-call fs-4 me-2"></i>
-                                    (406)&nbsp;555&#8209;0120
-                                </a>
-                            </li>
+{#                            <li>#}
+{#                                <a href="tel:4065550120" class="nav-link fs-lg fw-normal px-0 py-1">#}
+{#                                    <i class="bx bx-phone-call fs-4 me-2"></i>#}
+{#                                    (406)&nbsp;555&#8209;0120#}
+{#                                </a>#}
+{#                            </li>#}
                             <li>
                                 <a href="mailto:manager@{{ site.allowed_domain }}" class="nav-link fs-lg fw-normal px-0 py-1">
                                     <i class="bx bx-envelope fs-4 me-2"></i>
@@ -1059,34 +1059,34 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="d-flex pt-2 pt-sm-3 pt-md-4">
-                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"
-                               aria-label="Facebook">
-                                <i class="bx bxl-facebook"></i>
-                            </a>
-                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle me-3"
-                               aria-label="LinkedIn">
-                                <i class="bx bxl-linkedin"></i>
-                            </a>
-                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-telegram rounded-circle me-3"
-                               aria-label="Telegram">
-                                <i class="bx bxl-telegram"></i>
-                            </a>
-                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle me-3"
-                               aria-label="YouTube">
-                                <i class="bx bxl-youtube"></i>
-                            </a>
-                        </div>
+{#                        <div class="d-flex pt-2 pt-sm-3 pt-md-4">#}
+{#                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-facebook rounded-circle me-3"#}
+{#                               aria-label="Facebook">#}
+{#                                <i class="bx bxl-facebook"></i>#}
+{#                            </a>#}
+{#                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-linkedin rounded-circle me-3"#}
+{#                               aria-label="LinkedIn">#}
+{#                                <i class="bx bxl-linkedin"></i>#}
+{#                            </a>#}
+{#                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-telegram rounded-circle me-3"#}
+{#                               aria-label="Telegram">#}
+{#                                <i class="bx bxl-telegram"></i>#}
+{#                            </a>#}
+{#                            <a href="#" class="btn btn-icon btn-sm btn-secondary btn-youtube rounded-circle me-3"#}
+{#                               aria-label="YouTube">#}
+{#                                <i class="bx bxl-youtube"></i>#}
+{#                            </a>#}
+{#                        </div>#}
                     </div>
                     <div class="col ps-sm-4 ps-md-5">
-                        <h3 class="h5 pb-1 pb-sm-2 pb-lg-3">Версии игры</h3>
+                        <h3 class="h5 pb-1 pb-sm-2 pb-lg-3">Полезные ссылки</h3>
                         <div class="nav dropdown">
                             <a href="#" class="nav-link dropdown-toggle fs-lg fw-normal px-0 py-1"
                                data-bs-toggle="dropdown">
                                 {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}
                             </a>
                             <div class="dropdown-menu my-1">
-                                {% for page in version_pages %}
+                                {% for page in inner_pages %}
                                 <a href="/page/{{ page.slug }}/" class="dropdown-item fs-base pb-1">
                                     {{ page.title }}
                                 </a>
