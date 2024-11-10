@@ -23,22 +23,19 @@
     {
       "src": "/static/assets/favicon/belatra/icon-180.db59cb07.png",
       "type": "image/png",
-      "sizes": "180x180"
+      "sizes": "180x180",
+      "purpose": "maskable"
     },
     {
       "src": "/static/assets/favicon/belatra/icon-192.8136189e.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
       "src": "/static/assets/favicon/belatra/icon-512.2f40a7a9.png",
       "type": "image/png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "/static/assets/favicon/belatra/maskable_icon.37c18453.png",
-      "sizes": "192x192",
-      "type": "image/png",
+      "sizes": "512x512",
       "purpose": "maskable"
     }
   ],
