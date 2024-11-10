@@ -125,6 +125,7 @@ class SymbolAdmin(admin.ModelAdmin):
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('site', 'type', 'title', 'description', 'image', 'in_gallery')
+    list_filter = ('site',)
 
     actions = ['duplicate']
     def duplicate(self, request, queryset):
