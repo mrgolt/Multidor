@@ -56,8 +56,8 @@
     <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Theme switcher (color modes) -->
-    <script src="/static/scon/assets/js/theme-switcher.js"></script>
+{#    <!-- Theme switcher (color modes) -->#}
+{#    <script src="/static/scon/assets/js/theme-switcher.js"></script>#}
 
     <!-- Favicon and Touch Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
@@ -450,9 +450,9 @@
                                              style="filter: drop-shadow(0px 0.8645132780075073px 4.602016925811768px rgba(99, 102, 241, 0.02)) drop-shadow(0px 2.9037201404571533px 10.33138370513916px rgba(99, 102, 241, 0.05)) drop-shadow(0px 13px 27px rgba(99, 102, 241, 0.17));"
                                              alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}">
 
-                                        <p class="mb-0 fs-xs d-block overflow-scroll align-middle" style="max-height:50px;">
+                                        <div class="mb-0 fs-xs d-block align-middle overflow-y-scroll" style="max-height:50px;">
                                             {{ symbol.info|safe }}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
