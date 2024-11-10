@@ -369,7 +369,7 @@
                         {% for bonus in bonuses %}
                         <!-- Row -->
                         <div class="d-lg-table-row w-sm-50 w-lg-100 pe-sm-3 pe-lg-0 mb-3 mb-lg-0">
-                            <div class="d-lg-table-cell align-middle border-bottom py-3 py-lg-4">
+                            <div class="d-lg-table-cell align-middle border-bottom py-3 py-lg-4" style="min-height:70px;">
                                 <div class="d-flex align-items-center">
                                     <img src="{% if bonus.casino.logo_svg %}{{ bonus.casino.logo_svg.url }}{% endif %}" width="164"
                                          alt="{{ bonus.casino.display_name }}" class="mx-auto mx-md-0">
@@ -378,7 +378,7 @@
 {#                                    </div>#}
                                 </div>
                             </div>
-                            <div class="d-lg-table-cell align-middle fs-lg text-white border-bottom py-3 py-lg-4">
+                            <div class="d-lg-table-cell align-middle fs-lg border-bottom py-3 py-lg-4">
                                 {{ bonus.name|safe }}
                             </div>
 
