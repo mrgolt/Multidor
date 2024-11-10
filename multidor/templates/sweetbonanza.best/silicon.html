@@ -413,7 +413,7 @@
 
                 <!-- Stats -->
                 <div class="pb-0 pt-0">
-                    <div class="swiper pb-sm-2 pb-md-4 pb-lg-5 mb-xxl-3 mx-n2" data-swiper-options='{
+                    <div class="swiper pb-1 mx-n2" data-swiper-options='{
                   "slidesPerView": 2,
                   "pagination": {
                     "el": ".swiper-pagination",
@@ -470,7 +470,7 @@
     {% endif %}
 
     <!-- Story -->
-    <section class="container mb-1 pt-md-1 pt-lg-2 pt-xl-5">
+    <section class="container mb-3 pt-md-1 pt-lg-2 pt-xl-5">
         <div class="mt-2 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto" style="max-width: 46.625rem;">
             <h1 class="h1 mb-4">
                       <span class="text-primary">
@@ -489,6 +489,7 @@
     </section>
 
 {% if images %}
+    <section class="container mb-3 pt-md-1 pt-lg-2 pt-xl-5">
 <!-- Gallery inside carousel -->
 <div class="position-relative px-md-5">
   <button type="button" id="prev" class="btn btn-prev btn-icon btn-sm position-absolute top-50 translate-middle-y start-0 d-none d-md-inline-flex mt-n4" aria-label="Previous">
@@ -529,7 +530,7 @@
         {% for image in images %}
       <!-- Item -->
       <div class="swiper-slide">
-        <a href="assets/img/portfolio/courses/08.jpg" class="gallery-item rounded-3" data-sub-html='<h6 class="fs-sm text-light">Gallery image caption</h6>'>
+        <a href="{{ image.image.url }}" class="gallery-item rounded-3" data-sub-html='<h6 class="fs-sm text-light">{{ image.description|safe }}</h6>'>
           <img src="{{ image.image.url }}"
                alt="{{ image.title }}"
                title="{{ image.title }}">
@@ -541,6 +542,7 @@
     <div class="swiper-pagination position-relative pt-3 pt-sm-4 mt-4"></div>
   </div>
 </div>
+    </section>
 {% endif %}
 
 
