@@ -181,6 +181,27 @@
             background: linear-gradient(to top, #581C5A, rgba(22, 15, 29, 0));
             z-index: 1;
         }
+        /* Для вебkit-браузеров (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px; /* Ширина вертикального скролла */
+            height: 8px; /* Высота горизонтального скролла */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: darkgrey; /* Цвет ползунка */
+            border-radius: 10px; /* Закругление углов ползунка */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Цвет фона скролла */
+        }
+
+        /* Для Firefox */
+        .scrollable {
+            scrollbar-width: thin; /* Установка ширины скролла */
+            scrollbar-color: darkgrey #f1f1f1; /* Цвет ползунка и фона */
+        }
+
     </style>
 
 </head>
@@ -426,15 +447,15 @@
                       "spaceBetween": 8
                     },
                     "650": {
-                      "slidesPerView": 3,
-                      "spaceBetween": 8
-                    },
-                    "900": {
                       "slidesPerView": 4,
                       "spaceBetween": 8
                     },
+                    "900": {
+                      "slidesPerView": 5,
+                      "spaceBetween": 8
+                    },
                     "1100": {
-                      "slidesPerView": 6,
+                      "slidesPerView": 7,
                       "spaceBetween": 8
                     }
                   }
@@ -450,7 +471,7 @@
                                              style="filter: drop-shadow(0px 0.8645132780075073px 4.602016925811768px rgba(99, 102, 241, 0.02)) drop-shadow(0px 2.9037201404571533px 10.33138370513916px rgba(99, 102, 241, 0.05)) drop-shadow(0px 13px 27px rgba(99, 102, 241, 0.17));"
                                              alt="Символ {% if symbol.name %}{{ symbol.name }} {% else %}№{{ symbol.sorting_order }} {% endif %}слота {{ site.slot_name }}">
 
-                                        <div class="mb-0 fs-xs d-block align-middle overflow-y-scroll" style="max-height:50px;">
+                                        <div class="scrollable mb-0 fs-xs d-block align-middle overflow-y-scroll" style="max-height:70px;">
                                             {{ symbol.info|safe }}
                                         </div>
                                     </div>
