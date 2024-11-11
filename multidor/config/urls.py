@@ -39,5 +39,6 @@ urlpatterns = [
     path('', custom_serve),
     path("robots.txt", RobotsView.as_view()),
     path('yandex_<str:code>.html', yandex_webmaster_approve, name='yandex_webmaster_approve'),
-    #path('<path:path>', custom_serve),
+    path('<str:indexnow_key>.txt', index_now, name='index_now'),
+    path('index_now/', send_index_now, name='send_index_now'),
 ]

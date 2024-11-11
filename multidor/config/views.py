@@ -596,3 +596,37 @@ def yandex_webmaster_approve(request, code):
     response = HttpResponse(content, content_type="text/plain")
     response['Content-Disposition'] = f'inline; filename="yandex_{code}.html"'
     return response
+
+def send_index_now(request):
+
+    pages = [
+        '/',
+    ]
+
+    domain = request.META.get('HTTP_HOST', '')
+    parts = domain.split('.')
+
+    if len(parts) > 2 and domain != '127.0.0.1:8000':
+        domain = '.'.join(parts[-2:])
+
+    if domain == '127.0.0.1:8000':
+        domain = 'ramenbetgfd.top'
+
+    site = Sites.objects.filter(allowed_domain=domain)[0]
+    content = Content.objects.filter(is_main=False, site=site)
+
+    for item in content:
+        pages.append(f'/page/{item.slug}/')
+
+    content = ''
+
+    for page in pages:
+
+        url = f'https://yandex.com/indexnow?key=NqhEl8m3S1zWSB8inOSdvfHQvPGlkqRG&url=https://{domain}{page}'
+        response = requests.get(url)
+        print(response.json())
+
+        content += f'https://{domain}{page}: {response.json()}\n'
+
+    response = HttpResponse(content, content_type="text/plain")
+    return response
