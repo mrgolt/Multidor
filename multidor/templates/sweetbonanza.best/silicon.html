@@ -374,7 +374,7 @@
                         </div>
                      </div>
 
-                    <a href="/go/{{ bonuses.first.redirect.name }}/" class="mt-3 btn btn-primary shadow-primary ms-2">Бездепозитный бонус 100 FS</a>
+                    <span data-target="_blank" data-href="/go/{{ bonuses.first.redirect.name }}/" class="mt-3 btn btn-primary shadow-primary ms-2 hl">Бездепозитный бонус 100 FS</span>
 
                 </div>
             </div>
@@ -415,8 +415,8 @@
                                     <span class="promo-label">Промокод</span>:&nbsp;<span
                                     class="promo-code-text-button">{{ bonus.promo_code }}</span>
                                 </a>
-                                <a href="/go/{{ bonus.redirect.name }}/" type="button" class="btn btn-sm btn-primary fs-sm w-100 w-lg-auto my-1">Играть
-                                </a>
+                                <span data-target="_blank" data-href="/go/{{ bonuses.first.redirect.name }}/" type="button" class="btn btn-sm btn-primary fs-sm w-100 w-lg-auto my-1 hl">Играть
+                                </span>
                             </div>
                         </div>
                         {% endfor %}
@@ -748,6 +748,7 @@
 <script src="/static/scon/assets/js/theme.min.js"></script>
 <script src="/static/scon/assets/js/showmore.js"></script>
 <script src="/static/scon/assets/js/promocodecopy.js"></script>
+<script src="/static/scon/assets/js/hl.js"></script>
 
 
 
