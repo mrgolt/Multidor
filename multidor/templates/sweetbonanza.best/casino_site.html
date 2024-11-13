@@ -13,11 +13,8 @@
     {% if site.casino.favicon %}<link rel="shortcut icon" type="image/png" href="{{ site.casino.favicon.url }}">{% endif %}
     <meta content="{{ content.first.description }}" name="description">
     <meta name="keywords" content="{{ content.first.keywords }}">
-    {% if content.first.is_main %}
-        <link rel="canonical" href="https://{{ site.allowed_domain }}/"/>
-    {% else %}
-        <link rel="canonical" href="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>
-    {% endif %}
+    {% if content.first.is_main %}<link rel="canonical" href="https://{{ site.allowed_domain }}/"/>
+    {% else %}<link rel="canonical" href="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>{% endif %}
     <meta property="og:locale" content="ru_RU"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{ content.first.title }}"/>
