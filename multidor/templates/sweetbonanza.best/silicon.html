@@ -11,10 +11,8 @@
     {% endif %}
 
     <!-- SEO Meta Tags -->
-   <meta content="{{ content.first.title }}. Попробуйте свою удачу в {% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %} от {{ site.provider_name }} прямо сейчас! Большие выигрыши и захватывающий геймплей ждут вас. Бонус по нашему промокоду {{ bonuses.first.name|striptags }}"
-          name="description">
-    <meta name="keywords"
-          content="{{ site.slot_name|lower }}, {{ site.provider_name|lower }}, онлайн казино, игровые автоматы, азартные игры, слоты, бонусы казино, бесплатные вращения, джекпот, регистрация в казино, лучшие казино, отзывы о казино, стратегии игр, слоты онлайн, демо игры, лицензированные казино, казино на деньги, безопасные казино, мобильное казино, играть в казино">
+   <meta content="{{ content.first.description }}" name="description">
+   <meta name="keywords" content="{{ content.first.keywords }}">
    <meta name="author" content="{{ site.allowed_domain|upper }}">
 
     {% if content.first.is_main %}
