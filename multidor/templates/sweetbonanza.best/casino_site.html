@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <title>{{ content.first.title }} - Играть онлайн! Рабочее зеркало {{ site.casino.display_name }}, игровые автоматы, личный кабинет {{ site.casino.display_name }}</title>
-
-
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {% if site.casino.favicon %}<link rel="shortcut icon" type="image/png" href="{{ site.casino.favicon.url }}">{% endif %}
@@ -19,11 +15,8 @@
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{ content.first.title }}"/>
     <meta property="og:description" content="{{ content.first.description }}"/>
-    {% if content.first.is_main %}
-        <meta property="og:url" content="https://{{ site.allowed_domain }}/"/>
-    {% else %}
-        <meta property="og:url" content="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>
-    {% endif %}
+    {% if content.first.is_main %}<meta property="og:url" content="https://{{ site.allowed_domain }}/"/>{% else %}
+    <meta property="og:url" content="https://{{ site.allowed_domain }}/page/{{ content.first.slug }}/"/>{% endif %}
     <meta property="og:site_name" content="{{ content.first.title }}"/>
     <meta property="og:image" content="https://{{ site.allowed_domain }}/media/img/slots_{{ domain_hash }}.webp"/>
     <meta property="og:image:width" content="1000"/>
