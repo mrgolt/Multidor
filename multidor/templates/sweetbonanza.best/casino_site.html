@@ -264,12 +264,12 @@
     </a>
 </div>
 
-{#<div class="container mt-3 jumbotron py-3">#}
-{#    {% for page in inner_pages %}#}
-{#        <a class="btn btn-success btn-sm mt-1 border-0 rounded-pill px-4"#}
-{#           href="/page/{{ page.slug }}/">{{ page.title }}</a>#}
-{#    {% endfor %}#}
-{#</div>#}
+<div class="container mt-3 jumbotron py-3">
+    {% for page in inner_pages %}
+        <a class="btn btn-success btn-sm mt-1 border-0 rounded-pill px-4"
+           href="/page/{{ page.slug }}/">{{ page.title }}</a>
+    {% endfor %}
+</div>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
