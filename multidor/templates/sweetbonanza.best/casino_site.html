@@ -219,19 +219,26 @@
 </nav>
 
 <div class="container mt-3 p-0 ">
-    <span data-href="/go/{{ bonuses.first.redirect.name }}/" class="hl" data-target="_blank">
-        <img src="/media/img/hero_1_{{ domain_hash }}.webp" alt="{{ site.casino.display_name }}"
-             class="img-fluid hero-image">
-    </span>
+        <img data-href="/go/{{ bonuses.first.redirect.name }}/"
+             data-target="_blank"
+             src="/media/img/hero_1_{{ domain_hash }}.webp"
+             alt="{{ site.casino.display_name }}"
+             class="img-fluid hero-image hl"
+        >
+
 </div>
 
 {% for bonus in bonuses %}
     <div class="container text-center p-4 mt-3">
         <div class="row">
             <div class="col-md-3 align-items-center d-none d-md-flex">
-                <span data-href="/go/{{ bonuses.first.redirect.name }}/" data-target="_blank" class="hl">
-                    <img src="{{ site.casino.logo_svg.url }}" class="logo-image" alt="{{ site.casino.display_name }}"/>
-                </span>
+                    <img src="{{ site.casino.logo_svg.url }}"
+                         class="logo-image hl"
+                         alt="{{ site.casino.display_name }}"
+                         data-target="_blank"
+                         data-href="/go/{{ bonuses.first.redirect.name }}/"
+                    />
+
             </div>
             <div class="col-md-9">
                 <h3>{{ bonus.name|safe }}</h3>
@@ -249,10 +256,12 @@
 </div>
 
 <div class="container my-3 p-0 rounded-3">
-    <span data-href="/go/{{ bonuses.first.redirect.name }}/" data-target="_blank" class="hl">
-        <img src="/media/img/hero_2_{{ domain_hash }}.webp" alt="{{ site.casino.display_name }}"
-             class="img-fluid hero-image">
-    </span>
+        <img src="/media/img/hero_2_{{ domain_hash }}.webp"
+             alt="{{ site.casino.display_name }}"
+             class="img-fluid hero-image hl"
+             data-target="_blank"
+             data-href="/go/{{ bonuses.first.redirect.name }}/"
+        >
 </div>
 
 <div class="container mt-3 jumbotron py-3 mb-0">
