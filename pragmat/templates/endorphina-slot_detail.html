@@ -26,11 +26,11 @@
 
             </div>
 
-            <a href="/play/{{ site.offers.first.redirect_name }}/?placement=demo_screen&path={{ request.path }}"
+            <span data-href="/play/{{ site.offers.first.redirect_name }}/?placement=demo_screen&path={{ request.path }}"
 {#               onclick="ym(98566880, 'reachGoal', 'demo_bonus_button'); return true;"#}
-               class="btn btn-primary mt-3" target="_blank">
+               class="btn btn-primary mt-3 play-link" data-target="_blank">
                 Бездепозитный бонус 100 FS
-            </a>
+            </span>
         </div>
 
     </section>

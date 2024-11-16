@@ -292,12 +292,12 @@
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
-                    <a href="/play/{{ site.offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
+                    <span data-href="/play/{{ site.offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
 {#                       onclick="ym(98566880, 'reachGoal', 'header_bonus_button'); return true;"#}
-                       class="btn btn-primary w-100" target="_blank" rel="noopener">
+                       class="btn btn-primary w-100 play-link" data-target="_blank">
                         <i class="bx bx-money fs-4 lh-1 me-1"></i>
                         &nbsp;{% trans 'Получить бонус' %} 100 FS
-                    </a>
+                    </span>
                 </div>
             </div>
             <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
@@ -309,12 +309,12 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="/play/{{ site.offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
+            <span data-href="/play/{{ site.offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
 {#               onclick="ym(98566880, 'reachGoal', 'header_bonus_button'); return true;"#}
-               class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex" target="_blank" rel="noopener">
+               class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex play-link" data-target="_blank">
                 <i class="bx bx-money fs-5 lh-1 me-1"></i>
                 &nbsp;{% trans 'Получить бонус' %} 100 FS
-            </a>
+            </span>
         </div>
     </header>
 

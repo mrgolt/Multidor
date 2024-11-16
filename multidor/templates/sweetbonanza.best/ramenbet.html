@@ -168,7 +168,7 @@
                     <a class="btn btn-warning btn-lg rounded-pill border-0 px-5 mr-2 my-1" href="#demo" role="button">Регистрация</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="btn btn-success btn-lg rounded-pill border-0 px-5  my-1" href="/go/{{ bonuses.first.redirect.name }}/" role="button">Войти</a>
+                    <span class="btn btn-success btn-lg rounded-pill border-0 px-5 my-1 hl" data-href="/go/{{ bonuses.first.redirect.name }}/" role="button" data-target="_blank">Войти</span>
                 </li>
                 
             </ul>
@@ -188,7 +188,7 @@
                     <a class="btn btn-warning btn-sm rounded-pill border-0 px-3 py-2 mr-1 my-1" href="#demo" role="button">Регистрация</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="btn btn-success btn-sm rounded-pill border-0 px-3 py-2 my-1" href="/go/{{ bonuses.first.redirect.name }}/" role="button">Войти</a>
+                    <span class="btn btn-success btn-sm rounded-pill border-0 px-3 py-2 my-1 hl" data-href="/go/{{ bonuses.first.redirect.name }}/" role="button" data-target="_blank">Войти</span>
                 </li>
                 
             </ul>
@@ -211,9 +211,9 @@
 		<div class="col-md-9">
 			<h3>Название бонуса</h3>
 
-				<a class="btn btn-success btn-lg mt-2 rounded-pill border-0"
-				   target="_blank"
-				   href="/go/{{ bonus.redirect.name }}/" style="width: 100%;">Играть</a>
+				<span class="btn btn-success btn-lg mt-2 rounded-pill border-0 hl"
+				   data-target="_blank"
+				   data-href="/go/{{ bonus.redirect.name }}/" style="width: 100%;">Играть</span>
 
 
 		</div>
@@ -464,6 +464,8 @@
     {% endfor %}
 
 </div>
+
+<script src="/static/scon/assets/js/hl.js"></script>
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

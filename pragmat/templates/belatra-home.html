@@ -28,7 +28,7 @@
                   <a href="/slots/" class="btn btn-outline-primary btn-lg mb-3 me-sm-3 me-xl-4">
                   {% trans 'Играть демо' %}
                 </a>
-                <a href="/play/{{ site.offers.first.redirect_name }}/?placement=hero_screen&path={{ request.path }}" target="_blank" class="btn btn-primary shadow-secondary btn-lg mb-3">{% trans 'Бездепозитный бонус' %} 100 FS</a>
+                <span data-href="/play/{{ site.offers.first.redirect_name }}/?placement=hero_screen&path={{ request.path }}" data-target="_blank" class="btn btn-primary shadow-secondary btn-lg mb-3 play-link">{% trans 'Бездепозитный бонус' %} 100 FS</span>
 
               </div>
 {#              <div class="d-flex align-items-center justify-content-center justify-content-lg-start text-start pb-2 pt-lg-2 pb-xl-0 pt-xl-5 mt-xxl-5">#}
