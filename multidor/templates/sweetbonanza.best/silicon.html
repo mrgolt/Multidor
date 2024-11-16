@@ -253,10 +253,11 @@
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
-                    <a href="#play-game" class="btn btn-primary w-100 btn-lg shadow-primary" rel="noopener" data-scroll>
-                        <i class="bx bx-play fs-4 lh-1 me-1"></i>
-                        &nbsp;Играть сейчас
-                    </a>
+                    <span data-target="_blank" data-href="/go/{{ bonuses.first.redirect.name }}/" type="button"
+                          class="btn btn-primary w-100 btn-lg shadow-primary hl">
+                        <i class="bx bx-money fs-4 lh-1 me-1"></i>
+                        &nbsp; Бездепозитный бонус 100 FS
+                    </span>
                 </div>
             </div>
             <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
@@ -283,7 +284,7 @@
             <div class="row justify-content-md-start justify-content-center flex-md-nowrap pt-lg-5 pt-4">
                 <div class="col-xl-5 col-md-6 col-sm-10 d-flex flex-column justify-content-between mb-md-5 mb-md-4 mb-3 pb-xl-5 pb-lg-4">
                     <div class="text-md-start text-center">
-                        <h1 class="display-1 mb-lg-4 mb-3">{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</h1>
+                        <h1 class="{% if content.first.is_version_page %}display-3{% else %}display-1{% endif %} mb-lg-4 mb-3">{% if content.first.is_version_page %}{{ content.first.title }}{% else %}{{ site.slot_name }}{% endif %}</h1>
 {#                        <p class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2 fs-lg" style="max-width: 30.5rem;">Играй демо и на реальные деньги#}
 {#                            прямо сейчас!</p>#}
                         <h2 class="mb-4 mx-md-0 mx-auto pb-xl-3 pb-lg-2" style="max-width: 30.5rem;"><b>{{ bonuses.first.name|safe }}</b></h2>
