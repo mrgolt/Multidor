@@ -39,6 +39,7 @@ class Sites(models.Model):
     promo_image = models.ImageField(blank=True, upload_to='img/', default='')
     interface_image = models.ImageField(blank=True, upload_to='interface-img/', default='')
     favicon = models.ImageField(blank=True, upload_to='img/', default='')
+    css_file = models.FileField(blank=True, upload_to='css/', default='css/dark.min.css')
     yt_link = models.TextField(blank=True, default='')
     tlg_link = models.TextField(blank=True, default='')
     counters = models.TextField(blank=True, default='')
