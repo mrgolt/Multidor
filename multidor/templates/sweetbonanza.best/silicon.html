@@ -175,7 +175,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, #581C5A, rgba(22, 15, 29, 0));
+            background: linear-gradient(to top, {{ site.background_color_primary }}, rgba(22, 15, 29, 0));
             z-index: 1;
         }
         /* Для вебkit-браузеров (Chrome, Safari) */
@@ -236,6 +236,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if version_pages %}
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Версии игры</a>
                             <div class="dropdown-menu" style="min-width:300px !important;">
@@ -250,6 +251,7 @@
                                 </div>
                             </div>
                         </li>
+                    {% endif %}
                     </ul>
                 </div>
                 <div class="offcanvas-header border-top">
