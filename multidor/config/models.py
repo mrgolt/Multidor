@@ -58,7 +58,7 @@ class Sites(models.Model):
 
 class Casino(models.Model):
     logo = models.ImageField(upload_to='img/', default='cas_logo.jpg')
-    logo_svg = models.FileField(upload_to='img/', default='logo.svg', validators=[FileExtensionValidator(['svg'])])
+    logo_svg = models.FileField(upload_to='img/', default='logo.svg', validators=[FileExtensionValidator(['svg', 'webp'])])
     name = models.CharField(max_length=100)
     display_name = models.CharField(max_length=100, blank=True)
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, default=1)
