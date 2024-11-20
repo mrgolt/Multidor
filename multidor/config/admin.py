@@ -31,6 +31,16 @@ class ContentAdmin(admin.ModelAdmin):
     def casino_name(self, obj):
         return obj.casino.name if obj.casino else "-"
 
+    actions = ['duplicate']
+
+    def duplicate(self, request, queryset):
+        for obj in queryset:
+            obj.pk = None  # Сбросить первичный ключ, чтобы создать новую запись
+            obj.id = None  # Сбросить ID, чтобы создать новую запись (необязательно, если используется автоматический инкремент)
+            obj.save()
+
+    duplicate.short_description = "Duplicate selected items"
+
 
 class SitesAdmin(admin.ModelAdmin):
     list_display = (

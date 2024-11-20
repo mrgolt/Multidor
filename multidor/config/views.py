@@ -32,7 +32,7 @@ def custom_serve(request, slug=None):
         domain = '.'.join(parts[-2:])
 
     if domain == '127.0.0.1:8000':
-        domain = 'sweetbonanza.best'
+        domain = 'doghouse.guru'
 
     classes = [
         'has-game-preview',
