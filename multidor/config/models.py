@@ -61,6 +61,7 @@ class Casino(models.Model):
     logo_svg = models.FileField(upload_to='img/', default='logo.svg', validators=[FileExtensionValidator(['svg', 'webp'])])
     name = models.CharField(max_length=100)
     display_name = models.CharField(max_length=100, blank=True)
+    alternative_name = models.CharField(max_length=100, blank=True)
     redirect = models.ForeignKey('Redirect', on_delete=models.CASCADE, default=1)
     custom_css = models.TextField(blank=True)
     favicon = models.FileField(upload_to='favicons/', default='favicon.ico', validators=[FileExtensionValidator(['ico', 'png', 'svg', 'webp'])])
