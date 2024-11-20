@@ -57,6 +57,16 @@ class SitesAdmin(admin.ModelAdmin):
     has_hero_image.boolean = True
     has_hero_image.short_description = 'Has Hero'
 
+    actions = ['duplicate']
+
+    def duplicate(self, request, queryset):
+        for obj in queryset:
+            obj.pk = None  # Сбросить первичный ключ, чтобы создать новую запись
+            obj.id = None  # Сбросить ID, чтобы создать новую запись (необязательно, если используется автоматический инкремент)
+            obj.save()
+
+    duplicate.short_description = "Duplicate selected items"
+
 
 class RedirectAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'aff', 'target_url', 'site', 'type', 'visits')
