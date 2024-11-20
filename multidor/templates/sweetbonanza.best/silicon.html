@@ -61,8 +61,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
     <link rel="manifest" href="/static/scon/assets/favicon/site.webmanifest">
-    <link rel="mask-icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}" color="#6366f1">
-    <link rel="shortcut icon" href="{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
+    <link rel="mask-icon" href="{% if site.favicon_file %}{{ site.favicon_file.url }}{% else %}{% if site.favicon %}{{ site.favicon.url }}{% endif %}" color="#6366f1">
+    <link rel="shortcut icon" href="{% if site.favicon_file %}{{ site.favicon_file.url }}{% else %}{% if site.favicon %}{{ site.favicon.url }}{% endif %}">
     <meta name="msapplication-TileColor" content="#C475CC">
     <meta name="msapplication-config" content="/static/scon/assets/favicon/browserconfig.xml">
     <meta name="theme-color" content="{{ site.secondary_color }}">
@@ -226,7 +226,7 @@
     <header class="header navbar navbar-expand-lg position-absolute navbar-sticky">
         <div class="container px-3">
             <a href="/" class="navbar-brand pe-3">
-                <img src="{% if site.logo %}{{ site.logo.url }}{% endif %}" width="147"
+                <img src="{% if site.logo_svg %}{{ site.logo_svg.url }}{% else %}{% if site.logo %}{{ site.logo.url }}{% endif %}" width="147"
                      alt="{{ site.slot_name }}">
 {#                <span class="d-none d-md-block px-3">{{ site.slot_name }}</span>#}
 
@@ -321,7 +321,7 @@
                 <div class="col-md-12 offset-xl-1 d-flex mt-lg-4 mb-4">
                     <div class="d-none d-md-flex align-self-end ms-xl-0 ms-md-4 p-lg-4 p-sm-3 p-2 rounded-4 overflow-hidden"
                          style="background: linear-gradient(153.32deg, rgba(255, 255, 255, .3) -65.62%, rgba(255, 255, 255, .1) 83.28%); box-shadow: 0 .25rem 1.5rem -.0625rem rgba(0, 0, 0, .2); backdrop-filter: blur(25px);">
-                        <img src="{% if site.interface_image %}{{ site.interface_image.url }}{% endif %}" width="1122"
+                        <img src="{% if site.interface_image_webp %}{{ site.interface_image_webp.url }}{% else %}{% if site.interface_image %}{{ site.interface_image.url }}{% endif %}" width="1122"
                              alt="Layer" class="rounded-4" style="box-shadow: 0 0 7.5rem rgba(0, 0, 0, .1);">
                     </div>
                 </div>
