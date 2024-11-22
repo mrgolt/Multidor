@@ -23,11 +23,7 @@ def get_site(request: HttpRequest) -> Site:
     else:
         domain = '.'.join(domain.split('.')[-2:])
 
-    banned_domains = banned_domains.splitlines()
-
-    query = Q(domain=domain) | Q(domain__in=banned_domains)
-
-    return get_object_or_404(Site.objects.filter(query))
+    return get_object_or_404(Site, Q(domain=domain) | Q(banned_domains__contains=domain))
 
 class CustomRefererMiddleware:
 
