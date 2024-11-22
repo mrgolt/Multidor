@@ -11,6 +11,7 @@ import re
 from django.utils.translation import get_language
 import random
 from django.views.decorators.cache import cache_page
+from django.http import StreamingHttpResponse
 
 @cache_page(60 * 60 * 24)
 def home(request):
@@ -115,7 +116,6 @@ def index_now(request, indexnow_key):
     return HttpResponse(indexnow_key)
 
 def send_index_now(request):
-
     pages = [
         '/',
         '/slots/'
@@ -126,17 +126,13 @@ def send_index_now(request):
     for slot in slots:
         pages.append(f'/slots/{slot.slug}/')
 
-    content = ''
+    def generate_responses():
+        for page in pages:
+            url = f'https://yandex.com/indexnow?key=NqhEl8m3S1zWSB8inOSdvfHQvPGlkqRG&url=https://{request.site.domain}{page}'
+            response = requests.get(url)
+            yield f'https://{request.site.domain}{page}: {response.json()}\n'
 
-    for page in pages:
-
-        url = f'https://yandex.com/indexnow?key=NqhEl8m3S1zWSB8inOSdvfHQvPGlkqRG&url=https://{request.site.domain}{page}'
-        response = requests.get(url)
-        print(response.json())
-
-        content += f'https://{request.site.domain}{page}: {response.json()}\n'
-
-    response = HttpResponse(content, content_type="text/plain")
+    response = StreamingHttpResponse(generate_responses(), content_type="text/plain")
     return response
 
 def sitemap_generator(request):
