@@ -31,7 +31,7 @@ class CustomRefererMiddleware:
         self.get_response = get_response
         self.allowed_referer = ['yandex', '127.0.0.1:8000', 'dzen', 'google', 'bing', 'ya.ru', 'mail.ru', 't.me']
         self.useragents = ['yandex', 'google']
-        self.blockpage = 'https://yandex.ru/games/'
+        self.blockpage = 'https://pragmatic-play.su/'
         self.pass_paths = ['/go/', '/admin/', '/robots.txt', '/sitemap', '/media/', '/static/', '/play/', '/promo/', '/api/']
         self.pass_domains = ['127.0.0.1:8000']
 
@@ -77,8 +77,8 @@ class CustomRefererMiddleware:
                     if not any(pt in path for pt in self.pass_paths) and not any(dm in current_host for dm in self.pass_domains):
                         logger.debug("если прямой - нет реферера нет юа и не наш sub")
                         # Отправляем на левую страницу
-                        #return redirect(self.blockpage, permanent=True)
-                        return self.render_nginx_page()
+                        return redirect(self.blockpage, permanent=True)
+                        #return self.render_nginx_page()
 
             # Если реферер среди разрешенных, это не бот и не технический домен
             if any(ref in referer for ref in self.allowed_referer) and not any(ua in user_agent for ua in self.useragents) and not any(dm in current_host for dm in self.pass_domains):
