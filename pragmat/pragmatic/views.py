@@ -180,6 +180,10 @@ def endorphina_demo(request, game_symbol):
     response = requests.get(f'https://endorphina.com/games/{game_symbol}/play')
     return HttpResponse(response.content)
 
+def pragmatic_play_demo(request, game_symbol,lang, cur):
+    response = requests.get(f'https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?lang={lang}&cur={cur}&gameSymbol={game_symbol}&jurisdiction=99')
+    return HttpResponse(response.content)
+
 def custom_404_view(request, exception):
     site = request.site
     return render(request, site.notfound_template, {'site': site}, status=404)
