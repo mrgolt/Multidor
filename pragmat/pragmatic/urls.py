@@ -47,7 +47,7 @@ urlpatterns = i18n_patterns(
     path('index_now/', views.send_index_now, name='send_index_now'),
     path('yandex_<str:code>.html', views.yandex_webmaster_approve, name='yandex_webmaster_approve'),
     path('endorphina-demo/<str:game_symbol>/', views.endorphina_demo, name='endorphina_demo'),
-    path('pragmatic-play-demo/<str:game_symbol>/<str:lang>/<str:cur>/', views.pragmatic_play_demo, name='pragmatic_play_demo'),
+    path('pragmatic-play-demo/<path:path>', views.pragmatic_play_demo, name='pragmatic_play_demo'),
     prefix_default_language=False,
 )
 
