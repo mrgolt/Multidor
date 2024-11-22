@@ -22,6 +22,7 @@ class Offer(models.Model):
 
 class Site(models.Model):
     domain = models.CharField(max_length=255)
+    banned_domains = models.TextField(blank=True)
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
     counters = models.TextField(blank=True)
     offers = models.ManyToManyField(Offer, blank=True)

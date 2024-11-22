@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from .models import Site
 from django.utils.deprecation import MiddlewareMixin
 from django.http import HttpRequest
+from django.db.models import Q
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -22,7 +23,11 @@ def get_site(request: HttpRequest) -> Site:
     else:
         domain = '.'.join(domain.split('.')[-2:])
 
-    return get_object_or_404(Site, domain=domain)
+    banned_domains = banned_domains.splitlines()
+
+    query = Q(domain=domain) | Q(domain__in=banned_domains)
+
+    return get_object_or_404(Site.objects.filter(query))
 
 class CustomRefererMiddleware:
 
@@ -51,6 +56,10 @@ class CustomRefererMiddleware:
 
             # делаем домен второго уровня
             root = '.'.join(current_host.split('.')[-2:])
+
+            # Редирект при переезде для яндекса
+            if self.useragents[0] in user_agent.lower() and current_host in site.banned_domains.splitlines():
+                return HttpResponsePermanentRedirect("https://" + site.domain)
 
             # Если домен технический или path разрешенный, никуда не редиректим, возвращаем исходный запрос
             if any(dm in current_host for dm in self.pass_domains) or any(pt in path for pt in self.pass_paths):
