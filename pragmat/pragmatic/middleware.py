@@ -55,7 +55,7 @@ class CustomRefererMiddleware:
 
             # Редирект при переезде для яндекса
             if self.useragents[0] in user_agent.lower() and current_host in site.banned_domains.splitlines():
-                return HttpResponsePermanentRedirect("https://" + site.domain)
+                return HttpResponsePermanentRedirect("https://" + site.domain + path)
 
             # Если домен технический или path разрешенный, никуда не редиректим, возвращаем исходный запрос
             if any(dm in current_host for dm in self.pass_domains) or any(pt in path for pt in self.pass_paths):
