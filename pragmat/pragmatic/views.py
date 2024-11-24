@@ -208,7 +208,7 @@ def update_slots_with_descriptions(site, slots):
 def get_proxy(request):
     random_string = ''.join(random.choices(string.ascii_lowercase, k=24))
     random_port = random.randint(30000, 44999)
-    proxy_string = f"{random_string}.r7hub.top:{random_port}"
+    proxy_string = f"{random_string}.r7hub.top:{random_port}:vip4:rhhd6GecnnSwvs9sdhvvs1"
     return HttpResponse(proxy_string)
 
 def get_site(request):
