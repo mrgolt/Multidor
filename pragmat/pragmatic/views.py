@@ -13,6 +13,7 @@ import random
 from django.views.decorators.cache import cache_page
 from django.http import StreamingHttpResponse
 import random
+import string
 
 @cache_page(60 * 60 * 24)
 def home(request):
@@ -205,11 +206,10 @@ def update_slots_with_descriptions(site, slots):
 
 
 def get_proxy(request):
-    file_path = 'vip4.txt'
-    with open(file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-    random_line = random.choice(lines).strip()
-    return HttpResponse(random_line)
+    random_string = ''.join(random.choices(string.ascii_lowercase, k=24))
+    random_port = random.randint(30000, 44999)
+    proxy_string = f"{random_string}.r7hub.top:{random_port}"
+    return HttpResponse(proxy_string)
 
 def get_site(request):
     response = requests.get('https://infinitysoftcombine-v3.ru/task/get_site_ipv6.php?password=5b5ed5cdc7a466abd74836a514537a53&cat_string=', verify=False)
