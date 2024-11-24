@@ -358,7 +358,7 @@
       </div>
     </section>
 
-{% if is_mobile %}
+{#{% if is_mobile %}#}
     <script>
   const iframe = document.getElementById('iframe');
 
@@ -391,7 +391,6 @@
   // Обработчик события нажатия на iframe
   iframe.addEventListener('click', function() {
     if (document.fullscreenElement) {
-      closeFullscreen();
     } else {
       openFullscreen();
     }
@@ -404,6 +403,6 @@
     }
   });
 </script>
-{% endif %}
+{#{% endif %}#}
 
 {% endblock %}
