@@ -359,50 +359,47 @@
     </section>
 
 {#{% if is_mobile %}#}
-    <script>
-  const iframe = document.getElementById('iframe');
-
-  // Функция для открытия iframe в полноэкранном режиме
-  function openFullscreen() {
-    if (iframe.requestFullscreen) {
-      iframe.requestFullscreen();
-    } else if (iframe.mozRequestFullScreen) { // Firefox
-      iframe.mozRequestFullScreen();
-    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari и Opera
-      iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) { // IE/Edge
-      iframe.msRequestFullscreen();
-    }
-  }
-
-  // Функция для выхода из полноэкранного режима
-  function closeFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { // Firefox
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { // Chrome, Safari и Opera
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE/Edge
-      document.msExitFullscreen();
-    }
-  }
-
-  // Обработчик события нажатия на iframe
-  iframe.addEventListener('click', function() {
-    if (document.fullscreenElement) {
-    } else {
-      openFullscreen();
-    }
-  });
-
-  // Обработчик события нажатия кнопки "Назад"
-  window.addEventListener('popstate', function(event) {
-    if (document.fullscreenElement) {
-      closeFullscreen();
-    }
-  });
-</script>
+{#<script>#}
+{#  const iframe = document.getElementById('iframe');#}
+{##}
+{#  // Функция для открытия iframe в полноэкранном режиме#}
+{#  function openFullscreen() {#}
+{#    if (iframe.requestFullscreen) {#}
+{#      iframe.requestFullscreen();#}
+{#    } else if (iframe.mozRequestFullScreen) { // Firefox#}
+{#      iframe.mozRequestFullScreen();#}
+{#    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari и Opera#}
+{#      iframe.webkitRequestFullscreen();#}
+{#    } else if (iframe.msRequestFullscreen) { // IE/Edge#}
+{#      iframe.msRequestFullscreen();#}
+{#    }#}
+{#  }#}
+{##}
+{#  // Функция для выхода из полноэкранного режима#}
+{#  function closeFullscreen() {#}
+{#    if (document.exitFullscreen) {#}
+{#      document.exitFullscreen();#}
+{#    } else if (document.mozCancelFullScreen) { // Firefox#}
+{#      document.mozCancelFullScreen();#}
+{#    } else if (document.webkitExitFullscreen) { // Chrome, Safari и Opera#}
+{#      document.webkitExitFullscreen();#}
+{#    } else if (document.msExitFullscreen) { // IE/Edge#}
+{#      document.msExitFullscreen();#}
+{#    }#}
+{#  }#}
+{##}
+{#  // Обработчик события нажатия на iframe#}
+{#  iframe.addEventListener('click', function() {#}
+{#    openFullscreen(); // Открываем полноэкранный режим при нажатии на iframe#}
+{#  });#}
+{##}
+{#  // Обработчик события нажатия кнопки "Назад"#}
+{#  window.addEventListener('popstate', function(event) {#}
+{#    if (document.fullscreenElement) {#}
+{#      closeFullscreen(); // Закрываем полноэкранный режим при нажатии "Назад"#}
+{#    }#}
+{#  });#}
+{#</script>#}
 {#{% endif %}#}
 
 {% endblock %}
