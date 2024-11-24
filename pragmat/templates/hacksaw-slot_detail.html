@@ -14,13 +14,14 @@
             <h2 class="text-primary">Демо игра в {{ slot.name }}{% if slot.folk_name %} ({{ slot.folk_name }}){% endif %}</h2>
             <div class="row">
 
-                <div style="position: relative; width: 100%; padding-bottom: {% if is_mobile %}120{% else %}62.5{% endif %}%;">
+                <div style="position: relative; width: 100%; padding-bottom: {% if is_mobile %}110{% else %}62.5{% endif %}%;">
                     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
                          class="shadow-primary rounded-4 overflow-hidden">
                         <iframe id="iframe" allowfullscreen="true" tabindex="0" frameborder="0" scrolling="no"
                                 width="100%" height="100%"
                                 src="https://static-live.hacksawgaming.com/{{ slot.game_symbol }}/{{ slot.version }}/index.html?language=ru&channel={% if is_mobile %}mobile{% else %}desktop{% endif %}&gameid={{ slot.game_symbol }}&mode=2&token=123131&lobbyurl=https%3A%2F%2Fwww.hacksawgaming.com&currency=RUB&partner=demo&env=https://rgs-demo.hacksawgaming.com/api&realmoneyenv=https://rgs-demo.hacksawgaming.com/api"
                                 style="border:none;"></iframe>
+                    <div id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); cursor: pointer;"></div>
                     </div>
                 </div>
 
@@ -358,48 +359,49 @@
       </div>
     </section>
 
-{#{% if is_mobile %}#}
-{#<script>#}
-{#  const iframe = document.getElementById('iframe');#}
-{##}
-{#  // Функция для открытия iframe в полноэкранном режиме#}
-{#  function openFullscreen() {#}
-{#    if (iframe.requestFullscreen) {#}
-{#      iframe.requestFullscreen();#}
-{#    } else if (iframe.mozRequestFullScreen) { // Firefox#}
-{#      iframe.mozRequestFullScreen();#}
-{#    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari и Opera#}
-{#      iframe.webkitRequestFullscreen();#}
-{#    } else if (iframe.msRequestFullscreen) { // IE/Edge#}
-{#      iframe.msRequestFullscreen();#}
-{#    }#}
-{#  }#}
-{##}
-{#  // Функция для выхода из полноэкранного режима#}
-{#  function closeFullscreen() {#}
-{#    if (document.exitFullscreen) {#}
-{#      document.exitFullscreen();#}
-{#    } else if (document.mozCancelFullScreen) { // Firefox#}
-{#      document.mozCancelFullScreen();#}
-{#    } else if (document.webkitExitFullscreen) { // Chrome, Safari и Opera#}
-{#      document.webkitExitFullscreen();#}
-{#    } else if (document.msExitFullscreen) { // IE/Edge#}
-{#      document.msExitFullscreen();#}
-{#    }#}
-{#  }#}
-{##}
-{#  // Обработчик события нажатия на iframe#}
-{#  iframe.addEventListener('click', function() {#}
-{#    openFullscreen(); // Открываем полноэкранный режим при нажатии на iframe#}
-{#  });#}
-{##}
-{#  // Обработчик события нажатия кнопки "Назад"#}
-{#  window.addEventListener('popstate', function(event) {#}
-{#    if (document.fullscreenElement) {#}
-{#      closeFullscreen(); // Закрываем полноэкранный режим при нажатии "Назад"#}
-{#    }#}
-{#  });#}
-{#</script>#}
-{#{% endif %}#}
+{% if is_mobile %}
+<script>
+  const iframe = document.getElementById('iframe');
+  const overlay = document.getElementById('overlay');
+
+  // Функция для открытия iframe в полноэкранном режиме
+  function openFullscreen() {
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.mozRequestFullScreen) { // Firefox
+      iframe.mozRequestFullScreen();
+    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari и Opera
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) { // IE/Edge
+      iframe.msRequestFullscreen();
+    }
+  }
+
+  // Функция для выхода из полноэкранного режима
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari и Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+  }
+
+  // Обработчик события нажатия на прозрачный слой
+  overlay.addEventListener('click', function() {
+    openFullscreen(); // Открываем полноэкранный режим при нажатии на слой
+  });
+
+  // Обработчик события нажатия кнопки "Назад"
+  window.addEventListener('popstate', function(event) {
+    if (document.fullscreenElement) {
+      closeFullscreen(); // Закрываем полноэкранный режим при нажатии "Назад"
+    }
+  });
+</script>
+{% endif %}
 
 {% endblock %}
