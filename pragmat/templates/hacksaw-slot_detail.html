@@ -21,7 +21,8 @@
                                 width="100%" height="100%"
                                 src="https://static-live.hacksawgaming.com/{{ slot.game_symbol }}/{{ slot.version }}/index.html?language=ru&channel={% if is_mobile %}mobile{% else %}desktop{% endif %}&gameid={{ slot.game_symbol }}&mode=2&token=123131&lobbyurl=https%3A%2F%2Fwww.hacksawgaming.com&currency=RUB&partner=demo&env=https://rgs-demo.hacksawgaming.com/api&realmoneyenv=https://rgs-demo.hacksawgaming.com/api"
                                 style="border:none;"></iframe>
-                    <div id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); cursor: pointer;"></div>
+                    {% if is_mobile %}
+                    <div id="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.1); cursor: pointer;"></div>{% endif %}
                     </div>
                 </div>
 
