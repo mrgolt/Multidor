@@ -125,3 +125,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 Notification.requestPermission();
+
+document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.getElementById('nolimitGameIframe');
+    iframe.style.maxHeight = '100vh';
+});
