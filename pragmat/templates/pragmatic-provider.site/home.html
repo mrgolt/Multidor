@@ -18,7 +18,7 @@
                 </span>
               </div>
               <div class="position-relative d-inline-flex align-items-center justify-content-center justify-content-md-start mt-auto pt-3 pt-md-4 pb-xl-2">
-                <a href="#popular-slots" class="btn btn-icon btn-light bg-white stretched-link rounded-circle me-3" data-scroll="" data-scroll-offset="120" aria-label="Scroll for more">
+                <a href="#popularslots" class="btn btn-icon btn-light bg-white stretched-link rounded-circle me-3" data-scroll="" data-scroll-offset="120" aria-label="Scroll for more">
                   <i class="bx bx-chevron-down"></i>
                 </a>
                 <span class="fs-sm">Перейти к слотам</span>
@@ -35,206 +35,90 @@
       </section>
 
 
-    <!-- Popular slots -->
-    <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2" id="popular-slots">
-        <div class="row py-5">
-
-            <div>
-
-                <!-- Title + prev/next buttons -->
-                <div class="d-flex align-items-center justify-content-between pb-4 mb-3">
-                    <h2 class="h1 mb-0 me-3">{% trans 'Популярные слоты' %}</h2>
-                    <div class="d-flex">
-                        <button type="button" id="popular-prev" class="btn btn-prev btn-icon btn-sm me-2"
-                                aria-label="Previous">
-                            <i class="bx bx-chevron-left"></i>
-                        </button>
-                        <button type="button" id="popular-next" class="btn btn-next btn-icon btn-sm ms-2"
-                                aria-label="Next">
-                            <i class="bx bx-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Courses slider -->
-                <div class="swiper swiper-nav-onhover mx-n2" data-swiper-options='{
-              "slidesPerView": 1,
-              "spaceBetween": 8,
-              "pagination": {
-                "el": ".swiper-pagination",
-                "clickable": true
-              },
-              "navigation": {
-                "prevEl": "#popular-prev",
-                "nextEl": "#popular-next"
-              },
-              "breakpoints": {
-                "560": {
-                  "slidesPerView": 2
-                },
-                "768": {
-                  "slidesPerView": 2
-                },
-                "850": {
-                  "slidesPerView": 2
-                },
-                "1200": {
-                  "slidesPerView": 3
-                }
-              }
-            }'>
-                    <div class="swiper-wrapper">
-
-
-                        {% for slot in popular_slots %}
-                            <!-- Item -->
-                            <div class="swiper-slide h-auto pb-3">
-                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
-                                    <div class="position-relative">
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
-                                           aria-label="{{ slot.name }}"></a>
-                                        {% if slot.users_choice %}
-                                            <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">
-                                                {% trans 'Выбор игроков' %}
-                                            </span>
-                                        {% endif %}
-
-                                        <img src="{{ slot.logo.url }}"
-                                             class="card-img-top" alt="{{ slot.name }}" loading="lazy">
-                                    </div>
-                                    <div class="card-body pb-3">
-                                        <h3 class="h5 mb-2">
-                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
-                                        </h3>
-                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="btn btn-primary mt-2 stretched-link">{% trans 'Играть сейчас' %}</a>
-                                    </div>
-                                    <div class="card-footer d-flex fs-sm text-muted py-3">
-                                        <div class="d-flex me-4">
-                                            RTP: {{ slot.rtp }}%
-                                        </div>
-                                        <div class="d-flex ms-auto">
-                                            <i class="bx bx-like fs-xl me-1"></i>
-                                            {{ slot.rating }}%
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-
-                        {% endfor %}
-
-
-                    </div>
-
-                    <!-- Pagination (bullets) -->
-                    <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
-                </div>
-                <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
-                    {% trans "Все слоты" %}
-                    <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
-                </a>
-            </div>
+      <!-- Popular slots -->
+    <section id="popularslots" class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
+      <!-- Page title + Filters -->
+      <div class="d-lg-flex align-items-center justify-content-between pt-4 pb-0 pb-md-2 mt-lg-2">
+        <h1 class="me-3">Популярные слоты</h1>
+        <div class="d-md-flex mb-3">
+          <div class="pt-md-3 pt-2 text-center">
+            <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все слоты</a>
+          </div>
         </div>
+      </div>
+
+      <!-- Slots grid -->
+      <div class="masonry-grid row g-md-4 g-2 mb-2">
+
+          {% for slot in popular_slots %}
+        <!-- Item -->
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+              <div class="position-relative zindex-2">
+                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+              </div>
+            </div>
+            <div class="card-img">
+              <img
+                src="{{ slot.logo.url }}"
+                class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
+            </div>
+          </a>
+        </div>
+          {% endfor %}
+
+
+      </div>
+
+      <div class="pt-md-3 pt-2 text-center">
+        <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все слоты</a>
+      </div>
     </section>
 
-    <!-- New slots -->
-    <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2">
-        <div class="row py-1">
-
-            <div>
-
-                <!-- Title + prev/next buttons -->
-                <div class="d-flex align-items-center justify-content-between pb-4 mb-3">
-                    <h2 class="h1 mb-0 me-3">{% trans "Новые слоты" %}</h2>
-                    <div class="d-flex">
-                        <button type="button" id="new-prev" class="btn btn-prev btn-icon btn-sm me-2"
-                                aria-label="Previous">
-                            <i class="bx bx-chevron-left"></i>
-                        </button>
-                        <button type="button" id="new-next" class="btn btn-next btn-icon btn-sm ms-2" aria-label="Next">
-                            <i class="bx bx-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Courses slider -->
-                <div class="swiper swiper-nav-onhover mx-n2" data-swiper-options='{
-              "slidesPerView": 1,
-              "spaceBetween": 8,
-              "pagination": {
-                "el": ".swiper-pagination",
-                "clickable": true
-              },
-              "navigation": {
-                "prevEl": "#new-prev",
-                "nextEl": "#new-next"
-              },
-              "breakpoints": {
-                "560": {
-                  "slidesPerView": 2
-                },
-                "768": {
-                  "slidesPerView": 2
-                },
-                "850": {
-                  "slidesPerView": 2
-                },
-                "1200": {
-                  "slidesPerView": 3
-                }
-              }
-            }'>
-                    <div class="swiper-wrapper">
-                        {% for slot in new_slots %}
-                            <!-- Item -->
-                            <div class="swiper-slide h-auto pb-3">
-                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
-                                    <div class="position-relative">
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
-                                           aria-label="{{ slot.name }}"></a>
-                                        {% if slot.users_choice %}
-                                            <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">{% trans "Выбор игроков" %}</span>{% endif %}
-
-                                        <img src="{{ slot.logo.url }}"
-                                             class="card-img-top" alt="{{ slot.name }}" loading="lazy">
-                                    </div>
-                                    <div class="card-body pb-3">
-                                        <h3 class="h5 mb-2">
-                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
-                                        </h3>
-                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="btn btn-primary mt-2 stretched-link">{% trans 'Играть сейчас' %}</a>
-                                    </div>
-                                    <div class="card-footer d-flex fs-sm text-muted py-3">
-                                        <div class="d-flex me-4">
-                                            RTP: {{ slot.rtp }}%
-                                        </div>
-                                        <div class="d-flex ms-auto">
-                                            <i class="bx bx-like fs-xl me-1"></i>
-                                            {{ slot.rating }}%
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-
-                        {% endfor %}
-
-
-                    </div>
-
-                    <!-- Pagination (bullets) -->
-                    <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
-                </div>
-                <a href="{% url 'slot_list' %}" class="btn btn-outline-primary btn-lg w-100 d-md-none mt-3">
-                    Все слоты
-                    <i class="bx bx-right-arrow-alt fs-xl ms-2"></i>
-                </a>
-            </div>
+          <!-- New slots -->
+    <section id="newslots" class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
+      <!-- Page title + Filters -->
+      <div class="d-lg-flex align-items-center justify-content-between pt-4 pb-0 pb-md-2 mt-lg-2">
+        <h1 class="me-3">Новые слоты</h1>
+        <div class="d-md-flex mb-3">
+          <div class="pt-md-3 pt-2 text-center">
+            <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-none d-md-block">Все слоты</a>
+          </div>
         </div>
+      </div>
+
+      <!-- Slots grid -->
+      <div class="masonry-grid row g-md-4 g-2 mb-2">
+
+          {% for slot in new_slots %}
+        <!-- Item -->
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+              <div class="position-relative zindex-2">
+                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+              </div>
+            </div>
+            <div class="card-img">
+              <img
+                src="{{ slot.logo.url }}"
+                class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
+            </div>
+          </a>
+        </div>
+          {% endfor %}
+
+
+      </div>
+
+      <div class="pt-md-3 pt-2 text-center">
+        <a href="{% url 'slot_list' %}" class="btn btn-outline-primary w-sm-auto w-100 d-md-none">Все слоты</a>
+      </div>
     </section>
 
 
