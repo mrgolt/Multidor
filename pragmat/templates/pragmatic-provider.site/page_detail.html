@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+            <!-- Story -->
+            <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
+              <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto" style="max-width: 46.625rem;">
+
+                  <h1 class="h1 mb-4">
+                      <span class="text-primary">
+                          {{ page.title }}
+                      </span>
+                  </h1>
+
+                  {{ page.description|safe }}
+
+
+
+
+              </div>
+
+
+            </section>
+
+
+
+
+{% endblock %}

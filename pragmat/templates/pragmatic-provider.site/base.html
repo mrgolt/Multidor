@@ -1,0 +1,481 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+
+    <title>
+        {% if page.title %}{{ page.title }} - {% endif %}
+        {% if slot.name %}{% trans 'Слот' %} {{ slot.name }} - {% trans 'Демо-версия и лучшие бонусы от партнеров!' %} - {% endif %}
+        {% if slot_name %}{% trans 'Поиск по запросу:' %} {{ slot_name }} - {% endif %}
+        {% if slots %}{% trans 'Все слоты' %} {% if theme %}{% trans 'в категории' %} {{ theme }}{% endif %} - {% endif %}
+        {{ site.provider.name|upper }} - {% trans 'демо всех слотов в рублях на однои сайте' %}! {% if slots.number %} - {% trans 'Страница' %} {{ slots.number }}{% endif %}
+    </title>
+
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% if page.title %}{{ page.title }} - {% endif %}
+        {% if slot.name %}{% trans 'Слот' %} {{ slot.name }} - {% endif %}
+        {% if slot_name %}{% trans 'Результаты поиска:' %} {{ slot_name }} - {% endif %}
+        {% if slots %}{% trans 'Все слоты' %} {% if theme %}{% trans 'в категории' %} {{ theme }}{% endif %} - {% endif %}
+        {{ site.provider.name|upper }} - {% trans 'демо всех слотов в рублях на однои сайте' %}! {% trans 'Играйте в любой слот прямо сейчас!' %}{% if slots.number %} - {% trans 'Страница' %} {{ slots.number }}{% endif %}">
+    <meta name="keywords"
+      content="{{ keywords }}">
+
+    <meta name="author" content="{{ site.provider.name|upper }}">
+    <meta name="theme-color" content="#ff872a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Theme switcher (color modes) -->
+    <script src="{% static 'assets/js/theme-switcher.js' %}"></script>
+
+    <!-- Favicon and Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicon/pragmatic-apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon/pragmatic-favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon/pragmatic-favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicon/pragmatic.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'assets/favicon/pragmatic-safari-pinned-tab.svg" color="#6366f1' %}">
+    <link rel="shortcut icon" href="{% static 'assets/favicon/pragmatic-favicon.ico' %}">
+    <meta name="msapplication-TileColor" content="#ff872a">
+    <meta name="msapplication-config" content="{% static 'assets/favicon/pragmatic-browserconfig.xml' %}">
+
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}">
+    <link rel="stylesheet" media="screen" href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}">
+
+    <!-- Main Theme Styles + Bootstrap -->
+    <link rel="stylesheet" media="screen" href="{% static 'assets/css/theme.min.css' %}">
+
+    <!-- Page loading styles -->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+        [data-bs-theme="dark"] .page-loading {
+            background-color: #0b0f19;
+        }
+
+        .page-loading.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active > .page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner > span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #9397ad;
+        }
+
+        [data-bs-theme="dark"] .page-loading-inner > span {
+            color: #fff;
+            opacity: .6;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            border: .15em solid #b4b7c9;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        [data-bs-theme="dark"] .page-spinner {
+            border-color: rgba(255, 255, 255, .4);
+            border-right-color: transparent;
+        }
+
+        @-webkit-keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        .content {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        .gradient-block{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, #160F1D, rgba(22, 15, 29, 0));
+            z-index: 1;
+        }
+    </style>
+
+    <!-- Page loading scripts -->
+    <script>
+        (function () {
+            window.onload = function () {
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1000);
+            };
+        })();
+    </script>
+
+{{ site.counters|safe }}
+
+</head>
+
+
+<!-- Body -->
+<body>
+
+
+
+<!-- Page wrapper for sticky footer -->
+<!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+<main class="page-wrapper">
+
+
+    <!-- Navbar -->
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+    <header class="header navbar navbar-expand-lg bg-light navbar-sticky">
+        <div class="container px-3">
+            <a href="{% url 'home' %}" class="navbar-brand pe-3">
+                <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="{{ site.provider.name }}"
+                     class="d-dark-mode-block d-none">
+                <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="{{ site.provider.name }}"
+                     class="d-dark-mode-none">
+            </a>
+            <div id="navbarNav" class="offcanvas offcanvas-end">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">{% trans 'Меню' %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="{% url 'slot_list' %}" class="nav-link">{% trans 'Все слоты' %}</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Популярные' %}</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <h6 class="px-3 mb-2">{% trans 'Выбор игроков' %}</h6>
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in users_choice_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                    <div class="mega-dropdown-column me-5">
+                                        <h6 class="px-3 mb-2">{% trans 'Популярные' %}</h6>
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in popular_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Новые' %}</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-3">
+                                            {% for slot in new_slots %}
+                                            <li><a href="{% url 'slot_detail' slug=slot.slug %}" class="dropdown-item py-1">{{ slot.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+{#                        <li class="nav-item dropdown">#}
+{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Категории' %}</a>#}
+{#                            <div class="dropdown-menu">#}
+{#                                <div class="d-lg-flex pt-lg-3">#}
+{#                                    <div class="mega-dropdown-column me-5">#}
+{#                                        <ul class="list-unstyled mb-3">#}
+{#                                            <li><a href="/slots/?slot_name=Собаки" class="dropdown-item py-1">Собаки</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Рыбалка" class="dropdown-item py-1">Рыбалка</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Дикий запад" class="dropdown-item py-1">Дикий запад</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Сладости и Фрукты" class="dropdown-item py-1">Сладости и Фрукты</a></li>#}
+{#                                            <li><a href="/slots/?slot_name=Megaways" class="dropdown-item py-1">Megaways</a></li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{% trans 'Тематика' %}</a>
+                            <div class="dropdown-menu">
+                                <div class="d-lg-flex pt-lg-3">
+                                    <div class="mega-dropdown-column me-5">
+                                        <ul class="list-unstyled mb-lg-3">
+                                            {% for theme in themes %}
+                                            <li><a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="dropdown-item py-1">{{ theme.title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+{#                        <li class="nav-item dropdown">#}
+{#                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ LANGUAGE_CODE|upper }}</a>#}
+{#                            <div class="dropdown-menu">#}
+{#                                <div class="d-lg-flex pt-lg-3">#}
+{#                                    <div class="mega-dropdown-column me-5">#}
+{#                                        <ul class="list-unstyled mb-lg-3">#}
+{#                                            <li><a href="/en{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">English</a></li>#}
+{#                                            <li><a href="/es{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">Español</a></li>#}
+{#                                            <li><a href="{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">Русский</a></li>#}
+{#                                            <li><a href="/de{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">Deutsch</a></li>#}
+{#                                            <li><a href="/pt{{ request.path|remove:'/en,/es,/pt,/de' }}" class="dropdown-item py-1">Português</a></li>#}
+{#                                        </ul>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </li>#}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="install-link" style="display: none;">{% trans 'Установить приложение' %}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="offcanvas-header border-top">
+                    <span data-href="/play/{{ site.sorted_offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
+                       onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"
+                       class="btn btn-primary w-100 play-link" data-target="_blank">
+                        <i class="bx bx-money fs-4 lh-1 me-1"></i>
+                        &nbsp;{% trans 'Получить бонус' %} 100 FS
+                    </span>
+                </div>
+            </div>
+            <div class="form-check form-switch mode-switch pe-lg-1 ms-auto me-4" data-bs-toggle="mode">
+                <input type="checkbox" class="form-check-input" id="theme-mode" checked>
+                <label class="form-check-label d-none d-sm-block" for="theme-mode">{% trans 'Светло' %}</label>
+                <label class="form-check-label d-none d-sm-block" for="theme-mode">{% trans 'Темно' %}</label>
+            </div>
+            <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <span data-href="/play/{{ site.sorted_offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
+               onclick="ym(97614878, 'reachGoal', 'header_bonus_button'); return true;"
+               class="btn btn-primary btn-sm fs-sm rounded d-none d-lg-inline-flex play-link" data-target="_blank">
+                <i class="bx bx-money fs-5 lh-1 me-1"></i>
+                &nbsp;{% trans 'Получить бонус' %} 100 FS
+            </span>
+        </div>
+    </header>
+
+
+    {% block content %}
+    {% endblock %}
+
+
+</main>
+
+
+<!-- Footer -->
+<footer class="footer pt-5 pb-4 pb-lg-5">
+    <div class="container pt-lg-4">
+        <div class="row pb-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="navbar-brand text-dark p-0 me-0 mb-3 mb-lg-4">
+                    <img src="{% static 'assets/img/logo.svg' %}" width="150" alt="{{ site.provider.name }}"
+                         class="d-dark-mode-block d-none">
+                    <img src="{% static 'assets/img/pragmatic-play-provider.webp' %}" width="150" alt="{{ site.provider.name }}"
+                         class="d-dark-mode-none">
+                </div>
+                <p class="fs-sm pb-lg-3 mb-4">
+                    {{ footer_info }}
+                </p>
+
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-5 offset-xl-2 offset-md-1 pt-4 pt-md-1 pt-lg-0">
+                <div id="footer-links" class="row">
+                    <div class="col-lg-4">
+                        <h6 class="mb-2">
+                            <a href="#useful-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                               data-bs-toggle="collapse">{% trans 'Меню' %}</a>
+                        </h6>
+                        <div id="useful-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                            <ul class="nav flex-column pb-lg-1 mb-lg-3">
+                                <li class="nav-item"><a href="{% url 'home' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Главная' %}</a>
+                                </li>
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='feedback' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Обратная связь' %}</a></li>
+                            </ul>
+                            <ul class="nav flex-column mb-2 mb-lg-0">
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='terms' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Terms
+                                    &amp; Conditions</a></li>
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='privacy' %}" class="nav-link d-inline-block px-0 pt-1 pb-2">Privacy
+                                    Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-3">
+                        <h6 class="mb-2">
+                            <a href="#social-links" class="d-block text-dark dropdown-toggle d-lg-none py-2"
+                               data-bs-toggle="collapse">{% trans 'Полезные ссылки' %}</a>
+                        </h6>
+                        <div id="social-links" class="collapse d-lg-block" data-bs-parent="#footer-links">
+                            <ul class="nav flex-column pb-lg-1 mb-lg-3">
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='gambling-addiction' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Об игровой зависимости' %}</a></li>
+                                <li class="nav-item"><a href="{% url 'page_detail' slug='responsible-gambling' %}"
+                                                        class="nav-link d-inline-block px-0 pt-1 pb-2">{% trans 'Ответственная игра' %}</a></li>
+                            </ul>
+                            <ul class="nav flex-column mb-2 mb-lg-0">
+                                        <li class="nav-item">
+                                            <a href="/en/" class="nav-link d-inline-block px-0 pt-1 pb-2">English</a>
+                                        </li>
+                                <li class="nav-item">
+                                            <a href="/es/" class="nav-link d-inline-block px-0 pt-1 pb-2">Español</a>
+                                        </li>
+                                <li class="nav-item">
+                                            <a href="/" class="nav-link d-inline-block px-0 pt-1 pb-2">Русский</a>
+                                        </li>
+                                <li class="nav-item">
+                                            <a href="/de/" class="nav-link d-inline-block px-0 pt-1 pb-2">Deutsch</a>
+                                        </li>
+                                <li class="nav-item">
+                                            <a href="/pt/" class="nav-link d-inline-block px-0 pt-1 pb-2">Português</a>
+                                        </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-5 pt-2 pt-lg-0">
+                        <h6 class="mb-2">{% trans 'Напишите нам' %}</h6>
+                        <a href="mailto:play@{{ site.domain }}" class="fw-medium">play@{{ site.domain }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+
+<!-- Back to top button -->
+<a href="#top" class="btn-scroll-top" data-scroll>
+    <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+    <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+</a>
+
+
+<!-- Vendor Scripts -->
+<script src="{% static 'assets/vendor/parallax-js/dist/parallax.min.js' %}"></script>
+<script src="{% static 'assets/vendor/rellax/rellax.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+<!-- Main Theme Script -->
+<script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+<script type="text/javascript">
+    var hideTextLabel = "{% trans 'Скрыть текст' %}";
+    var readMoreLabel = "{% trans 'Читать полностью' %}";
+</script>
+
+<script src="{% static 'assets/js/assets.js' %}"></script>
+
+{% if is_promo %}
+<div id="promo">
+{#    <div class="btn btn-lg position-relative top-50 start-50 btn-primary shadow-primary translate-middle">#}
+{#        Мне есть 18 лет#}
+{#    </div>#}
+</div>
+<style>
+    #promo{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0);
+        z-index: 100;
+    }
+</style>
+    <script>
+    document.getElementById('promo').addEventListener('click', function (){
+        window.location.href = '/';
+    })
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.href = '/bonuses/'
+    })
+
+    function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+const clickId = getQueryParam('clickid');
+
+if (clickId) {
+    const oneMonthInSeconds = 30 * 24 * 60 * 60;
+    document.cookie = `clickid=${clickId}; path=/; max-age=${oneMonthInSeconds}`;
+}
+
+    </script>
+{% endif %}
+
+
+</body>
+</html>
