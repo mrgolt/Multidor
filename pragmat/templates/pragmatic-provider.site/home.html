@@ -8,18 +8,15 @@
         <div class="container pt-3 pt-sm-4 pt-xl-5">
           <div class="row pt-md-2 pt-lg-5">
             <div class="col-md-5 d-flex flex-column mt-md-4 pt-5 pb-3 pb-sm-4 py-md-5">
-              <h1 class="display-1 text-center text-md-start mb-4">Pragmatic Play</h1>
-              <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4 mb-lg-5">Демо всех слотов на одном сайте и лучшие предложения по бонусам от наших партнеров!</p>
-{#              <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start">#}
-{#                <a href="#" class="btn btn-dark btn-lg px-3 py-2 me-sm-3 me-lg-4 mb-3">#}
-{#                  <img src="assets/img/market/appstore-light.svg" class="light-mode-img" width="124" alt="App Store">#}
-{#                  <img src="assets/img/market/appstore-dark.svg" class="dark-mode-img" width="124" alt="App Store">#}
-{#                </a>#}
-{#                <a href="#" class="btn btn-dark btn-lg px-3 py-2 mb-3">#}
-{#                  <img src="assets/img/market/googleplay-light.svg" class="light-mode-img" width="139" alt="Google Play">#}
-{#                  <img src="assets/img/market/googleplay-dark.svg" class="dark-mode-img" width="139" alt="Google Play">#}
-{#                </a>#}
-{#              </div>#}
+              <h1 class="display-1 text-center text-primary text-md-start mb-4">Pragmatic Play</h1>
+              <p class="display-5 text-center text-md-start pb-2 pb-md-3 mb-4 mb-lg-5">Демо всех слотов на одном сайте и лучшие предложения по бонусам от наших партнеров!</p>
+              <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start">
+                <span data-href="/play/{{ site.sorted_offers.first.redirect_name }}/?placement=menu&path={{ request.path }}"
+                   class="btn btn-primary btn-lg rounded d-none d-lg-inline-flex play-link" data-target="_blank">
+                    <i class="bx bx-money fs-5 lh-1 me-1"></i>
+                    &nbsp;Бездепозитный бонус 100 FS
+                </span>
+              </div>
               <div class="position-relative d-inline-flex align-items-center justify-content-center justify-content-md-start mt-auto pt-3 pt-md-4 pb-xl-2">
                 <a href="#popular-slots" class="btn btn-icon btn-light bg-white stretched-link rounded-circle me-3" data-scroll="" data-scroll-offset="120" aria-label="Scroll for more">
                   <i class="bx bx-chevron-down"></i>
@@ -30,7 +27,7 @@
             <div class="col-md-7 align-self-end">
               <div class="position-relative overflow-hidden mt-4 pb-3 pt-4 mx-auto me-md-0" style="max-width: 632px;">
                 <div class="ratio ratio-1x1"></div>
-                <img src="assets/img/pragmat_hero.webp" class="rellax position-absolute top-0 start-0 zindex-2" data-rellax-speed="1.6" data-disable-parallax-down="md" alt="Phone" style="transform: translate3d(0px, 0px, 0px);">
+                <img src="/static/assets/img/pragmat_hero.webp" class="rellax position-absolute top-0 start-0 zindex-2" data-rellax-speed="1.6" data-disable-parallax-down="md" alt="Phone" style="transform: translate3d(0px, 0px, 0px);">
               </div>
             </div>
           </div>
