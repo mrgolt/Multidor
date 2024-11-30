@@ -4,159 +4,42 @@
 {% block content %}
 
 
-    <!-- Hero section with layer parallax gfx -->
-    <section class="position-relative py-5">
-
-        <!-- Gradient BG -->
-        <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-primary opacity-10"></div>
-
-        <!-- Content -->
-        <div class="container position-relative zindex-2 py-lg-4">
-            <div class="row">
-                <div class="col-lg-5 d-flex flex-column pt-lg-4 pt-xl-5">
-                    <h5 class="my-2">{% trans 'Добро пожаловать!' %}</h5>
-                    <h1 class="display-1 mb-4"><span class="text-primary">Pragmatic Play</span></h1>
-                    <p class="fs-lg mb-5">{% trans 'Играй в любимые слоты в демо-режиме и на реальные деньги!' %}</p>
-
-                    <!-- Desktop form -->
-                    <form class="d-none d-sm-flex mb-5" action="{% url 'slot_list' %}" method="get">
-                        <div class="input-group d-block d-sm-flex input-group-lg me-3">
-
-                                <input type="text" class="form-control w-50" placeholder="{% trans 'Найти слот' %}..." name="slot_name">
-
-                        </div>
-                        <button type="submit" class="btn btn-icon btn-primary btn-lg" aria-label="{% trans 'Поиск' %}">
-                            <i class="bx bx-search"></i>
-                        </button>
-                    </form>
-
-                    <!-- Mobile form -->
-                    <form class="d-sm-none mb-5" action="{% url 'slot_list' %}" method="get">
-                        <input type="text" class="form-control form-control-lg mb-2" placeholder="{% trans 'Найти слот' %}..." name="slot_name">
-                        <button type="submit" class="btn btn-icon btn-primary btn-lg w-100 d-sm-none"
-                                aria-label="Поиск">
-                            <i class="bx bx-search"></i>
-                        </button>
-                    </form>
-                    <div class="d-flex align-items-center mt-auto mb-3 mb-lg-0 pb-4 pb-lg-0 pb-xl-5">
-                        <div class="d-flex me-3">
-                            <div class="d-flex align-items-center justify-content-center bg-light rounded-circle"
-                                 style="width: 52px; height: 52px;">
-                                <img src="{% static 'assets/img/avatar/36.jpg' %}" class="rounded-circle" width="48"
-                                     alt="Avatar">
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3"
-                                 style="width: 52px; height: 52px;">
-                                <img src="{% static 'assets/img/avatar/53.jpg' %}" class="rounded-circle" width="48"
-                                     alt="Avatar">
-                            </div>
-                            <div class="d-flex align-items-center justify-content-center bg-light rounded-circle ms-n3"
-                                 style="width: 52px; height: 52px;">
-                                <img src="{% static 'assets/img/avatar/32.jpg' %}" class="rounded-circle" width="48"
-                                     alt="Avatar">
-                            </div>
-                        </div>
-                        <span class="fs-sm"><span
-                                class="text-primary fw-semibold">10М+</span> {% trans 'игроков уже с нами' %}</span>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <!-- Parallax gfx -->
-                    <a href="/slots/">
-                        <div class="parallax mx-auto me-lg-0" style="max-width: 648px;">
-                            <div class="parallax-layer" data-depth="0.1">
-                                <img src="{% static 'assets/img/landing/online-courses/hero/layer01.png' %}" alt="Layer">
-                            </div>
-                            <div class="parallax-layer" data-depth="0.13">
-                                <img src="{% static 'assets/img/landing/online-courses/hero/layer02.png' %}" alt="Layer">
-                            </div>
-                            <div class="parallax-layer zindex-5" data-depth="-0.12">
-                                <img src="{% static 'assets/img/landing/online-courses/hero/starlight.webp' %}" alt="Layer">
-                            </div>
-                            <div class="parallax-layer zindex-3" data-depth="0.27">
-                                <img src="{% static 'assets/img/landing/online-courses/hero/gates.webp' %}" alt="Layer">
-                            </div>
-                            <div class="parallax-layer zindex-1" data-depth="-0.18">
-                                <img src="{% static 'assets/img/landing/online-courses/hero/dog.webp' %}" alt="Layer">
-                            </div>
-                            <div class="parallax-layer zindex-1" data-depth="0.1">
-                                <img src="{% static 'assets/img/landing/online-courses/hero/pyramides.webp' %}" alt="Layer">
-                            </div>
-                        </div>
-                    </a>
-                </div>
+<section class="overflow-hidden pt-5" style="background: radial-gradient(116.18% 118% at 50% 100%, rgba(99, 102, 241, 0.1) 0%, rgba(218, 70, 239, 0.05) 41.83%, rgba(241, 244, 253, 0.07) 82.52%);">
+        <div class="container pt-3 pt-sm-4 pt-xl-5">
+          <div class="row pt-md-2 pt-lg-5">
+            <div class="col-md-5 d-flex flex-column mt-md-4 pt-5 pb-3 pb-sm-4 py-md-5">
+              <h1 class="display-1 text-center text-md-start mb-4">Pragmatic Play</h1>
+              <p class="fs-lg text-center text-md-start pb-2 pb-md-3 mb-4 mb-lg-5">Демо всех слотов на одном сайте и лучшие предложения по бонусам от наших партнеров!</p>
+{#              <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start">#}
+{#                <a href="#" class="btn btn-dark btn-lg px-3 py-2 me-sm-3 me-lg-4 mb-3">#}
+{#                  <img src="assets/img/market/appstore-light.svg" class="light-mode-img" width="124" alt="App Store">#}
+{#                  <img src="assets/img/market/appstore-dark.svg" class="dark-mode-img" width="124" alt="App Store">#}
+{#                </a>#}
+{#                <a href="#" class="btn btn-dark btn-lg px-3 py-2 mb-3">#}
+{#                  <img src="assets/img/market/googleplay-light.svg" class="light-mode-img" width="139" alt="Google Play">#}
+{#                  <img src="assets/img/market/googleplay-dark.svg" class="dark-mode-img" width="139" alt="Google Play">#}
+{#                </a>#}
+{#              </div>#}
+              <div class="position-relative d-inline-flex align-items-center justify-content-center justify-content-md-start mt-auto pt-3 pt-md-4 pb-xl-2">
+                <a href="#popular-slots" class="btn btn-icon btn-light bg-white stretched-link rounded-circle me-3" data-scroll="" data-scroll-offset="120" aria-label="Scroll for more">
+                  <i class="bx bx-chevron-down"></i>
+                </a>
+                <span class="fs-sm">Перейти к слотам</span>
+              </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Story -->
-    <section class="container mb-1 pt-md-1 pt-lg-4 pt-xl-5">
-        <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
-            <h2 class="h1 mb-4">{{ home_page_subtitle|safe }}
-            </h2>
-            {{ home_page_info|safe }}
-
-        </div>
-
-
-    </section>
-
-    <!-- Benefits (features) -->
-    <section class="container mb-5 pt-lg-1" id="benefits">
-        <div class="swiper pt-3" data-swiper-options='{
-          "slidesPerView": 1,
-          "pagination": {
-            "el": ".swiper-pagination",
-            "clickable": true
-          },
-          "breakpoints": {
-            "500": {
-              "slidesPerView": 2
-            },
-            "991": {
-              "slidesPerView": 3
-            }
-          }
-        }'>
-            <div class="swiper-wrapper">
-
-                <!-- Item -->
-                <div class="swiper-slide border-end-lg px-2">
-                    <div class="text-center">
-                        <img src="{% static 'assets/img/landing/digital-agency/icons/team.svg' %}" width="48"
-                             alt="Bulb icon" class="d-block mb-4 mx-auto">
-                        {{ feature_1|safe }}
-                    </div>
-                </div>
-
-                <!-- Item -->
-                <div class="swiper-slide border-end-lg px-2">
-                    <div class="text-center">
-                        <img src="{% static 'assets/img/landing/digital-agency/icons/award.svg' %}" width="48"
-                             alt="Award icon" class="d-block mb-4 mx-auto">
-                        {{ feature_2|safe }}
-                    </div>
-                </div>
-
-                <!-- Item -->
-                <div class="swiper-slide px-2">
-                    <div class="text-center">
-                        <img src="{% static 'assets/img/landing/digital-agency/icons/idea.svg' %}" width="48"
-                             alt="Team icon" class="d-block mb-4 mx-auto">
-                        {{ feature_3|safe }}
-                    </div>
-                </div>
-
-
+            <div class="col-md-7 align-self-end">
+              <div class="position-relative overflow-hidden mt-4 pb-3 pt-4 mx-auto me-md-0" style="max-width: 632px;">
+                <div class="ratio ratio-1x1"></div>
+                <img src="assets/img/pragmat_hero.webp" class="rellax position-absolute top-0 start-0 zindex-2" data-rellax-speed="1.6" data-disable-parallax-down="md" alt="Phone" style="transform: translate3d(0px, 0px, 0px);">
+              </div>
             </div>
-
-            <!-- Pagination (bullets) -->
-            <div class="swiper-pagination position-relative pt-2 pt-sm-3 mt-4"></div>
+          </div>
         </div>
-    </section>
+      </section>
+
 
     <!-- Popular slots -->
-    <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2">
+    <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2" id="popular-slots">
         <div class="row py-5">
 
             <div>
