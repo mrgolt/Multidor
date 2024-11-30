@@ -43,55 +43,41 @@
 </section>
 
 <!-- Slots -->
-<section class="container pb-2 mb-md-1 mb-lg-1">
+    <section class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 mb-3 g-3">
 
-        {% for slot in slots %}
+      <!-- Slots grid -->
+      <div class="masonry-grid row g-md-4 g-2 mb-2">
+
+          {% for slot in slots %}
         <!-- Item -->
-        <div class="col">
-            <article class="card h-100 border-0 text-center card-hover border-primary">
-                <div class="position-relative">
-                    <a href="{% url 'slot_detail' slug=slot.slug %}" class="d-block position-absolute w-100 h-100 top-0 start-0"
-                       aria-label="{{ slot.name }}"></a>
-                <div class="position-absolute top-0 start-0 zindex-2 mt-3 ms-3">
-                    {% if slot.users_choice %}<span class="badge bg-primary">{% trans 'Выбор игроков' %}</span>{% endif %}
-{#                    {% if slot.is_new %}<span class="badge bg-success ">Новинка</span>{% endif %}#}
-                </div>
-
-                    <img src="{{ slot.logo.url }}" class="card-img-top"
-                         alt="{{ slot.name }}" loading="lazy">
-                </div>
-                <div class="card-body pb-3">
-                    <h3 class="h5 mb-2">
-                        <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
-                    </h3>
-                    <p class="fs-sm mb-2">{{ slot.snippet }}</p>
-                    <a href="{% url 'slot_detail' slug=slot.slug %}" class="btn btn-primary mt-2 stretched-link">{% trans 'Играть сейчас' %}</a>
-                </div>
-                <div class="card-footer d-flex fs-sm text-muted py-3">
-                    <div class="d-flex me-4">
-                        RTP: {{ slot.rtp }}%
-                    </div>
-                    <div class="d-flex ms-auto">
-                        <i class="bx bx-like fs-xl me-1"></i>
-                        {{ slot.rating }}%
-                    </div>
-                </div>
-            </article>
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+          <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+            <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+              <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+              <div class="position-relative zindex-2">
+                <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+              </div>
+            </div>
+            <div class="card-img">
+              <img
+                src="{{ slot.logo.url }}"
+                class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
+            </div>
+          </a>
         </div>
-        {% endfor %}
+          {% endfor %}
 
 
-    </div>
+      </div>
 
-
-<!-- Pagination -->
+    <!-- Pagination -->
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center py-4">
                 {% if slots.has_previous %}
                     <li class="page-item">
-                        <a href="?page={{ slots.previous_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}" class="page-link"
+                        <a href="?page={{ slots.previous_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}{% if theme %}&theme={{ theme.id  }}{% endif %}{% if payline %}&payline={{ payline }}{% endif %}{% if feature %}&feature={{ feature }}{% endif %}" class="page-link"
                            aria-label="Previous page">
                             <i class="bx bx-chevron-left mx-n1"></i>
                         </a>
@@ -100,7 +86,7 @@
 
                 {% if slots.number > 3 %}
                     <li class="page-item">
-                        <a href="?page=1{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}"
+                        <a href="?page=1{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}{% if theme %}&theme={{ theme.id  }}{% endif %}{% if payline %}&payline={{ payline }}{% endif %}{% if feature %}&feature={{ feature }}{% endif %}"
                            class="page-link">1</a>
                     </li>
                     <li class="page-item">
@@ -111,7 +97,7 @@
                 {% for num in slots.paginator.page_range %}
                     {% if num >= slots.number|add:"-1" and num <= slots.number|add:"1" %}
                         <li class="page-item {% if num == slots.number %}active{% endif %}">
-                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}" class="page-link">{{ num }}</a>
+                            <a href="?page={{ num }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}{% if payline %}&payline={{ payline }}{% endif %}{% if feature %}&feature={{ feature }}{% endif %}" class="page-link">{{ num }}</a>
                         </li>
                     {% endif %}
                 {% endfor %}
@@ -121,14 +107,14 @@
                         &hellip;
                     </li>
                     <li class="page-item">
-                        <a href="?page={{ slots.paginator.num_pages }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}"
+                        <a href="?page={{ slots.paginator.num_pages }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}{% if theme %}&theme={{ theme.id  }}{% endif %}{% if payline %}&payline={{ payline }}{% endif %}{% if feature %}&feature={{ feature }}{% endif %}"
                            class="page-link">{{ slots.paginator.num_pages }}</a>
                     </li>
                 {% endif %}
 
                 {% if slots.has_next %}
                     <li class="page-item">
-                        <a href="?page={{ slots.next_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}"
+                        <a href="?page={{ slots.next_page_number }}{% if slot_name %}&slot_name={{ slot_name }}{% endif %}{% if slot_type %}&slot_type={{ slot_type.id }}{% endif %}{% if theme %}&theme={{ theme.id }}{% endif %}{% if payline %}&payline={{ payline }}{% endif %}{% if feature %}&feature={{ feature }}{% endif %}"
                            class="page-link" aria-label="Next page">
                             <i class="bx bx-chevron-right mx-n1"></i>
                         </a>
@@ -137,7 +123,7 @@
             </ul>
         </nav>
 
-</section>
+    </section>
 
 
 <!-- Brands (Carousel) -->
