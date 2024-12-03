@@ -115,6 +115,7 @@ def custom_serve(request, slug=None):
 
         if content.first().interface_image:
             site.interface_image = content.first().interface_image
+            site.interface_image_webp = content.first().interface_image
 
         comments = Comment.objects.filter(page=content[0], created_at__lte=timezone.now()).order_by('-created_at')
 
