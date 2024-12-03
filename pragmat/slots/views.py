@@ -13,6 +13,7 @@ from pragmatic.views import update_slots_with_descriptions
 from django.utils.translation import get_language
 from django.db.models import Case, When
 from django.views.decorators.cache import cache_page
+import random
 
 @cache_page(60 * 60 * 24)
 def slot_list(request):
@@ -195,3 +196,28 @@ def page_detail(request, slug):
     users_choice_slots = Slot.objects.filter(users_choice=True, provider=site.provider)[:10]
 
     return render(request, site.page_detail_template, {'site': site, 'page': page, 'popular_slots': popular_slots, 'new_slots': new_slots, 'users_choice_slots': users_choice_slots})
+
+
+@cache_page(60 * 60 * 24 * 30)
+def optimized_logo(request, slug):
+    site = request.site
+    slot = get_object_or_404(Slot, slug=slug, provider=site.provider)
+
+    # Получаем логотип слота
+    logo = slot.logo
+
+    # Открываем изображение с помощью Pillow
+    image = Image.open(logo)
+
+    # Генерируем случайное качество от 65 до 75
+    quality = random.randint(65, 75)
+
+    # Создаем объект BytesIO для хранения изображения в памяти
+    img_byte_arr = io.BytesIO()
+
+    # Сохраняем изображение в формате WebP
+    image.save(img_byte_arr, format='WEBP', quality=quality)
+    img_byte_arr.seek(0)
+
+    # Возвращаем изображение в ответе
+    return HttpResponse(img_byte_arr, content_type='image/webp')
