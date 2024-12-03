@@ -213,7 +213,7 @@ def optimized_logo(request, slug):
     image = Image.open(logo)
 
     # Генерируем случайное качество от 65 до 75
-    quality = random.randint(65, 75)
+    quality = random.randint(70, 85)
 
     # Создаем объект BytesIO для хранения изображения в памяти
     img_byte_arr = io.BytesIO()
