@@ -6,7 +6,7 @@
     {% if content.first.is_main %}
         <title>{{ content.first.title|upper }} - Играйте демо в рублях и на реальные деньги! - {{ bonuses.first.name|striptags }} - Слот от {{ site.provider_name }}</title>
     {% else %}
-        <title>{{ site.slot_name|upper }} - Играйте демо в рублях и на реальные деньги! - {{ content.first.title }} - {{ bonuses.first.name|striptags }} - Слот
+        <title>{{ content.first.title }} - Играйте демо в рублях и на реальные деньги! - {{ bonuses.first.name|striptags }} - Слот
             от {{ site.provider_name }}</title>
     {% endif %}
 
