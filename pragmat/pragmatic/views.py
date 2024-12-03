@@ -123,7 +123,7 @@ def send_index_now(request):
         '/slots/'
     ]
 
-    slots = Slot.objects.filter(provider=request.site.provider)
+    slots = Slot.objects.filter(provider=request.site.provider).order_by('-id')
 
     for slot in slots:
         pages.append(f'/slots/{slot.slug}/')
