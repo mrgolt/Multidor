@@ -159,35 +159,20 @@
                         {% for slot in similar_slots %}
                             <!-- Item -->
                             <div class="swiper-slide h-auto pb-3">
-                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
-                                    <div class="position-relative">
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
-                                           aria-label="{{ slot.name }}"></a>
-                                        {% if slot.users_choice %}
-                                            <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">{% trans 'Выбор игроков' %}</span>{% endif %}
-
-                                        <img src="{% url 'optimized_logo' slug=slot.slug %}"
-                                             class="card-img-top" alt="{{ slot.name }}" loading="lazy">
+                                <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+                                    <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+                                      <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+                                      <div class="position-relative zindex-2">
+                                        <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+                                        <span class="fs-sm text-light opacity-70 d-none d-lg-flex">{{ slot.snippet|slice:":100" }}...</span>
+                                      </div>
                                     </div>
-                                    <div class="card-body pb-3">
-                                        <h3 class="h5 mb-2">
-                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
-                                        </h3>
-                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="btn btn-primary mt-2 stretched-link">{% trans 'Играть сейчас' %}</a>
+                                    <div class="card-img">
+                                      <img
+                                        src="{% url 'optimized_logo' slug=slot.slug %}"
+                                        class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
                                     </div>
-                                    <div class="card-footer d-flex fs-sm text-muted py-3">
-                                        <div class="d-flex me-4">
-                                            RTP: {{ slot.rtp }}%
-                                        </div>
-                                        <div class="d-flex ms-auto">
-                                            <i class="bx bx-like fs-xl me-1"></i>
-                                            {{ slot.rating }}%
-                                        </div>
-                                    </div>
-                                </article>
+                                  </a>
                             </div>
 
                         {% endfor %}
@@ -259,35 +244,20 @@
                         {% for slot in popular_slots %}
                             <!-- Item -->
                             <div class="swiper-slide h-auto pb-3">
-                                <article class="card h-100 border-0 shadow-primary mx-2 text-center card-hover mt-1">
-                                    <div class="position-relative">
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="d-block position-absolute w-100 h-100 top-0 start-0"
-                                           aria-label="{{ slot.name }}"></a>
-                                        {% if slot.users_choice %}
-                                            <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">{% trans 'Выбор игроков' %}</span>{% endif %}
-
-                                        <img src="{% url 'optimized_logo' slug=slot.slug %}"
-                                             class="card-img-top" alt="{{ slot.name }}" loading="lazy">
+                                <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
+                                    <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
+                                      <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
+                                      <div class="position-relative zindex-2">
+                                        <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
+                                        <span class="fs-sm text-light opacity-70 d-none d-lg-flex">{{ slot.snippet|slice:":100" }}...</span>
+                                      </div>
                                     </div>
-                                    <div class="card-body pb-3">
-                                        <h3 class="h5 mb-2">
-                                            <a href="{% url 'slot_detail' slug=slot.slug %}">{{ slot.name }}</a>
-                                        </h3>
-                                        <p class="fs-sm mb-2">{{ slot.snippet }}</p>
-                                        <a href="{% url 'slot_detail' slug=slot.slug %}"
-                                           class="btn btn-primary mt-2 stretched-link">{% trans 'Играть сейчас' %}</a>
+                                    <div class="card-img">
+                                      <img
+                                        src="{% url 'optimized_logo' slug=slot.slug %}"
+                                        class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
                                     </div>
-                                    <div class="card-footer d-flex fs-sm text-muted py-3">
-                                        <div class="d-flex me-4">
-                                            RTP: {{ slot.rtp }}%
-                                        </div>
-                                        <div class="d-flex ms-auto">
-                                            <i class="bx bx-like fs-xl me-1"></i>
-                                            {{ slot.rating }}%
-                                        </div>
-                                    </div>
-                                </article>
+                                  </a>
                             </div>
 
                         {% endfor %}

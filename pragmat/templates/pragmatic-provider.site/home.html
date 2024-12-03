@@ -52,13 +52,13 @@
 
           {% for slot in popular_slots %}
         <!-- Item -->
-        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-12">
           <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
             <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
               <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
               <div class="position-relative zindex-2">
                 <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
-				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+				<span class="fs-sm text-light opacity-70 d-none d-lg-flex">{{ slot.snippet|slice:":100" }}...</span>
               </div>
             </div>
             <div class="card-img">
@@ -95,13 +95,13 @@
 
           {% for slot in new_slots %}
         <!-- Item -->
-        <div class="masonry-grid-item col-md-4 col-sm-6 col-6">
+        <div class="masonry-grid-item col-md-4 col-sm-6 col-12">
           <a href="{% url 'slot_detail' slug=slot.slug %}" class="card card-portfolio card-hover bg-transparent border-0">
             <div class="card-img-overlay d-flex flex-column align-items-center justify-content-center rounded-3">
               <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-80 rounded-3"></span>
               <div class="position-relative zindex-2">
                 <h3 class="h3 text-light mb-2">{{ slot.name }}</h3>
-				<span class="fs-sm text-light opacity-70 d-none d-md-flex">{{ slot.snippet|slice:":100" }}...</span>
+				<span class="fs-sm text-light opacity-70 d-none d-lg-flex">{{ slot.snippet|slice:":100" }}...</span>
               </div>
             </div>
             <div class="card-img">
