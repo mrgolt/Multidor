@@ -63,7 +63,7 @@
             </div>
             <div class="card-img">
               <img
-                src="{{ slot.logo.url }}"
+                src="{% url 'optimized_logo' slug=slot.slug %}"
                 class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
             </div>
           </a>
@@ -106,7 +106,7 @@
             </div>
             <div class="card-img">
               <img
-                src="{{ slot.logo.url }}"
+                src="{% url 'optimized_logo' slug=slot.slug %}"
                 class="rounded-3 w-100 h-100" alt="{{ slot.name }}" loading="lazy">
             </div>
           </a>

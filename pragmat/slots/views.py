@@ -13,7 +13,10 @@ from pragmatic.views import update_slots_with_descriptions
 from django.utils.translation import get_language
 from django.db.models import Case, When
 from django.views.decorators.cache import cache_page
+from PIL import Image
+import io
 import random
+from django.http import HttpResponse
 
 @cache_page(60 * 60 * 24)
 def slot_list(request):
