@@ -267,7 +267,7 @@
                                         {% if slot.users_choice %}
                                             <span class="badge bg-primary position-absolute top-0 start-0 zindex-2 mt-3 ms-3 ">{% trans 'Выбор игроков' %}</span>{% endif %}
 
-                                        <img src="{{ slot.logo.url }}"
+                                        <img src="{% url 'optimized_logo' slug=slot.slug %}"
                                              class="card-img-top" alt="{{ slot.name }}" loading="lazy">
                                     </div>
                                     <div class="card-body pb-3">
