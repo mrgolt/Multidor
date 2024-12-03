@@ -246,7 +246,7 @@
                                     <div class="mega-dropdown-column">
                                         <ul class="list-unstyled mb-3">
                                             {% for page in version_pages %}
-                                                <li><a href="/page/{{ page.slug }}/" class="dropdown-item py-1">{{ page.title }}</a></li>
+                                                <li><a href="{% if page.is_main %}/{% else %}/page/{{ page.slug }}/{% endif %}" class="dropdown-item py-1">{{ page.title }}</a></li>
                                             {% endfor %}
                                         </ul>
                                     </div>
