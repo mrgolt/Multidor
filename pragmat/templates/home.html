@@ -156,8 +156,8 @@
     </section>
 
             <!-- Themes (Carousel) -->
-    <section class="container" style="width:120%; overflow:hidden;">
-        <div class="swiper" data-swiper-options='{
+    <section class="container" style="overflow:hidden;">
+        <div class="swiper" style="width:120%;" data-swiper-options='{
           "slidesPerView": 4,
           "spaceBetween": 2,
           "pagination": {
@@ -183,7 +183,7 @@
                 {% for theme in themes %}
                 <!-- Item -->
                     <div class="swiper-slide py-2 h-auto">
-                        <a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="btn btn-outline-primary py-1 w-100">{{ theme.title }}</a>
+                        <a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="btn btn-outline-primary py-2 w-100">{{ theme.title }}</a>
                     </div>
                 {% endfor %}
 
