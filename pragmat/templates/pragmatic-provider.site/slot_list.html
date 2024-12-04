@@ -20,13 +20,13 @@
 
 <!-- Page title + Filters -->
 <section class="container mb-1 pt-md-1 pt-lg-2 pt-xl-2">
-    <div class="d-lg-flex align-items-center justify-content-between py-2 mt-lg-2">
+    <div class="d-lg-flex align-items-center justify-content-between pt-2 mt-lg-2">
         {% if slot_name %}
             <h2 class="me-3">{% trans 'Поиск по запросу' %}: {{ slot_name }}</h2>
         {% else %}
             <h2 class="me-3">{% trans 'Выберите слот' %}</h2>
         {% endif %}
-        <div class="d-md-flex mb-3">
+        <div class="d-md-flex">
 {#            <select class="form-select me-md-4 mb-2 mb-md-0 d-none" style="min-width: 240px;">#}
 {#                <option value="all">Категория</option>#}
 {#                <option value="popular">Популярные</option>#}
@@ -43,7 +43,7 @@
 </section>
 
     <!-- Themes (Carousel) -->
-    <section class="container" style="overflow:hidden;">
+    <section class="container mb-1" style="overflow:hidden;">
         <div class="swiper" style="width:130%;" data-swiper-options='{
           "slidesPerView": 4,
           "spaceBetween": 3,
