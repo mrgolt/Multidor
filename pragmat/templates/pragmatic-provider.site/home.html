@@ -35,12 +35,10 @@
       </section>
 
         <!-- Brands (Carousel) -->
-    <section class="container">
-        <h2 class="h1 text-center pb-md-2">
-            Популярные категории
-        </h2>
+    <section class="container" style="width:120%; overflow:hidden;">
         <div class="swiper mx-n2" data-swiper-options='{
           "slidesPerView": 3,
+          "spaceBetween": 2,
           "pagination": {
             "el": ".swiper-pagination",
             "clickable": true
@@ -65,18 +63,14 @@
           }
         }'>
             <div class="swiper-wrapper">
-
                 {% for theme in themes %}
                 <!-- Item -->
                     <div class="swiper-slide py-2 h-auto">
-                        <a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="btn btn-outline-primary btn-lg py-1 w-100">{{ theme.title }}</a>
+                        <a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="btn btn-outline-primary py-1 w-100">{{ theme.title }}</a>
                     </div>
                 {% endfor %}
 
             </div>
-
-            <!-- Pagination (bullets) -->
-            <div class="swiper-pagination position-relative pt-2 mt-4"></div>
         </div>
     </section>
 
