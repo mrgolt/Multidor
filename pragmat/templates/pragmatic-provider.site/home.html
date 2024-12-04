@@ -34,6 +34,51 @@
         </div>
       </section>
 
+        <!-- Brands (Carousel) -->
+    <section class="container mt-2 mb-lg-2 mb-xl-4 pt-3 pt-lg-5 pb-5">
+        <h2 class="text-center pb-md-2">
+            Популярные категории
+        </h2>
+        <div class="swiper mx-n2" data-swiper-options='{
+          "slidesPerView": 2,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "breakpoints": {
+            "500": {
+              "slidesPerView": 3,
+              "spaceBetween": 8
+            },
+            "650": {
+              "slidesPerView": 4,
+              "spaceBetween": 8
+            },
+            "900": {
+              "slidesPerView": 5,
+              "spaceBetween": 8
+            },
+            "1100": {
+              "slidesPerView": 6,
+              "spaceBetween": 8
+            }
+          }
+        }'>
+            <div class="swiper-wrapper">
+
+                {% for theme in themes %}
+                <!-- Item -->
+                    <div class="swiper-slide py-3 h-auto">
+                        <a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="btn btn-outline-primary btn-lg py-1">{{ theme.title }}</a>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- Pagination (bullets) -->
+            <div class="swiper-pagination position-relative pt-2 mt-4"></div>
+        </div>
+    </section>
 
       <!-- Popular slots -->
     <section id="popularslots" class="container mb-2 pt-lg-2 pt-xl-4 pb-2 pb-md-3 pb-lg-5">
