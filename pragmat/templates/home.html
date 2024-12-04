@@ -155,6 +155,42 @@
         </div>
     </section>
 
+            <!-- Themes (Carousel) -->
+    <section class="container" style="width:120%; overflow:hidden;">
+        <div class="swiper" data-swiper-options='{
+          "slidesPerView": 4,
+          "spaceBetween": 2,
+          "pagination": {
+            "el": ".swiper-pagination",
+            "clickable": true
+          },
+          "breakpoints": {
+            "650": {
+              "slidesPerView": 6,
+              "spaceBetween": 2
+            },
+            "900": {
+              "slidesPerView": 7,
+              "spaceBetween": 2
+            },
+            "1100": {
+              "slidesPerView": 9,
+              "spaceBetween": 2
+            }
+          }
+        }'>
+            <div class="swiper-wrapper">
+                {% for theme in themes %}
+                <!-- Item -->
+                    <div class="swiper-slide py-2 h-auto">
+                        <a href="{% url 'slot_list' %}?theme={{ theme.id }}" class="btn btn-outline-primary py-1 w-100">{{ theme.title }}</a>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
     <!-- Popular slots -->
     <section class="container mt-1 mt-sm-2 py-md-2 py-lg-2">
         <div class="row py-5">
