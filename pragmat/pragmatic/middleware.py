@@ -32,7 +32,7 @@ class CustomRefererMiddleware:
         self.get_response = get_response
         self.allowed_referer = ['yandex', '127.0.0.1:8000', 'dzen', 'google', 'bing', 'ya.ru', 'mail.ru', 't.me']
         self.useragents = ['yandex', 'google']
-        self.blockpage = 'https://pragmatic-play.su/'
+        self.blockpage = 'https://yandex.ru/games/'
         self.pass_paths = ['/go/', '/admin/', '/robots.txt', '/sitemap', '/media/', '/static/', '/play/', '/promo/', '/api/']
         self.pass_domains = ['127.0.0.1:8000']
 
