@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from slots.models import Slot, Theme
 from bs4 import BeautifulSoup
 
-openai.api_key = "xxx"
+
 
 class Command(BaseCommand):
     help = 'Назначить тему для слотов на основе названия и первого абзаца описания через ChatGPT'
