@@ -13,7 +13,7 @@ def site_context(request):
     if context is None:
         # Если данные не найдены в кеше, выполняем запросы к базе данных
         themes = Theme.objects.annotate(slot_count=Count('slot')).filter(
-            slot_count__gt=1, slot__provider=current_site.provider
+            slot_count__gt=5, slot__provider=current_site.provider
         )
 
         game_types = SlotType.objects.annotate(slot_count=Count('slot')).filter(
