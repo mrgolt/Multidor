@@ -9,7 +9,7 @@
     <div class="mt-4 py-2 pb-sm-3 pb-md-4 pb-lg-5 mx-auto text-center" style="max-width: 46.625rem;">
         <h2 class="h1 mb-4">{% if slot_type %}{{ slot_type }}{% else %}Игры{% endif %} <span class="text-primary">{{ site.provider.name|upper }}</span></h2>
         <p class="mb-4">Играйте демо или на реальные деньги в казино.</p>
-        <span data-href="/play/{{ site.offers.first.redirect_name }}/?placement=slot_list&path={{ request.path }}" data-target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3 play-link">Бездепозитный бонус 100 FS</span>
+        <span data-href="/play/{{ site.sorted_offers.first.redirect_name }}/?placement=slot_list&path={{ request.path }}" data-target="_blank" class="btn btn-primary shadow-primary btn-lg mb-3 play-link">Бездепозитный бонус 100 FS</span>
 
     </div>
 </section>
