@@ -104,7 +104,7 @@ def custom_serve(request, slug=None):
         images = Image.objects.filter(site=site)
 
         if site.type == 'casino':
-            bonuses = Bonus.objects.filter(casino=site.casino).order_by('sorting_order')
+            bonuses = Bonus.objects.filter(casino=site.casino, is_active=False).order_by('sorting_order')
 
         # Фильтрация контента на основе переданного slug
         if slug:
